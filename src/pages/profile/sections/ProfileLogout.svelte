@@ -8,13 +8,12 @@
 	}
 </script>
 
-<div>
-	<hr/>
-
-	<div>
-		<button on:click={handleLogout} class="press press-ghost press-red">Logout</button>
-	</div>
+<div class="profile-logout">
+	<button on:click={handleLogout} class="press press-ghost press-red">Logout</button>
 </div>
 
-<style lang="less">
+<style>
+	.profile-logout {
+		 margin: 2em 0;
+	}
 </style>

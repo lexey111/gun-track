@@ -8,6 +8,15 @@
 </script>
 
 <div class={"app-page"}>
-	<ProfileDetails authState={authState}/>
-	<ProfileLogout authStore={authStore}/>
+	<div class="profile-details">
+		<ProfileDetails authState={authState}/>
+		<ProfileLogout authStore={authStore}/>
+	</div>
 </div>
+
+<style lang="less">
+	.profile-details {
+		max-width: 450px;
+		margin: 0 auto;
+	}
+</style>

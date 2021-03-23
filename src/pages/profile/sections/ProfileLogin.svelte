@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {Link} from 'svelte-routing';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	import {AUTH_PROVIDER} from '../../../stores/firestore/auth-firebase';
@@ -23,6 +24,8 @@
 	<button on:click={handleLoginWithGoogle} class={loginButtonClass}>Google</button>
 	<button on:click={handleLoginWithFacebook} class={loginButtonClass}>Facebook</button>
 	<button on:click={handleLoginWithGithub} class={loginButtonClass}>GitHub</button>
+	<h4>or</h4>
+	<Link to="/home">Go to Home page</Link>
 </div>
 
 <style lang="less">
@@ -30,11 +33,15 @@
 		max-width: 400px;
 		padding: 32px;
 		margin: 64px auto;
-		background-color: var(--app-background);
+		background-color: var(--app-page-background);
 		text-align: center;
 
 		h3 {
 			margin: 0 0 1.5em 0;
+		}
+
+		h4 {
+			margin: 3em 0 1em 0;
 		}
 	}
 </style>
