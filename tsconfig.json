@@ -1,0 +1,40 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
+		"strictNullChecks": false,
+		"removeComments": true,
+		"noImplicitAny": false,
+		"skipLibCheck": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"noUnusedLocals": true,
+		"lib": [
+			"dom",
+			"es2015",
+			"es2017"
+		],
+		"baseUrl": ".",
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"types": [
+			"svelte",
+			"svelte/store",
+			"svelte/motion",
+			"svelte/transition",
+			"svelte/animate",
+			"svelte/easing"
+		]
+	},
+	"include": [
+		"./src/**/*", ".eslintrc.js"
+	],
+	"exclude": [
+		"node_modules/**/*"
+	]
+}
