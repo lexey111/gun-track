@@ -1,5 +1,7 @@
 <script lang="ts">
 	import {onDestroy, onMount, setContext} from 'svelte';
+	import './i18n/i18n.service.ts';
+
 	import {Router} from 'svelte-routing';
 	import AppMenu from '../components/AppMenu.svelte';
 	import Footer from '../components/Footer.svelte';
@@ -10,6 +12,7 @@
 	import {TAuthState} from '../stores/auth/auth-store.interface';
 
 	import {extendHistoryTracking} from './history-helper';
+	import {I18nService} from './i18n/i18n.service';
 	import ModalComponent from './modal/ModalComponent.svelte';
 
 	// auth store and state
@@ -21,11 +24,15 @@
 	// app context (state)
 	let app_state = {
 		modal: {},
-		path: ''
+		path: '',
+		locale: ''
 	};
 	const appStateUnsubscribe = AppStateStore.subscribe(value => {
 		app_state.modal = value.modal;
 		app_state.path = value.path;
+		app_state.locale = value.locale;
+
+		I18nService.setLocale(value.locale);
 	});
 	setContext('AppState', app_state);
 

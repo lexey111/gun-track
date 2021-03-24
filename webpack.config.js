@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const sveltePreprocess = require('svelte-preprocess');
 
@@ -114,8 +115,8 @@ module.exports = (env, args) => {
 								optimistic: true,
 							},
 							onwarn: (warning, handler) => {
-								const { code, frame } = warning;
-								if (code === "css-unused-selector" && frame.includes("app-navigation"))
+								const {code, frame} = warning;
+								if (code === 'css-unused-selector' && frame.includes('app-navigation'))
 									return;
 
 								handler(warning);
@@ -169,7 +170,17 @@ module.exports = (env, args) => {
 			}),
 
 			new HtmlWebpackPlugin(),
-			new FaviconsWebpackPlugin('./assets/icons/logo.png')
+			new FaviconsWebpackPlugin('./assets/icons/logo.png'),
+
+			new CopyWebpackPlugin({
+				patterns: [
+					{
+						from: path.resolve('./src/assets/i18n'),
+						to: outPath + '/i18n',
+						toType: 'dir'
+					},
+				]
+			})
 		],
 		watchOptions: {
 			ignored: /node_modules/

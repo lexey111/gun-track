@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {writable} from 'svelte/store';
-import {IAppStateStore, TAppState} from './app-state-store.interface';
+import {AppLocales, IAppStateStore, TAppLocale, TAppState} from './app-state-store.interface';
 
+// restore last locale
+let initialLocale = localStorage.getItem('app.locale');
+if (!AppLocales[initialLocale]) {
+	initialLocale = 'fallback';
+}
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
 	subscribe,
@@ -13,6 +18,7 @@ const {
 		open: null,
 		close: null
 	},
+	locale: initialLocale as TAppLocale
 });
 
 export const AppStateStore: IAppStateStore = {
@@ -24,6 +30,15 @@ export const AppStateStore: IAppStateStore = {
 		update(state => ({
 			...state,
 			path
+		}));
+	},
+
+	setLocale: (locale: TAppLocale) => {
+		localStorage.setItem('app.locale', locale);
+
+		update(state => ({
+			...state,
+			locale
 		}));
 	},
 
