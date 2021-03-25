@@ -22,6 +22,9 @@
 	<h2>
 		<I18n text="@Common.Welcome"/>
 	</h2>
+	<h3>
+		<I18n>@Common.ThisIsGunTrack</I18n>
+	</h3>
 
 	<div>
 		<button class="press press-ghost press-blue" on:click={setEN}>Set en-EN</button>

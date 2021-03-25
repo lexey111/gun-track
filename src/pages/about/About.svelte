@@ -13,10 +13,17 @@
 			<Done>Modal</Done>
 		</li>
 		<li>
-			<Done>I18n - component</Done></li>
-		<li>I18n - infrastructure</li>
-		<li>I18n - interface</li>
-		<li>I18n - translations</li>
+			<Done>I18n - component</Done>
+		</li>
+		<li>
+			<Done>I18n - infrastructure</Done>
+		</li>
+		<li>
+			<Done>I18n - interface</Done>
+		</li>
+		<li>
+			<Done>I18n - translations</Done>
+		</li>
 	</ul>
 
 	<h3>Routing</h3>

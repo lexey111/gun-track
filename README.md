@@ -1,4 +1,4 @@
-# Gun History
+# Gun | Track
 
 ## TODO
 

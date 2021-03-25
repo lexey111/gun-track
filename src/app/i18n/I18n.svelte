@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {onDestroy} from 'svelte';
+	import {onDestroy, onMount} from 'svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import {I18nService} from './i18n.service';
 
@@ -9,12 +9,13 @@
 	let _toTranslate = '';
 	let slot;
 	let translated = false;
+	let _inTranslation = false;
 
 	$: if (text) {
 		_toTranslate = text;
 	}
 
-	$: if (slot && slot.textContent) {
+	$: if (slot && slot.textContent && !text) {
 		_toTranslate = slot.textContent;
 	}
 
@@ -24,28 +25,35 @@
 
 	// re-render if system locale changed
 	let locale = '';
-	const appStateUnsubscribe = AppStateStore.subscribe(value => {
-		if (locale !== value.locale) {
-			locale = value.locale;
-			translate();
-		}
+	let appStateUnsubscribe;
+	onMount(() => {
+		appStateUnsubscribe = AppStateStore.subscribe(value => {
+			if (locale !== value.locale) {
+				locale = value.locale;
+				translate();
+			}
+		});
 	});
 
 	onDestroy(() => {
-		appStateUnsubscribe();
+		appStateUnsubscribe && appStateUnsubscribe();
 	});
 
 	function translate() {
-		if (!_toTranslate) {
+		if (!_toTranslate || _inTranslation) {
 			return;
 		}
+		_inTranslation = true;
 		translated = false;
 		I18nService.translate(_toTranslate)
 			.then(_translation => {
 				translation = _translation;
-				translated = true;
 				return _translation;
-			});
+			})
+			.finally(() => {
+				_inTranslation = false;
+				translated = !!translation;
+			})
 	}
 
 </script>
