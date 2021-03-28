@@ -1,6 +1,5 @@
 <script lang="ts">
-	import {onDestroy, onMount, setContext} from 'svelte';
-	import './i18n/i18n.service.ts';
+	import {onDestroy, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
 	import AppMenu from '../components/AppMenu.svelte';
@@ -13,6 +12,7 @@
 
 	import {extendHistoryTracking} from './history-helper';
 	import {I18nService} from './i18n/i18n.service';
+	import './i18n/i18n.service.ts';
 	import ModalComponent from './modal/ModalComponent.svelte';
 
 	// auth store and state
@@ -51,10 +51,6 @@
 	});
 
 	// lifecycle
-	onMount(() => {
-		AuthStore.init();
-	});
-
 	onDestroy(() => {
 		authUnsubscribe();
 		appStateUnsubscribe();

@@ -41,7 +41,15 @@
 
 	<h3>Database</h3>
 	<ul>
-		<li>Auth database - AWS</li>
+		<li>
+			<Done>Auth database - AWS</Done>
+		</li>
+		<li>
+			<Done>Gravatar image</Done>
+		</li>
+		<li>Auth with Google</li>
+		<li>Auth with Apple</li>
+		<li>Auth with Amazon (email)</li>
 		<li>Own database - AWS</li>
 	</ul>
 </div>

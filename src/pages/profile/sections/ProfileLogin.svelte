@@ -1,19 +1,8 @@
 <script lang="ts">
-	import {Link} from 'svelte-routing';
-	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
+	import {Auth, CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 
-	import {AUTH_PROVIDER} from '../../../stores/firestore/auth-firebase';
-
-	export let authStore: IAuthStore;
-
-	const handleLoginWithGoogle = () => {
-		authStore.logIn(AUTH_PROVIDER.google);
-	}
 	const handleLoginWithFacebook = () => {
-		authStore.logIn(AUTH_PROVIDER.facebook);
-	}
-	const handleLoginWithGithub = () => {
-		authStore.logIn(AUTH_PROVIDER.github);
+		Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook});
 	}
 
 	const loginButtonClass = 'press press-ghost press-blue'
@@ -21,11 +10,7 @@
 
 <div class="app-page-profile-login">
 	<h3>Please log in with</h3>
-	<button on:click={handleLoginWithGoogle} class={loginButtonClass}>Google</button>
 	<button on:click={handleLoginWithFacebook} class={loginButtonClass}>Facebook</button>
-	<button on:click={handleLoginWithGithub} class={loginButtonClass}>GitHub</button>
-	<h4>or</h4>
-	<Link to="/home">Go to Home page</Link>
 </div>
 
 <style lang="less">
@@ -38,10 +23,6 @@
 
 		h3 {
 			margin: 0 0 1.5em 0;
-		}
-
-		h4 {
-			margin: 3em 0 1em 0;
 		}
 	}
 </style>

@@ -6,15 +6,11 @@
 </script>
 
 <div>
-	<h1>{authState.displayName}</h1>
 	<h3>Authorized via {authState.providerId}</h3>
 
 	{#if (authState.email)}
 		<p>
 			Email: {authState.email}
-			{#if (authState.emailVerified)}
-				&mdash; <i>verified</i>
-			{/if}
 		</p>
 	{/if}
 

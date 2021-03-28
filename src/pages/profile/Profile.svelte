@@ -10,7 +10,7 @@
 <div class={"app-page"}>
 	<div class="profile-details">
 		<ProfileDetails authState={authState}/>
-		<ProfileLogout authStore={authStore}/>
+		<ProfileLogout authStore={authStore} authState="{authState} "/>
 	</div>
 </div>
 

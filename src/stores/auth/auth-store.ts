@@ -1,8 +1,7 @@
+import * as Md5 from 'md5';
 import {writable} from 'svelte/store';
-import {AuthFirebase} from '../firestore/auth-firebase';
 import {IAuthStore, TAuthState} from './auth-store.interface';
 import {USER_INITIAL} from './user-model';
-import {mapFirebaseUserToUser} from './user-utils';
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
@@ -14,17 +13,6 @@ const {
 	fetching: false,
 	started: false
 });
-
-function reportError(err): TAuthState {
-	// eslint-disable-next-line no-console
-	console.error(err);
-
-	return {
-		...USER_INITIAL,
-		started: true,
-		fetching: false
-	};
-}
 
 function resetUser(): TAuthState {
 	return {
@@ -39,47 +27,42 @@ export const AuthStore: IAuthStore = {
 	set,
 	update,
 
-	logIn: (provider: 'google' | 'facebook' | 'github') => {
-		AuthFirebase
-			.loginWith(provider)
-			.catch(reportError);
+	setFetching: (fetching: boolean) => {
+		update(state => ({
+			...state,
+			fetching
+		}));
+	},
+
+	logIn: (id: string, provider: string, email: string) => {
+		console.log('******* LOGIN ********');
+		console.log('id', id);
+		console.log('provider', provider);
+		console.log('email', email);
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+		const md5Email: string = Md5(email);
+
+		update(state => {
+			return {
+				...state,
+				fetching: false,
+				started: true,
+				id,
+				providerId: provider,
+				email,
+				profileImageUrl: `https://www.gravatar.com/avatar/${md5Email}`,
+				loggedIn: true
+			};
+		});
 	},
 
 	logOut: () => {
-		AuthFirebase
-			.logout()
-			.then(resetUser)
-			.catch(reportError);
-	},
-
-	init: () => {
-		update(current => {
-			AuthFirebase.attachToFirebaseAuth(
-				result => {
-					update(state => {
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-						if (result && state.id !== result.uid) {
-							return {
-								...mapFirebaseUserToUser(result),
-								started: true,
-								fetching: false
-							};
-						}
-						return {
-							...USER_INITIAL,
-							started: true,
-							fetching: false
-						};
-					});
-				},
-				() => {
-					update(resetUser);
-				});
-
+		update(state => {
 			return {
-				...current,
-				fetching: true
+				...state,
+				...resetUser()
 			};
 		});
-	}
+	},
 };

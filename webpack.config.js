@@ -126,8 +126,9 @@ module.exports = (env, args) => {
 				},
 				// Required to prevent errors from Svelte on Webpack 5+, omit on Webpack 4
 				// See: https://github.com/sveltejs/svelte-loader#usage
+				// Also: https://github.com/graphql/graphql-js/issues/2721#issuecomment-723008284
 				{
-					test: /node_modules\/svelte\/.*\.mjs$/,
+					test: /\.m?js/,
 					resolve: {
 						fullySpecified: false
 					}
@@ -193,9 +194,10 @@ module.exports = (env, args) => {
 				'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
 			},
 			contentBase: path.resolve('./dist'),
+			clientLogLevel: 'error',
 			historyApiFallback: true,
 			compress: false,
-			port: 3030,
+			port: 3000,
 		},
 	};
 

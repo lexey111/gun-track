@@ -13,6 +13,7 @@
 	const setRU = () => {
 		AppStateStore.setLocale('ru-RU');
 	}
+
 </script>
 
 <div class="app-page">
