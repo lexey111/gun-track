@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "GunTrackAPI",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authguntrack00f97396",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

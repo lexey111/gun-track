@@ -22,7 +22,7 @@
 
 	const handleConfirmLogoutDialog = () => {
 		modal.open(LogoutConfirmModal, {
-			closeButton: false,
+			closeButton: true,
 			componentProps: {
 				onConfirm: () => {
 					modal.close();

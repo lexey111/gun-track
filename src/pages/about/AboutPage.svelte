@@ -24,6 +24,10 @@
 		<li>
 			<Done>I18n - translations</Done>
 		</li>
+		<li>Spinner on busy</li>
+		<li>Fullscreen spinner</li>
+		<li>Icons</li>
+		<li>Table</li>
 	</ul>
 
 	<h3>Routing</h3>
@@ -50,6 +54,9 @@
 		<li>Auth with Google</li>
 		<li>Auth with Apple</li>
 		<li>Auth with Amazon (email)</li>
-		<li>Own database - AWS</li>
+		<li>
+			<Done>Own database - AWS</Done>
+		</li>
+		<li>Extra fields in gun: created, photo</li>
 	</ul>
 </div>

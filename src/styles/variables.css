@@ -3,12 +3,20 @@
 
     --app-background: #f2f2f2;
     --app-page-background: #fff;
+
     --app-background-darken: #e2e2e2;
+    --app-background-darken-shade-1: #cbcbcb;
+
+    --app-background-lighten: #f8f8f8;
+
     --app-text: #333;
+
     --app-border-color: #bbb;
+    --app-border-color-active: #2196f3;
+
     --app-remark-text: #94a6ac;
 
-    --app-link-text: #1f3e5f;
+    --app-link-text: #2196f3;
     --app-link-text-active: #2b6699;
 
     --app-menu-logged-in-bg: #1f505f;

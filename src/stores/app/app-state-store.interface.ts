@@ -7,6 +7,7 @@ export type TAppModal = {
 		closeButton?: boolean
 		closeOnEsc?: boolean
 		closeOnOuterClick?: boolean
+		extraClass?: string
 		componentProps?: any
 	}) => void
 

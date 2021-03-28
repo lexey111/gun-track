@@ -5,7 +5,7 @@ import {AppLocales, IAppStateStore, TAppLocale, TAppState} from './app-state-sto
 // restore last locale
 let initialLocale = localStorage.getItem('app.locale');
 if (!AppLocales[initialLocale]) {
-	initialLocale = 'fallback';
+	initialLocale = 'en-EN';
 }
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {

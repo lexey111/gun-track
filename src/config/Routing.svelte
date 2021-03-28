@@ -1,25 +1,38 @@
 <script lang="ts">
 	import {Route} from 'svelte-routing';
 	import AuthGuardPage from '../components/AuthGuardPage.svelte';
-	import About from '../pages/about/About.svelte';
-	import Home from '../pages/home/Home.svelte';
-	import Login from '../pages/profile/Login.svelte';
-	import Signout from '../pages/profile/Signout.svelte';
-	import Profile from '../pages/profile/Profile.svelte';
+
+	import AboutPage from '../pages/about/AboutPage.svelte';
+	import GunsPage from '../pages/guns/Guns.svelte';
+
+	import HomePage from '../pages/home/HomePage.svelte';
+
+	import LoginPage from '../pages/profile/LoginPage.svelte';
+	import ProfilePage from '../pages/profile/ProfilePage.svelte';
+	import SignoutPage from '../pages/profile/SignoutPage.svelte';
 </script>
 
 <div class="app-pages">
 	<Route path="profile">
-		<AuthGuardPage component={Profile} redirectTo="login"/>
+		<AuthGuardPage component={ProfilePage} redirectTo="login"/>
 	</Route>
+
 	<Route path="signin">
-		<AuthGuardPage logout={true} component={Login}/>
+		<AuthGuardPage logout={true} component={LoginPage}/>
 	</Route>
-	<Route path="signout" component={Signout}/>
-	<Route path="about" component={About}/>
-	<Route path="home" component={Home}/>
+
+	<Route path="signout" component={SignoutPage}/>
+
+	<Route path="about" component={AboutPage}/>
+
+	<Route path="guns">
+		<AuthGuardPage component={GunsPage} redirectTo="login"/>
+	</Route>
+
+	<Route path="home" component={HomePage}/>
+
 	<Route path="/">
-		<Home/>
+		<HomePage/>
 	</Route>
 </div>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {onDestroy, setContext} from 'svelte';
+	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
 	import AppMenu from '../components/AppMenu.svelte';
@@ -17,9 +17,7 @@
 
 	// auth store and state
 	let auth_state: TAuthState;
-	const authUnsubscribe = AuthStore.subscribe(value => {
-		auth_state = value;
-	});
+	let authUnsubscribe;
 
 	// app context (state)
 	let app_state = {
@@ -27,13 +25,32 @@
 		path: '',
 		locale: ''
 	};
-	const appStateUnsubscribe = AppStateStore.subscribe(value => {
-		app_state.modal = value.modal;
-		app_state.path = value.path;
-		app_state.locale = value.locale;
 
-		I18nService.setLocale(value.locale);
+	let appStateUnsubscribe;
+
+	onMount(() => {
+		authUnsubscribe = AuthStore.subscribe(value => {
+			auth_state = value;
+		});
+
+		appStateUnsubscribe = AppStateStore.subscribe(value => {
+			app_state.modal = value.modal;
+			app_state.path = value.path;
+			app_state.locale = value.locale;
+
+			I18nService.setLocale(value.locale);
+		});
+
+		console.log('>>>', app_state.locale);
+		if (!app_state.locale) {
+			AppStateStore.setLocale('en-EN'); // default
+		}
+
+		['hashchange', 'locationchange'].forEach(eventName => {
+			window.addEventListener(eventName, updateCurrentLocation)
+		});
 	});
+
 	setContext('AppState', app_state);
 
 	// routing ans history
@@ -43,23 +60,21 @@
 	updateCurrentLocation();
 
 	function updateCurrentLocation() {
-		AppStateStore.setPath(window.location.pathname);
+		AppStateStore && AppStateStore.setPath(window.location.pathname);
 	}
-
-	['hashchange', 'locationchange'].forEach(eventName => {
-		window.addEventListener(eventName, updateCurrentLocation)
-	});
 
 	// lifecycle
 	onDestroy(() => {
 		authUnsubscribe();
-		appStateUnsubscribe();
+		if (appStateUnsubscribe) {
+			appStateUnsubscribe();
+		}
 	});
 </script>
 
 <ModalComponent/>
 
-<main class={'app-content ' + (auth_state.loggedIn ? 'logged-in' : 'logged-out')}>
+<main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
 	<h1>GUN | TRACK</h1>
 
 	<Router url="{url}">

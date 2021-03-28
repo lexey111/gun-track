@@ -1,0 +1,35 @@
+.form-group {
+	display: flex;
+	width: 100%;
+	align-content: center;
+	align-items: center;
+	flex-flow: row nowrap;
+
+	label {
+		display: flex;
+		align-content: center;
+		align-items: center;
+		margin-right: 16px;
+		min-width: 150px;
+	}
+
+	input {
+		box-sizing: border-box;
+		font-size: 1em;
+		display: flex;
+		align-content: center;
+		align-items: center;
+		height: 32px;
+		line-height: 32px;
+		padding: 2px 8px;
+		border: 1px solid var(--app-border-color);
+		background-color: var(--app-background-lighten);
+		width: 100%;
+		transition: border .2s ease, background .2s ease;
+
+		&:focus, &:active {
+			outline: none;
+			border-color: var(--app-border-color-active);
+		}
+	}
+}

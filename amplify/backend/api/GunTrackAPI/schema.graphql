@@ -1,0 +1,17 @@
+type Gun @model {
+  id: ID!
+  name: String!
+  actions: [Actions] @connection(keyName: "byGun", fields: ["id"])
+}
+
+type Actions @model @key(name: "byGun", fields: ["gunID"]) {
+  id: ID!
+  title: String
+  comment: String
+  shots: Int!
+  date: AWSDateTime!
+  expenses: Float
+  currency: String
+  gunID: ID!
+  gun: Gun @connection(fields: ["gunID"])
+}

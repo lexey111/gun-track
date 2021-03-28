@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-misused-promises */
+import {DataStore} from '@aws-amplify/datastore';
 import Amplify, {Auth, Hub} from 'aws-amplify';
 import awsconfig from './aws-exports';
 
@@ -9,7 +10,7 @@ Amplify.configure(awsconfig);
 
 Hub.listen(
 	'auth',
-	(
+	async (
 		{
 			payload: {
 				event,
@@ -24,6 +25,7 @@ Hub.listen(
 			}
 			case 'signOut':
 				console.log('signOut');
+				void await DataStore.clear();
 				AuthStore.logOut();
 				break;
 			case 'customOAuthState':
