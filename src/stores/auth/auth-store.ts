@@ -34,7 +34,7 @@ export const AuthStore: IAuthStore = {
 		}));
 	},
 
-	logIn: (id: string, provider: string, email: string) => {
+	setLoggedIn: (id: string, provider: string, email: string) => {
 		console.log('******* LOGIN ********');
 		console.log('id', id);
 		console.log('provider', provider);
@@ -57,7 +57,7 @@ export const AuthStore: IAuthStore = {
 		});
 	},
 
-	logOut: () => {
+	setLoggedOut: () => {
 		update(state => {
 			return {
 				...state,

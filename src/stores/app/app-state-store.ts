@@ -2,11 +2,11 @@
 import * as dayjs from 'dayjs';
 
 import 'dayjs/locale/en';
-import 'dayjs/locale/ru';
 import 'dayjs/locale/uk';
+import 'dayjs/locale/ru';
+
 import {writable} from 'svelte/store';
 import {AppLocales, IAppStateStore, TAppLocale, TAppState} from './app-state-store.interface';
-
 
 // restore last locale
 let initialLocale = localStorage.getItem('app.locale');

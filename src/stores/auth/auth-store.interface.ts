@@ -9,7 +9,7 @@ export type TAuthState = TUser & {
 export interface IAuthStore extends Writable<TAuthState> {
 	setFetching: (fetching: boolean) => void
 
-	logIn: (id: string, provider: string, email: string) => void
+	setLoggedIn: (id: string, provider: string, email: string) => void
 
-	logOut: () => void
+	setLoggedOut: () => void
 }

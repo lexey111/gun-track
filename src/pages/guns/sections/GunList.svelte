@@ -15,6 +15,7 @@
 	let confirmDialog: IConfirmDialog;
 	const handleOnDelete = (id: string) => {
 		const gun = guns.find(x => x.id === id);
+
 		confirmDialog.showConfirmDialog({
 			text: `Are you sure you want to delete this gun? Operation cannot be undone!
 \n
@@ -40,7 +41,7 @@ Gun to delete: ${gun.name}
 		{#each guns as gun}
 			<tr on:dblclick={() => onEdit(gun.id)}>
 				<td width="*">
-					<a href="#" on:click={() => onEdit(gun.id)}>
+					<a on:click={() => onEdit(gun.id)}>
 						{gun.name}
 					</a>
 				</td>
@@ -51,11 +52,11 @@ Gun to delete: ${gun.name}
 				</td>
 				<td class="actions width-10">
 					<div>
-						<a href="#" on:click={() => onEdit(gun.id)}>
+						<a on:click={() => onEdit(gun.id)}>
 							Change
 						</a>
 						<span class="stub"></span>
-						<a href="#" on:click={() => handleOnDelete(gun.id)} class="danger">
+						<a on:click={() => handleOnDelete(gun.id)} class="danger">
 							Delete
 						</a>
 					</div>

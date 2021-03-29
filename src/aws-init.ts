@@ -4,6 +4,7 @@ import Amplify, {Auth, Hub} from 'aws-amplify';
 import awsconfig from './aws-exports';
 
 import {AuthStore} from './stores/auth/auth-store';
+import {GunsStore} from './stores/guns/guns-store';
 import './styles/index.less';
 
 Amplify.configure(awsconfig);
@@ -26,7 +27,7 @@ Hub.listen(
 			case 'signOut':
 				console.log('signOut');
 				void await DataStore.clear();
-				AuthStore.logOut();
+				AuthStore.setLoggedOut();
 				break;
 			case 'customOAuthState':
 				console.log('customOAuthState', data);
@@ -42,11 +43,14 @@ Auth.currentAuthenticatedUser()
 		console.log('identities', identities);
 		console.log('attrs', user.attributes);
 
-		AuthStore.logIn(
+		AuthStore.setLoggedIn(
 			identities.userId,
 			identities.providerName,
 			user.attributes.email
 		);
+
+		void GunsStore.initStore();
+		void GunsStore.loadGuns();
 
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return user;
@@ -54,5 +58,7 @@ Auth.currentAuthenticatedUser()
 	.catch(err => {
 		console.log('Not signed in'); // https://lexey111-dev.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse
 		console.log(err);
-		AuthStore.logOut();
+
+		AuthStore.setLoggedOut();
+		GunsStore.unloadGuns();
 	});

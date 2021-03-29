@@ -17,7 +17,7 @@
 		} catch (error) {
 			console.log('error signing out: ', error);
 		}
-		authStore.logOut();
+		authStore.setLoggedOut();
 	}
 
 	const handleConfirmLogoutDialog = () => {
