@@ -1,6 +1,8 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
+	import {IConfirmDialog} from '../../../app/modal/Confirm.interface';
+	import Confirm from '../../../app/modal/Confirm.svelte';
 	import {Gun} from '../../../models';
 
 	dayjs.extend(localizedFormat);
@@ -9,32 +11,57 @@
 	export let onEdit: (id: string) => void;
 
 	export let guns: Array<Gun>;
-	export let busy: boolean;
+
+	let confirmDialog: IConfirmDialog;
+	const handleOnDelete = (id: string) => {
+		const gun = guns.find(x => x.id === id);
+		confirmDialog.showConfirmDialog({
+			text: `Are you sure you want to delete this gun? Operation cannot be undone!
+\n
+Gun to delete: ${gun.name}
+			`,
+			confirmText: 'Delete',
+			onConfirm: () => onRemove(id)
+		});
+	}
 </script>
 
 <div class="app-list">
-	<table>
+	<Confirm bind:this={confirmDialog}/>
+	<table class="data-table active">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Registered</th>
+			<th class="centered">Actions</th>
+		</tr>
+		</thead>
+		<tbody>
 		{#each guns as gun}
-			<tr>
-				<td>{gun.name}</td>
-				<td>
+			<tr on:dblclick={() => onEdit(gun.id)}>
+				<td width="*">
+					<a href="#" on:click={() => onEdit(gun.id)}>
+						{gun.name}
+					</a>
+				</td>
+				<td class="width-20">
 					{#if (gun.dateCreated)}
 						{dayjs(gun.dateCreated).format('LL LT')}
 					{/if}
 				</td>
-				<td>
-					<button
-						class="press press-round press-green press-ghost"
-						disabled={busy}
-						on:click={() => onEdit(gun.id)}>E
-					</button>
-					<button
-						class="press press-round press-red press-ghost"
-						disabled={busy}
-						on:click={() => onRemove(gun.id)}>D
-					</button>
+				<td class="actions width-10">
+					<div>
+						<a href="#" on:click={() => onEdit(gun.id)}>
+							Change
+						</a>
+						<span class="stub"></span>
+						<a href="#" on:click={() => handleOnDelete(gun.id)} class="danger">
+							Delete
+						</a>
+					</div>
 				</td>
 			</tr>
 		{/each}
+		</tbody>
 	</table>
 </div>

@@ -24,10 +24,14 @@
 		<li>
 			<Done>I18n - translations</Done>
 		</li>
+		<li>
+			<Done>I18n - dates</Done>
+		</li>
 		<li>Spinner on busy</li>
 		<li>Fullscreen spinner</li>
 		<li>Icons</li>
 		<li>Table</li>
+		<li>Notifications</li>
 	</ul>
 
 	<h3>Functionality</h3>

@@ -1,0 +1,24 @@
+<script lang="ts">
+	import {getContext} from 'svelte';
+	import {TAppModal} from '../../stores/app/app-state-store.interface';
+	import {TConfirmProps} from './Confirm.interface';
+	import ConfirmModal from './ConfirmModal.svelte';
+	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
+
+	export const showConfirmDialog = (props: TConfirmProps): void => {
+		modal.open(ConfirmModal, {
+			closeButton: true,
+			componentProps: {
+				title: props.title,
+				text: props.text,
+				confirmText: props.confirmText,
+				onConfirm: () => {
+					modal.close();
+					props.onConfirm();
+				},
+				onCancel: () => modal.close(),
+			}
+		});
+	};
+</script>
+<!-- confirm dialog -->

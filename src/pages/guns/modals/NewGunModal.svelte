@@ -12,6 +12,7 @@
 		<input
 			placeholder="Black rifle .223"
 			autocomplete="off"
+			maxlength="48"
 			required
 			bind:value={name}
 			id="name"/>

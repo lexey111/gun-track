@@ -1,6 +1,7 @@
 @import (inline) "variables.css";
 @import (inline) "press.css";
 @import "forms.less";
+@import "tables.less";
 
 html, body {
 	margin: 0;
@@ -77,4 +78,16 @@ a, a:visited {
 	&:hover {
 		color: var(--app-link-text-active);
 	}
+
+	&.danger {
+		color: var(--app-danger-link-text);
+
+		&:hover {
+			color: var(--app-danger-link-text-active);
+		}
+	}
+}
+
+button {
+	outline: none;
 }
