@@ -30,6 +30,13 @@
 		<li>Table</li>
 	</ul>
 
+	<h3>Functionality</h3>
+	<ul>
+		<li>Guns to store</li>
+		<li>Single home page</li>
+		<li>Photo upload for guns</li>
+	</ul>
+
 	<h3>Routing</h3>
 	<ul>
 		<li>
@@ -52,8 +59,7 @@
 			<Done>Gravatar image</Done>
 		</li>
 		<li>Auth with Google</li>
-		<li>Auth with Apple</li>
-		<li>Auth with Amazon (email)</li>
+		<li>Auth with local credentials</li>
 		<li>
 			<Done>Own database - AWS</Done>
 		</li>

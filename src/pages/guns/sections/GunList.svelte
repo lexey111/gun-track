@@ -1,5 +1,9 @@
 <script lang="ts">
+	import * as dayjs from 'dayjs'
+	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 	import {Gun} from '../../../models';
+
+	dayjs.extend(localizedFormat);
 
 	export let onRemove: (id: string) => void;
 	export let onEdit: (id: string) => void;
@@ -14,8 +18,8 @@
 			<tr>
 				<td>{gun.name}</td>
 				<td>
-					{#if (gun._lastChangedAt)}
-						{new Date(gun._lastChangedAt)}
+					{#if (gun.dateCreated)}
+						{dayjs(gun.dateCreated).format('LL LT')}
 					{/if}
 				</td>
 				<td>

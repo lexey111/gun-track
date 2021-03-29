@@ -7,6 +7,8 @@ export const onCreateGun = /* GraphQL */ `
     onCreateGun {
       id
       name
+      color
+      dateCreated
       actions {
         items {
           id
@@ -16,6 +18,8 @@ export const onCreateGun = /* GraphQL */ `
           date
           expenses
           currency
+          trainingNotes
+          color
           gunID
           _version
           _deleted
@@ -39,6 +43,8 @@ export const onUpdateGun = /* GraphQL */ `
     onUpdateGun {
       id
       name
+      color
+      dateCreated
       actions {
         items {
           id
@@ -48,6 +54,8 @@ export const onUpdateGun = /* GraphQL */ `
           date
           expenses
           currency
+          trainingNotes
+          color
           gunID
           _version
           _deleted
@@ -71,6 +79,8 @@ export const onDeleteGun = /* GraphQL */ `
     onDeleteGun {
       id
       name
+      color
+      dateCreated
       actions {
         items {
           id
@@ -80,6 +90,8 @@ export const onDeleteGun = /* GraphQL */ `
           date
           expenses
           currency
+          trainingNotes
+          color
           gunID
           _version
           _deleted
@@ -108,10 +120,14 @@ export const onCreateActions = /* GraphQL */ `
       date
       expenses
       currency
+      trainingNotes
+      color
       gunID
       gun {
         id
         name
+        color
+        dateCreated
         actions {
           nextToken
           startedAt
@@ -140,10 +156,14 @@ export const onUpdateActions = /* GraphQL */ `
       date
       expenses
       currency
+      trainingNotes
+      color
       gunID
       gun {
         id
         name
+        color
+        dateCreated
         actions {
           nextToken
           startedAt
@@ -172,10 +192,14 @@ export const onDeleteActions = /* GraphQL */ `
       date
       expenses
       currency
+      trainingNotes
+      color
       gunID
       gun {
         id
         name
+        color
+        dateCreated
         actions {
           nextToken
           startedAt

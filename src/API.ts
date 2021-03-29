@@ -5,11 +5,15 @@
 export type CreateGunInput = {
   id?: string | null,
   name: string,
+  color?: string | null,
+  dateCreated: string,
   _version?: number | null,
 };
 
 export type ModelGunConditionInput = {
   name?: ModelStringInput | null,
+  color?: ModelStringInput | null,
+  dateCreated?: ModelStringInput | null,
   and?: Array< ModelGunConditionInput | null > | null,
   or?: Array< ModelGunConditionInput | null > | null,
   not?: ModelGunConditionInput | null,
@@ -59,6 +63,8 @@ export type Gun = {
   __typename: "Gun",
   id?: string,
   name?: string,
+  color?: string | null,
+  dateCreated?: string,
   actions?: ModelActionsConnection,
   _version?: number,
   _deleted?: boolean | null,
@@ -83,6 +89,8 @@ export type Actions = {
   date?: string,
   expenses?: number | null,
   currency?: string | null,
+  trainingNotes?: string | null,
+  color?: string | null,
   gunID?: string,
   gun?: Gun,
   _version?: number,
@@ -95,6 +103,8 @@ export type Actions = {
 export type UpdateGunInput = {
   id: string,
   name?: string | null,
+  color?: string | null,
+  dateCreated?: string | null,
   _version?: number | null,
 };
 
@@ -111,6 +121,8 @@ export type CreateActionsInput = {
   date: string,
   expenses?: number | null,
   currency?: string | null,
+  trainingNotes?: string | null,
+  color?: string | null,
   gunID: string,
   _version?: number | null,
 };
@@ -122,6 +134,8 @@ export type ModelActionsConditionInput = {
   date?: ModelStringInput | null,
   expenses?: ModelFloatInput | null,
   currency?: ModelStringInput | null,
+  trainingNotes?: ModelStringInput | null,
+  color?: ModelStringInput | null,
   gunID?: ModelIDInput | null,
   and?: Array< ModelActionsConditionInput | null > | null,
   or?: Array< ModelActionsConditionInput | null > | null,
@@ -176,6 +190,8 @@ export type UpdateActionsInput = {
   date?: string | null,
   expenses?: number | null,
   currency?: string | null,
+  trainingNotes?: string | null,
+  color?: string | null,
   gunID?: string | null,
   _version?: number | null,
 };
@@ -188,6 +204,8 @@ export type DeleteActionsInput = {
 export type ModelGunFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
+  color?: ModelStringInput | null,
+  dateCreated?: ModelStringInput | null,
   and?: Array< ModelGunFilterInput | null > | null,
   or?: Array< ModelGunFilterInput | null > | null,
   not?: ModelGunFilterInput | null,
@@ -208,6 +226,8 @@ export type ModelActionsFilterInput = {
   date?: ModelStringInput | null,
   expenses?: ModelFloatInput | null,
   currency?: ModelStringInput | null,
+  trainingNotes?: ModelStringInput | null,
+  color?: ModelStringInput | null,
   gunID?: ModelIDInput | null,
   and?: Array< ModelActionsFilterInput | null > | null,
   or?: Array< ModelActionsFilterInput | null > | null,
@@ -224,6 +244,8 @@ export type CreateGunMutation = {
     __typename: "Gun",
     id: string,
     name: string,
+    color?: string | null,
+    dateCreated: string,
     actions?:  {
       __typename: "ModelActionsConnection",
       items?:  Array< {
@@ -235,6 +257,8 @@ export type CreateGunMutation = {
         date: string,
         expenses?: number | null,
         currency?: string | null,
+        trainingNotes?: string | null,
+        color?: string | null,
         gunID: string,
         _version: number,
         _deleted?: boolean | null,
@@ -263,6 +287,8 @@ export type UpdateGunMutation = {
     __typename: "Gun",
     id: string,
     name: string,
+    color?: string | null,
+    dateCreated: string,
     actions?:  {
       __typename: "ModelActionsConnection",
       items?:  Array< {
@@ -274,6 +300,8 @@ export type UpdateGunMutation = {
         date: string,
         expenses?: number | null,
         currency?: string | null,
+        trainingNotes?: string | null,
+        color?: string | null,
         gunID: string,
         _version: number,
         _deleted?: boolean | null,
@@ -302,6 +330,8 @@ export type DeleteGunMutation = {
     __typename: "Gun",
     id: string,
     name: string,
+    color?: string | null,
+    dateCreated: string,
     actions?:  {
       __typename: "ModelActionsConnection",
       items?:  Array< {
@@ -313,6 +343,8 @@ export type DeleteGunMutation = {
         date: string,
         expenses?: number | null,
         currency?: string | null,
+        trainingNotes?: string | null,
+        color?: string | null,
         gunID: string,
         _version: number,
         _deleted?: boolean | null,
@@ -346,11 +378,15 @@ export type CreateActionsMutation = {
     date: string,
     expenses?: number | null,
     currency?: string | null,
+    trainingNotes?: string | null,
+    color?: string | null,
     gunID: string,
     gun?:  {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -385,11 +421,15 @@ export type UpdateActionsMutation = {
     date: string,
     expenses?: number | null,
     currency?: string | null,
+    trainingNotes?: string | null,
+    color?: string | null,
     gunID: string,
     gun?:  {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -424,11 +464,15 @@ export type DeleteActionsMutation = {
     date: string,
     expenses?: number | null,
     currency?: string | null,
+    trainingNotes?: string | null,
+    color?: string | null,
     gunID: string,
     gun?:  {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -462,6 +506,8 @@ export type SyncGunsQuery = {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -487,6 +533,8 @@ export type GetGunQuery = {
     __typename: "Gun",
     id: string,
     name: string,
+    color?: string | null,
+    dateCreated: string,
     actions?:  {
       __typename: "ModelActionsConnection",
       items?:  Array< {
@@ -498,6 +546,8 @@ export type GetGunQuery = {
         date: string,
         expenses?: number | null,
         currency?: string | null,
+        trainingNotes?: string | null,
+        color?: string | null,
         gunID: string,
         _version: number,
         _deleted?: boolean | null,
@@ -529,6 +579,8 @@ export type ListGunsQuery = {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -564,11 +616,15 @@ export type SyncActionsQuery = {
       date: string,
       expenses?: number | null,
       currency?: string | null,
+      trainingNotes?: string | null,
+      color?: string | null,
       gunID: string,
       gun?:  {
         __typename: "Gun",
         id: string,
         name: string,
+        color?: string | null,
+        dateCreated: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
@@ -600,11 +656,15 @@ export type GetActionsQuery = {
     date: string,
     expenses?: number | null,
     currency?: string | null,
+    trainingNotes?: string | null,
+    color?: string | null,
     gunID: string,
     gun?:  {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -642,11 +702,15 @@ export type ListActionssQuery = {
       date: string,
       expenses?: number | null,
       currency?: string | null,
+      trainingNotes?: string | null,
+      color?: string | null,
       gunID: string,
       gun?:  {
         __typename: "Gun",
         id: string,
         name: string,
+        color?: string | null,
+        dateCreated: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
@@ -669,6 +733,8 @@ export type OnCreateGunSubscription = {
     __typename: "Gun",
     id: string,
     name: string,
+    color?: string | null,
+    dateCreated: string,
     actions?:  {
       __typename: "ModelActionsConnection",
       items?:  Array< {
@@ -680,6 +746,8 @@ export type OnCreateGunSubscription = {
         date: string,
         expenses?: number | null,
         currency?: string | null,
+        trainingNotes?: string | null,
+        color?: string | null,
         gunID: string,
         _version: number,
         _deleted?: boolean | null,
@@ -703,6 +771,8 @@ export type OnUpdateGunSubscription = {
     __typename: "Gun",
     id: string,
     name: string,
+    color?: string | null,
+    dateCreated: string,
     actions?:  {
       __typename: "ModelActionsConnection",
       items?:  Array< {
@@ -714,6 +784,8 @@ export type OnUpdateGunSubscription = {
         date: string,
         expenses?: number | null,
         currency?: string | null,
+        trainingNotes?: string | null,
+        color?: string | null,
         gunID: string,
         _version: number,
         _deleted?: boolean | null,
@@ -737,6 +809,8 @@ export type OnDeleteGunSubscription = {
     __typename: "Gun",
     id: string,
     name: string,
+    color?: string | null,
+    dateCreated: string,
     actions?:  {
       __typename: "ModelActionsConnection",
       items?:  Array< {
@@ -748,6 +822,8 @@ export type OnDeleteGunSubscription = {
         date: string,
         expenses?: number | null,
         currency?: string | null,
+        trainingNotes?: string | null,
+        color?: string | null,
         gunID: string,
         _version: number,
         _deleted?: boolean | null,
@@ -776,11 +852,15 @@ export type OnCreateActionsSubscription = {
     date: string,
     expenses?: number | null,
     currency?: string | null,
+    trainingNotes?: string | null,
+    color?: string | null,
     gunID: string,
     gun?:  {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -810,11 +890,15 @@ export type OnUpdateActionsSubscription = {
     date: string,
     expenses?: number | null,
     currency?: string | null,
+    trainingNotes?: string | null,
+    color?: string | null,
     gunID: string,
     gun?:  {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,
@@ -844,11 +928,15 @@ export type OnDeleteActionsSubscription = {
     date: string,
     expenses?: number | null,
     currency?: string | null,
+    trainingNotes?: string | null,
+    color?: string | null,
     gunID: string,
     gun?:  {
       __typename: "Gun",
       id: string,
       name: string,
+      color?: string | null,
+      dateCreated: string,
       actions?:  {
         __typename: "ModelActionsConnection",
         nextToken?: string | null,

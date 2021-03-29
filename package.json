@@ -23,10 +23,11 @@
 	"author": "lexey111",
 	"license": "ISC",
 	"dependencies": {
-		"@aws-sdk/client-cognito-identity": "^3.10.0",
 		"@aws-amplify/datastore": "^2.9.15",
+		"@aws-sdk/client-cognito-identity": "^3.10.0",
 		"@aws-sdk/types": "^3.10.0",
 		"aws-amplify": "^3.3.26",
+		"dayjs": "^1.10.4",
 		"md5": "^2.3.0",
 		"svelte": "^3.35.0",
 		"svelte-routing": "^1.5.0"

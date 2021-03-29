@@ -17,6 +17,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "color": {
+                    "name": "color",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "dateCreated": {
+                    "name": "dateCreated",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "actions": {
                     "name": "actions",
                     "isArray": true,
@@ -93,6 +107,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "trainingNotes": {
+                    "name": "trainingNotes",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "color": {
+                    "name": "color",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "gun": {
                     "name": "gun",
                     "isArray": false,
@@ -128,5 +156,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "a229060cf686ea2ff9ec02f72134cbf5"
+    "version": "d1dcd6526ebb142125c0b474b617fb04"
 };

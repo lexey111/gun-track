@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {DataStore, Predicates} from '@aws-amplify/datastore';
 	import {getContext, onDestroy, onMount} from 'svelte';
+	import * as dayjs from 'dayjs'
 	import {Gun} from '../../models';
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import EditGunModal from './modals/EditGunModal.svelte';
@@ -28,7 +29,10 @@
 	async function createGun(name: string) {
 		try {
 			await DataStore.save(
-				new Gun({name})
+				new Gun({
+					name,
+					dateCreated: new Date().toISOString()
+				})
 			);
 		} catch (error) {
 			console.log('Error on registering gun', error);
@@ -77,7 +81,7 @@
 	}
 
 	const showGunEditDialog = (id: string) => {
-		const gun = guns.find(x => x.id === id);
+		const gun: Gun = guns.find(x => x.id === id);
 		if (!gun) {
 			console.log('Gun not found!');
 			return;
@@ -86,6 +90,7 @@
 			closeButton: true,
 			componentProps: {
 				name: gun.name,
+				registered: dayjs().format(gun.dateCreated),
 				onConfirm: (name: string) => {
 					modal.close();
 					saveGun(id, name);

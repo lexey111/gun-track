@@ -41,11 +41,6 @@
 			I18nService.setLocale(value.locale);
 		});
 
-		console.log('>>>', app_state.locale);
-		if (!app_state.locale) {
-			AppStateStore.setLocale('en-EN'); // default
-		}
-
 		['hashchange', 'locationchange'].forEach(eventName => {
 			window.addEventListener(eventName, updateCurrentLocation)
 		});

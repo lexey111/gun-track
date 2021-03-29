@@ -1,6 +1,8 @@
 type Gun @model {
   id: ID!
   name: String!
+  color: String
+  dateCreated: AWSDateTime!
   actions: [Actions] @connection(keyName: "byGun", fields: ["id"])
 }
 
@@ -12,6 +14,8 @@ type Actions @model @key(name: "byGun", fields: ["gunID"]) {
   date: AWSDateTime!
   expenses: Float
   currency: String
+  trainingNotes: String
+  color: String
   gunID: ID!
   gun: Gun @connection(fields: ["gunID"])
 }

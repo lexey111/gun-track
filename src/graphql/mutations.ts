@@ -10,6 +10,8 @@ export const createGun = /* GraphQL */ `
     createGun(input: $input, condition: $condition) {
       id
       name
+      color
+      dateCreated
       actions {
         items {
           id
@@ -19,6 +21,8 @@ export const createGun = /* GraphQL */ `
           date
           expenses
           currency
+          trainingNotes
+          color
           gunID
           _version
           _deleted
@@ -45,6 +49,8 @@ export const updateGun = /* GraphQL */ `
     updateGun(input: $input, condition: $condition) {
       id
       name
+      color
+      dateCreated
       actions {
         items {
           id
@@ -54,6 +60,8 @@ export const updateGun = /* GraphQL */ `
           date
           expenses
           currency
+          trainingNotes
+          color
           gunID
           _version
           _deleted
@@ -80,6 +88,8 @@ export const deleteGun = /* GraphQL */ `
     deleteGun(input: $input, condition: $condition) {
       id
       name
+      color
+      dateCreated
       actions {
         items {
           id
@@ -89,6 +99,8 @@ export const deleteGun = /* GraphQL */ `
           date
           expenses
           currency
+          trainingNotes
+          color
           gunID
           _version
           _deleted
@@ -120,10 +132,14 @@ export const createActions = /* GraphQL */ `
       date
       expenses
       currency
+      trainingNotes
+      color
       gunID
       gun {
         id
         name
+        color
+        dateCreated
         actions {
           nextToken
           startedAt
@@ -155,10 +171,14 @@ export const updateActions = /* GraphQL */ `
       date
       expenses
       currency
+      trainingNotes
+      color
       gunID
       gun {
         id
         name
+        color
+        dateCreated
         actions {
           nextToken
           startedAt
@@ -190,10 +210,14 @@ export const deleteActions = /* GraphQL */ `
       date
       expenses
       currency
+      trainingNotes
+      color
       gunID
       gun {
         id
         name
+        color
+        dateCreated
         actions {
           nextToken
           startedAt
