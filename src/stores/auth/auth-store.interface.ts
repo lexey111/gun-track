@@ -14,6 +14,7 @@ export interface IAuthStore extends Writable<TAuthState> {
 	setLoggedOut: () => void
 
 	loginWithFacebook: () => Promise<any>
+	loginWithGoogle: () => Promise<any>
 
 	logout: () => Promise<any>
 

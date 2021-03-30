@@ -1,9 +1,9 @@
 <script lang="ts">
-	import NotifyComponent from './notifications/NotifyComponent.svelte';
 	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
 	import AppMenu from '../components/AppMenu.svelte';
+	import AppSpinnerComponent from '../components/AppSpinnerComponent.svelte';
 	import Footer from '../components/Footer.svelte';
 	import Routing from '../config/Routing.svelte';
 	import {AppStateStore} from '../stores/app/app-state-store';
@@ -15,6 +15,7 @@
 	import {I18nService} from './i18n/i18n.service';
 	import './i18n/i18n.service.ts';
 	import ModalComponent from './modal/ModalComponent.svelte';
+	import NotifyComponent from './notifications/NotifyComponent.svelte';
 
 	// auth store and state
 	let auth_state: TAuthState;
@@ -70,6 +71,7 @@
 
 <ModalComponent/>
 <NotifyComponent/>
+<AppSpinnerComponent/>
 
 <main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
 	<h1>GUN | TRACK</h1>

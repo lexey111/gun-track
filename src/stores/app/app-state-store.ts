@@ -2,8 +2,8 @@
 import * as dayjs from 'dayjs';
 
 import 'dayjs/locale/en';
-import 'dayjs/locale/uk';
 import 'dayjs/locale/ru';
+import 'dayjs/locale/uk';
 
 import {writable} from 'svelte/store';
 import {AppLocales, IAppStateStore, TAppLocale, TAppState} from './app-state-store.interface';
@@ -26,7 +26,8 @@ const {
 		open: null,
 		close: null
 	},
-	locale: initialLocale as TAppLocale
+	locale: initialLocale as TAppLocale,
+	isGlobalSpinnerVisible: false
 });
 
 function setDayJSLocale(locale: TAppLocale): void {
@@ -66,6 +67,20 @@ export const AppStateStore: IAppStateStore = {
 				open,
 				close
 			}
+		}));
+	},
+
+	showSpinner: () => {
+		update(state => ({
+			...state,
+			isGlobalSpinnerVisible: true
+		}));
+	},
+
+	hideSpinner: () => {
+		update(state => ({
+			...state,
+			isGlobalSpinnerVisible: false
 		}));
 	}
 };

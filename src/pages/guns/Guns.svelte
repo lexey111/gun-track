@@ -2,6 +2,7 @@
 	import * as dayjs from 'dayjs'
 	import {getContext, onDestroy, onMount} from 'svelte';
 	import {showError, showSuccess, showWarning} from '../../app/notifications/notify';
+	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
 	import {Gun} from '../../models';
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
@@ -40,6 +41,7 @@
 			showError(`Gun not found: ${id}!`, 'Error');
 			return;
 		}
+
 		modal.open(EditGunModal, {
 			closeButton: true,
 			componentProps: {
@@ -86,6 +88,7 @@
 
 	{#if (gunsState.isEmpty === null)}
 		<p>
+			<SpinnerComponent/>
 			Please wait, loading data from server...
 		</p>
 	{/if}

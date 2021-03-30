@@ -6,11 +6,16 @@
 	const handleLoginWithFacebook = () => {
 		authStore.loginWithFacebook();
 	}
+
+	const handleLoginWithGoogle = () => {
+		authStore.loginWithGoogle();
+	}
 </script>
 
 <div class="app-page-profile-login">
 	<h3>Please log in with</h3>
 	<button on:click={handleLoginWithFacebook} class="press press-ghost press-blue">Facebook</button>
+	<button on:click={handleLoginWithGoogle} class="press press-ghost press-blue">Google</button>
 </div>
 
 <style lang="less">

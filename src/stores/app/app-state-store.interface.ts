@@ -23,6 +23,7 @@ export type TAppState = {
 		close?: () => void
 	}
 	locale: TAppLocale
+	isGlobalSpinnerVisible: boolean
 };
 
 export interface IAppStateStore extends Writable<TAppState> {
@@ -31,4 +32,7 @@ export interface IAppStateStore extends Writable<TAppState> {
 	setModal: (open, close) => void
 
 	setLocale: (locale: TAppLocale) => void
+
+	showSpinner: () => void
+	hideSpinner: () => void
 }

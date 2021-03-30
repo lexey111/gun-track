@@ -1,6 +1,7 @@
 <script lang="ts">
 	import I18n from '../../app/i18n/I18n.svelte';
 	import {NotifyStore} from '../../app/notifications/notify-store';
+	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 
 	const setEN = () => {
@@ -33,6 +34,20 @@
 		<button class="press press-ghost press-blue" on:click={setUA}>Set ua-UA</button>
 		<button class="press press-ghost press-blue" on:click={setRU}>Set ru-RU</button>
 	</div>
+
+	<p>
+		<SpinnerComponent/>
+		Some text
+		<SpinnerComponent/>
+	</p>
+
+	<button class="press press-ghost press-blue" on:click={() => {
+		AppStateStore.showSpinner();
+		setTimeout(AppStateStore.hideSpinner, 5000);
+	}}>Show spinner for 5s
+	</button>
+
+	<p>&nbsp;</p>
 
 	<div>
 		<button

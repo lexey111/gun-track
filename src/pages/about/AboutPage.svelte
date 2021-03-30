@@ -73,7 +73,9 @@
 		<li>
 			<Done>Gravatar image</Done>
 		</li>
-		<li>Auth with Google</li>
+		<li>
+			<Done>Auth with Google</Done>
+		</li>
 		<li>
 			<Done>Auth with local credentials</Done>
 		</li>

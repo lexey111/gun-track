@@ -2,6 +2,7 @@ import {Auth, CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 import {DataStore} from '@aws-amplify/datastore';
 import * as Md5 from 'md5';
 import {writable} from 'svelte/store';
+import {AppStateStore} from '../app/app-state-store';
 import {IAuthStore, TAuthState} from './auth-store.interface';
 import {USER_INITIAL} from './user-model';
 
@@ -27,11 +28,18 @@ function resetUser(): TAuthState {
 }
 
 function loginWithFacebook(): Promise<any> {
+	AppStateStore.showSpinner();
 	return Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook});
+}
+
+function loginWithGoogle(): Promise<any> {
+	AppStateStore.showSpinner();
+	return Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
 }
 
 async function logout(): Promise<any> {
 	userId = '';
+	AppStateStore.showSpinner();
 	update(state => {
 		return {
 			...state,
@@ -43,6 +51,7 @@ async function logout(): Promise<any> {
 
 async function signUp(email: string, password: string): Promise<any> {
 	let result;
+	AppStateStore.showSpinner();
 	try {
 		result = await Auth.signUp({
 			username: email,
@@ -52,19 +61,23 @@ async function signUp(email: string, password: string): Promise<any> {
 			}
 		});
 	} catch (error) {
+		AppStateStore.hideSpinner();
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
 	}
+	AppStateStore.hideSpinner();
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return result;
 }
 
 async function signIn(email: string, password: string): Promise<any> {
 	let user;
+	AppStateStore.showSpinner();
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		user = await Auth.signIn(email, password);
 	} catch (error) {
+		AppStateStore.hideSpinner();
 		console.log('error signing in', error);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
@@ -75,14 +88,17 @@ async function signIn(email: string, password: string): Promise<any> {
 
 async function confirmSignUp(email: string, code: string): Promise<boolean> {
 	let result;
+	AppStateStore.showSpinner();
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		result = await Auth.confirmSignUp(email, code);
 	} catch (error) {
+		AppStateStore.hideSpinner();
 		console.log('error confirming sign up', error);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
 	}
+	AppStateStore.hideSpinner();
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return result;
 }
@@ -100,6 +116,7 @@ export const AuthStore: IAuthStore = {
 	},
 
 	setLoggedIn: (id: string, provider: string, email: string) => {
+		AppStateStore.hideSpinner();
 		console.log('******* LOGIN ********');
 		console.log('id', id);
 		console.log('provider', provider);
@@ -124,8 +141,8 @@ export const AuthStore: IAuthStore = {
 	},
 
 	setLoggedOut: () => {
-		console.log('Log out - cleanup');
 		void DataStore.clear();
+		AppStateStore.hideSpinner();
 		update(state => {
 			return {
 				...state,
@@ -135,7 +152,10 @@ export const AuthStore: IAuthStore = {
 	},
 
 	loginWithFacebook,
+	loginWithGoogle,
+
 	logout,
+
 	signUp,
 	confirmSignUp,
 	signIn

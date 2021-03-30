@@ -48,7 +48,7 @@ export const NotifyStore: INotifyStore = {
 				paused: false,
 				almostGone: false,
 				type: typeof notification.type === 'undefined' ? 'default' : notification.type,
-				ttl: typeof notification.ttl === 'undefined' ? 5 : notification.ttl,
+				ttl: typeof notification.ttl === 'undefined' ? 3 : notification.ttl,
 				permanent: notification.ttl === 0
 			};
 
@@ -62,7 +62,7 @@ export const NotifyStore: INotifyStore = {
 	setPause: (notificationId: string, pauseState: boolean) => {
 		update(state => {
 			const target = state.notifications.find(item => item.id === notificationId);
-			if (target) {
+			if (target && !target.almostGone) {
 				target.paused = pauseState;
 			}
 			return {
