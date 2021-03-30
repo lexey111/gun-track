@@ -4,6 +4,18 @@
     --app-background: #f2f2f2;
     --app-page-background: #fff;
 
+    --app-info-bg: #1872d2;
+    --app-info-text: #fff;
+
+    --app-warn-bg: #fac802;
+    --app-warn-text: #2b1206;
+
+    --app-error-bg: #f32152;
+    --app-error-text: #fff;
+
+    --app-success-bg: #b7f60a;
+    --app-success-text: #1d3118;
+
     --app-background-darken: #e2e2e2;
     --app-background-darken-shade-1: #cbcbcb;
 
@@ -26,7 +38,6 @@
 
     --app-menu-logged-out-bg: #d1d9db;
     --app-menu-logged-out-text: #2b6699;
-
 
     --app-table-header-bg: #2b6699;
     --app-table-header-text: #fff;

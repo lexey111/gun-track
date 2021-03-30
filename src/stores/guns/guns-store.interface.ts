@@ -13,7 +13,7 @@ export interface IGunStore extends Writable<TGunsState> {
 	loadGuns: () => Promise<void>
 	unloadGuns: () => void
 
-	createGun: (name: string) => Promise<void>
-	saveGun: (id: string, name: string) => void
-	removeGun: (id: string) => Promise<void>
+	createGun: (name: string) => Promise<boolean>
+	saveGun: (id: string, name: string) => Promise<boolean>
+	removeGun: (id: string) => Promise<boolean>
 }

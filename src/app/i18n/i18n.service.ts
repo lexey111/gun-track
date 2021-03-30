@@ -9,7 +9,7 @@ const memoryCache = {};
 let currentLocale: TAppLocale;
 
 function loadLocale(locale: TAppLocale): Promise<any> {
-	const localeToLoad = locale === 'fallback' || !locale ? 'en-EN' : locale;
+	const localeToLoad = !locale ? 'en-EN' : locale;
 
 	currentLocale = locale;
 

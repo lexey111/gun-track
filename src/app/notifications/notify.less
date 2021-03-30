@@ -1,0 +1,122 @@
+#notification-container {
+	position: fixed;
+	z-index: 1000;
+	top: 8px;
+	left: 50%;
+	width: 0;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-items: center;
+	align-content: center;
+	justify-content: center;
+
+	.notification {
+		position: relative;
+		display: block;
+		float: none;
+		background: var(--app-background);
+		font-size: .9em;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
+		margin-bottom: 16px;
+		padding: 16px 24px;
+		cursor: default;
+		max-width: 600px;
+		overflow: hidden;
+
+		border: 2px solid transparent;
+		box-sizing: border-box;
+
+		.notification-title {
+			display: block;
+			font-weight: bold;
+			min-width: 200px;
+			margin-bottom: 12px;
+		}
+
+		.notification-text {
+			width: max-content;
+			max-width: 600px;
+			overflow: hidden;
+		}
+
+		.notification-close {
+			position: absolute;
+			top: 4px;
+			right: 8px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: all .2s ease;
+
+			&:hover {
+				box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+				transform: translateY(-1px);
+			}
+		}
+
+		transform-origin: top center;
+		animation-name: notification-appear;
+		animation-duration: .2s;
+		animation-play-state: running;
+		animation-fill-mode: forwards;
+		animation-iteration-count: 1;
+
+		&.disappearing {
+			animation-name: notification-disappear;
+			animation-duration: 1s;
+			animation-play-state: running;
+			animation-fill-mode: forwards;
+			animation-iteration-count: 1;
+		}
+
+		&.paused {
+			box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+			border-color: rgba(0, 0, 0, .2);
+		}
+
+		&.info {
+			background-color: var(--app-info-bg);
+			color: var(--app-info-text);
+		}
+
+		&.warn {
+			background-color: var(--app-warn-bg);
+			color: var(--app-warn-text);
+		}
+
+		&.error {
+			background-color: var(--app-error-bg);
+			color: var(--app-error-text);
+		}
+
+		&.success {
+			background-color: var(--app-success-bg);
+			color: var(--app-success-text);
+		}
+	}
+}
+
+@keyframes notification-appear {
+	0% {
+		opacity: 0;
+		transform: scaleY(.5);
+	}
+	100% {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+}
+
+@keyframes notification-disappear {
+	0% {
+		max-height: 500px;
+		opacity: 1;
+		transform: scaleY(1);
+	}
+	100% {
+		max-height: 0;
+		opacity: 0;
+		margin-bottom: 0;
+		transform: scaleY(.5);
+	}
+}

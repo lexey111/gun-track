@@ -30,13 +30,19 @@
 		<li>Spinner on busy</li>
 		<li>Fullscreen spinner</li>
 		<li>Icons</li>
-		<li>Table</li>
-		<li>Notifications</li>
+		<li>
+			<Done>Table</Done>
+		</li>
+		<li>
+			<Done>Notifications</Done>
+		</li>
 	</ul>
 
 	<h3>Functionality</h3>
 	<ul>
-		<li>Guns to store</li>
+		<li>
+			<Done>Guns to store</Done>
+		</li>
 		<li>Single home page</li>
 		<li>Photo upload for guns</li>
 	</ul>

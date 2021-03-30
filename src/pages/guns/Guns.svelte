@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import {getContext, onDestroy, onMount} from 'svelte';
+	import {NotifyStore} from '../../app/notifications/notify-store';
 	import {Gun} from '../../models';
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
@@ -22,9 +23,15 @@
 		modal.open(NewGunModal, {
 			closeButton: true,
 			componentProps: {
-				onConfirm: (name: string) => {
+				onConfirm: async (name: string) => {
 					modal.close();
-					GunsStore.createGun(name);
+					if (await GunsStore.createGun(name)) {
+						NotifyStore.push({
+							title: name,
+							type: 'success',
+							text: 'New gun was successfully registered.'
+						});
+					}
 				},
 				onCancel: () => modal.close(),
 			}
@@ -34,7 +41,11 @@
 	const showGunEditDialog = (id: string) => {
 		const gun: Gun = gunsState.guns.find(x => x.id === id);
 		if (!gun) {
-			console.log('Gun not found!');
+			NotifyStore.push({
+				title: 'Error',
+				type: 'error',
+				text: `Gun not found: ${id}!`
+			});
 			return;
 		}
 		modal.open(EditGunModal, {
@@ -50,6 +61,17 @@
 			}
 		});
 	}
+
+	const handleRemoveGun = async (id) => {
+		const result = await GunsStore.removeGun(id)
+		if (result) {
+			NotifyStore.push({
+				title: 'Done',
+				type: 'warn',
+				text: 'Record was removed successfully'
+			});
+		}
+	};
 
 	onMount(() => {
 		gunsUnsubscribe = GunsStore.subscribe(value => {
@@ -81,7 +103,7 @@
 
 		<GunList
 			guns={gunsState.guns}
-			onRemove={GunsStore.removeGun}
+			onRemove={handleRemoveGun}
 			onEdit={showGunEditDialog}/>
 	{/if}
 </div>

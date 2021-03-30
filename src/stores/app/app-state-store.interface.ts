@@ -14,7 +14,7 @@ export type TAppModal = {
 	close?: () => void
 };
 
-export type TAppLocale = keyof typeof AppLocales | 'fallback';
+export type TAppLocale = keyof typeof AppLocales;
 
 export type TAppState = {
 	path: string

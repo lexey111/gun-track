@@ -1,4 +1,5 @@
 <script lang="ts">
+	import NotifyComponent from './notifications/NotifyComponent.svelte';
 	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
@@ -68,6 +69,7 @@
 </script>
 
 <ModalComponent/>
+<NotifyComponent/>
 
 <main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
 	<h1>GUN | TRACK</h1>

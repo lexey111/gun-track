@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call */
 import {DataStore, Predicates} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
+import {NotifyStore} from '../../app/notifications/notify-store';
 import {Gun} from '../../models';
 import {IGunStore, TGunsState} from './guns-store.interface';
 
@@ -23,6 +25,23 @@ function resetStore(): void {
 	}));
 }
 
+function getErrorText(error: any): string {
+	console.error(error);
+
+	if (typeof error === 'string') {
+		return error;
+	}
+
+	if (typeof error.message === 'string') {
+		return error.message as string;
+	}
+
+	if (error.toString) {
+		return error.toString() as string;
+	}
+	return 'Unknown error';
+}
+
 async function loadGuns(): Promise<void> {
 	update(state => ({
 		...state,
@@ -32,7 +51,7 @@ async function loadGuns(): Promise<void> {
 	try {
 		_guns = await DataStore.query(Gun, Predicates.ALL, {
 			page: 0,
-			limit: 100
+			limit: 100 // looks reasonable
 		});
 
 		update(_ => ({
@@ -41,12 +60,16 @@ async function loadGuns(): Promise<void> {
 			busy: false
 		}));
 	} catch (error) {
-		console.error('Error retrieving Guns', error);
+		NotifyStore.push({
+			title: 'Error',
+			type: 'error',
+			text: `Error on retrieving guns:\n ${getErrorText(error)}`
+		});
 		resetStore();
 	}
 }
 
-async function createGun(name: string): Promise<void> {
+async function createGun(name: string): Promise<boolean> {
 	update(state => ({
 		...state,
 		busy: true
@@ -60,11 +83,17 @@ async function createGun(name: string): Promise<void> {
 			})
 		);
 	} catch (error) {
-		console.log('Error on registering gun', error);
+		NotifyStore.push({
+			title: 'Error',
+			type: 'error',
+			text: `Error on registering the gun:\n ${getErrorText(error)}`
+		});
+		return false;
 	}
+	return true;
 }
 
-async function saveGun(id: string, name: string): Promise<void> {
+async function saveGun(id: string, name: string): Promise<boolean> {
 	const gun = _guns.find(x => x.id === id);
 	if (!gun) {
 		throw new Error('Gun not found!');
@@ -82,16 +111,32 @@ async function saveGun(id: string, name: string): Promise<void> {
 			})
 		);
 	} catch (error) {
-		console.log('Error on storing gun', error);
+		NotifyStore.push({
+			title: 'Error',
+			type: 'error',
+			text: `Error on storing the gun:\n ${getErrorText(error)}`
+		});
+		return false;
 	}
+	return true;
 }
 
-async function removeGun(id: string): Promise<void> {
+async function removeGun(id: string): Promise<boolean> {
 	try {
-		await DataStore.delete(Gun, id);
+		const result: any = await DataStore.delete(Gun, id);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		if (!result || result.length === 0) {
+			throw new Error('Something went wrong');
+		}
 	} catch (error) {
-		console.log('Error removing posts', error);
+		NotifyStore.push({
+			title: 'Error',
+			type: 'error',
+			text: `Error on removing the gun:\n ${getErrorText(error)}`
+		});
+		return false;
 	}
+	return true;
 }
 
 let gunSubscription: { unsubscribe: () => void };
@@ -110,8 +155,6 @@ export const GunsStore: IGunStore = {
 
 	initStore: () => {
 		gunSubscription = DataStore.observe(Gun).subscribe(_ => {
-			// console.log(msg.model, msg.opType, msg.element);
-			console.log('-==== update by subscription ===-');
 			void loadGuns();
 		});
 	},
