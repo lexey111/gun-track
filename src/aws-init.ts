@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-misused-promises */
+import {Auth} from '@aws-amplify/auth';
+import {Amplify, Hub} from '@aws-amplify/core';
 import {DataStore} from '@aws-amplify/datastore';
-import Amplify, {Auth, Hub} from 'aws-amplify';
 import awsconfig from './aws-exports';
 
 import {AuthStore} from './stores/auth/auth-store';
@@ -8,9 +9,10 @@ import {GunsStore} from './stores/guns/guns-store';
 import './styles/index.less';
 
 Amplify.configure(awsconfig);
+DataStore.configure(awsconfig);
 
-function processSignIn(user): any {
-	console.log('user log in', user);
+async function processSignIn(user): Promise<any> {
+	console.log('>>> user log in', user);
 
 	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
 	if (!identities && !user.attributes) {
@@ -18,17 +20,29 @@ function processSignIn(user): any {
 		return;
 	}
 
+	const userId = identities?.userId || user.attributes.email;
+	const lastLoggedUser = localStorage.getItem('lastLoggedUser');
+
+	if (lastLoggedUser !== userId) {
+		console.log('Cleanup storage');
+		localStorage.setItem('lastLoggedUser', userId);
+		await DataStore.clear();
+		indexedDB.deleteDatabase('amplify-datastore');
+
+		dbExists = false;
+	}
+
 	console.log('identities', identities);
 	console.log('attrs', user.attributes);
 
 	AuthStore.setLoggedIn(
-		identities?.userId || user.attributes.email,
+		userId,
 		identities?.providerName || 'e-mail',
 		user.attributes.email
 	);
 
-	void GunsStore.initStore();
-	void GunsStore.loadGuns();
+	GunsStore.initStore();
+	await GunsStore.loadGuns();
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return user;
@@ -46,7 +60,7 @@ Hub.listen(
 	) => {
 		switch (event) {
 			case 'signIn': {
-				processSignIn(data);
+				await processSignIn(data);
 				break;
 			}
 			case 'signOut':
@@ -54,6 +68,38 @@ Hub.listen(
 				AuthStore.setLoggedOut();
 				GunsStore.unloadGuns();
 				break;
+		}
+	});
+
+let dbExists = true;
+
+function recheckDbExists(): void {
+	const request = indexedDB.open('amplify-datastore');
+	request.onupgradeneeded = function (e: any) {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+		e.target.transaction.abort();
+		dbExists = false;
+	};
+}
+
+recheckDbExists();
+
+Hub.listen(
+	'datastore',
+	(
+		{
+			payload: {
+				event
+			}
+		}
+	) => {
+
+		if (dbExists && event === 'storageSubscribed') {
+			GunsStore.setReady();
+		}
+
+		if (event === 'ready') {
+			GunsStore.setReady();
 		}
 	});
 

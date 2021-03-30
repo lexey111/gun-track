@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateGun = /* GraphQL */ `
-  subscription OnCreateGun {
-    onCreateGun {
+  subscription OnCreateGun($owner: String!) {
+    onCreateGun(owner: $owner) {
       id
       name
       color
@@ -26,6 +26,7 @@ export const onCreateGun = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -35,12 +36,13 @@ export const onCreateGun = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateGun = /* GraphQL */ `
-  subscription OnUpdateGun {
-    onUpdateGun {
+  subscription OnUpdateGun($owner: String!) {
+    onUpdateGun(owner: $owner) {
       id
       name
       color
@@ -62,6 +64,7 @@ export const onUpdateGun = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -71,12 +74,13 @@ export const onUpdateGun = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteGun = /* GraphQL */ `
-  subscription OnDeleteGun {
-    onDeleteGun {
+  subscription OnDeleteGun($owner: String!) {
+    onDeleteGun(owner: $owner) {
       id
       name
       color
@@ -98,6 +102,7 @@ export const onDeleteGun = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -107,12 +112,13 @@ export const onDeleteGun = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onCreateActions = /* GraphQL */ `
-  subscription OnCreateActions {
-    onCreateActions {
+  subscription OnCreateActions($owner: String!) {
+    onCreateActions(owner: $owner) {
       id
       title
       comment
@@ -137,18 +143,20 @@ export const onCreateActions = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateActions = /* GraphQL */ `
-  subscription OnUpdateActions {
-    onUpdateActions {
+  subscription OnUpdateActions($owner: String!) {
+    onUpdateActions(owner: $owner) {
       id
       title
       comment
@@ -173,18 +181,20 @@ export const onUpdateActions = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteActions = /* GraphQL */ `
-  subscription OnDeleteActions {
-    onDeleteActions {
+  subscription OnDeleteActions($owner: String!) {
+    onDeleteActions(owner: $owner) {
       id
       title
       comment
@@ -209,12 +219,14 @@ export const onDeleteActions = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;

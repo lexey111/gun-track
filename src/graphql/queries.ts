@@ -29,6 +29,7 @@ export const syncGuns = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -59,6 +60,7 @@ export const getGun = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -68,6 +70,7 @@ export const getGun = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -92,6 +95,7 @@ export const listGuns = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -132,12 +136,14 @@ export const syncActions = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -171,12 +177,14 @@ export const getActions = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -208,12 +216,14 @@ export const listActionss = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt

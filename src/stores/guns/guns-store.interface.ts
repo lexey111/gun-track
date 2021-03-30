@@ -9,6 +9,7 @@ export type TGunsState = {
 
 export interface IGunStore extends Writable<TGunsState> {
 	initStore: () => void
+	setReady: () => void
 
 	loadGuns: () => Promise<void>
 	unloadGuns: () => void

@@ -29,6 +29,7 @@ export const createGun = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -38,6 +39,7 @@ export const createGun = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -68,6 +70,7 @@ export const updateGun = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -77,6 +80,7 @@ export const updateGun = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -107,6 +111,7 @@ export const deleteGun = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -116,6 +121,7 @@ export const deleteGun = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -149,12 +155,14 @@ export const createActions = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -188,12 +196,14 @@ export const updateActions = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -227,12 +237,14 @@ export const deleteActions = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;

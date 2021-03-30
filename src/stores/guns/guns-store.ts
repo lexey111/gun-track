@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call */
-import {DataStore, Predicates} from '@aws-amplify/datastore';
+import {DataStore} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
 import {showError} from '../../app/notifications/notify';
 import {Gun} from '../../models';
 import {IGunStore, TGunsState} from './guns-store.interface';
 
 let _guns: Array<Gun> = [];
+let storeReady = false;
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
 	subscribe,
@@ -18,6 +19,8 @@ const {
 });
 
 function resetStore(): void {
+	_guns = [];
+
 	update(_ => ({
 		guns: [],
 		isEmpty: null,
@@ -49,14 +52,11 @@ async function loadGuns(): Promise<void> {
 	}));
 
 	try {
-		_guns = await DataStore.query(Gun, Predicates.ALL, {
-			page: 0,
-			limit: 100 // looks reasonable
-		});
+		_guns = await DataStore.query(Gun);
 
 		update(_ => ({
 			guns: _guns,
-			isEmpty: _guns.length === 0,
+			isEmpty: storeReady === true ? _guns.length === 0 : null,
 			busy: false
 		}));
 	} catch (error) {
@@ -123,6 +123,16 @@ async function removeGun(id: string): Promise<boolean> {
 	return true;
 }
 
+function setReady(): void {
+	storeReady = true;
+	update(state => {
+		return {
+			...state,
+			isEmpty: state.guns.length === 0
+		};
+	});
+}
+
 let gunSubscription: { unsubscribe: () => void };
 
 export const GunsStore: IGunStore = {
@@ -138,10 +148,14 @@ export const GunsStore: IGunStore = {
 	},
 
 	initStore: () => {
+		storeReady = false;
+		resetStore();
+
 		gunSubscription = DataStore.observe(Gun).subscribe(_ => {
 			void loadGuns();
 		});
 	},
+	setReady,
 
 	loadGuns,
 	createGun,

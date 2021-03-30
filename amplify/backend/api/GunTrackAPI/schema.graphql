@@ -1,21 +1,21 @@
-type Gun @model {
-  id: ID!
-  name: String!
-  color: String
-  dateCreated: AWSDateTime!
-  actions: [Actions] @connection(keyName: "byGun", fields: ["id"])
+type Gun @model @auth(rules: [{ allow: owner }]) {
+    id: ID!
+    name: String!
+    color: String
+    dateCreated: AWSDateTime!
+    actions: [Actions] @connection(keyName: "byGun", fields: ["id"])
 }
 
-type Actions @model @key(name: "byGun", fields: ["gunID"]) {
-  id: ID!
-  title: String
-  comment: String
-  shots: Int!
-  date: AWSDateTime!
-  expenses: Float
-  currency: String
-  trainingNotes: String
-  color: String
-  gunID: ID!
-  gun: Gun @connection(fields: ["gunID"])
+type Actions @model @key(name: "byGun", fields: ["gunID"]) @auth(rules: [{ allow: owner }]) {
+    id: ID!
+    title: String
+    comment: String
+    shots: Int!
+    date: AWSDateTime!
+    expenses: Float
+    currency: String
+    trainingNotes: String
+    color: String
+    gunID: ID!
+    gun: Gun @connection(fields: ["gunID"])
 }

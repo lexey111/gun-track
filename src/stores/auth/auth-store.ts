@@ -1,9 +1,11 @@
 import {Auth, CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
+import {DataStore} from '@aws-amplify/datastore';
 import * as Md5 from 'md5';
 import {writable} from 'svelte/store';
 import {IAuthStore, TAuthState} from './auth-store.interface';
 import {USER_INITIAL} from './user-model';
 
+export let userId = '';
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
 	subscribe,
@@ -16,6 +18,7 @@ const {
 });
 
 function resetUser(): TAuthState {
+	userId = '';
 	return {
 		...USER_INITIAL,
 		started: true,
@@ -28,6 +31,7 @@ function loginWithFacebook(): Promise<any> {
 }
 
 async function logout(): Promise<any> {
+	userId = '';
 	update(state => {
 		return {
 			...state,
@@ -69,7 +73,7 @@ async function signIn(email: string, password: string): Promise<any> {
 	return user;
 }
 
-async function confirmSignUp(email, code): Promise<boolean> {
+async function confirmSignUp(email: string, code: string): Promise<boolean> {
 	let result;
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -100,6 +104,7 @@ export const AuthStore: IAuthStore = {
 		console.log('id', id);
 		console.log('provider', provider);
 		console.log('email', email);
+		userId = id;
 
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
 		const md5Email: string = Md5(email);
@@ -119,6 +124,8 @@ export const AuthStore: IAuthStore = {
 	},
 
 	setLoggedOut: () => {
+		console.log('Log out - cleanup');
+		void DataStore.clear();
 		update(state => {
 			return {
 				...state,

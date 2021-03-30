@@ -71,6 +71,7 @@ export type Gun = {
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
+  owner?: string | null,
 };
 
 export type ModelActionsConnection = {
@@ -98,6 +99,7 @@ export type Actions = {
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
+  owner?: string | null,
 };
 
 export type UpdateGunInput = {
@@ -265,6 +267,7 @@ export type CreateGunMutation = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -274,6 +277,7 @@ export type CreateGunMutation = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -308,6 +312,7 @@ export type UpdateGunMutation = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -317,6 +322,7 @@ export type UpdateGunMutation = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -351,6 +357,7 @@ export type DeleteGunMutation = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -360,6 +367,7 @@ export type DeleteGunMutation = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -397,12 +405,14 @@ export type CreateActionsMutation = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -440,12 +450,14 @@ export type UpdateActionsMutation = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -483,12 +495,14 @@ export type DeleteActionsMutation = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -518,6 +532,7 @@ export type SyncGunsQuery = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -554,6 +569,7 @@ export type GetGunQuery = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -563,6 +579,7 @@ export type GetGunQuery = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -591,6 +608,7 @@ export type ListGunsQuery = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -630,12 +648,14 @@ export type SyncActionsQuery = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -675,12 +695,14 @@ export type GetActionsQuery = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -716,16 +738,22 @@ export type ListActionssQuery = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
     startedAt?: number | null,
   } | null,
+};
+
+export type OnCreateGunSubscriptionVariables = {
+  owner?: string,
 };
 
 export type OnCreateGunSubscription = {
@@ -754,6 +782,7 @@ export type OnCreateGunSubscription = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -763,7 +792,12 @@ export type OnCreateGunSubscription = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
+};
+
+export type OnUpdateGunSubscriptionVariables = {
+  owner?: string,
 };
 
 export type OnUpdateGunSubscription = {
@@ -792,6 +826,7 @@ export type OnUpdateGunSubscription = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -801,7 +836,12 @@ export type OnUpdateGunSubscription = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
+};
+
+export type OnDeleteGunSubscriptionVariables = {
+  owner?: string,
 };
 
 export type OnDeleteGunSubscription = {
@@ -830,6 +870,7 @@ export type OnDeleteGunSubscription = {
         _lastChangedAt: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null > | null,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -839,7 +880,12 @@ export type OnDeleteGunSubscription = {
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
+};
+
+export type OnCreateActionsSubscriptionVariables = {
+  owner?: string,
 };
 
 export type OnCreateActionsSubscription = {
@@ -871,13 +917,19 @@ export type OnCreateActionsSubscription = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
+};
+
+export type OnUpdateActionsSubscriptionVariables = {
+  owner?: string,
 };
 
 export type OnUpdateActionsSubscription = {
@@ -909,13 +961,19 @@ export type OnUpdateActionsSubscription = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
+};
+
+export type OnDeleteActionsSubscriptionVariables = {
+  owner?: string,
 };
 
 export type OnDeleteActionsSubscription = {
@@ -947,11 +1005,13 @@ export type OnDeleteActionsSubscription = {
       _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };

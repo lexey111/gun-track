@@ -20,6 +20,7 @@
         opacity: 0;
         transition: opacity 1.2s ease-out;
 	     width: 100%;
+	     border-radius: 100%;
     }
 
     img.loaded {

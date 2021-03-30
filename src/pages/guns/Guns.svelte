@@ -84,7 +84,15 @@
 		</p>
 	{/if}
 
-	<button class="press press-ghost press-blue" on:click={showNewGunDialog}>Register a Gun</button>
+	{#if (gunsState.isEmpty === null)}
+		<p>
+			Please wait, loading data from server...
+		</p>
+	{/if}
+
+	{#if (gunsState.isEmpty !== null)}
+		<button class="press press-ghost press-blue" on:click={showNewGunDialog}>Register a Gun</button>
+	{/if}
 
 	{#if (gunsState.isEmpty === false)}
 		<h2>Registered guns</h2>
