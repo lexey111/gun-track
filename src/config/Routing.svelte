@@ -10,6 +10,7 @@
 	import LoginPage from '../pages/profile/LoginPage.svelte';
 	import ProfilePage from '../pages/profile/ProfilePage.svelte';
 	import SignoutPage from '../pages/profile/SignoutPage.svelte';
+	import SignupPage from '../pages/profile/SignupPage.svelte';
 </script>
 
 <div class="app-pages">
@@ -21,7 +22,16 @@
 		<AuthGuardPage logout={true} component={LoginPage}/>
 	</Route>
 
+	<Route path="login">
+		<AuthGuardPage logout={true} component={LoginPage}/>
+	</Route>
+
+	<Route path="login/signup">
+		<AuthGuardPage logout={true} component={SignupPage}/>
+	</Route>
+
 	<Route path="signout" component={SignoutPage}/>
+	<Route path="logout" component={SignoutPage}/>
 
 	<Route path="about" component={AboutPage}/>
 

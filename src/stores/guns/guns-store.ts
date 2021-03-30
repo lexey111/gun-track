@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call */
 import {DataStore, Predicates} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
-import {NotifyStore} from '../../app/notifications/notify-store';
+import {showError} from '../../app/notifications/notify';
 import {Gun} from '../../models';
 import {IGunStore, TGunsState} from './guns-store.interface';
 
@@ -60,11 +60,7 @@ async function loadGuns(): Promise<void> {
 			busy: false
 		}));
 	} catch (error) {
-		NotifyStore.push({
-			title: 'Error',
-			type: 'error',
-			text: `Error on retrieving guns:\n ${getErrorText(error)}`
-		});
+		showError(`Error on retrieving guns:\n ${getErrorText(error)}`, 'Error');
 		resetStore();
 	}
 }
@@ -83,11 +79,7 @@ async function createGun(name: string): Promise<boolean> {
 			})
 		);
 	} catch (error) {
-		NotifyStore.push({
-			title: 'Error',
-			type: 'error',
-			text: `Error on registering the gun:\n ${getErrorText(error)}`
-		});
+		showError(`Error on registering the gun:\n ${getErrorText(error)}`, 'Error');
 		return false;
 	}
 	return true;
@@ -111,11 +103,7 @@ async function saveGun(id: string, name: string): Promise<boolean> {
 			})
 		);
 	} catch (error) {
-		NotifyStore.push({
-			title: 'Error',
-			type: 'error',
-			text: `Error on storing the gun:\n ${getErrorText(error)}`
-		});
+		showError(`Error on storing the gun:\n ${getErrorText(error)}`, 'Error');
 		return false;
 	}
 	return true;
@@ -129,11 +117,7 @@ async function removeGun(id: string): Promise<boolean> {
 			throw new Error('Something went wrong');
 		}
 	} catch (error) {
-		NotifyStore.push({
-			title: 'Error',
-			type: 'error',
-			text: `Error on removing the gun:\n ${getErrorText(error)}`
-		});
+		showError(`Error on removing the gun:\n ${getErrorText(error)}`, 'Error');
 		return false;
 	}
 	return true;

@@ -5,15 +5,19 @@
     --app-page-background: #fff;
 
     --app-info-bg: #1872d2;
+    --app-info-bg-darken: #135dac;
     --app-info-text: #fff;
 
     --app-warn-bg: #fac802;
+    --app-warn-bg-darken: #d9ae00;
     --app-warn-text: #2b1206;
 
     --app-error-bg: #f32152;
+    --app-error-bg-darken: #d51e49;
     --app-error-text: #fff;
 
     --app-success-bg: #b7f60a;
+    --app-success-bg-darken: #99cd0a;
     --app-success-text: #1d3118;
 
     --app-background-darken: #e2e2e2;

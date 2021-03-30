@@ -12,4 +12,13 @@ export interface IAuthStore extends Writable<TAuthState> {
 	setLoggedIn: (id: string, provider: string, email: string) => void
 
 	setLoggedOut: () => void
+
+	loginWithFacebook: () => Promise<any>
+
+	logout: () => Promise<any>
+
+	signUp: (email: string, password: string) => Promise<any>
+	confirmSignUp: (email, code) => Promise<boolean>
+
+	signIn: (email: string, password: string) => Promise<any>
 }

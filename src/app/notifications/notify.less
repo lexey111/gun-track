@@ -15,7 +15,7 @@
 		position: relative;
 		display: block;
 		float: none;
-		background: var(--app-background);
+		background: linear-gradient(var(--app-background), var(--app-background-darken));
 		font-size: .9em;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
 		margin-bottom: 16px;
@@ -38,6 +38,8 @@
 			width: max-content;
 			max-width: 600px;
 			overflow: hidden;
+			white-space: break-spaces;
+			word-break: break-word;
 		}
 
 		.notification-close {
@@ -75,22 +77,22 @@
 		}
 
 		&.info {
-			background-color: var(--app-info-bg);
+			background: linear-gradient(var(--app-info-bg), var(--app-info-bg-darken));
 			color: var(--app-info-text);
 		}
 
 		&.warn {
-			background-color: var(--app-warn-bg);
+			background: linear-gradient(var(--app-warn-bg), var(--app-warn-bg-darken));
 			color: var(--app-warn-text);
 		}
 
 		&.error {
-			background-color: var(--app-error-bg);
+			background: linear-gradient(var(--app-error-bg), var(--app-error-bg-darken));
 			color: var(--app-error-text);
 		}
 
 		&.success {
-			background-color: var(--app-success-bg);
+			background: linear-gradient(var(--app-success-bg), var(--app-success-bg-darken));
 			color: var(--app-success-text);
 		}
 	}

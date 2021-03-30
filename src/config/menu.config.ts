@@ -3,5 +3,5 @@ export const menuRoutes = [
 	['guns', 'Guns', true],
 	['about', 'About'],
 	['profile', 'Profile', true], // true | false | undefined
-	['signin', 'Sign In', false],
+	['login', 'Sign In', false],
 ];

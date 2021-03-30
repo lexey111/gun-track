@@ -115,9 +115,16 @@ module.exports = (env, args) => {
 								optimistic: true,
 							},
 							onwarn: (warning, handler) => {
-								const {code, frame} = warning;
-								if (code === 'css-unused-selector' && frame.includes('app-navigation'))
+								const {
+									code,
+									frame
+								} = warning;
+								if (code.includes('a11y')) {
 									return;
+								}
+								if (code === 'css-unused-selector' && frame.includes('app-navigation')) {
+									return;
+								}
 
 								handler(warning);
 							}

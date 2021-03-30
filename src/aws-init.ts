@@ -9,6 +9,31 @@ import './styles/index.less';
 
 Amplify.configure(awsconfig);
 
+function processSignIn(user): any {
+	console.log('user log in', user);
+
+	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
+	if (!identities && !user.attributes) {
+		console.log('Empty response');
+		return;
+	}
+
+	console.log('identities', identities);
+	console.log('attrs', user.attributes);
+
+	AuthStore.setLoggedIn(
+		identities?.userId || user.attributes.email,
+		identities?.providerName || 'e-mail',
+		user.attributes.email
+	);
+
+	void GunsStore.initStore();
+	void GunsStore.loadGuns();
+
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	return user;
+}
+
 Hub.listen(
 	'auth',
 	async (
@@ -21,39 +46,21 @@ Hub.listen(
 	) => {
 		switch (event) {
 			case 'signIn': {
-				console.log('signIn', data);
+				processSignIn(data);
 				break;
 			}
 			case 'signOut':
-				console.log('signOut');
 				void await DataStore.clear();
 				AuthStore.setLoggedOut();
+				GunsStore.unloadGuns();
 				break;
-			case 'customOAuthState':
-				console.log('customOAuthState', data);
 		}
 	});
 
 Auth.currentAuthenticatedUser()
 	.then(user => {
-		console.log('user log in', user);
-
-		const identities = JSON.parse(user.attributes?.identities || '[]')[0];
-
-		console.log('identities', identities);
-		console.log('attrs', user.attributes);
-
-		AuthStore.setLoggedIn(
-			identities.userId,
-			identities.providerName,
-			user.attributes.email
-		);
-
-		void GunsStore.initStore();
-		void GunsStore.loadGuns();
-
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return user;
+		return processSignIn(user);
 	})
 	.catch(err => {
 		console.log('Not signed in'); // https://lexey111-dev.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse

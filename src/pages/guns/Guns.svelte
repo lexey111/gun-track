@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import {getContext, onDestroy, onMount} from 'svelte';
-	import {NotifyStore} from '../../app/notifications/notify-store';
+	import {showError, showSuccess, showWarning} from '../../app/notifications/notify';
 	import {Gun} from '../../models';
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
@@ -26,11 +26,7 @@
 				onConfirm: async (name: string) => {
 					modal.close();
 					if (await GunsStore.createGun(name)) {
-						NotifyStore.push({
-							title: name,
-							type: 'success',
-							text: 'New gun was successfully registered.'
-						});
+						showSuccess('New gun was successfully registered.', name);
 					}
 				},
 				onCancel: () => modal.close(),
@@ -41,11 +37,7 @@
 	const showGunEditDialog = (id: string) => {
 		const gun: Gun = gunsState.guns.find(x => x.id === id);
 		if (!gun) {
-			NotifyStore.push({
-				title: 'Error',
-				type: 'error',
-				text: `Gun not found: ${id}!`
-			});
+			showError(`Gun not found: ${id}!`, 'Error');
 			return;
 		}
 		modal.open(EditGunModal, {
@@ -65,11 +57,7 @@
 	const handleRemoveGun = async (id) => {
 		const result = await GunsStore.removeGun(id)
 		if (result) {
-			NotifyStore.push({
-				title: 'Done',
-				type: 'warn',
-				text: 'Record was removed successfully'
-			});
+			showWarning('Record was removed successfully', 'Done');
 		}
 	};
 

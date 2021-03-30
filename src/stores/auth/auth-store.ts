@@ -1,3 +1,4 @@
+import {Auth, CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 import * as Md5 from 'md5';
 import {writable} from 'svelte/store';
 import {IAuthStore, TAuthState} from './auth-store.interface';
@@ -20,6 +21,66 @@ function resetUser(): TAuthState {
 		started: true,
 		fetching: false
 	};
+}
+
+function loginWithFacebook(): Promise<any> {
+	return Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook});
+}
+
+async function logout(): Promise<any> {
+	update(state => {
+		return {
+			...state,
+			fetching: true
+		};
+	});
+	return Auth.signOut();
+}
+
+async function signUp(email: string, password: string): Promise<any> {
+	let result;
+	try {
+		result = await Auth.signUp({
+			username: email,
+			password,
+			attributes: {
+				email
+			}
+		});
+	} catch (error) {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return error;
+	}
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	return result;
+}
+
+async function signIn(email: string, password: string): Promise<any> {
+	let user;
+	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		user = await Auth.signIn(email, password);
+	} catch (error) {
+		console.log('error signing in', error);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return error;
+	}
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	return user;
+}
+
+async function confirmSignUp(email, code): Promise<boolean> {
+	let result;
+	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		result = await Auth.confirmSignUp(email, code);
+	} catch (error) {
+		console.log('error confirming sign up', error);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return error;
+	}
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	return result;
 }
 
 export const AuthStore: IAuthStore = {
@@ -65,4 +126,10 @@ export const AuthStore: IAuthStore = {
 			};
 		});
 	},
+
+	loginWithFacebook,
+	logout,
+	signUp,
+	confirmSignUp,
+	signIn
 };

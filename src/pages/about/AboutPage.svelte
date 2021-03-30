@@ -43,8 +43,13 @@
 		<li>
 			<Done>Guns to store</Done>
 		</li>
-		<li>Single home page</li>
+		<li>Single home page/login</li>
 		<li>Photo upload for guns</li>
+	</ul>
+
+	<h3>i18n</h3>
+	<ul>
+		<li>Translations</li>
 	</ul>
 
 	<h3>Routing</h3>
@@ -69,10 +74,15 @@
 			<Done>Gravatar image</Done>
 		</li>
 		<li>Auth with Google</li>
-		<li>Auth with local credentials</li>
+		<li>
+			<Done>Auth with local credentials</Done>
+		</li>
 		<li>
 			<Done>Own database - AWS</Done>
 		</li>
 		<li>Extra fields in gun: created, photo</li>
+		<li>Gun records editor</li>
+		<li>Gun records table</li>
+		<li>Gun records stats</li>
 	</ul>
 </div>

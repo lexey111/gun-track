@@ -1,51 +1,34 @@
 <script lang="ts">
-	import {Auth} from '@aws-amplify/auth';
-	import {getContext} from 'svelte';
-	import {TAppModal} from '../../../../../svelte-min-starter/src/stores/app/app-state-store.interface';
-	import {IAuthStore, TAuthState} from '../../../stores/auth/auth-store.interface';
-	import LogoutConfirmModal from './LogoutConfirmModal.svelte';
+	import {IConfirmDialog} from '../../../app/modal/Confirm.interface';
+	import Confirm from '../../../app/modal/Confirm.svelte';
+	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
-	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
+	let confirmDialog: IConfirmDialog;
 
 	export let authStore: IAuthStore;
-	export let authState: TAuthState;
-
-	const doLogout = async () => {
-		try {
-			authStore.setFetching(true);
-			await Auth.signOut();
-		} catch (error) {
-			console.log('error signing out: ', error);
-		}
-		authStore.setLoggedOut();
-	}
 
 	const handleConfirmLogoutDialog = () => {
-		modal.open(LogoutConfirmModal, {
-			closeButton: true,
-			componentProps: {
-				onConfirm: () => {
-					modal.close();
-					doLogout();
-				},
-				onCancel: () => modal.close(),
-			}
+		confirmDialog.showConfirmDialog({
+			text: 'Are you sure you want to logout?',
+			confirmText: 'Logout',
+			onConfirm: () => authStore.logout()
 		});
 	}
 
 </script>
 
 <div class="profile-logout">
+	<Confirm bind:this={confirmDialog}/>
+
 	<button
 		on:click={handleConfirmLogoutDialog}
-		class="press press-ghost press-red"
-		disabled="{authState.fetching ? 'fetching' : false}">
+		class="press press-ghost press-red">
 		Logout
 	</button>
 </div>
 
 <style>
-	.profile-logout {
-		margin: 2em 0;
-	}
+    .profile-logout {
+        margin: 2em 0;
+    }
 </style>

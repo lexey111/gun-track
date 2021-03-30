@@ -66,7 +66,7 @@
 			a, a:visited {
 				color: var(--app-menu-logged-out-text);
 
-				&[aria-current="page"] {
+				&[aria-current="page"], &.active {
 					background-color: var(--app-background);
 					color: var(--app-menu-logged-out-text);
 				}
