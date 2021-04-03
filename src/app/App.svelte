@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BgImage from './BgImage.svelte';
 	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
@@ -72,6 +73,7 @@
 <ModalComponent/>
 <NotifyComponent/>
 <AppSpinnerComponent/>
+<BgImage/>
 
 <main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
 	<h1>GUN | TRACK</h1>
@@ -92,10 +94,13 @@
 			display: inline-flex;
 			justify-content: center;
 			align-items: center;
-			margin: .5em 0;
-			padding: 0;
+			margin: 0;
+			padding: .5em 0;
 			text-transform: uppercase;
 			font-size: 2rem;
+
+			background-color: rgba(255, 255, 255, .5);
+			backdrop-filter: blur(10px);
 		}
 	}
 </style>

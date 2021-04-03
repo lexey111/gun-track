@@ -36,6 +36,7 @@
 		<li>
 			<Done>Notifications</Done>
 		</li>
+		<li>Backgrounds</li>
 	</ul>
 
 	<h3>Functionality</h3>
@@ -79,6 +80,8 @@
 		<li>
 			<Done>Auth with local credentials</Done>
 		</li>
+		<li>Forgot password, reset</li>
+		<li>Change password</li>
 		<li>
 			<Done>Own database - AWS</Done>
 		</li>

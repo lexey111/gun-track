@@ -3,6 +3,7 @@
 	import AuthGuardPage from '../components/AuthGuardPage.svelte';
 
 	import AboutPage from '../pages/about/AboutPage.svelte';
+	import TosPage from '../pages/tos/TosPage.svelte';
 	import GunsPage from '../pages/guns/Guns.svelte';
 
 	import HomePage from '../pages/home/HomePage.svelte';
@@ -34,6 +35,8 @@
 	<Route path="logout" component={SignoutPage}/>
 
 	<Route path="about" component={AboutPage}/>
+
+	<Route path="tos" component={TosPage}/>
 
 	<Route path="guns">
 		<AuthGuardPage component={GunsPage} redirectTo="login"/>

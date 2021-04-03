@@ -187,6 +187,11 @@ module.exports = (env, args) => {
 						to: outPath + '/i18n',
 						toType: 'dir'
 					},
+					{
+						from: path.resolve('./src/assets/images'),
+						to: outPath + '/images',
+						toType: 'dir'
+					},
 				]
 			})
 		],

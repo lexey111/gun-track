@@ -61,7 +61,8 @@
 <style lang="less">
 	:global {
 		.logged-out nav.app-navigation {
-			background-color: var(--app-menu-logged-out-bg);
+			// background-color: var(--app-menu-logged-out-bg);
+			background-color: rgba(209, 217, 219, .8);
 
 			a, a:visited {
 				color: var(--app-menu-logged-out-text);
@@ -76,11 +77,13 @@
 		.app-navigation {
 			display: flex;
 			flex-flow: row wrap;
-			background-color: var(--app-menu-logged-in-bg);
+			// background-color: var(--app-menu-logged-in-bg);
+			background-color: rgba(31, 80, 95, .8);
 			justify-content: center;
 			font-size: .8rem;
 			height: 40px;
 			transition: background-color .2s ease, color .1s ease;
+			backdrop-filter: blur(10px);
 
 			a, a:visited {
 				display: flex;
