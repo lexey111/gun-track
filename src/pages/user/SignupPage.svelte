@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {onDestroy, onMount} from 'svelte';
 	import {Link} from 'svelte-routing';
 
 	import {showError, showInfo} from '../../app/notifications/notify';
@@ -13,7 +14,7 @@
 	$: codeAllowed = !!email.trim() && !!code.trim();
 
 	const signUp = async () => {
-		const result = await AuthStore.signUp(email, pwd);
+		const result: unknown = await AuthStore.signUp(email, pwd);
 		if (result.message) {
 			showError(`Registration failed: ${result.message}`);
 		} else {
@@ -21,24 +22,35 @@
 		}
 	}
 
-	const signUpConfirm = async () => {
-		const result = await AuthStore.confirmSignUp(email, code);
+	const signUpVerify = async () => {
+		const result: unknown = await AuthStore.confirmSignUp(email, code);
 		if (result.message) {
 			showError(`Confirmation failed: ${result.message}`);
 		} else {
 			showInfo('Successful registration. Now you can login with these credentials.');
 		}
 	}
+
+	onMount(() => {
+		document.body.classList.add('page-semitransparent');
+	});
+
+	onDestroy(() => {
+		document.body.classList.remove('page-semitransparent');
+	});
+
 </script>
 
 <div class="app-page-signup">
 	<h2>
-		<Link class="back-link" to="login"/>
 		Sign up
 	</h2>
-	<p>New user? Please fill the form to register:</p>
 
-	<div class="form">
+	<p>
+		<span class="circle-badge success">1</span> New user? Please fill the form to register:
+	</p>
+
+	<section class="success">
 		<div class="form-group">
 			<label for="email">E-mail</label>
 			<input
@@ -75,79 +87,55 @@
 		<div class="form-group">
 			<label/>
 			<button
-				class="press press-blue press-ghost"
+				class="press press-green press-ghost"
 				disabled={!signupAllowed}
 				on:click={signUp}>
 				Register
 			</button>
 		</div>
-	</div>
+	</section>
 
-	<h3>Confirm email</h3>
-	{#if (!email && code)}
-		<p>
-			Please fill e-mail field:
-		</p>
-	{/if}
+	<p>
+		<span class="circle-badge success">2</span> Verify your e-mail:
+	</p>
 
-	{#if (!code && email)}
-		<p>
-			Please fill code field:
-		</p>
-	{/if}
+	<section class="success">
+		<div class="form">
 
-	{#if (!email && !code)}
-		<p>
-			Please fill e-mail field and code:
-		</p>
-	{/if}
+			<div class="form-group">
+				<label for="email2">E-mail</label>
+				<input
+					placeholder="some@server.com"
+					autocomplete="off"
+					maxlength="128"
+					required
+					bind:value={email}
+					id="email2"/>
+			</div>
 
-	<div class="form">
-		<div class="form-group">
-			<label for="code">Verification code</label>
-			<input
-				autocomplete="off"
-				maxlength="32"
-				required
-				bind:value={code}
-				id="code"/>
+			<div class="form-group">
+				<label for="code">Verification code</label>
+				<input
+					autocomplete="off"
+					maxlength="32"
+					required
+					bind:value={code}
+					id="code"/>
+			</div>
+
+			<div class="form-group">
+				<label/>
+				<button
+					class="press press-green press-ghost"
+					disabled={!codeAllowed}
+					on:click={signUpVerify}>
+					Confirm & Sign in
+				</button>
+			</div>
 		</div>
-
-		<div class="form-group">
-			<label/>
-			<button
-				class="press press-blue press-ghost"
-				disabled={!codeAllowed}
-				on:click={signUpConfirm}>
-				Confirm & sign in
-			</button>
-		</div>
-	</div>
+	</section>
 
 	<p class="return-to-login">
-		<Link to="login">&larr; Return to login page</Link>
+		<Link to="login">&larr; Back to login page</Link>
 	</p>
 </div>
-
-<style lang="less">
-	.app-page-signup {
-		max-width: 500px;
-		margin: 0 auto;
-
-		h2 {
-			margin-top: 0;
-			display: flex;
-			flex-flow: row nowrap;
-			align-content: center;
-			align-items: center;
-		}
-
-		h3 {
-			margin: 3em 0 1.5em 0;
-		}
-
-		.return-to-login {
-			text-align: right;
-		}
-	}
-</style>

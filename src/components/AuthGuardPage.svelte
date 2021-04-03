@@ -38,7 +38,7 @@
 	});
 </script>
 
-<div class={"app-page"}>
+<div class="app-page">
 	{#if (!authProps.authState.started || authProps.authState.fetching)}
 		<div class="wait-message">Getting authorization, please wait...</div>
 	{:else}

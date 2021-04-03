@@ -69,6 +69,14 @@ hr {
 	}
 }
 
+body.page-semitransparent {
+	.app-pages {
+		//background-color: var(--app-page-background);
+		background-color: rgba(242, 242, 242, .8);
+		backdrop-filter: blur(7px);
+	}
+}
+
 h1, h2, h3, h4 {
 	font-weight: normal;
 }
@@ -128,6 +136,37 @@ a.back-link {
 	}
 }
 
-button {
+button.press {
 	outline: none;
+	box-shadow: none;
+	font-size: var(--app-small-font-size) !important;
+}
+
+.circle-badge {
+	background-color: var(--app-info-bg);
+	color: var(--app-info-text);
+	width: 48px;
+	height: 48px;
+	display: inline-flex;
+	font-size: var(--app-big-font-size);
+	font-weight: 100;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	box-sizing: border-box;
+	border: 2px solid rgba(255, 255, 255, .4);
+	margin-right: .4em;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+	transform: translateX(-4px);
+
+	&.warn {
+		background-color: var(--app-warn-bg);
+		color: var(--app-warn-text);
+	}
+
+	&.success {
+		background-color: var(--app-success-bg);
+		color: var(--app-success-text);
+	}
 }

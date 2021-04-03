@@ -39,6 +39,7 @@
 		display: flex;
 		width: 100%;
 		flex-flow: row nowrap;
+		color: rgba(255, 255, 255, .7);
 
 		p {
 			display: flex;
@@ -56,10 +57,10 @@
 			display: flex;
 			flex-flow: column nowrap;
 			margin: 0 0 0 .5em;
-			padding: 0;
+			padding: 0 0 0 .5em;
+			border-left: 1px solid rgba(255, 255, 255, .2);
 
 			li {
-				color: rgba(255, 255, 255, .7);
 				list-style: none;
 				display: flex;
 				flex-flow: row nowrap;

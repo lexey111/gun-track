@@ -17,18 +17,12 @@
 
 </script>
 
-<div class="profile-logout">
-	<Confirm bind:this={confirmDialog}/>
+<Confirm bind:this={confirmDialog}/>
 
+<div class="section-right">
 	<button
 		on:click={handleConfirmLogoutDialog}
 		class="press press-ghost press-red">
 		Logout
 	</button>
 </div>
-
-<style>
-    .profile-logout {
-        margin: 2em 0;
-    }
-</style>

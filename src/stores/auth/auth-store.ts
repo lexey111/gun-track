@@ -103,6 +103,58 @@ async function confirmSignUp(email: string, code: string): Promise<boolean> {
 	return result;
 }
 
+async function changePassword(oldPwd: string, newPwd: string): Promise<boolean> {
+	let result;
+	AppStateStore.showSpinner();
+	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		const user = await Auth.currentAuthenticatedUser();
+		result = await Auth.changePassword(user, oldPwd, newPwd);
+	} catch (error) {
+		AppStateStore.hideSpinner();
+		console.log('error changing password', error);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return error;
+	}
+	AppStateStore.hideSpinner();
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	return result;
+}
+
+async function forgotPassword(email: string): Promise<boolean> {
+	let result;
+	AppStateStore.showSpinner();
+	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		result = await Auth.forgotPassword(email);
+	} catch (error) {
+		AppStateStore.hideSpinner();
+		console.log('error sending reset code', error);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return error;
+	}
+	AppStateStore.hideSpinner();
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	return result;
+}
+
+async function confirmForgotPassword(email: string, code: string, newPassword: string): Promise<boolean> {
+	let result;
+	AppStateStore.showSpinner();
+	try {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		result = await Auth.forgotPasswordSubmit(email, code, newPassword);
+	} catch (error) {
+		AppStateStore.hideSpinner();
+		console.log('error setting up new password', error);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return error;
+	}
+	AppStateStore.hideSpinner();
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+	return result;
+}
+
 export const AuthStore: IAuthStore = {
 	subscribe,
 	set,
@@ -158,5 +210,9 @@ export const AuthStore: IAuthStore = {
 
 	signUp,
 	confirmSignUp,
-	signIn
+	signIn,
+
+	forgotPassword,
+	confirmForgotPassword,
+	changePassword
 };

@@ -21,5 +21,9 @@ export interface IAuthStore extends Writable<TAuthState> {
 	signUp: (email: string, password: string) => Promise<any>
 	confirmSignUp: (email: string, code: string) => Promise<boolean>
 
+	forgotPassword: (email: string) => Promise<boolean>
+	confirmForgotPassword: (email: string, code: string, newPassword: string) => Promise<any>
+	changePassword: (oldPwd: string, newPwd: string) => Promise<boolean>
+
 	signIn: (email: string, password: string) => Promise<any>
 }

@@ -27,8 +27,12 @@
 		<li>
 			<Done>I18n - dates</Done>
 		</li>
-		<li>Spinner on busy</li>
-		<li>Fullscreen spinner</li>
+		<li>
+			<Done>Spinner on busy</Done>
+		</li>
+		<li>
+			<Done>Fullscreen spinner</Done>
+		</li>
 		<li>Icons</li>
 		<li>
 			<Done>Table</Done>
@@ -36,7 +40,10 @@
 		<li>
 			<Done>Notifications</Done>
 		</li>
-		<li>Backgrounds</li>
+		<li>
+			<Done>Backgrounds</Done>
+		</li>
+		<li>Language switcher</li>
 	</ul>
 
 	<h3>Functionality</h3>
@@ -44,7 +51,9 @@
 		<li>
 			<Done>Guns to store</Done>
 		</li>
-		<li>Single home page/login</li>
+		<li>
+			<Done>Single home page/login</Done>
+		</li>
 		<li>Photo upload for guns</li>
 	</ul>
 
@@ -80,8 +89,12 @@
 		<li>
 			<Done>Auth with local credentials</Done>
 		</li>
-		<li>Forgot password, reset</li>
-		<li>Change password</li>
+		<li>
+			<Done>Forgot password, reset</Done>
+		</li>
+		<li>
+			<Done>Change password</Done>
+		</li>
 		<li>
 			<Done>Own database - AWS</Done>
 		</li>

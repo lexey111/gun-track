@@ -1,5 +1,4 @@
 <script lang="ts">
-	import BgImage from './BgImage.svelte';
 	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
@@ -11,6 +10,7 @@
 
 	import {AuthStore} from '../stores/auth/auth-store';
 	import {TAuthState} from '../stores/auth/auth-store.interface';
+	import BgImage from './BgImage.svelte';
 
 	import {extendHistoryTracking} from './history-helper';
 	import {I18nService} from './i18n/i18n.service';
@@ -61,12 +61,9 @@
 		AppStateStore && AppStateStore.setPath(window.location.pathname);
 	}
 
-	// lifecycle
 	onDestroy(() => {
-		authUnsubscribe();
-		if (appStateUnsubscribe) {
-			appStateUnsubscribe();
-		}
+		authUnsubscribe && authUnsubscribe();
+		appStateUnsubscribe && appStateUnsubscribe();
 	});
 </script>
 

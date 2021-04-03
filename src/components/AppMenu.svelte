@@ -61,15 +61,16 @@
 <style lang="less">
 	:global {
 		.logged-out nav.app-navigation {
-			// background-color: var(--app-menu-logged-out-bg);
-			background-color: rgba(209, 217, 219, .8);
+			background-color: rgba(125, 128, 128, .5);
+			backdrop-filter: blur(7px);
 
 			a, a:visited {
 				color: var(--app-menu-logged-out-text);
 
 				&[aria-current="page"], &.active {
-					background-color: var(--app-background);
-					color: var(--app-menu-logged-out-text);
+					background-color: rgba(242, 242, 242, .5);
+					backdrop-filter: blur(7px);
+					color: var(--app-text);
 				}
 			}
 		}
@@ -77,15 +78,17 @@
 		.app-navigation {
 			display: flex;
 			flex-flow: row wrap;
-			// background-color: var(--app-menu-logged-in-bg);
-			background-color: rgba(31, 80, 95, .8);
+
+			background-color: rgba(52, 105, 132, 0.5);
+			backdrop-filter: blur(7px);
+
 			justify-content: center;
 			font-size: .8rem;
 			height: 40px;
 			transition: background-color .2s ease, color .1s ease;
-			backdrop-filter: blur(10px);
 
 			a, a:visited {
+				text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
 				display: flex;
 				align-content: center;
 				align-items: center;

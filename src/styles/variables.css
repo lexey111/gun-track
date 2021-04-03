@@ -1,5 +1,7 @@
 :root {
     --app-font-size: 16px;
+    --app-small-font-size: 14px;
+    --app-big-font-size: 20px;
 
     --app-background: #f2f2f2;
     --app-page-background: #fff;
@@ -38,10 +40,9 @@
     --app-danger-link-text-active: #931432;
 
     --app-menu-logged-in-bg: #1f505f;
-    --app-menu-logged-in-text: #deecff;
+    --app-menu-logged-in-text: #fff;
 
-    --app-menu-logged-out-bg: #d1d9db;
-    --app-menu-logged-out-text: #2b6699;
+    --app-menu-logged-out-text: #fff;
 
     --app-table-header-bg: #2b6699;
     --app-table-header-text: #fff;
