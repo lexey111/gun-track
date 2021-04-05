@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
-	import {showError} from '../../../app/notifications/notify';
+	import {showError} from '../../../components/notifications/notify';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;

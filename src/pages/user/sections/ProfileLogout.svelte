@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {IConfirmDialog} from '../../../app/modal/Confirm.interface';
-	import Confirm from '../../../app/modal/Confirm.svelte';
+	import {IConfirmDialog} from '../../../components/modal/Confirm.interface';
+	import Confirm from '../../../components/modal/Confirm.svelte';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	let confirmDialog: IConfirmDialog;

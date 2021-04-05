@@ -1,6 +1,6 @@
 <script lang="ts">
-	import I18n from '../../app/i18n/I18n.svelte';
-	import {NotifyStore} from '../../app/notifications/notify-store';
+	import I18n from '../../components/i18n/I18n.svelte';
+	import {NotifyStore} from '../../components/notifications/notify-store';
 	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 </script>

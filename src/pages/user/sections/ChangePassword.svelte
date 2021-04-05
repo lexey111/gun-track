@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {showError, showInfo} from '../../../app/notifications/notify';
+	import {showError, showInfo} from '../../../components/notifications/notify';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;

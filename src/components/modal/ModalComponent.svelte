@@ -87,6 +87,6 @@
 
 <style lang="less">
 	:global {
-		@import "./modal.less";
+		@import "modal.less";
 	}
 </style>

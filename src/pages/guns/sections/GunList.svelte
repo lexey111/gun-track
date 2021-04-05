@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
-	import {IConfirmDialog} from '../../../app/modal/Confirm.interface';
-	import Confirm from '../../../app/modal/Confirm.svelte';
+	import {IConfirmDialog} from '../../../components/modal/Confirm.interface';
+	import Confirm from '../../../components/modal/Confirm.svelte';
 	import {Gun} from '../../../models';
 
 	dayjs.extend(localizedFormat);

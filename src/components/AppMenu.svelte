@@ -12,9 +12,6 @@
 	let auth_state: TAuthState = null;
 
 	function getActiveClass(route: string): string {
-		console.log('route', route);
-		console.log('path', current_path);
-		console.log('active', current_path.includes(route));
 		return current_path.includes(route) ? 'active' : '';
 	}
 

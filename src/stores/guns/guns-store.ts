@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call */
 import {DataStore} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
-import {showError} from '../../app/notifications/notify';
+import {showError} from '../../components/notifications/notify';
 import {Gun} from '../../models';
 import {IGunStore, TGunsState} from './guns-store.interface';
 

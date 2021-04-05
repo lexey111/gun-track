@@ -43,6 +43,6 @@
 
 <style lang="less">
 	:global {
-		@import "./notify.less";
+		@import "notify.less";
 	}
 </style>

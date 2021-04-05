@@ -10,13 +10,13 @@
 
 	import {AuthStore} from '../stores/auth/auth-store';
 	import {TAuthState} from '../stores/auth/auth-store.interface';
-	import BgImage from './BgImage.svelte';
+	import BgImage from '../components/BgImage.svelte';
 
 	import {extendHistoryTracking} from './history-helper';
-	import {I18nService} from './i18n/i18n.service';
-	import './i18n/i18n.service.ts';
-	import ModalComponent from './modal/ModalComponent.svelte';
-	import NotifyComponent from './notifications/NotifyComponent.svelte';
+	import {I18nService} from '../components/i18n/i18n.service';
+	import '../components/i18n/i18n.service.ts';
+	import ModalComponent from '../components/modal/ModalComponent.svelte';
+	import NotifyComponent from '../components/notifications/NotifyComponent.svelte';
 
 	// auth store and state
 	let auth_state: TAuthState;

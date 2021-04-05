@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import {getContext, onDestroy, onMount} from 'svelte';
-	import {showError, showSuccess, showWarning} from '../../app/notifications/notify';
+	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
 	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
 	import {Gun} from '../../models';
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
