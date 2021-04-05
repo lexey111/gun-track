@@ -4,6 +4,7 @@
     --app-big-font-size: 20px;
 
     --app-background: #f2f2f2;
+    --app-background-wall: #565e5f;
     --app-page-background: #fff;
 
     --app-info-bg: #1872d2;
@@ -38,6 +39,9 @@
     --app-link-text-active: #2b6699;
     --app-danger-link-text: #f32152;
     --app-danger-link-text-active: #931432;
+
+    --app-tab-active-bg: #c5c7cb;
+    --app-tab-active-text: #333;
 
     --app-menu-logged-in-bg: #1f505f;
     --app-menu-logged-in-text: #fff;

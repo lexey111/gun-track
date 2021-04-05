@@ -3,7 +3,9 @@
 	import {Link} from 'svelte-routing';
 
 	import {showError, showInfo} from '../../app/notifications/notify';
-	import {AuthStore} from '../../stores/auth/auth-store';
+	import {IAuthStore} from '../../stores/auth/auth-store.interface';
+
+	export let authStore: IAuthStore = null;
 
 	let email = '';
 	let pwd = '';
@@ -14,7 +16,7 @@
 	$: codeAllowed = !!email.trim() && !!code.trim();
 
 	const signUp = async () => {
-		const result: unknown = await AuthStore.signUp(email, pwd);
+		const result: unknown = await authStore.signUp(email, pwd);
 		if (result.message) {
 			showError(`Registration failed: ${result.message}`);
 		} else {
@@ -23,7 +25,7 @@
 	}
 
 	const signUpVerify = async () => {
-		const result: unknown = await AuthStore.confirmSignUp(email, code);
+		const result: unknown = await authStore.confirmSignUp(email, code);
 		if (result.message) {
 			showError(`Confirmation failed: ${result.message}`);
 		} else {

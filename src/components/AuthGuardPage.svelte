@@ -9,6 +9,8 @@
 	export let component = void 0;
 	export let props = {};
 
+	export let params;
+
 	let authRequested = false;
 
 	let authProps = {
@@ -43,10 +45,10 @@
 		<div class="wait-message">Getting authorization, please wait...</div>
 	{:else}
 		{#if (!logout && authProps.authState.loggedIn)}
-			<svelte:component this={component} {...{...props, ...authProps}}/>
+			<svelte:component this={component} {...{...props, ...authProps, ...params}}/>
 		{/if}
 		{#if (logout && !authProps.authState.loggedIn)}
-			<svelte:component this={component} {...{...props, ...authProps}}/>
+			<svelte:component this={component} {...{...props, ...authProps, ...params}}/>
 		{/if}
 	{/if}
 </div>

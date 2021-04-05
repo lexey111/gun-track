@@ -16,6 +16,7 @@
 	let gunsUnsubscribe;
 	let gunsState: TGunsState = {
 		busy: true,
+		fullReady: false,
 		isEmpty: null,
 		guns: []
 	};
@@ -65,44 +66,41 @@
 
 	onMount(() => {
 		gunsUnsubscribe = GunsStore.subscribe(value => {
-			gunsState.guns = value.guns;
-			gunsState.isEmpty = value.isEmpty;
-			gunsState.busy = value.busy;
+			if (!value || value.isEmpty === null) {
+				return;
+			}
+			gunsState = value;
 		});
 	});
 
 	onDestroy(() => {
-		if (gunsUnsubscribe) {
-			gunsUnsubscribe();
-		}
+		gunsUnsubscribe && gunsUnsubscribe();
 	});
 </script>
 
-<div class="app-page">
-	{#if (gunsState.isEmpty === true)}
-		<h2>There is no guns here yet</h2>
-		<p>
-			So it's the best time to register the first one!
-		</p>
-	{/if}
+{#if (gunsState?.isEmpty === true)}
+	<h2>There is no guns here yet</h2>
+	<p>
+		So it's the best time to register the first one!
+	</p>
+{/if}
 
-	{#if (gunsState.isEmpty === null)}
-		<p>
-			<SpinnerComponent/>
-			Please wait, loading data from server...
-		</p>
-	{/if}
+{#if (!gunsState || gunsState?.isEmpty === null)}
+	<p>
+		<SpinnerComponent/>
+		Please wait, loading data from server...
+	</p>
+{/if}
 
-	{#if (gunsState.isEmpty !== null)}
-		<button class="press press-ghost press-blue" on:click={showNewGunDialog}>Register a Gun</button>
-	{/if}
+{#if (gunsState.isEmpty !== null)}
+	<button class="press press-ghost press-blue" on:click={showNewGunDialog}>Register a Gun</button>
+{/if}
 
-	{#if (gunsState.isEmpty === false)}
-		<h2>Registered guns</h2>
+{#if (gunsState.isEmpty === false)}
+	<h2>Registered guns</h2>
 
-		<GunList
-			guns={gunsState.guns}
-			onRemove={handleRemoveGun}
-			onEdit={showGunEditDialog}/>
-	{/if}
-</div>
+	<GunList
+		guns={gunsState.guns}
+		onRemove={handleRemoveGun}
+		onEdit={showGunEditDialog}/>
+{/if}

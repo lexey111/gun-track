@@ -3,10 +3,11 @@
 	import AuthGuardPage from '../components/AuthGuardPage.svelte';
 
 	import AboutPage from '../pages/about/AboutPage.svelte';
-	import GunsPage from '../pages/guns/Guns.svelte';
+	import GunsPage from '../pages/guns/GunsPage.svelte';
 
 	import HomePage from '../pages/home/HomePage.svelte';
 	import TosPage from '../pages/tos/TosPage.svelte';
+	import TrackPage from '../pages/track/TrackPage.svelte';
 
 	import LoginPage from '../pages/user/LoginPage.svelte';
 
@@ -47,6 +48,14 @@
 
 	<Route path="guns">
 		<AuthGuardPage component={GunsPage} redirectTo="login"/>
+	</Route>
+
+	<Route path="track">
+		<AuthGuardPage component={TrackPage} redirectTo="login"/>
+	</Route>
+
+	<Route path="track/:id" let:params>
+		<AuthGuardPage component={TrackPage} redirectTo="login" params={params} />
 	</Route>
 
 	<Route path="home" component={HomePage}/>

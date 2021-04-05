@@ -3,7 +3,9 @@
 	import {Link} from 'svelte-routing';
 
 	import {showError, showInfo} from '../../app/notifications/notify';
-	import {AuthStore} from '../../stores/auth/auth-store';
+	import {IAuthStore} from '../../stores/auth/auth-store.interface';
+
+	export let authStore: IAuthStore = null;
 
 	let email = '';
 	let pwd = '';
@@ -14,7 +16,7 @@
 	$: newPasswordAllowed = !!email.trim() && !!code.trim() && !!pwd.trim() && pwd === pwd2;
 
 	const sendResetCode = async () => {
-		const result: unknown = await AuthStore.forgotPassword(email);
+		const result: unknown = await authStore.forgotPassword(email);
 		if (result?.message) {
 			showError(`Sending code failed: ${result.message}`);
 		} else {
@@ -23,7 +25,7 @@
 	}
 
 	const sendResetCodeConfirm = async () => {
-		const result: unknown = await AuthStore.confirmForgotPassword(email, code, pwd);
+		const result: unknown = await authStore.confirmForgotPassword(email, code, pwd);
 		if (result?.message) {
 			showError(`Confirmation failed: ${result.message}`);
 		} else {

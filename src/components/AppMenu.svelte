@@ -12,6 +12,9 @@
 	let auth_state: TAuthState = null;
 
 	function getActiveClass(route: string): string {
+		console.log('route', route);
+		console.log('path', current_path);
+		console.log('active', current_path.includes(route));
 		return current_path.includes(route) ? 'active' : '';
 	}
 
@@ -103,8 +106,8 @@
 					background-color: rgba(255, 255, 255, .2);
 				}
 
-				&[aria-current="page"] {
-					background-color: #fff;
+				&[aria-current="page"], &.active{
+					background-color: var(--app-background);
 					color: var(--app-menu-logged-in-bg);
 				}
 			}

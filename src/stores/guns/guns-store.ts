@@ -6,7 +6,8 @@ import {Gun} from '../../models';
 import {IGunStore, TGunsState} from './guns-store.interface';
 
 let _guns: Array<Gun> = [];
-let storeReady = false;
+let storeSubscribed = false;
+let storeFullReady = false;
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
 	subscribe,
@@ -15,6 +16,7 @@ const {
 } = writable<TGunsState>({
 	busy: true,
 	isEmpty: null,
+	fullReady: false,
 	guns: _guns
 });
 
@@ -24,6 +26,7 @@ function resetStore(): void {
 	update(_ => ({
 		guns: [],
 		isEmpty: null,
+		fullReady: false,
 		busy: false
 	}));
 }
@@ -56,7 +59,8 @@ async function loadGuns(): Promise<void> {
 
 		update(_ => ({
 			guns: _guns,
-			isEmpty: storeReady === true ? _guns.length === 0 : null,
+			isEmpty: storeSubscribed === true ? _guns.length === 0 : null,
+			fullReady: storeFullReady,
 			busy: false
 		}));
 	} catch (error) {
@@ -123,12 +127,24 @@ async function removeGun(id: string): Promise<boolean> {
 	return true;
 }
 
-function setReady(): void {
-	storeReady = true;
+function setSubscribed(): void {
+	storeSubscribed = true;
 	update(state => {
 		return {
 			...state,
 			isEmpty: state.guns.length === 0
+		};
+	});
+}
+
+function setFullReady(): void {
+	storeSubscribed = true;
+	storeFullReady = true;
+	update(state => {
+		return {
+			...state,
+			isEmpty: state.guns.length === 0,
+			fullReady: true
 		};
 	});
 }
@@ -148,14 +164,15 @@ export const GunsStore: IGunStore = {
 	},
 
 	initStore: () => {
-		storeReady = false;
+		storeSubscribed = false;
 		resetStore();
 
 		gunSubscription = DataStore.observe(Gun).subscribe(_ => {
 			void loadGuns();
 		});
 	},
-	setReady,
+	setSubscribed, // db answered
+	setFullReady, // connection established
 
 	loadGuns,
 	createGun,

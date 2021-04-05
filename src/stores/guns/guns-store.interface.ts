@@ -4,12 +4,14 @@ import {Gun} from '../../models';
 export type TGunsState = {
 	busy: boolean
 	isEmpty: true | false | null
+	fullReady: boolean
 	guns: Array<Gun>
 };
 
 export interface IGunStore extends Writable<TGunsState> {
 	initStore: () => void
-	setReady: () => void
+	setSubscribed: () => void
+	setFullReady: () => void
 
 	loadGuns: () => Promise<void>
 	unloadGuns: () => void

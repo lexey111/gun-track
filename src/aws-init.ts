@@ -95,11 +95,11 @@ Hub.listen(
 	) => {
 
 		if (dbExists && event === 'storageSubscribed') {
-			GunsStore.setReady();
+			GunsStore.setSubscribed();
 		}
 
 		if (event === 'ready') {
-			GunsStore.setReady();
+			GunsStore.setFullReady();
 		}
 	});
 

@@ -19,10 +19,8 @@
 
 <Confirm bind:this={confirmDialog}/>
 
-<div class="section-right">
-	<button
-		on:click={handleConfirmLogoutDialog}
-		class="press press-ghost press-red">
-		Logout
-	</button>
-</div>
+<button
+	on:click={handleConfirmLogoutDialog}
+	class="press press-ghost press-red">
+	Logout
+</button>

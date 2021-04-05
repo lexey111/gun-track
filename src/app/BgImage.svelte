@@ -8,7 +8,7 @@
 		return Math.floor(Math.random() * (maxNumber + 1 - minNumber) + minNumber);
 	}
 
-	let firstImageNum = getRandomImageNum();
+	let firstImageNum = 0;
 	let secondImageNum = 0;
 
 	let firstLoaded = false;
@@ -23,6 +23,28 @@
 	let phase = 1;
 
 	let imageUpdater;
+	let firstDelay;
+
+	function updateImages() {
+		let nm = getRandomImageNum();
+		while (nm === firstImageNum || nm === secondImageNum) {
+			nm = getRandomImageNum();
+		}
+		// set state
+		if (phase === 1) {
+			secondImageNum = nm;
+			secondLoaded = false;
+		} else {
+			firstImageNum = nm;
+			firstLoaded = false;
+		}
+		// next tick
+		if (phase === 1) {
+			phase = 2;
+		} else {
+			phase = 1;
+		}
+	}
 
 	onMount(() => {
 		firstImage.onload = () => {
@@ -49,36 +71,22 @@
 			secondTop = top ? 0 - top : 0;
 		}
 
-		imageUpdater = setInterval(() => {
-			let nm = getRandomImageNum();
-			while (nm === firstImageNum || nm === secondImageNum) {
-				nm = getRandomImageNum();
-			}
-			// set state
-			if (phase === 1) {
-				secondImageNum = nm;
-				secondLoaded = false;
-			} else {
-				firstImageNum = nm;
-				firstLoaded = false;
-			}
-			// next tick
-			if (phase === 1) {
-				phase = 2;
-			} else {
-				phase = 1;
-			}
-		}, 5 * 60 * 1000); // each 5 minutes
+		imageUpdater = setInterval(updateImages, 5 * 60 * 1000); // each 5 minutes
+
+		firstDelay = setTimeout(() => {
+			updateImages();
+		}, 1000);
 	});
 
 	onDestroy(() => {
+		clearTimeout(firstDelay);
 		clearInterval(imageUpdater);
 	});
 
 </script>
 
 <div id="app-bg-image">
-	<img src="/images/bg-{firstImageNum}.jpg" alt=""
+	<img src={firstImageNum > 0? '/images/bg-' + firstImageNum + '.jpg' : ''} alt=""
 	     class={(firstLoaded ? 'loaded' : '') + (firstFideOut ? ' fade-out' : '')}
 	     style="top: {firstTop}px"
 	     bind:this={firstImage}>

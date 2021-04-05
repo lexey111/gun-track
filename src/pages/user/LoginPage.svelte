@@ -40,5 +40,5 @@
 </div>
 
 <style lang="less">
-	@import "./sections/login.less";
+	@import "user.less";
 </style>

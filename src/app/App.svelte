@@ -75,7 +75,7 @@
 <main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
 	<h1>GUN | TRACK</h1>
 
-	<Router url="{url}">
+	<Router url={url}>
 		<AppMenu/>
 		<Routing/>
 	</Router>
