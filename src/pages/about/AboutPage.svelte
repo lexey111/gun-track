@@ -44,7 +44,9 @@
 			<Done>Backgrounds</Done>
 		</li>
 		<li>Language switcher</li>
-		<li>Better colors for track</li>
+		<li>
+			<Done>Better colors for track</Done>
+		</li>
 		<li>Compact view</li>
 	</ul>
 
@@ -56,9 +58,15 @@
 		<li>
 			<Done>Single home page/login</Done>
 		</li>
-		<li>Edit action</li>
-		<li>New action</li>
-		<li>Delete action</li>
+		<li>
+			<Done>Edit action</Done>
+		</li>
+		<li>
+			<Done>New action</Done>
+		</li>
+		<li>
+			<Done>Delete action</Done>
+		</li>
 		<li>Delete gun</li>
 		<li>SS selectors? delete actions?</li>
 		<li>Photo upload for guns</li>
@@ -110,8 +118,12 @@
 			<Done>Own database - AWS</Done>
 		</li>
 		<li>Extra fields in gun: created, photo</li>
-		<li>Gun records editor</li>
-		<li>Gun records table</li>
+		<li>
+			<Done>Gun records editor</Done>
+		</li>
+		<li>
+			<Done>Gun records table</Done>
+		</li>
 		<li>Gun records stats</li>
 	</ul>
 </div>

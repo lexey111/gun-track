@@ -52,7 +52,7 @@ async function loadGuns(): Promise<void> {
 			busy: false
 		}));
 	} catch (error) {
-		showError(`Error on retrieving guns:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on retrieving guns:\n${getErrorText(error)}`, 'Error');
 		resetStore();
 	}
 }
@@ -71,7 +71,7 @@ async function createGun(name: string): Promise<boolean> {
 			})
 		);
 	} catch (error) {
-		showError(`Error on registering the gun:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on registering the gun:\n${getErrorText(error)}`, 'Error');
 		return false;
 	}
 	return true;
@@ -95,7 +95,7 @@ async function saveGun(id: string, name: string): Promise<boolean> {
 			})
 		);
 	} catch (error) {
-		showError(`Error on storing the gun:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on storing the gun:\n${getErrorText(error)}`, 'Error');
 		return false;
 	}
 	return true;
@@ -109,7 +109,7 @@ async function removeGun(id: string): Promise<boolean> {
 			throw new Error('Something went wrong');
 		}
 	} catch (error) {
-		showError(`Error on removing the gun:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on removing the gun:\n${getErrorText(error)}`, 'Error');
 		return false;
 	}
 	return true;

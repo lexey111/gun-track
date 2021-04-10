@@ -30,9 +30,11 @@
 		<div class="action-title">
 			<h1>{action.title}</h1>
 			{#if (action.shots)}
-				<span class="action-shot">+{action.shots || 124}</span>
+				<div class="action-shot">+{action.shots || 124}</div>
 			{/if}
-			<span class="action-sum">{123344}</span>
+			{#if (action.sum !== 0)}
+				<div class={'action-sum' + (action.shots ? '' : ' inherited')}>{action.sum}</div>
+			{/if}
 		</div>
 
 		{#if (action.comment)}

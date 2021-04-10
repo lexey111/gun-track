@@ -14,6 +14,8 @@ export type TAction = {
 	color?: string
 };
 
+export type ActionExtended = Action & { sum?: number };
+
 export type TActionsState = {
 	busy: boolean
 	sortOrder: 'asc' | 'desc'

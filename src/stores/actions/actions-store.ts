@@ -5,12 +5,12 @@ import {showError} from '../../components/notifications/notify';
 import {Action} from '../../models';
 import {getErrorText} from '../../utils/errors';
 import {GunsStore} from '../guns/guns-store';
-import {IActionsStore, TAction, TActionsState} from './actions-store.interface';
+import {ActionExtended, IActionsStore, TAction, TActionsState} from './actions-store.interface';
 
 let currentOrder: SortDirection = SortDirection.DESCENDING;
 let currentGunId: string;
 
-let _actions: Array<Action> = [];
+let _actions: Array<ActionExtended> = [];
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
 	subscribe,
@@ -51,22 +51,46 @@ async function loadActions(gunId?: string): Promise<void> {
 			throw new Error('Gun not found!');
 		}
 
-		const _rawActions = (await DataStore.query(Action, Predicates.ALL, {
+		const rawActions: Array<ActionExtended> = (await DataStore.query(Action, Predicates.ALL, {
 			sort: a => a.date(currentOrder)
 		}))
 			.filter((c: any) => c.gun?.id === currentGunId);
 
-		_actions = _rawActions.map(item => item); // TODO: summarization
-		console.log('local action', _actions);
+		const data = rawActions.map(i => ({
+			...i,
+			sum: 0
+		}));
+
+		if (data && data.length > 0) {
+			let totalShots = 0;
+			let startIdx = 0;
+			let lastIdx = data.length;
+			let inc = 1;
+
+			if (currentOrder === SortDirection.DESCENDING) {
+				startIdx = data.length - 1;
+				lastIdx = -1;
+				inc = -1;
+			}
+
+			for (let i = startIdx; i !== lastIdx; i += inc) {
+				if (data[i].shots) {
+					totalShots += data[i].shots;
+				}
+				data[i].sum = totalShots;
+			}
+		}
+
+		_actions = rawActions; // for sync access
 
 		update(_ => ({
-			actions: _actions,
+			actions: data,
 			sortOrder: currentOrder === SortDirection.ASCENDING ? 'asc' : 'desc',
-			isEmpty: _actions.length === 0,
+			isEmpty: data.length === 0,
 			busy: false
 		}));
 	} catch (error) {
-		showError(`Error on retrieving actions:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on retrieving actions:\n${getErrorText(error)}`, 'Error');
 		resetStore();
 	}
 }
@@ -77,7 +101,6 @@ async function registerAction(gunId: string, action: TAction): Promise<boolean> 
 		busy: true
 	}));
 
-	console.log('action to save', action);
 	const gun = GunsStore.getGunById(gunId);
 	try {
 		if (!gun) {
@@ -90,7 +113,12 @@ async function registerAction(gunId: string, action: TAction): Promise<boolean> 
 			})
 		);
 	} catch (error) {
-		showError(`Error on registering action:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on registering action:\n${getErrorText(error)}`, 'Error');
+		update(state => ({
+			...state,
+			busy: false
+		}));
+
 		return false;
 	}
 	return true;
@@ -98,16 +126,17 @@ async function registerAction(gunId: string, action: TAction): Promise<boolean> 
 
 async function saveAction(action: Action): Promise<boolean> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const _action: TAction = _actions.find(x => x.id === action.id);
-	if (!_action) {
-		throw new Error('Action not found!');
-	}
-
 	update(state => ({
 		...state,
 		busy: true
 	}));
+
 	try {
+		const _action: TAction = _actions.find(a => a.id === action.id);
+		if (!_action) {
+			throw new Error('Action not found!');
+		}
+
 		await DataStore.save(
 			Action.copyOf(_action, updated => {
 				updated.title = action.title;
@@ -122,7 +151,12 @@ async function saveAction(action: Action): Promise<boolean> {
 			})
 		);
 	} catch (error) {
-		showError(`Error on storing the action:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on storing the action:\n${getErrorText(error)}`, 'Error');
+		update(state => ({
+			...state,
+			busy: false
+		}));
+
 		return false;
 	}
 	return true;
@@ -136,7 +170,7 @@ async function removeAction(id: string): Promise<boolean> {
 			throw new Error('Something went wrong');
 		}
 	} catch (error) {
-		showError(`Error on removing the action:\n ${getErrorText(error)}`, 'Error');
+		showError(`Error on removing the action:\n${getErrorText(error)}`, 'Error');
 		return false;
 	}
 	return true;

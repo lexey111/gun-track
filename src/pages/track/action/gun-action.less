@@ -83,17 +83,28 @@
 				flex-flow: column nowrap;
 			}
 
-			span {
-				font-size: var(--app-font-size);
-				margin-left: 2em;
+			div {
+				font-size: var(--app-small-font-size);
+				margin-left: 16px;
+				display: flex;
+				height: 24px;
+				align-content: center;
+				align-items: center;
 			}
 
-			span.action-shot {
-				color: var(--app-info-bg);
+			div.action-shot {
+				background-color: var(--app-info-bg);
+				color: var(--app-info-text);
+				padding: 0 8px;
+				border-radius: 22px;
 			}
 
-			span.action-sum {
-				color: var(--app-error-bg);
+			div.action-sum {
+				font-size: var(--app-very-big-font-size);
+
+				&.inherited {
+					color: var(--app-remark-text);
+				}
 			}
 		}
 
