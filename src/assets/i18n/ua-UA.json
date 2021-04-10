@@ -2,5 +2,18 @@
 	"@Common": {
 		"Welcome": "Вітання",
 		"ThisIsGunTrack": "Це сайт Gun | Track"
+	},
+	"@Actions": {
+		"other": "Прочее",
+		"training": "Тренировка",
+		"dry_training": "Холоста тренировка",
+		"pers_training": "Индивидуальная тренировка",
+		"competition": "Змагання",
+		"tuning": "Тюнинг",
+		"spare_parts": "Запчастини",
+		"bullets": "Боеприпасы",
+		"purchase": "Покупка",
+		"selling": "Продажа",
+		"cleanup": "Чистка"
 	}
 }

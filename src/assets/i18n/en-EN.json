@@ -2,5 +2,18 @@
 	"@Common": {
 		"Welcome": "Welcome",
 		"ThisIsGunTrack": "This is Gun | Track site"
+	},
+	"@Actions": {
+		"other": "Other",
+		"training": "Training",
+		"dry_training": "Dry training",
+		"pers_training": "Personal training",
+		"competition": "Competition",
+		"tuning": "Tuning",
+		"spare_parts": "Spare parts",
+		"bullets": "Bullets",
+		"purchase": "Purchase",
+		"selling": "Selling",
+		"cleanup": "Cleanup"
 	}
 }

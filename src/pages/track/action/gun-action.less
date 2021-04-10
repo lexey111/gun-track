@@ -11,7 +11,7 @@
 		padding: 0 24px 0 0;
 		flex-grow: 0;
 		flex-shrink: 0;
-		width: 150px;
+		width: 200px;
 		align-items: flex-end;
 		position: relative;
 
@@ -27,6 +27,18 @@
 			}
 		}
 
+		.pre-action-type {
+			display: block;
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			border-radius: 24px;
+			background-color: var(--app-info-bg);
+			top: -2px;
+			right: -11px;
+			z-index: 2;
+		}
+
 		.action-type {
 			display: block;
 			position: absolute;
@@ -34,11 +46,19 @@
 			height: 20px;
 			border-radius: 20px;
 			background-color: var(--app-page-background);
-			border: 2px solid var(--app-info-bg);
+			box-sizing: content-box;
 			color: var(--app-text);
 			top: 0;
-			right: -11px;
-			z-index: 2;
+			right: -9px;
+			z-index: 3;
+		}
+
+		.action-type-tag {
+			margin-top: 4px;
+			height: auto;
+			font-size: var(--app-very-small-font-size);
+			color: var(--app-remark-text);
+			text-align: right;
 		}
 
 		&:first-child {
@@ -66,10 +86,12 @@
 		flex-grow: 2;
 		background-color: var(--app-page-background);
 		padding: 16px;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-		border: 2px solid var(--app-page-background);
-		box-sizing: border-box;
+		box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+		border-left: 2px solid transparent;
+		box-sizing: content-box;
 		transition: all .2s ease-in;
+		position: relative;
+
 
 		.action-title {
 			display: flex;
@@ -147,7 +169,7 @@
 
 	&:hover {
 		.action-content {
-			border-color: #fac802;
+			box-shadow: -2px 0 4px rgba(0, 0, 0, .3);
 		}
 
 		.action-actions {

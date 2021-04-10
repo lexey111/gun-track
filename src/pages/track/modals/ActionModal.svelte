@@ -1,6 +1,8 @@
 <script lang="ts">
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import {onMount} from 'svelte';
 	import {Action} from '../../../models';
+	import {ActionTypes} from '../../../stores/actions/actions-store.interface';
 	import {autoFocus} from '../../../utils/autofocus';
 
 	export let onConfirm: (action: Action) => void;
@@ -63,6 +65,15 @@
 			use:autoFocus
 			bind:value={title}
 			id="name"/>
+	</div>
+
+	<div class="form-group">
+		<label for="type">Type</label>
+		<select bind:value={type} id="type" class="short-field">
+			{#each ActionTypes as actionType}
+				<option value={actionType.id}><I18n text={'@Actions.' + actionType.id}/></option>
+			{/each}
+		</select>
 	</div>
 
 	<div class="form-group">
