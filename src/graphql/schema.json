@@ -131,7 +131,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsFilterInput",
+              "name" : "ModelActionFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -165,13 +165,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelActionsConnection",
+            "name" : "ModelActionConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getActions",
+          "name" : "getAction",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -189,20 +189,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Actions",
+            "name" : "Action",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listActionss",
+          "name" : "listActions",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsFilterInput",
+              "name" : "ModelActionFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -227,7 +227,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelActionsConnection",
+            "name" : "ModelActionConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -351,7 +351,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsFilterInput",
+              "name" : "ModelActionFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -385,7 +385,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelActionsConnection",
+            "name" : "ModelActionConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -506,7 +506,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelActionsConnection",
+        "name" : "ModelActionConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -517,7 +517,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "Actions",
+              "name" : "Action",
               "ofType" : null
             }
           },
@@ -552,7 +552,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Actions",
+        "name" : "Action",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -816,7 +816,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelActionsFilterInput",
+        "name" : "ModelActionFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -917,7 +917,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsFilterInput",
+              "name" : "ModelActionFilterInput",
               "ofType" : null
             }
           },
@@ -930,7 +930,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsFilterInput",
+              "name" : "ModelActionFilterInput",
               "ofType" : null
             }
           },
@@ -940,7 +940,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelActionsFilterInput",
+            "name" : "ModelActionFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1734,7 +1734,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createActions",
+          "name" : "createAction",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1744,7 +1744,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateActionsInput",
+                "name" : "CreateActionInput",
                 "ofType" : null
               }
             },
@@ -1754,20 +1754,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsConditionInput",
+              "name" : "ModelActionConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Actions",
+            "name" : "Action",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateActions",
+          "name" : "updateAction",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1777,7 +1777,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateActionsInput",
+                "name" : "UpdateActionInput",
                 "ofType" : null
               }
             },
@@ -1787,20 +1787,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsConditionInput",
+              "name" : "ModelActionConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Actions",
+            "name" : "Action",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteActions",
+          "name" : "deleteAction",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1810,7 +1810,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteActionsInput",
+                "name" : "DeleteActionInput",
                 "ofType" : null
               }
             },
@@ -1820,14 +1820,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsConditionInput",
+              "name" : "ModelActionConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Actions",
+            "name" : "Action",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2057,7 +2057,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateActionsInput",
+        "name" : "CreateActionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2177,7 +2177,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelActionsConditionInput",
+        "name" : "ModelActionConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2269,7 +2269,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsConditionInput",
+              "name" : "ModelActionConditionInput",
               "ofType" : null
             }
           },
@@ -2282,7 +2282,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelActionsConditionInput",
+              "name" : "ModelActionConditionInput",
               "ofType" : null
             }
           },
@@ -2292,7 +2292,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelActionsConditionInput",
+            "name" : "ModelActionConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2302,7 +2302,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateActionsInput",
+        "name" : "UpdateActionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2414,7 +2414,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteActionsInput",
+        "name" : "DeleteActionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2516,7 +2516,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateActions",
+          "name" : "onCreateAction",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -2534,13 +2534,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Actions",
+            "name" : "Action",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateActions",
+          "name" : "onUpdateAction",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -2558,13 +2558,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Actions",
+            "name" : "Action",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteActions",
+          "name" : "onDeleteAction",
           "description" : null,
           "args" : [ {
             "name" : "owner",
@@ -2582,7 +2582,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Actions",
+            "name" : "Action",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3421,6 +3421,22 @@
         "onFragment" : false,
         "onField" : true
       }, {
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_iam",
+        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "deprecated",
         "description" : null,
         "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
@@ -3438,12 +3454,20 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_cognito_user_pools",
-        "description" : "Tells the service this field/object has access authorized by a Cognito User Pools token.",
+        "name" : "aws_lambda",
+        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_publish",
+        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
+        "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "cognito_groups",
-          "description" : "List of cognito user pool groups which have access on this field",
+          "name" : "subscriptions",
+          "description" : "List of subscriptions which will be published to when this mutation is called.",
           "type" : {
             "kind" : "LIST",
             "name" : null,
@@ -3480,24 +3504,8 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_lambda",
-        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_iam",
-        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "name" : "aws_oidc",
+        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
         "onOperation" : false,
@@ -3525,12 +3533,12 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_publish",
-        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
-        "locations" : [ "FIELD_DEFINITION" ],
+        "name" : "aws_cognito_user_pools",
+        "description" : "Tells the service this field/object has access authorized by a Cognito User Pools token.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "subscriptions",
-          "description" : "List of subscriptions which will be published to when this mutation is called.",
+          "name" : "cognito_groups",
+          "description" : "List of cognito user pool groups which have access on this field",
           "type" : {
             "kind" : "LIST",
             "name" : null,
@@ -3542,14 +3550,6 @@
           },
           "defaultValue" : null
         } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_oidc",
-        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

@@ -4,9 +4,9 @@ import { schema } from './schema';
 
 
 
-const { Gun, Actions } = initSchema(schema);
+const { Gun, Action } = initSchema(schema);
 
 export {
   Gun,
-  Actions
+  Action
 };

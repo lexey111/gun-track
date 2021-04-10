@@ -125,12 +125,12 @@ export const deleteGun = /* GraphQL */ `
     }
   }
 `;
-export const createActions = /* GraphQL */ `
-  mutation CreateActions(
-    $input: CreateActionsInput!
-    $condition: ModelActionsConditionInput
+export const createAction = /* GraphQL */ `
+  mutation CreateAction(
+    $input: CreateActionInput!
+    $condition: ModelActionConditionInput
   ) {
-    createActions(input: $input, condition: $condition) {
+    createAction(input: $input, condition: $condition) {
       id
       title
       comment
@@ -166,12 +166,12 @@ export const createActions = /* GraphQL */ `
     }
   }
 `;
-export const updateActions = /* GraphQL */ `
-  mutation UpdateActions(
-    $input: UpdateActionsInput!
-    $condition: ModelActionsConditionInput
+export const updateAction = /* GraphQL */ `
+  mutation UpdateAction(
+    $input: UpdateActionInput!
+    $condition: ModelActionConditionInput
   ) {
-    updateActions(input: $input, condition: $condition) {
+    updateAction(input: $input, condition: $condition) {
       id
       title
       comment
@@ -207,12 +207,12 @@ export const updateActions = /* GraphQL */ `
     }
   }
 `;
-export const deleteActions = /* GraphQL */ `
-  mutation DeleteActions(
-    $input: DeleteActionsInput!
-    $condition: ModelActionsConditionInput
+export const deleteAction = /* GraphQL */ `
+  mutation DeleteAction(
+    $input: DeleteActionInput!
+    $condition: ModelActionConditionInput
   ) {
-    deleteActions(input: $input, condition: $condition) {
+    deleteAction(input: $input, condition: $condition) {
       id
       title
       comment

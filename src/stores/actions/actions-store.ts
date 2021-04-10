@@ -2,10 +2,11 @@
 import {DataStore} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
-import {Actions, Gun} from '../../models';
+import {Action} from '../../models';
+import {getErrorText} from '../../utils/errors';
 import {IActionsStore, TActionsState} from './actions-store.interface';
 
-let _actions: Array<Actions> = [];
+let _actions: Array<Action> = [];
 let storeSubscribed = false;
 let storeFullReady = false;
 // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -31,31 +32,16 @@ function resetStore(): void {
 	}));
 }
 
-function getErrorText(error: any): string {
-	console.error(error);
-
-	if (typeof error === 'string') {
-		return error;
-	}
-
-	if (typeof error.message === 'string') {
-		return error.message as string;
-	}
-
-	if (error.toString) {
-		return error.toString() as string;
-	}
-	return 'Unknown error';
-}
-
-async function loadActions(): Promise<void> {
+async function loadActions(gunId: string): Promise<void> {
 	update(state => ({
 		...state,
 		busy: true
 	}));
 
 	try {
-		_actions = await DataStore.query(Actions);
+		const _rawActions = await DataStore.query(Action);
+		console.log('rawActions', _rawActions);
+		_actions = _rawActions.filter((c: any) => c.gunID = gunId);
 
 		update(_ => ({
 			actions: _actions,
@@ -69,7 +55,7 @@ async function loadActions(): Promise<void> {
 	}
 }
 
-async function registerAction(name: string): Promise<boolean> {
+async function registerAction(action: Action): Promise<boolean> {
 	update(state => ({
 		...state,
 		busy: true
@@ -77,9 +63,8 @@ async function registerAction(name: string): Promise<boolean> {
 
 	try {
 		await DataStore.save(
-			new Gun({
-				name,
-				dateCreated: new Date().toISOString()
+			new Action({
+				...action,
 			})
 		);
 	} catch (error) {
@@ -90,7 +75,8 @@ async function registerAction(name: string): Promise<boolean> {
 }
 
 async function saveAction(id: string, name: string): Promise<boolean> {
-	const action = _actions.find(x => x.id === id);
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+	const action: Action = _actions.find(x => x.id === id);
 	if (!action) {
 		throw new Error('Action not found!');
 	}
@@ -102,7 +88,7 @@ async function saveAction(id: string, name: string): Promise<boolean> {
 
 	try {
 		await DataStore.save(
-			Actions.copyOf(action, updated => {
+			Action.copyOf(action, updated => {
 				updated.title = name;
 			})
 		);
@@ -115,7 +101,7 @@ async function saveAction(id: string, name: string): Promise<boolean> {
 
 async function removeAction(id: string): Promise<boolean> {
 	try {
-		const result: any = await DataStore.delete(Gun, id);
+		const result: any = await DataStore.delete(Action, id);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		if (!result || result.length === 0) {
 			throw new Error('Something went wrong');
@@ -163,12 +149,14 @@ export const ActionsStore: IActionsStore = {
 		}
 	},
 
-	initStore: () => {
+	initStore: (gunId: string) => {
 		storeSubscribed = false;
 		resetStore();
 
-		actionsSubscription = DataStore.observe(Actions).subscribe(_ => {
-			void loadActions();
+		console.log('actions: subscribe', gunId);
+		actionsSubscription = DataStore.observe(Action).subscribe(_ => {
+			console.log('_', _);
+			void loadActions(gunId);
 		});
 	},
 	setSubscribed, // db answered

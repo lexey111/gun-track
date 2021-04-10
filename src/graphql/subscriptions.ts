@@ -116,9 +116,9 @@ export const onDeleteGun = /* GraphQL */ `
     }
   }
 `;
-export const onCreateActions = /* GraphQL */ `
-  subscription OnCreateActions($owner: String!) {
-    onCreateActions(owner: $owner) {
+export const onCreateAction = /* GraphQL */ `
+  subscription OnCreateAction($owner: String!) {
+    onCreateAction(owner: $owner) {
       id
       title
       comment
@@ -154,9 +154,9 @@ export const onCreateActions = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateActions = /* GraphQL */ `
-  subscription OnUpdateActions($owner: String!) {
-    onUpdateActions(owner: $owner) {
+export const onUpdateAction = /* GraphQL */ `
+  subscription OnUpdateAction($owner: String!) {
+    onUpdateAction(owner: $owner) {
       id
       title
       comment
@@ -192,9 +192,9 @@ export const onUpdateActions = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteActions = /* GraphQL */ `
-  subscription OnDeleteActions($owner: String!) {
-    onDeleteActions(owner: $owner) {
+export const onDeleteAction = /* GraphQL */ `
+  subscription OnDeleteAction($owner: String!) {
+    onDeleteAction(owner: $owner) {
       id
       title
       comment

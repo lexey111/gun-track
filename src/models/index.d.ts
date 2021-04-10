@@ -9,12 +9,12 @@ export declare class Gun {
   readonly name: string;
   readonly color?: string;
   readonly dateCreated: string;
-  readonly actions?: (Actions | null)[];
+  readonly actions?: (Action | null)[];
   constructor(init: ModelInit<Gun>);
   static copyOf(source: Gun, mutator: (draft: MutableModel<Gun>) => MutableModel<Gun> | void): Gun;
 }
 
-export declare class Actions {
+export declare class Action {
   readonly id: string;
   readonly title?: string;
   readonly comment?: string;
@@ -25,6 +25,6 @@ export declare class Actions {
   readonly trainingNotes?: string;
   readonly color?: string;
   readonly gun?: Gun;
-  constructor(init: ModelInit<Actions>);
-  static copyOf(source: Actions, mutator: (draft: MutableModel<Actions>) => MutableModel<Actions> | void): Actions;
+  constructor(init: ModelInit<Action>);
+  static copyOf(source: Action, mutator: (draft: MutableModel<Action>) => MutableModel<Action> | void): Action;
 }

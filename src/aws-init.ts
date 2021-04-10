@@ -1,15 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-misused-promises,no-console */
 import {Auth} from '@aws-amplify/auth';
 import {Amplify, Hub} from '@aws-amplify/core';
 import {DataStore} from '@aws-amplify/datastore';
 import awsconfig from './aws-exports';
+import {ActionsStore} from './stores/actions/actions-store';
 
 import {AuthStore} from './stores/auth/auth-store';
 import {GunsStore} from './stores/guns/guns-store';
-import './styles/index.less';
 
 Amplify.configure(awsconfig);
 DataStore.configure(awsconfig);
+
+async function signoutStores(): Promise<void> {
+	void await DataStore.clear();
+	AuthStore.setLoggedOut();
+	GunsStore.unloadGuns();
+	ActionsStore.unloadActions();
+}
 
 async function processSignIn(user): Promise<any> {
 	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
@@ -58,9 +65,7 @@ Hub.listen(
 				break;
 			}
 			case 'signOut':
-				void await DataStore.clear();
-				AuthStore.setLoggedOut();
-				GunsStore.unloadGuns();
+				void await signoutStores();
 				break;
 		}
 	});
@@ -88,7 +93,7 @@ Hub.listen(
 		}
 	) => {
 
-		if (dbExists && event === 'storageSubscribed') {
+		if (dbExists && event === 'subscriptionsEstablished') {
 			GunsStore.setSubscribed();
 		}
 
@@ -106,6 +111,5 @@ Auth.currentAuthenticatedUser()
 		console.log('Not signed in'); // https://lexey111-dev.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse
 		console.log(err);
 
-		AuthStore.setLoggedOut();
-		GunsStore.unloadGuns();
+		void signoutStores();
 	});

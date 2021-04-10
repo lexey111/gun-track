@@ -3,6 +3,7 @@ import {DataStore} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
 import {Gun} from '../../models';
+import {getErrorText} from '../../utils/errors';
 import {IGunStore, TGunsState} from './guns-store.interface';
 
 let _guns: Array<Gun> = [];
@@ -29,23 +30,6 @@ function resetStore(): void {
 		fullReady: false,
 		busy: false
 	}));
-}
-
-function getErrorText(error: any): string {
-	console.error(error);
-
-	if (typeof error === 'string') {
-		return error;
-	}
-
-	if (typeof error.message === 'string') {
-		return error.message as string;
-	}
-
-	if (error.toString) {
-		return error.toString() as string;
-	}
-	return 'Unknown error';
 }
 
 async function loadGuns(): Promise<void> {

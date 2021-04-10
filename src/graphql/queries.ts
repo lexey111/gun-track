@@ -104,7 +104,7 @@ export const listGuns = /* GraphQL */ `
 `;
 export const syncActions = /* GraphQL */ `
   query SyncActions(
-    $filter: ModelActionsFilterInput
+    $filter: ModelActionFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
@@ -150,9 +150,9 @@ export const syncActions = /* GraphQL */ `
     }
   }
 `;
-export const getActions = /* GraphQL */ `
-  query GetActions($id: ID!) {
-    getActions(id: $id) {
+export const getAction = /* GraphQL */ `
+  query GetAction($id: ID!) {
+    getAction(id: $id) {
       id
       title
       comment
@@ -188,13 +188,13 @@ export const getActions = /* GraphQL */ `
     }
   }
 `;
-export const listActionss = /* GraphQL */ `
-  query ListActionss(
-    $filter: ModelActionsFilterInput
+export const listActions = /* GraphQL */ `
+  query ListActions(
+    $filter: ModelActionFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listActionss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listActions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title

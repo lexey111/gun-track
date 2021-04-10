@@ -35,7 +35,7 @@ export const schema = {
                     "name": "actions",
                     "isArray": true,
                     "type": {
-                        "model": "Actions"
+                        "model": "Action"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -74,8 +74,8 @@ export const schema = {
                 }
             ]
         },
-        "Actions": {
-            "name": "Actions",
+        "Action": {
+            "name": "Action",
             "fields": {
                 "id": {
                     "name": "id",
@@ -194,5 +194,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "d1dcd6526ebb142125c0b474b617fb04"
+    "version": "d0ea511cae806201af1df25f6cfdd587"
 };

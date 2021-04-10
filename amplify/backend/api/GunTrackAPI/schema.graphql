@@ -3,10 +3,10 @@ type Gun @model @auth(rules: [{ allow: owner }]) {
     name: String!
     color: String
     dateCreated: AWSDateTime!
-    actions: [Actions] @connection(keyName: "byGun", fields: ["id"])
+    actions: [Action] @connection(keyName: "byGun", fields: ["id"])
 }
 
-type Actions @model @key(name: "byGun", fields: ["gunID"]) @auth(rules: [{ allow: owner }]) {
+type Action @model @key(name: "byGun", fields: ["gunID"]) @auth(rules: [{ allow: owner }]) {
     id: ID!
     title: String
     comment: String
