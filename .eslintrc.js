@@ -19,18 +19,18 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking'
 	],
-	overrides: [
-		{
-			files: ['*.svelte'],
-			processor: 'svelte3/svelte3'
-		}
-	],
 	plugins: [
 		'promise',
 		'optimize-regex',
 		'sonarjs',
 		'svelte3',
 		'@typescript-eslint'
+	],
+	overrides: [
+		{
+			files: ['*.svelte'],
+			processor: 'svelte3/svelte3'
+		}
 	],
 	rules: {
 		'no-shadow': [
@@ -197,6 +197,6 @@ module.exports = {
 	},
 	settings: {
 		'svelte3/typescript': require('typescript'), // pass the TypeScript package to the Svelte plugin
-		'svelte3/ignore-styles': true
+		'svelte3/ignore-styles': () => true
 	}
 };

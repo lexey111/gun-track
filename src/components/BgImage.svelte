@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
+	import {unsafeDebounce} from '../utils/debounce';
 
 	const minNumber = 1;
 	const maxNumber = 8;
@@ -24,6 +25,19 @@
 
 	let imageUpdater;
 	let firstDelay;
+
+	function updateWindowsSize() {
+		const height1 = firstImage.height;
+		const wHeight = document.documentElement.clientHeight;
+		const top1 = Math.floor((height1 - wHeight) / 2);
+		firstTop = top1 ? 0 - top1 : 0;
+
+		const height2 = secondImage.height;
+		const top2 = Math.floor((height2 - wHeight) / 2);
+		secondTop = top2 ? 0 - top2 : 0;
+	}
+
+	const debouncedResize = unsafeDebounce(updateWindowsSize);
 
 	function updateImages() {
 		let nm = getRandomImageNum();
@@ -53,10 +67,7 @@
 			firstLoaded = true;
 			secondLoaded = false;
 
-			const height = firstImage.height;
-			const wHeight = document.documentElement.clientHeight;
-			const top = Math.floor((height - wHeight) / 2);
-			firstTop = top ? 0 - top : 0;
+			updateWindowsSize();
 		}
 
 		secondImage.onload = () => {
@@ -65,11 +76,10 @@
 			secondLoaded = true;
 			firstLoaded = false;
 
-			const height = secondImage.height;
-			const wHeight = document.documentElement.clientHeight;
-			const top = Math.floor((height - wHeight) / 2);
-			secondTop = top ? 0 - top : 0;
+			updateWindowsSize();
 		}
+
+		window.addEventListener('resize', debouncedResize);
 
 		imageUpdater = setInterval(updateImages, 5 * 60 * 1000); // each 5 minutes
 
@@ -79,6 +89,8 @@
 	});
 
 	onDestroy(() => {
+		window.removeEventListener('resize', debouncedResize);
+
 		clearTimeout(firstDelay);
 		clearInterval(imageUpdater);
 	});
