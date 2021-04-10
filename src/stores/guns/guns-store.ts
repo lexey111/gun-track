@@ -32,6 +32,10 @@ function resetStore(): void {
 	}));
 }
 
+function getGunById(gunId: string): Gun {
+	return _guns.find(g => g.id === gunId);
+}
+
 async function loadGuns(): Promise<void> {
 	update(state => ({
 		...state,
@@ -161,5 +165,7 @@ export const GunsStore: IGunStore = {
 	loadGuns,
 	createGun,
 	saveGun,
-	removeGun
+	removeGun,
+
+	getGunById
 };

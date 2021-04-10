@@ -88,7 +88,7 @@ Hub.listen(
 	(
 		{
 			payload: {
-				event
+				event,
 			}
 		}
 	) => {

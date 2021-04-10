@@ -4,11 +4,10 @@ import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
 import {Action} from '../../models';
 import {getErrorText} from '../../utils/errors';
-import {IActionsStore, TActionsState} from './actions-store.interface';
+import {GunsStore} from '../guns/guns-store';
+import {IActionsStore, TAction, TActionsState} from './actions-store.interface';
 
 let _actions: Array<Action> = [];
-let storeSubscribed = false;
-let storeFullReady = false;
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
 	subscribe,
@@ -17,7 +16,6 @@ const {
 } = writable<TActionsState>({
 	busy: true,
 	isEmpty: null,
-	fullReady: false,
 	actions: _actions
 });
 
@@ -27,7 +25,6 @@ function resetStore(): void {
 	update(_ => ({
 		actions: [],
 		isEmpty: null,
-		fullReady: false,
 		busy: false
 	}));
 }
@@ -41,12 +38,12 @@ async function loadActions(gunId: string): Promise<void> {
 	try {
 		const _rawActions = await DataStore.query(Action);
 		console.log('rawActions', _rawActions);
-		_actions = _rawActions.filter((c: any) => c.gunID = gunId);
+		_actions = _rawActions.filter((c: any) => c.gun?.id === gunId);
+		console.log('local actions', _actions);
 
 		update(_ => ({
 			actions: _actions,
-			isEmpty: storeSubscribed === true ? _actions.length === 0 : null,
-			fullReady: storeFullReady,
+			isEmpty: _actions.length === 0,
 			busy: false
 		}));
 	} catch (error) {
@@ -55,16 +52,22 @@ async function loadActions(gunId: string): Promise<void> {
 	}
 }
 
-async function registerAction(action: Action): Promise<boolean> {
+async function registerAction(gunId: string, action: TAction): Promise<boolean> {
 	update(state => ({
 		...state,
 		busy: true
 	}));
 
+	console.log('action to save', action);
+	const gun = GunsStore.getGunById(gunId);
 	try {
+		if (!gun) {
+			throw new Error('Gun not found!');
+		}
 		await DataStore.save(
 			new Action({
 				...action,
+				gun
 			})
 		);
 	} catch (error) {
@@ -74,10 +77,10 @@ async function registerAction(action: Action): Promise<boolean> {
 	return true;
 }
 
-async function saveAction(id: string, name: string): Promise<boolean> {
+async function saveAction(action: TAction): Promise<boolean> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const action: Action = _actions.find(x => x.id === id);
-	if (!action) {
+	const _action: TAction = _actions.find(x => x.id === action.id);
+	if (!_action) {
 		throw new Error('Action not found!');
 	}
 
@@ -89,7 +92,14 @@ async function saveAction(id: string, name: string): Promise<boolean> {
 	try {
 		await DataStore.save(
 			Action.copyOf(action, updated => {
-				updated.title = name;
+				updated.title = action.title;
+				updated.color = action.color;
+				updated.date = action.date;
+				updated.comment = action.comment;
+				updated.currency = action.currency;
+				updated.expenses = action.expenses;
+				updated.shots = action.shots;
+				updated.trainingNotes = action.trainingNotes;
 			})
 		);
 	} catch (error) {
@@ -113,28 +123,6 @@ async function removeAction(id: string): Promise<boolean> {
 	return true;
 }
 
-function setSubscribed(): void {
-	storeSubscribed = true;
-	update(state => {
-		return {
-			...state,
-			isEmpty: state.actions.length === 0
-		};
-	});
-}
-
-function setFullReady(): void {
-	storeSubscribed = true;
-	storeFullReady = true;
-	update(state => {
-		return {
-			...state,
-			isEmpty: state.actions.length === 0,
-			fullReady: true
-		};
-	});
-}
-
 let actionsSubscription: { unsubscribe: () => void };
 
 export const ActionsStore: IActionsStore = {
@@ -150,17 +138,15 @@ export const ActionsStore: IActionsStore = {
 	},
 
 	initStore: (gunId: string) => {
-		storeSubscribed = false;
 		resetStore();
 
 		console.log('actions: subscribe', gunId);
+		void loadActions(gunId);
 		actionsSubscription = DataStore.observe(Action).subscribe(_ => {
 			console.log('_', _);
 			void loadActions(gunId);
 		});
 	},
-	setSubscribed, // db answered
-	setFullReady, // connection established
 
 	loadActions,
 	registerAction,
