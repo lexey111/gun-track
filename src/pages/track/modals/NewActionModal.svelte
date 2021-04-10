@@ -6,6 +6,7 @@
 	export let onCancel: () => void;
 
 	let title = '';
+	let type = '';
 	let comment = '';
 	let shots = 0;
 	let currency = '';
@@ -17,6 +18,7 @@
 		onConfirm({
 			id: '',
 			title,
+			type,
 			comment,
 			shots,
 			date: new Date().toISOString(),
@@ -53,6 +55,7 @@
 	<div class="form-group">
 		<label for="shots">Shots made</label>
 		<input
+			class="short-field"
 			type="number"
 			autocomplete="off"
 			bind:value={shots}

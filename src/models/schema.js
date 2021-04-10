@@ -91,6 +91,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "type": {
+                    "name": "type",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "comment": {
                     "name": "comment",
                     "isArray": false,
@@ -194,5 +201,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "d0ea511cae806201af1df25f6cfdd587"
+    "version": "8b40951f30f1bf6fdc730a670dd3c423"
 };

@@ -4,6 +4,7 @@ import {Action} from '../../models';
 export type TAction = {
 	id: string
 	title?: string
+	type?: string
 	comment?: string
 	shots: number
 	date: string

@@ -44,6 +44,8 @@
 			<Done>Backgrounds</Done>
 		</li>
 		<li>Language switcher</li>
+		<li>Better colors for track</li>
+		<li>Compact view</li>
 	</ul>
 
 	<h3>Functionality</h3>

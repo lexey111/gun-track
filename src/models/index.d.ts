@@ -17,6 +17,7 @@ export declare class Gun {
 export declare class Action {
   readonly id: string;
   readonly title?: string;
+  readonly type?: string;
   readonly comment?: string;
   readonly shots: number;
   readonly date: string;

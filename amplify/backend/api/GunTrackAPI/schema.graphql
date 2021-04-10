@@ -9,6 +9,7 @@ type Gun @model @auth(rules: [{ allow: owner }]) {
 type Action @model @key(name: "byGun", fields: ["gunID"]) @auth(rules: [{ allow: owner }]) {
     id: ID!
     title: String
+    type: String
     comment: String
     shots: Int!
     date: AWSDateTime!

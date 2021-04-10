@@ -13,6 +13,7 @@ export const onCreateGun = /* GraphQL */ `
         items {
           id
           title
+          type
           comment
           shots
           date
@@ -51,6 +52,7 @@ export const onUpdateGun = /* GraphQL */ `
         items {
           id
           title
+          type
           comment
           shots
           date
@@ -89,6 +91,7 @@ export const onDeleteGun = /* GraphQL */ `
         items {
           id
           title
+          type
           comment
           shots
           date
@@ -121,6 +124,7 @@ export const onCreateAction = /* GraphQL */ `
     onCreateAction(owner: $owner) {
       id
       title
+      type
       comment
       shots
       date
@@ -159,6 +163,7 @@ export const onUpdateAction = /* GraphQL */ `
     onUpdateAction(owner: $owner) {
       id
       title
+      type
       comment
       shots
       date
@@ -197,6 +202,7 @@ export const onDeleteAction = /* GraphQL */ `
     onDeleteAction(owner: $owner) {
       id
       title
+      type
       comment
       shots
       date

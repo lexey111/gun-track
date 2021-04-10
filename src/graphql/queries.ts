@@ -47,6 +47,7 @@ export const getGun = /* GraphQL */ `
         items {
           id
           title
+          type
           comment
           shots
           date
@@ -118,6 +119,7 @@ export const syncActions = /* GraphQL */ `
       items {
         id
         title
+        type
         comment
         shots
         date
@@ -155,6 +157,7 @@ export const getAction = /* GraphQL */ `
     getAction(id: $id) {
       id
       title
+      type
       comment
       shots
       date
@@ -198,6 +201,7 @@ export const listActions = /* GraphQL */ `
       items {
         id
         title
+        type
         comment
         shots
         date

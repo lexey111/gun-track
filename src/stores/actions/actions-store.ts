@@ -107,6 +107,7 @@ async function saveAction(action: TAction): Promise<boolean> {
 		await DataStore.save(
 			Action.copyOf(action, updated => {
 				updated.title = action.title;
+				updated.type = action.type;
 				updated.color = action.color;
 				updated.date = action.date;
 				updated.comment = action.comment;

@@ -27,7 +27,7 @@
 		<div class="action-title">
 			<h1>{action.title}</h1>
 			{#if (action.shots)}
-				<span class="action-shots">+{action.shots || 124}</span>
+				<span class="action-shot">+{action.shots || 124}</span>
 			{/if}
 			<span class="action-sum">{123344}</span>
 		</div>
@@ -39,6 +39,11 @@
 		{#if (!action.comment && !action.title)}
 			<div class="action-comment no-data">No data</div>
 		{/if}
+
+		<div class="action-actions">
+			<a href="#">Change</a>
+			<a href="#" class="danger">Delete</a>
+		</div>
 	</div>
 </div>
 

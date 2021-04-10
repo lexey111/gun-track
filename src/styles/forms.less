@@ -28,13 +28,17 @@
 		width: 100%;
 		min-width: 250px;
 		outline: none !important;
-		box-shadow:none !important;
+		box-shadow: none !important;
 		transition: border .2s ease, background .2s ease;
 
 		&:focus, &:active {
 			outline: none;
-			box-shadow:none !important;
+			box-shadow: none !important;
 			border-color: var(--app-border-color-active);
+		}
+
+		&.short-field {
+			width: auto;
 		}
 	}
 
@@ -42,6 +46,7 @@
 		.stub {
 			width: 100%;
 		}
+
 		a {
 			white-space: nowrap;
 		}

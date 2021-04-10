@@ -47,15 +47,15 @@
 	<Route path="tos" component={TosPage}/>
 
 	<Route path="guns">
-		<AuthGuardPage component={GunsPage} redirectTo="login"/>
+		<AuthGuardPage component={GunsPage} redirectTo="/login"/>
 	</Route>
 
 	<Route path="track">
-		<AuthGuardPage component={TrackPage} redirectTo="login"/>
+		<AuthGuardPage component={TrackPage} redirectTo="/login"/>
 	</Route>
 
 	<Route path="track/:id" let:params>
-		<AuthGuardPage component={TrackPage} redirectTo="login" params={params} />
+		<AuthGuardPage component={TrackPage} redirectTo="/login" params={params} />
 	</Route>
 
 	<Route path="home" component={HomePage}/>
