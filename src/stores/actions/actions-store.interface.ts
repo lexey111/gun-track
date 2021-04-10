@@ -15,6 +15,7 @@ export type TAction = {
 
 export type TActionsState = {
 	busy: boolean
+	sortOrder: 'asc' | 'desc'
 	isEmpty: true | false | null
 	actions: Array<Action>
 };
@@ -28,4 +29,7 @@ export interface IActionsStore extends Writable<TActionsState> {
 	registerAction: (gunId: string, action: TAction) => Promise<boolean>
 	saveAction: (action: TAction) => Promise<boolean>
 	removeAction: (id: string) => Promise<boolean>
+
+	getOrder: () => 'asc' | 'desc'
+	setOrder: (order: 'asc' | 'desc') => void
 }

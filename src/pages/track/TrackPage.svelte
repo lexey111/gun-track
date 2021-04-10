@@ -9,8 +9,7 @@
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import {TGunsState} from '../../stores/guns/guns-store.interface';
-	import GunActions from './actions/GunActions.svelte';
-	import ActionsList from './list/ActionsList.svelte';
+	import ActionList from './list/ActionList.svelte';
 	import NewActionModal from './modals/NewActionModal.svelte';
 	import GunNavigator from './navigator/GunNavigator.svelte';
 
@@ -24,7 +23,7 @@
 	let actionsUnsubscribe;
 
 	function subscribeToActions(gunId: string) {
-		console.log('update actions', gunId);
+		console.log('update action', gunId);
 		actionsUnsubscribe && actionsUnsubscribe();
 
 		if (gunId) {
@@ -52,6 +51,8 @@
 			AppStateStore.hideSpinner();
 		}
 	}
+
+	$: sortOrder = actionsState?.sortOrder === 'desc' ? '↑' : '↓';
 
 	function processStore(value: TGunsState) {
 		gunsState = value;
@@ -98,6 +99,14 @@
 		});
 	}
 
+	const changeSortDirection = () => {
+		if (ActionsStore.getOrder() === 'asc') {
+			ActionsStore.setOrder('desc')
+		} else {
+			ActionsStore.setOrder('asc');
+		}
+	}
+
 	onMount(() => {
 		gunsUnsubscribe = GunsStore.subscribe((value: TGunsState) => {
 			if (!value) {
@@ -123,9 +132,12 @@
 	</p>
 {:else }
 	<GunNavigator id={id} gunsState={gunsState}/>
-	<button class="press press-ghost press-blue" on:click={showNewActionDialog}>Add an action</button>
-	<GunActions id={id}/>
-	<ActionsList actionsState={actionsState}/>
+	<div class="top-panel">
+		<button class="press press-ghost press-blue" on:click={showNewActionDialog}>Add an action</button>
+		<span class="stub"></span>
+		<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
+	</div>
+	<ActionList actionsState={actionsState}/>
 {/if}
 
 <style lang="less">

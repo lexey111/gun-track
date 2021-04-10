@@ -9,6 +9,9 @@
 	let comment = '';
 	let shots = 0;
 	let currency = '';
+	let expenses = 0.0;
+	let trainingNotes = '';
+	let color = '';
 
 	const handleConfirm = () => {
 		onConfirm({
@@ -41,13 +44,21 @@
 	<div class="form-group">
 		<label for="comment">Comment</label>
 		<input
-			placeholder="Carbine fundamentals"
 			autocomplete="off"
 			maxlength="128"
-			use:autoFocus
 			bind:value={comment}
 			id="comment"/>
 	</div>
+
+	<div class="form-group">
+		<label for="shots">Shots made</label>
+		<input
+			type="number"
+			autocomplete="off"
+			bind:value={shots}
+			id="shots"/>
+	</div>
+
 </div>
 
 <div class="modal-footer">

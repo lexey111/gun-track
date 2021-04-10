@@ -54,7 +54,16 @@
 		<li>
 			<Done>Single home page/login</Done>
 		</li>
+		<li>Edit action</li>
+		<li>New action</li>
+		<li>Delete action</li>
+		<li>Delete gun</li>
+		<li>SS selectors? delete actions?</li>
 		<li>Photo upload for guns</li>
+		<li>Floating button if records > 5</li>
+		<li>Big text editor</li>
+		<li>Dashboard and graphs</li>
+		<li>CSV export</li>
 	</ul>
 
 	<h3>i18n</h3>

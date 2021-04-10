@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call */
-import {DataStore} from '@aws-amplify/datastore';
+import {DataStore, Predicates, SortDirection} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
 import {Action} from '../../models';
 import {getErrorText} from '../../utils/errors';
 import {GunsStore} from '../guns/guns-store';
 import {IActionsStore, TAction, TActionsState} from './actions-store.interface';
+
+let currentOrder: SortDirection = SortDirection.DESCENDING;
+let currentGunId: string;
 
 let _actions: Array<Action> = [];
 // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -15,34 +18,45 @@ const {
 	update
 } = writable<TActionsState>({
 	busy: true,
+	sortOrder: 'desc',
 	isEmpty: null,
 	actions: _actions
 });
 
 function resetStore(): void {
 	_actions = [];
+	currentOrder = SortDirection.DESCENDING;
 
 	update(_ => ({
 		actions: [],
+		sortOrder: 'desc',
 		isEmpty: null,
 		busy: false
 	}));
 }
 
-async function loadActions(gunId: string): Promise<void> {
+async function loadActions(gunId?: string): Promise<void> {
+	if (gunId) {
+		currentGunId = gunId;
+	}
+
 	update(state => ({
 		...state,
 		busy: true
 	}));
 
 	try {
-		const _rawActions = await DataStore.query(Action);
-		console.log('rawActions', _rawActions);
-		_actions = _rawActions.filter((c: any) => c.gun?.id === gunId);
-		console.log('local actions', _actions);
+		const _rawActions = (await DataStore.query(Action, Predicates.ALL, {
+			sort: a => a.date(currentOrder)
+		}))
+			.filter((c: any) => c.gun?.id === currentGunId);
+
+		_actions = _rawActions.map(item => item); // TODO: summarization
+		console.log('local action', _actions);
 
 		update(_ => ({
 			actions: _actions,
+			sortOrder: currentOrder === SortDirection.ASCENDING ? 'asc' : 'desc',
 			isEmpty: _actions.length === 0,
 			busy: false
 		}));
@@ -123,6 +137,30 @@ async function removeAction(id: string): Promise<boolean> {
 	return true;
 }
 
+function setOrder(order: 'asc' | 'desc'): void {
+	let newOrder: SortDirection;
+
+	if (order === 'asc') {
+		newOrder = SortDirection.ASCENDING;
+	}
+	if (order === 'desc') {
+		newOrder = SortDirection.DESCENDING;
+	}
+
+	if (newOrder !== currentOrder) {
+		currentOrder = newOrder;
+
+		void loadActions();
+	}
+}
+
+function getOrder(): 'asc' | 'desc' {
+	if (currentOrder === SortDirection.ASCENDING) {
+		return 'asc';
+	}
+	return 'desc';
+}
+
 let actionsSubscription: { unsubscribe: () => void };
 
 export const ActionsStore: IActionsStore = {
@@ -140,10 +178,8 @@ export const ActionsStore: IActionsStore = {
 	initStore: (gunId: string) => {
 		resetStore();
 
-		console.log('actions: subscribe', gunId);
 		void loadActions(gunId);
 		actionsSubscription = DataStore.observe(Action).subscribe(_ => {
-			console.log('_', _);
 			void loadActions(gunId);
 		});
 	},
@@ -151,5 +187,8 @@ export const ActionsStore: IActionsStore = {
 	loadActions,
 	registerAction,
 	saveAction,
-	removeAction
+	removeAction,
+
+	getOrder,
+	setOrder
 };

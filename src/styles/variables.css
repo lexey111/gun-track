@@ -1,7 +1,9 @@
 :root {
+    --app-very-big-font-size: 26px;
+    --app-big-font-size: 20px;
     --app-font-size: 16px;
     --app-small-font-size: 14px;
-    --app-big-font-size: 20px;
+    --app-very-small-font-size: 12px;
 
     --app-background: #f2f2f2;
     --app-background-wall: #565e5f;
