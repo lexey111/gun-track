@@ -1,10 +1,13 @@
 <script lang="ts">
+
 	import * as dayjs from 'dayjs'
+	import {autoFocusWithSelect} from '../../../utils/autofocus';
 
 	export let name = '';
 	export let registered = '';
 	export let onConfirm: (name: string) => void;
 	export let onCancel: () => void;
+
 </script>
 
 <div class="modal-header">Edit gun</div>
@@ -17,6 +20,7 @@
 			autocomplete="off"
 			maxlength="48"
 			required
+			use:autoFocusWithSelect
 			bind:value={name}
 			id="name"/>
 	</div>
