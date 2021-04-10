@@ -1,11 +1,16 @@
 <script lang="ts">
-	import {TAction} from '../../../stores/actions/actions-store.interface';
+	import {onMount} from 'svelte';
+	import {Action} from '../../../models';
 	import {autoFocus} from '../../../utils/autofocus';
 
-	export let onConfirm: (action: TAction) => void;
+	export let onConfirm: (action: Action) => void;
 	export let onCancel: () => void;
+	export let action: Action;
 
+	let dialogTitle = 'New record';
+	let id = '';
 	let title = '';
+	let date = '';
 	let type = '';
 	let comment = '';
 	let shots = 0;
@@ -16,20 +21,37 @@
 
 	const handleConfirm = () => {
 		onConfirm({
-			id: '',
+			...action,
 			title,
 			type,
 			comment,
 			shots,
-			date: new Date().toISOString(),
 			currency,
-			trainingNotes: '',
-			color: ''
+			trainingNotes,
+			color,
+			date: date || new Date().toISOString()
 		});
 	}
+
+	onMount(() => {
+		if (!action) {
+			return;
+		}
+		dialogTitle = 'Change record';
+		id = action.id;
+		title = action.title;
+		date = action.date;
+		type = action.type;
+		comment = action.comment;
+		shots = action.shots;
+		currency = action.currency;
+		expenses = action.expenses;
+		trainingNotes = action.trainingNotes;
+		color = action.color;
+	});
 </script>
 
-<div class="modal-header">New action</div>
+<div class="modal-header">{dialogTitle}</div>
 
 <div class="modal-content">
 	<div class="form-group">

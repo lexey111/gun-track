@@ -78,7 +78,7 @@ async function createGun(name: string): Promise<boolean> {
 }
 
 async function saveGun(id: string, name: string): Promise<boolean> {
-	const gun = _guns.find(x => x.id === id);
+	const gun = getGunById(id);
 	if (!gun) {
 		throw new Error('Gun not found!');
 	}

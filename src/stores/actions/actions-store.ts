@@ -46,6 +46,11 @@ async function loadActions(gunId?: string): Promise<void> {
 	}));
 
 	try {
+		const gun = GunsStore.getGunById(currentGunId);
+		if (!gun) {
+			throw new Error('Gun not found!');
+		}
+
 		const _rawActions = (await DataStore.query(Action, Predicates.ALL, {
 			sort: a => a.date(currentOrder)
 		}))
@@ -91,7 +96,7 @@ async function registerAction(gunId: string, action: TAction): Promise<boolean> 
 	return true;
 }
 
-async function saveAction(action: TAction): Promise<boolean> {
+async function saveAction(action: Action): Promise<boolean> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const _action: TAction = _actions.find(x => x.id === action.id);
 	if (!_action) {
@@ -102,10 +107,9 @@ async function saveAction(action: TAction): Promise<boolean> {
 		...state,
 		busy: true
 	}));
-
 	try {
 		await DataStore.save(
-			Action.copyOf(action, updated => {
+			Action.copyOf(_action, updated => {
 				updated.title = action.title;
 				updated.type = action.type;
 				updated.color = action.color;

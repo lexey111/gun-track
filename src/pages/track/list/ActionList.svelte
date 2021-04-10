@@ -5,6 +5,8 @@
 	import {TActionsState} from '../../../stores/actions/actions-store.interface';
 
 	export let actionsState: TActionsState;
+	export let onEdit: (id: string) => void;
+	export let onDelete: (id: string) => void;
 
 </script>
 
@@ -16,7 +18,10 @@
 		</p>
 	{:else }
 		{#each actionsState.actions as action, idx}
-			<GunAction action={action} isLast={idx === actionsState.actions.length - 1}/>
+			<GunAction
+				onEdit={onEdit}
+				onDelete={onDelete}
+				action={action} isLast={idx === actionsState.actions.length - 1}/>
 		{/each}
 
 		<pre>{JSON.stringify(actionsState, null, 2)}</pre>

@@ -10,6 +10,9 @@
 
 	export let action: TAction;
 	export let isLast: boolean;
+	export let onEdit: (id: string) => void;
+	export let onDelete: (id: string) => void;
+
 </script>
 
 <div class={'gun-action' + (isLast ? ' last-item' : '')}>
@@ -41,8 +44,8 @@
 		{/if}
 
 		<div class="action-actions">
-			<a href="#">Change</a>
-			<a href="#" class="danger">Delete</a>
+			<a href="#" on:click={() => onEdit(action.id)}>Change</a>
+			<a href="#" class="danger" on:click={() => onDelete(action.id)}>Delete</a>
 		</div>
 	</div>
 </div>

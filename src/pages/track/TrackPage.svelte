@@ -10,7 +10,7 @@
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import {TGunsState} from '../../stores/guns/guns-store.interface';
 	import ActionList from './list/ActionList.svelte';
-	import NewActionModal from './modals/NewActionModal.svelte';
+	import ActionModal from './modals/ActionModal.svelte';
 	import GunNavigator from './navigator/GunNavigator.svelte';
 
 	export let id;
@@ -23,7 +23,6 @@
 	let actionsUnsubscribe;
 
 	function subscribeToActions(gunId: string) {
-		console.log('update action', gunId);
 		actionsUnsubscribe && actionsUnsubscribe();
 
 		if (gunId) {
@@ -40,7 +39,6 @@
 
 	$: {
 		if (id && gunsState?.fullReady) {
-			console.log('need to update');
 			subscribeToActions(id);
 		}
 	}
@@ -83,7 +81,7 @@
 	}
 
 	const showNewActionDialog = () => {
-		modal.open(NewActionModal, {
+		modal.open(ActionModal, {
 			closeButton: true,
 			extraClass: 'almost-fullscreen',
 			componentProps: {
@@ -123,6 +121,28 @@
 		gunsUnsubscribe && gunsUnsubscribe();
 		actionsUnsubscribe && actionsUnsubscribe();
 	});
+
+	const handleEdit = (id: string) => {
+		modal.open(ActionModal, {
+			closeButton: true,
+			extraClass: 'almost-fullscreen',
+			componentProps: {
+				action: actionsState.actions.find(a => a.id === id),
+				onConfirm: async (action: TAction) => {
+					modal.close();
+					console.log('action', action);
+					if (await ActionsStore.saveAction(action)) {
+						showSuccess('Record updated.');
+					}
+				},
+				onCancel: () => modal.close(),
+			}
+		});
+	};
+
+	const handleDelete = (id: string) => {
+		console.log('delete',id);
+	};
 </script>
 
 {#if (!gunsState || !gunsState.fullReady)}
@@ -137,7 +157,10 @@
 		<span class="stub"></span>
 		<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
 	</div>
-	<ActionList actionsState={actionsState}/>
+	<ActionList
+		onEdit={handleEdit}
+		onDelete={handleDelete}
+		actionsState={actionsState}/>
 {/if}
 
 <style lang="less">
