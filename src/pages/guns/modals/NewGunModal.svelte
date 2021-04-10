@@ -1,4 +1,6 @@
 <script lang="ts">
+	import {autoFocus} from '../../../utils/autofocus';
+
 	let name = '';
 	export let onConfirm: (name: string) => void;
 	export let onCancel: () => void;
@@ -14,6 +16,7 @@
 			autocomplete="off"
 			maxlength="48"
 			required
+			use:autoFocus
 			bind:value={name}
 			id="name"/>
 	</div>
@@ -23,5 +26,6 @@
 	<button class="press press-blue press-ghost" on:click={onCancel}>Cancel</button>
 	<button class="press press-blue"
 	        disabled="{!name.trim()}"
-	        on:click={() => onConfirm(name)}>Register</button>
+	        on:click={() => onConfirm(name)}>Register
+	</button>
 </div>

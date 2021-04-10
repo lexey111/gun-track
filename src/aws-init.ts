@@ -12,8 +12,6 @@ Amplify.configure(awsconfig);
 DataStore.configure(awsconfig);
 
 async function processSignIn(user): Promise<any> {
-	console.log('>>> user log in', user);
-
 	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
 	if (!identities && !user.attributes) {
 		console.log('Empty response');
@@ -24,16 +22,12 @@ async function processSignIn(user): Promise<any> {
 	const lastLoggedUser = localStorage.getItem('lastLoggedUser');
 
 	if (lastLoggedUser !== userId) {
-		console.log('Cleanup storage');
 		localStorage.setItem('lastLoggedUser', userId);
 		await DataStore.clear();
 		indexedDB.deleteDatabase('amplify-datastore');
 
 		dbExists = false;
 	}
-
-	console.log('identities', identities);
-	console.log('attrs', user.attributes);
 
 	AuthStore.setLoggedIn(
 		userId,

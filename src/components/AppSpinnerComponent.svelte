@@ -39,7 +39,7 @@
 			opacity: 1;
 		}
 
-		span, i {
+		span {
 			position: absolute;
 			top: 50%;
 			left: 50%;

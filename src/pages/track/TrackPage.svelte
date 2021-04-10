@@ -1,10 +1,11 @@
 <script lang="ts">
+	import GunActions from './actions/GunActions.svelte';
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import {TGunsState} from '../../stores/guns/guns-store.interface';
-	import GunNavigator from './components/GunNavigator.svelte';
+	import GunNavigator from './navigator/GunNavigator.svelte';
 
 	export let id;
 
@@ -63,6 +64,7 @@
 	</p>
 {:else }
 	<GunNavigator id={id} gunsState={gunsState}/>
+	<GunActions id={id}/>
 {/if}
 
 <style lang="less">
