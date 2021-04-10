@@ -1,7 +1,9 @@
 <script lang="ts">
 	import {getContext, onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
-	import {showSuccess} from '../../components/notifications/notify';
+	import {IConfirmDialog} from '../../components/modal/Confirm.interface';
+	import Confirm from '../../components/modal/Confirm.svelte';
+	import {showSuccess, showWarning} from '../../components/notifications/notify';
 	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
 	import {ActionsStore} from '../../stores/actions/actions-store';
 	import {TAction, TActionsState} from '../../stores/actions/actions-store.interface';
@@ -130,7 +132,6 @@
 				action: actionsState.actions.find(a => a.id === id),
 				onConfirm: async (action: TAction) => {
 					modal.close();
-					console.log('action', action);
 					if (await ActionsStore.saveAction(action)) {
 						showSuccess('Record updated.');
 					}
@@ -140,10 +141,25 @@
 		});
 	};
 
+	let confirmDialog: IConfirmDialog;
+
 	const handleDelete = (id: string) => {
-		console.log('delete',id);
+		confirmDialog.showConfirmDialog({
+			text: `Are you sure you want to delete this record? Operation cannot be undone!`,
+			confirmText: 'Delete',
+			onConfirm: async () => {
+				const result = await ActionsStore.removeAction(id)
+				if (result) {
+					showWarning('Record was removed successfully', 'Done');
+				}
+
+			}
+		});
+
 	};
 </script>
+
+<Confirm bind:this={confirmDialog}/>
 
 {#if (!gunsState || !gunsState.fullReady)}
 	<p>
