@@ -2,7 +2,7 @@
 	import * as dayjs from 'dayjs'
 	import {getContext, onDestroy, onMount} from 'svelte';
 	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
-	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
+	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
 	import {Gun} from '../../models';
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';

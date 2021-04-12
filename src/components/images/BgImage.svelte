@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
-	import {unsafeDebounce} from '../utils/debounce';
+	import {unsafeDebounce} from '../../utils/debounce';
 
 	const minNumber = 1;
 	const maxNumber = 8;

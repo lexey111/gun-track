@@ -3,14 +3,14 @@
 
 	import {Router} from 'svelte-routing';
 	import AppMenu from '../components/AppMenu.svelte';
-	import AppSpinnerComponent from '../components/AppSpinnerComponent.svelte';
+	import AppSpinnerComponent from '../components/spinners/AppSpinnerComponent.svelte';
 	import Footer from '../components/Footer.svelte';
 	import Routing from '../config/Routing.svelte';
 	import {AppStateStore} from '../stores/app/app-state-store';
 
 	import {AuthStore} from '../stores/auth/auth-store';
 	import {TAuthState} from '../stores/auth/auth-store.interface';
-	import BgImage from '../components/BgImage.svelte';
+	import BgImage from '../components/images/BgImage.svelte';
 
 	import {extendHistoryTracking} from './history-helper';
 	import {I18nService} from '../components/i18n/i18n.service';

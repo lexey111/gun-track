@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {onDestroy} from 'svelte';
-	import {AppStateStore} from '../stores/app/app-state-store';
+	import {AppStateStore} from '../../stores/app/app-state-store';
 
 	let globalSpinnerVisible = false;
 	const appStateUnsubscribe = AppStateStore.subscribe(value => {

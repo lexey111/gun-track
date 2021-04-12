@@ -1,0 +1,70 @@
+:global {
+	.tabs {
+		margin: 1em 0;
+
+		button {
+			background: none;
+			border: none;
+			font-size: var(--app-font-size);
+			color: var(--app-text);
+			border-radius: 0;
+			margin: 0;
+			padding: 4px 16px;
+			outline: none;
+			cursor: pointer;
+			position: relative;
+			z-index: 2;
+			border-top: 2px solid transparent;
+		}
+
+		.selected {
+			color: #333;
+			border: 1px solid var(--app-border-color);
+			border-top: 2px solid var(--app-accent-background);
+			border-bottom: none;
+			background-color: var(--app-page-background);
+
+			&:after {
+				content: '';
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				right: 0;
+				height: 2px;
+				background-color: var(--app-page-background);
+				z-index: 2;
+			}
+		}
+
+		.tabs-header {
+			border-bottom: 1px solid var(--app-border-color);
+			margin: 0;
+			padding: 0;
+		}
+
+		.tab-panel {
+			border: 1px solid var(--app-border-color);
+			border-top: none;
+			background-color: var(--app-page-background);
+			z-index: 1;
+			margin: 0;
+			box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+
+			.tab-content {
+				padding: 16px;
+				animation-name: tab-appears;
+				animation-duration: .1s;
+				animation-timing-function: ease-in;
+			}
+		}
+
+		@keyframes tab-appears {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+	}
+}

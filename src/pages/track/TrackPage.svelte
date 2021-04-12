@@ -4,7 +4,7 @@
 	import {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
 	import {showSuccess, showWarning} from '../../components/notifications/notify';
-	import SpinnerComponent from '../../components/SpinnerComponent.svelte';
+	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
 	import {ActionsStore} from '../../stores/actions/actions-store';
 	import {TAction, TActionsState} from '../../stores/actions/actions-store.interface';
 	import {AppStateStore} from '../../stores/app/app-state-store';
