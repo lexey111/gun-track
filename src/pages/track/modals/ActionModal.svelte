@@ -1,8 +1,10 @@
 <script lang="ts">
-	import I18n from '../../../components/i18n/I18n.svelte';
 	import {onMount} from 'svelte';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import {Action} from '../../../models';
-	import {ActionTypes} from '../../../stores/actions/actions-store.interface';
+	import {ActionTypes} from '../../../stores/actions/actions-store.types';
+	import {ActionCurrencies} from '../../../stores/actions/actions-store.types';
+
 	import {autoFocus} from '../../../utils/autofocus';
 
 	export let onConfirm: (action: Action) => void;
@@ -57,23 +59,24 @@
 
 <div class="modal-content">
 	<div class="form-group">
+		<label for="type">Type</label>
+		<select bind:value={type} id="type" class="short-field" use:autoFocus>
+			{#each ActionTypes as actionType}
+				<option value={actionType.id}>
+					<I18n text={'@Actions.' + actionType.id}/>
+				</option>
+			{/each}
+		</select>
+	</div>
+
+	<div class="form-group">
 		<label for="name">Title</label>
 		<input
 			placeholder="Carbine fundamentals"
 			autocomplete="off"
 			maxlength="128"
-			use:autoFocus
 			bind:value={title}
 			id="name"/>
-	</div>
-
-	<div class="form-group">
-		<label for="type">Type</label>
-		<select bind:value={type} id="type" class="short-field">
-			{#each ActionTypes as actionType}
-				<option value={actionType.id}><I18n text={'@Actions.' + actionType.id}/></option>
-			{/each}
-		</select>
 	</div>
 
 	<div class="form-group">
@@ -93,6 +96,29 @@
 			autocomplete="off"
 			bind:value={shots}
 			id="shots"/>
+	</div>
+
+
+	<div class="form-group">
+		<label for="expenses">Expense</label>
+		<input
+			class="short-field"
+			type="number"
+			autocomplete="off"
+			bind:value={expenses}
+			id="expenses"/>
+	</div>
+
+	<div class="form-group">
+		<label for="currency">Currency</label>
+		<select bind:value={currency} id="currency" class="short-field">
+
+				{#each ActionCurrencies as currency}
+				<option value={currency}>
+					<I18n text={'@Currencies.' + currency}/>
+				</option>
+			{/each}
+		</select>
 	</div>
 
 </div>

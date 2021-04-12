@@ -3,7 +3,8 @@
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 	import * as relativeTime from 'dayjs/plugin/relativeTime';
 	import I18n from '../../../components/i18n/I18n.svelte';
-	import {getTypeColor, TAction} from '../../../stores/actions/actions-store.interface';
+	import {TAction} from '../../../stores/actions/actions-store.interface';
+	import {getTypeColor} from '../../../stores/actions/actions-store.types';
 
 	dayjs.extend(localizedFormat);
 	dayjs.extend(relativeTime)
@@ -13,7 +14,7 @@
 	export let onEdit: (id: string) => void;
 	export let onDelete: (id: string) => void;
 
-	$: color = getTypeColor(action.type)
+	$: color = getTypeColor(action?.type)
 
 </script>
 

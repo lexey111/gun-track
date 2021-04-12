@@ -15,5 +15,12 @@
 		"purchase": "Purchase",
 		"selling": "Selling",
 		"cleanup": "Cleanup"
+	},
+	"@Currencies" : {
+		"USD" : "USD",
+		"EUR" : "EUR",
+		"UAH" : "UAH",
+		"PLN" : "PLN",
+		"OTH" : "Other"
 	}
 }
