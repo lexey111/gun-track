@@ -1,0 +1,56 @@
+:global {
+	.action-stat-column {
+		max-width: 400px;
+		height: 100%;
+		display: flex;
+		flex-flow: row nowrap;
+
+		div {
+			font-size: var(--app-small-font-size);
+			margin-left: 16px;
+			display: flex;
+			flex-flow: column wrap;
+			height: auto;
+			align-content: center;
+			align-items: center;
+		}
+
+		div.action-shot {
+			background-color: var(--app-info-bg);
+			align-content: center;
+			justify-content: center;
+			color: var(--app-info-text);
+			padding: 0 8px;
+			height: var(--app-very-big-font-size);
+			border-radius: 28px;
+			margin-top: 2px;
+		}
+
+		div.action-sum {
+			font-size: var(--app-very-big-font-size);
+
+			&.inherited {
+				color: var(--app-remark-text);
+			}
+		}
+
+		div.action-expenses {
+			height: 100%;
+			width: 120px;
+			flex-flow: column wrap;
+			border-left: 1px dashed var(--app-border-color);
+			align-items: center;
+			justify-items: flex-start;
+			padding-left: 16px;
+
+			span:first-child {
+				font-size: var(--app-very-big-font-size);
+				white-space: nowrap;
+			}
+
+			span:last-child {
+				color: var(--app-remark-text);
+			}
+		}
+	}
+}

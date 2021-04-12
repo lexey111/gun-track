@@ -1,5 +1,5 @@
 :root {
-    --app-very-big-font-size: 26px;
+    --app-very-big-font-size: 28px;
     --app-big-font-size: 20px;
     --app-font-size: 16px;
     --app-small-font-size: 14px;
@@ -8,7 +8,7 @@
     --app-accent-background: #9835ee;
     --app-accent-text: #fff;
 
-    --app-background: #f2f2f2;
+    --app-background: #f0f0f0;
     --app-background-wall: #565e5f;
     --app-page-background: #fff;
 

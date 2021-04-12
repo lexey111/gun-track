@@ -44,13 +44,13 @@
 			subscribeToActions(id);
 		}
 	}
-	// $: {
-	// 	if (!actionsState || actionsState?.busy) {
-	// 		AppStateStore.showSpinner();
-	// 	} else {
-	// 		AppStateStore.hideSpinner();
-	// 	}
-	// }
+	$: {
+		if (!actionsState || actionsState?.busy) {
+			AppStateStore.showSpinner();
+		} else {
+			AppStateStore.hideSpinner();
+		}
+	}
 
 	$: sortOrder = actionsState?.sortOrder === 'desc' ? '↑' : '↓';
 
@@ -152,7 +152,6 @@
 				if (result) {
 					showWarning('Record was removed successfully', 'Done');
 				}
-
 			}
 		});
 
@@ -169,9 +168,41 @@
 {:else }
 	<GunNavigator id={id} gunsState={gunsState}/>
 	<div class="top-panel">
-		<button class="press press-ghost press-blue" on:click={showNewActionDialog}>Add an action</button>
-		<span class="stub"></span>
-		<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
+		<div>
+			<button class="press press-blue" on:click={showNewActionDialog}>Add an action</button>
+		</div>
+
+		<div>
+			<ul>
+				<li>
+					Total shots: <b>{actionsState?.totalShots}</b>
+				</li>
+				<li>
+					Records: <b>{actionsState?.actions.length}</b>
+				</li>
+			</ul>
+		</div>
+
+
+		{#if (actionsState?.expenses && Object.keys(actionsState?.expenses).length)}
+			<div class="stat-exp">
+				Expenses
+			</div>
+
+			<div>
+				<ul>
+					{#each Object.keys(actionsState.expenses) as currency}
+						<li><b>{actionsState.expenses[currency]}</b> {currency}</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
+
+		<div class="stub"></div>
+
+		<div>
+			<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
+		</div>
 	</div>
 	<ActionList
 		onEdit={handleEdit}

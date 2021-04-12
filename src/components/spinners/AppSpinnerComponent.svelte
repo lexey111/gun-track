@@ -29,7 +29,7 @@
 		bottom: 0;
 		z-index: -1;
 		opacity: 0;
-		background: rgba(0, 0, 0, .4);
+		// background: rgba(0, 0, 0, .4);
 		transition: opacity .2s ease;
 
 		&.active {
@@ -48,7 +48,7 @@
 			display: block;
 			width: @spinner-size;
 			height: @spinner-size;
-			border: 4px solid var(--app-page-background);
+			border: 4px solid var(--app-accent-background);
 			border-left-color: transparent;
 			transform-origin: center center;
 			border-radius: 100%;

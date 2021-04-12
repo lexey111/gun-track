@@ -15,8 +15,10 @@
 	let props = null;
 
 	let handler: TSuperModal;
+	let scrollPos;
 
 	const open = (NewComponent: unknown, newProps = {}) => {
+		scrollPos = document.documentElement.scrollTop;
 		Component = NewComponent;
 		props = newProps;
 
@@ -42,6 +44,8 @@
 			waitDiv.className = '';
 			document.body.classList.remove('no-scroll');
 		}
+
+		document.documentElement.scrollTop = scrollPos;
 
 		if (handler) {
 			document.removeEventListener('keydown', handler);

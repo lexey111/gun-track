@@ -20,6 +20,8 @@ export type TActionsState = {
 	busy: boolean
 	sortOrder: 'asc' | 'desc'
 	isEmpty: true | false | null
+	totalShots: number
+	expenses: Record<string, number> // {USD: 23, UAH: 1234...}
 	actions: Array<Action>
 };
 

@@ -20,6 +20,8 @@ const {
 	busy: true,
 	sortOrder: 'desc',
 	isEmpty: null,
+	totalShots: 0,
+	expenses: {},
 	actions: _actions
 });
 
@@ -30,6 +32,8 @@ function resetStore(): void {
 	update(_ => ({
 		actions: [],
 		sortOrder: 'desc',
+		totalShots: 0,
+		expenses: {},
 		isEmpty: null,
 		busy: false
 	}));
@@ -61,8 +65,10 @@ async function loadActions(gunId?: string): Promise<void> {
 			sum: 0
 		}));
 
+		const expenses = {};
+		let totalShots = 0;
+
 		if (data && data.length > 0) {
-			let totalShots = 0;
 			let startIdx = 0;
 			let lastIdx = data.length;
 			let inc = 1;
@@ -74,6 +80,13 @@ async function loadActions(gunId?: string): Promise<void> {
 			}
 
 			for (let i = startIdx; i !== lastIdx; i += inc) {
+				if (data[i].expenses) {
+					const currency = data[i].currency || 'OTH';
+					if (typeof expenses[currency] === 'undefined') {
+						expenses[currency] = 0;
+					}
+					expenses[currency] += data[i].expenses;
+				}
 				if (data[i].shots) {
 					totalShots += data[i].shots;
 				}
@@ -87,6 +100,8 @@ async function loadActions(gunId?: string): Promise<void> {
 			actions: data,
 			sortOrder: currentOrder === SortDirection.ASCENDING ? 'asc' : 'desc',
 			isEmpty: data.length === 0,
+			totalShots,
+			expenses,
 			busy: false
 		}));
 	} catch (error) {

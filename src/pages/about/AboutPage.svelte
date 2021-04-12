@@ -51,6 +51,7 @@
 				<Done>Better colors for track</Done>
 			</li>
 			<li>Extract favicon and remove loader</li>
+			<li>Navigator offline mode (disable requests)</li>
 		</ul>
 
 		<h3>Track list</h3>
@@ -62,6 +63,7 @@
 			<li>Floating add button</li>
 			<li>Block UI when busy state</li>
 			<li>Compact view</li>
+			<li>Add repair</li>
 		</ul>
 
 		<h3>Gun list</h3>

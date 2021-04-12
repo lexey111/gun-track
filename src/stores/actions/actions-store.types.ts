@@ -55,4 +55,4 @@ export const getTypeColor = (type: string): string => {
 };
 
 
-export const ActionCurrencies = ['USD', 'EUR', 'UAH', 'PLN'];
+export const ActionCurrencies = ['USD', 'EUR', 'UAH', 'PLN', 'OTH'];

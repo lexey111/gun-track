@@ -17,6 +17,23 @@
 			<li>
 				DynamoDB
 			</li>
+			<li>
+				CK Editor
+			</li>
+		</ul>
+		<div>
+			Under the hood
+		</div>
+		<ul>
+			<li>
+				TypeScript
+			</li>
+			<li>
+				Webpack
+			</li>
+			<li>
+				Less
+			</li>
 		</ul>
 	</div>
 </div>
@@ -53,12 +70,16 @@
 			flex-grow: 2;
 		}
 
+		div {
+			margin-left: 32px;
+		}
+
 		ul {
 			display: flex;
 			flex-flow: column nowrap;
-			margin: 0 0 0 .5em;
-			padding: 0 0 0 .5em;
-			border-left: 1px solid rgba(255, 255, 255, .2);
+			margin: 0 0 0 1em;
+			padding: 0 0 0 1em;
+			border-left: 1px dashed rgba(255, 255, 255, .2);
 
 			li {
 				list-style: none;

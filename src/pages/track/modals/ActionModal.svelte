@@ -95,6 +95,7 @@
 			comment,
 			shots,
 			currency,
+			expenses,
 			trainingNotes,
 			color,
 			date: date || new Date().toISOString()
@@ -112,7 +113,7 @@
 		type = action.type;
 		comment = action.comment;
 		shots = action.shots;
-		currency = action.currency;
+		currency = action.currency || 'OTH';
 		expenses = action.expenses;
 		trainingNotes = action.trainingNotes;
 		color = action.color;
@@ -184,7 +185,6 @@
 			<div class="form-group">
 				<label for="currency">Currency</label>
 				<select bind:value={currency} id="currency" class="short-field">
-
 					{#each ActionCurrencies as currency}
 						<option value={currency}>
 							<I18n text={'@Currencies.' + currency}/>
