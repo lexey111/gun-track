@@ -54,6 +54,10 @@
 			<div class="action-comment no-data">No data</div>
 		{/if}
 
+		{#if (action.trainingNotes)}
+			<div class="action-notes">{@html action.trainingNotes}</div>
+		{/if}
+
 		<div class="action-actions">
 			<a href="#" on:click={() => onEdit(action.id)}>Change</a>
 			<a href="#" class="danger" on:click={() => onDelete(action.id)}>Delete</a>

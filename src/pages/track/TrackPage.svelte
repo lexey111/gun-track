@@ -85,7 +85,7 @@
 	const showNewActionDialog = () => {
 		modal.open(ActionModal, {
 			closeButton: true,
-			extraClass: 'almost-fullscreen',
+			// extraClass: 'almost-fullscreen',
 			componentProps: {
 				onConfirm: async (action: TAction) => {
 					modal.close();
@@ -127,7 +127,7 @@
 	const handleEdit = (id: string) => {
 		modal.open(ActionModal, {
 			closeButton: true,
-			extraClass: 'almost-fullscreen',
+			// extraClass: 'almost-fullscreen',
 			componentProps: {
 				action: actionsState.actions.find(a => a.id === id),
 				onConfirm: async (action: TAction) => {

@@ -1,11 +1,75 @@
 <script lang="ts">
-	import {onMount} from 'svelte';
+	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
+
+	import CKEditor from 'ckeditor5-svelte';
+	import {onDestroy, onMount} from 'svelte';
 	import I18n from '../../../components/i18n/I18n.svelte';
+	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
+	import Tab from '../../../components/tabs/Tab.svelte';
+	import TabHeader from '../../../components/tabs/TabHeader.svelte';
+	import TabPanel from '../../../components/tabs/TabPanel.svelte';
+	import Tabs from '../../../components/tabs/Tabs.svelte';
 	import {Action} from '../../../models';
-	import {ActionTypes} from '../../../stores/actions/actions-store.types';
-	import {ActionCurrencies} from '../../../stores/actions/actions-store.types';
+	import {ActionCurrencies, ActionTypes} from '../../../stores/actions/actions-store.types';
 
 	import {autoFocus} from '../../../utils/autofocus';
+
+	let editor = DecoupledEditor;
+	let editorInstance = null;
+	// If needed, custom editor config can be passed through to the component
+	// Uncomment the custom editor config if you need to customise the editor.
+	// Note: If you don't pass toolbar object then Document editor will use default set of toolbar items.
+	let editorConfig = {
+		toolbar: {
+			items: [
+				'heading',
+				'|',
+				// 'fontFamily',
+				'fontSize',
+				'fontColor',
+				'bold',
+				'italic',
+				'underline',
+				'|',
+				'bulletedList', 'numberedList'
+			]
+		}
+	};
+
+	let ckReady = false;
+	let ckStarted = false;
+
+	let ckDelay;
+	const activateCK = () => {
+		if (ckStarted || ckDelay) {
+			return;
+		}
+		ckDelay = setTimeout(() => {
+			ckStarted = true;
+		}, 200);
+	};
+
+	const deactivateCK = () => {
+		clearTimeout(ckDelay);
+		ckDelay = null;
+		ckStarted = false;
+	}
+
+	onDestroy(() => {
+		clearTimeout(ckDelay);
+	})
+
+	function onReady({detail: editor}) {
+		ckReady = true;
+		// Insert the toolbar before the editable area.
+		editorInstance = editor;
+		editor.ui
+			.getEditableElement()
+			.parentElement.insertBefore(
+			editor.ui.view.toolbar.element,
+			editor.ui.getEditableElement()
+		);
+	}
 
 	export let onConfirm: (action: Action) => void;
 	export let onCancel: () => void;
@@ -58,69 +122,94 @@
 <div class="modal-header">{dialogTitle}</div>
 
 <div class="modal-content">
-	<div class="form-group">
-		<label for="type">Type</label>
-		<select bind:value={type} id="type" class="short-field" use:autoFocus>
-			{#each ActionTypes as actionType}
-				<option value={actionType.id}>
-					<I18n text={'@Actions.' + actionType.id}/>
-				</option>
-			{/each}
-		</select>
-	</div>
 
-	<div class="form-group">
-		<label for="name">Title</label>
-		<input
-			placeholder="Carbine fundamentals"
-			autocomplete="off"
-			maxlength="128"
-			bind:value={title}
-			id="name"/>
-	</div>
+	<Tabs>
+		<TabHeader>
+			<Tab>Main data</Tab>
+			<Tab>Notes</Tab>
+		</TabHeader>
 
-	<div class="form-group">
-		<label for="comment">Comment</label>
-		<input
-			autocomplete="off"
-			maxlength="128"
-			bind:value={comment}
-			id="comment"/>
-	</div>
+		<TabPanel>
+			<div class="form-group">
+				<label for="type">Type</label>
+				<select bind:value={type} id="type" class="short-field" use:autoFocus>
+					{#each ActionTypes as actionType}
+						<option value={actionType.id}>
+							<I18n text={'@Actions.' + actionType.id}/>
+						</option>
+					{/each}
+				</select>
+			</div>
 
-	<div class="form-group">
-		<label for="shots">Shots made</label>
-		<input
-			class="short-field"
-			type="number"
-			autocomplete="off"
-			bind:value={shots}
-			id="shots"/>
-	</div>
+			<div class="form-group">
+				<label for="name">Title</label>
+				<input
+					placeholder="Carbine fundamentals"
+					autocomplete="off"
+					maxlength="128"
+					bind:value={title}
+					id="name"/>
+			</div>
+
+			<div class="form-group">
+				<label for="comment">Comment</label>
+				<input
+					autocomplete="off"
+					maxlength="128"
+					bind:value={comment}
+					id="comment"/>
+			</div>
+
+			<div class="form-group">
+				<label for="shots">Shots made</label>
+				<input
+					class="short-field"
+					type="number"
+					autocomplete="off"
+					bind:value={shots}
+					id="shots"/>
+			</div>
 
 
-	<div class="form-group">
-		<label for="expenses">Expense</label>
-		<input
-			class="short-field"
-			type="number"
-			autocomplete="off"
-			bind:value={expenses}
-			id="expenses"/>
-	</div>
+			<div class="form-group">
+				<label for="expenses">Expense</label>
+				<input
+					class="short-field"
+					type="number"
+					autocomplete="off"
+					bind:value={expenses}
+					id="expenses"/>
+			</div>
 
-	<div class="form-group">
-		<label for="currency">Currency</label>
-		<select bind:value={currency} id="currency" class="short-field">
+			<div class="form-group">
+				<label for="currency">Currency</label>
+				<select bind:value={currency} id="currency" class="short-field">
 
-				{#each ActionCurrencies as currency}
-				<option value={currency}>
-					<I18n text={'@Currencies.' + currency}/>
-				</option>
-			{/each}
-		</select>
-	</div>
+					{#each ActionCurrencies as currency}
+						<option value={currency}>
+							<I18n text={'@Currencies.' + currency}/>
+						</option>
+					{/each}
+				</select>
+			</div>
+		</TabPanel>
 
+		<TabPanel className="ck-editor-tab" onActivate={activateCK} onDeactivate={deactivateCK}>
+			{#if (!ckStarted || !ckReady)}
+				<p>
+					<SpinnerComponent/>
+					Please wait...
+				</p>
+			{/if}
+			{#if (ckStarted)}
+				<CKEditor
+					bind:editor
+					on:ready={onReady}
+					bind:config={editorConfig}
+					bind:value={trainingNotes}/>
+			{/if}
+		</TabPanel>
+	</Tabs>
 </div>
 
 <div class="modal-footer">

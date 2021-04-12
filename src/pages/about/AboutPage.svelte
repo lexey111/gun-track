@@ -11,7 +11,7 @@
 
 		<h3>UI</h3>
 		<ul>
-			<li>Design</li>
+			<li>Design system - colors etc.</li>
 			<li>
 				<Done>Modal</Done>
 			</li>
@@ -77,9 +77,12 @@
 			<li>SS selectors? delete actions?</li>
 			<li>Photo uploading for guns</li>
 			<li>Floating button if records > 5</li>
-			<li>Big text editor</li>
+			<li>
+				<Done>Big text editor</Done>
+			</li>
 			<li>Dashboard and graphs</li>
 			<li>CSV export</li>
+			<li>Mobile views</li>
 		</ul>
 
 		<h3>i18n</h3>
@@ -123,7 +126,6 @@
 			<li>
 				<Done>Own database - AWS</Done>
 			</li>
-			<li>Extra fields in gun: created, photo</li>
 			<li>
 				<Done>Gun records editor</Done>
 			</li>
@@ -137,7 +139,7 @@
 
 
 <style>
-	.three-columns {
-		 column-count: 3;
-	}
+    .three-columns {
+        column-count: 3;
+    }
 </style>

@@ -8,3 +8,20 @@
 		width: 100%;
 	}
 }
+
+:global {
+	.ck-editor-tab {
+		min-width: 600px;
+		min-height: 400px;
+
+		.tab-content {
+			height: 100%;
+		}
+	}
+
+	.ck-editor__editable, .ck-editor__editable_inline {
+		min-height: 400px;
+		max-height: 60vh;
+		overflow-y: auto;
+	}
+}

@@ -3,11 +3,12 @@
 </script>
 
 <script lang="ts">
-	import {setContext, onDestroy} from 'svelte';
+	import {setContext, onDestroy, onMount} from 'svelte';
 	import {writable} from 'svelte/store';
 
 	const tabs = [];
 	const panels = [];
+	let idx = 0;
 	const selectedTab = writable(null);
 	const selectedPanel = writable(null);
 
@@ -36,12 +37,31 @@
 
 		selectTab: tab => {
 			const i = tabs.indexOf(tab);
+
+			if (idx >= 0 && panels[idx].onDeactivate) {
+				panels[idx].onDeactivate();
+			}
+
+			idx = i;
 			selectedTab.set(tab);
+
 			selectedPanel.set(panels[i]);
+
+			if (panels[i].onActivate) {
+				panels[i].onActivate();
+			}
 		},
 
 		selectedTab,
 		selectedPanel
+	});
+
+	onMount(() => {
+		if (panels && panels.length > 0) {
+			if (panels[0].onActivate) {
+				panels[0].onActivate();
+			}
+		}
 	});
 </script>
 
