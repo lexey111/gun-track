@@ -50,10 +50,21 @@
 			<li>
 				<Done>Better colors for track</Done>
 			</li>
+			<li>Extract favicon and remove loader</li>
+		</ul>
+
+		<h3>Track list</h3>
+		<ul>
+			<li>Filter</li>
+			<li>Expenses display</li>
+			<li>Expenses and shots total</li>
+			<li>Better hover</li>
+			<li>Floating add button</li>
+			<li>Block UI when busy state</li>
 			<li>Compact view</li>
 		</ul>
 
-		<h3>Functionality</h3>
+		<h3>Gun list</h3>
 		<ul>
 			<li>
 				<Done>Guns to store</Done>
@@ -76,7 +87,6 @@
 			<li>Delete gun with records</li>
 			<li>SS selectors? delete actions?</li>
 			<li>Photo uploading for guns</li>
-			<li>Floating button if records > 5</li>
 			<li>
 				<Done>Big text editor</Done>
 			</li>

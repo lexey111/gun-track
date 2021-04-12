@@ -44,13 +44,13 @@
 			subscribeToActions(id);
 		}
 	}
-	$: {
-		if (!actionsState || actionsState?.busy) {
-			AppStateStore.showSpinner();
-		} else {
-			AppStateStore.hideSpinner();
-		}
-	}
+	// $: {
+	// 	if (!actionsState || actionsState?.busy) {
+	// 		AppStateStore.showSpinner();
+	// 	} else {
+	// 		AppStateStore.hideSpinner();
+	// 	}
+	// }
 
 	$: sortOrder = actionsState?.sortOrder === 'desc' ? '↑' : '↓';
 

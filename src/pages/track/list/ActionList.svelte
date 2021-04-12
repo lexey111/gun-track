@@ -1,8 +1,8 @@
 <script lang="ts">
 
-	import GunAction from '../action/GunAction.svelte';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import {TActionsState} from '../../../stores/actions/actions-store.interface';
+	import GunAction from '../action/GunAction.svelte';
 
 	export let actionsState: TActionsState;
 	export let onEdit: (id: string) => void;
@@ -23,8 +23,6 @@
 				onDelete={onDelete}
 				action={action} isLast={idx === actionsState.actions.length - 1}/>
 		{/each}
-
-		<pre>{JSON.stringify(actionsState, null, 2)}</pre>
 	{/if}
 </div>
 
