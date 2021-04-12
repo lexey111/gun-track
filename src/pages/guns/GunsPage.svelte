@@ -7,8 +7,7 @@
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import {TGunsState} from '../../stores/guns/guns-store.interface';
-	import EditGunModal from './modals/EditGunModal.svelte';
-	import NewGunModal from './modals/NewGunModal.svelte';
+	import GunModal from './modals/GunModal.svelte';
 	import GunList from './sections/GunList.svelte';
 
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
@@ -22,9 +21,10 @@
 	};
 
 	const showNewGunDialog = () => {
-		modal.open(NewGunModal, {
+		modal.open(GunModal, {
 			closeButton: true,
 			componentProps: {
+				isNew: true,
 				onConfirm: async (name: string) => {
 					modal.close();
 					if (await GunsStore.createGun(name)) {
@@ -43,9 +43,10 @@
 			return;
 		}
 
-		modal.open(EditGunModal, {
+		modal.open(GunModal, {
 			closeButton: true,
 			componentProps: {
+				isNew: false,
 				name: gun.name,
 				registered: dayjs().format(gun.dateCreated),
 				onConfirm: (name: string) => {
