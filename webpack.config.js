@@ -177,7 +177,7 @@ module.exports = (env, args) => {
 				filename: isProduction ? '[name]-[contenthash].css' : '[name].css',
 			}),
 
-			new HtmlWebpackPlugin(),
+			new HtmlWebpackPlugin({title: 'Gun|Track'}),
 			new FaviconsWebpackPlugin('./assets/icons/logo.png'),
 
 			new CopyWebpackPlugin({

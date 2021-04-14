@@ -24,6 +24,7 @@
 			height: var(--app-very-big-font-size);
 			border-radius: 28px;
 			margin-top: 2px;
+			white-space: nowrap;
 		}
 
 		div.action-sum {
@@ -36,20 +37,44 @@
 
 		div.action-expenses {
 			height: 100%;
-			width: 120px;
-			flex-flow: column wrap;
+			width: 200px;
+			flex-flow: row nowrap;
 			border-left: 1px dashed var(--app-border-color);
-			align-items: center;
+			align-items: flex-start;
 			justify-items: flex-start;
 			padding-left: 16px;
 
-			span:first-child {
-				font-size: var(--app-very-big-font-size);
+			div.action-expense {
+				background-color: var(--app-success-bg);
+				align-content: center;
+				justify-content: center;
+				color: var(--app-success-text);
+				padding: 0 8px;
+				height: var(--app-very-big-font-size);
+				border-radius: 28px;
+				margin-top: 2px;
 				white-space: nowrap;
+				margin-right: 16px;
 			}
 
-			span:last-child {
-				color: var(--app-remark-text);
+			ul.action-expense-list {
+				margin: 9px 0 0 auto;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				flex-flow: column nowrap;
+
+				li {
+					line-height: 1em;
+					white-space: nowrap;
+					color: var(--app-remark-text);
+
+					span {
+						color: var(--app-text);
+						padding-right: 16px;
+						font-weight: bold;
+					}
+				}
 			}
 		}
 	}

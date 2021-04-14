@@ -2,9 +2,9 @@
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 	import * as relativeTime from 'dayjs/plugin/relativeTime';
-	import I18n from '../../../components/i18n/I18n.svelte';
-	import {TAction} from '../../../stores/actions/actions-store.interface';
-	import {getTypeColor} from '../../../stores/actions/actions-store.types';
+	import I18n from '../../../../components/i18n/I18n.svelte';
+	import {TAction} from '../../../../stores/actions/actions-store.interface';
+	import {getTypeColor} from '../../../../stores/actions/actions-store.types';
 
 	dayjs.extend(localizedFormat);
 	dayjs.extend(relativeTime)

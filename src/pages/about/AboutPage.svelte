@@ -50,20 +50,29 @@
 			<li>
 				<Done>Better colors for track</Done>
 			</li>
-			<li>Extract favicon and remove loader</li>
+			<li>Extract favicon and remove loader NPM</li>
 			<li>Navigator offline mode (disable requests)</li>
 		</ul>
 
 		<h3>Track list</h3>
 		<ul>
-			<li>Filter</li>
-			<li>Expenses display</li>
-			<li>Expenses and shots total</li>
-			<li>Better hover</li>
+			<li>Filter by type (dropdown menu)</li>
+			<li>
+				<Done>Expenses display</Done>
+			</li>
+			<li>
+				<Done>Expenses and shots total</Done>
+			</li>
+			<li>
+				<Done>Better hover</Done>
+			</li>
 			<li>Floating add button</li>
 			<li>Block UI when busy state</li>
 			<li>Compact view</li>
-			<li>Add repair</li>
+			<li>
+				<Done>Add repair</Done>
+			</li>
+			<li>Restrict string lengths</li>
 		</ul>
 
 		<h3>Gun list</h3>
@@ -145,6 +154,8 @@
 				<Done>Gun records table</Done>
 			</li>
 			<li>Gun records stats</li>
+			<li>Schema cleanup (- gunid)</li>
+			<li>graph ql</li>
 		</ul>
 	</div>
 </div>

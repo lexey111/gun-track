@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {TAction} from '../../../stores/actions/actions-store.interface';
+	import {TAction} from '../../../../stores/actions/actions-store.interface';
 
 	export let action: TAction;
 </script>

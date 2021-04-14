@@ -1,10 +1,10 @@
 <script lang="ts">
 	import {TAction} from '../../../stores/actions/actions-store.interface';
 	import {getTypeColor} from '../../../stores/actions/actions-store.types';
-	import ActionData from './ActionData.svelte';
-	import ActionNotes from './ActionNotes.svelte';
-	import ActionStat from './ActionStat.svelte';
-	import ActionTimeline from './ActionTimeline.svelte';
+	import ActionData from './content/ActionData.svelte';
+	import ActionNotes from './content/ActionNotes.svelte';
+	import ActionStat from './stat/ActionStat.svelte';
+	import ActionTimeline from './timeline/ActionTimeline.svelte';
 
 	export let action: TAction;
 	export let isLast: boolean;

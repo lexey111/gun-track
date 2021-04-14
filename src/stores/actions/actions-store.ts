@@ -6,6 +6,7 @@ import {Action} from '../../models';
 import {getErrorText} from '../../utils/errors';
 import {GunsStore} from '../guns/guns-store';
 import {ActionExtended, IActionsStore, TAction, TActionsState} from './actions-store.interface';
+import {ActionCurrencies} from './actions-store.types';
 
 let currentOrder: SortDirection = SortDirection.DESCENDING;
 let currentGunId: string;
@@ -62,11 +63,16 @@ async function loadActions(gunId?: string): Promise<void> {
 
 		const data = rawActions.map(i => ({
 			...i,
-			sum: 0
+			sum: 0,
+			totalExpenses: null
 		}));
 
 		const expenses = {};
 		let totalShots = 0;
+		const totalExpenses = {};
+		Object.values(ActionCurrencies).forEach(item => {
+			totalExpenses[item.id] = 0;
+		});
 
 		if (data && data.length > 0) {
 			let startIdx = 0;
@@ -86,11 +92,13 @@ async function loadActions(gunId?: string): Promise<void> {
 						expenses[currency] = 0;
 					}
 					expenses[currency] += data[i].expenses;
+					totalExpenses[currency] += data[i].expenses;
 				}
 				if (data[i].shots) {
 					totalShots += data[i].shots;
 				}
 				data[i].sum = totalShots;
+				data[i].totalExpenses = {...expenses};
 			}
 		}
 

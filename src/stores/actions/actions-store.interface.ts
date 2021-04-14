@@ -14,7 +14,7 @@ export type TAction = {
 	color?: string
 };
 
-export type ActionExtended = Action & { sum?: number };
+export type ActionExtended = Action & { sum?: number; totalExpenses?: Record<string, number> };
 
 export type TActionsState = {
 	busy: boolean

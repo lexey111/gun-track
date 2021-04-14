@@ -186,8 +186,9 @@
 				<label for="currency">Currency</label>
 				<select bind:value={currency} id="currency" class="short-field">
 					{#each ActionCurrencies as currency}
-						<option value={currency}>
-							<I18n text={'@Currencies.' + currency}/>
+						<option value={currency.id}>
+							{currency.sign}
+							<I18n text={'@Currencies.' + currency.id}/>
 						</option>
 					{/each}
 				</select>
