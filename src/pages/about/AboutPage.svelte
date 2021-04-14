@@ -66,6 +66,9 @@
 			<li>
 				<Done>Better hover</Done>
 			</li>
+			<li>
+				<Done>Filtering</Done>
+			</li>
 			<li>Floating add button</li>
 			<li>Block UI when busy state</li>
 			<li>Compact view</li>

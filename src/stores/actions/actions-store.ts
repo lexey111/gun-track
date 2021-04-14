@@ -4,11 +4,13 @@ import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
 import {Action} from '../../models';
 import {getErrorText} from '../../utils/errors';
+import {CompareStringArrays} from '../../utils/objects';
 import {GunsStore} from '../guns/guns-store';
 import {ActionExtended, IActionsStore, TAction, TActionsState} from './actions-store.interface';
-import {ActionCurrencies} from './actions-store.types';
+import {ActionCurrencies, ActionTypes} from './actions-store.types';
 
 let currentOrder: SortDirection = SortDirection.DESCENDING;
+let currentFiltering: Array<string> = [];
 let currentGunId: string;
 
 let _actions: Array<ActionExtended> = [];
@@ -20,6 +22,7 @@ const {
 } = writable<TActionsState>({
 	busy: true,
 	sortOrder: 'desc',
+	filteredBy: [],
 	isEmpty: null,
 	totalShots: 0,
 	expenses: {},
@@ -29,10 +32,12 @@ const {
 function resetStore(): void {
 	_actions = [];
 	currentOrder = SortDirection.DESCENDING;
+	currentFiltering = [];
 
 	update(_ => ({
 		actions: [],
 		sortOrder: 'desc',
+		filteredBy: [],
 		totalShots: 0,
 		expenses: {},
 		isEmpty: null,
@@ -59,7 +64,13 @@ async function loadActions(gunId?: string): Promise<void> {
 		const rawActions: Array<ActionExtended> = (await DataStore.query(Action, Predicates.ALL, {
 			sort: a => a.date(currentOrder)
 		}))
-			.filter((c: any) => c.gun?.id === currentGunId);
+			.filter((c: any) => c.gun?.id === currentGunId)
+			.filter(c => {
+				if (!currentFiltering.length) {
+					return true;
+				}
+				return currentFiltering.includes(c.type);
+			});
 
 		const data = rawActions.map(i => ({
 			...i,
@@ -108,6 +119,7 @@ async function loadActions(gunId?: string): Promise<void> {
 			actions: data,
 			sortOrder: currentOrder === SortDirection.ASCENDING ? 'asc' : 'desc',
 			isEmpty: data.length === 0,
+			filteredBy: currentFiltering,
 			totalShots,
 			expenses,
 			busy: false
@@ -223,6 +235,29 @@ function getOrder(): 'asc' | 'desc' {
 	return 'desc';
 }
 
+function setFilter(types?: Array<string> | 'all'): void {
+	if (!types || types === 'all' || types.length === 0 || types.length === ActionTypes.length) {
+		if (currentFiltering.length) {
+			currentFiltering = [];
+			void loadActions();
+		}
+		return;
+	}
+
+	if (!CompareStringArrays(types, currentFiltering)) {
+		currentFiltering = [...types];
+		void loadActions();
+	}
+}
+
+function getFilter(): Array<string> {
+	return currentFiltering;
+}
+
+function isFiltered(): boolean {
+	return currentFiltering.length > 0;
+}
+
 let actionsSubscription: { unsubscribe: () => void };
 
 export const ActionsStore: IActionsStore = {
@@ -252,5 +287,9 @@ export const ActionsStore: IActionsStore = {
 	removeAction,
 
 	getOrder,
-	setOrder
+	setOrder,
+
+	getFilter,
+	setFilter,
+	isFiltered
 };

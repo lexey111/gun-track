@@ -4,6 +4,7 @@
 		"ThisIsGunTrack": "This is Gun | Track site"
 	},
 	"@Actions": {
+		"all": "All",
 		"other": "Other",
 		"training": "Training",
 		"dry_training": "Dry training",

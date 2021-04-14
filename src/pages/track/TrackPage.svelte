@@ -12,9 +12,11 @@
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import {TGunsState} from '../../stores/guns/guns-store.interface';
 	import {isEmpty} from '../../utils/objects';
+	import ActionsFilter from './filter/ActionsFilter.svelte';
 	import ActionList from './list/ActionList.svelte';
 	import ActionModal from './modals/ActionModal.svelte';
 	import GunNavigator from './navigator/GunNavigator.svelte';
+	import ActionsSort from './sort/ActionsSort.svelte';
 	import ActionsStat from './stat/ActionsStat.svelte';
 
 	export let id;
@@ -53,8 +55,6 @@
 			AppStateStore.hideSpinner();
 		}
 	}
-
-	$: sortOrder = actionsState?.sortOrder === 'desc' ? '↑' : '↓';
 
 	function processStore(value: TGunsState) {
 		gunsState = value;
@@ -101,14 +101,6 @@
 		});
 	}
 
-	const changeSortDirection = () => {
-		if (ActionsStore.getOrder() === 'asc') {
-			ActionsStore.setOrder('desc')
-		} else {
-			ActionsStore.setOrder('asc');
-		}
-	}
-
 	onMount(() => {
 		gunsUnsubscribe = GunsStore.subscribe((value: TGunsState) => {
 			if (!value) {
@@ -129,7 +121,6 @@
 	const handleEdit = (id: string) => {
 		modal.open(ActionModal, {
 			closeButton: true,
-			// extraClass: 'almost-fullscreen',
 			componentProps: {
 				action: actionsState.actions.find(a => a.id === id),
 				onConfirm: async (action: TAction) => {
@@ -175,14 +166,21 @@
 			<button class="press press-blue" on:click={showNewActionDialog}>Add an action</button>
 		</div>
 
+
 		{#if (!isEmpty(actionsState?.actions))}
 			<ActionsStat actionsState={actionsState}/>
-
 			<div class="stub"></div>
 
-			<div>
-				<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
-			</div>
+			{#if (actionsState?.actions?.length > 1)}
+				<ActionsSort actionsState={actionsState}/>
+			{/if}
+
+		{:else }
+			<div class="stub"></div>
+		{/if}
+
+		{#if (actionsState?.actions?.length > 0 || ActionsStore.isFiltered())}
+			<ActionsFilter actionsState={actionsState}/>
 		{/if}
 	</div>
 

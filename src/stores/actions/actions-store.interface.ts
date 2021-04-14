@@ -19,6 +19,7 @@ export type ActionExtended = Action & { sum?: number; totalExpenses?: Record<str
 export type TActionsState = {
 	busy: boolean
 	sortOrder: 'asc' | 'desc'
+	filteredBy: Array<string>
 	isEmpty: true | false | null
 	totalShots: number
 	expenses: Record<string, number> // {USD: 23, UAH: 1234...}
@@ -37,4 +38,8 @@ export interface IActionsStore extends Writable<TActionsState> {
 
 	getOrder: () => 'asc' | 'desc'
 	setOrder: (order: 'asc' | 'desc') => void
+
+	getFilter: () => Array<string>
+	setFilter: (types?: Array<string> | 'all') => void
+	isFiltered: () => boolean
 }

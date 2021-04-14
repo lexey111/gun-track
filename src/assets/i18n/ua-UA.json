@@ -4,6 +4,7 @@
 		"ThisIsGunTrack": "Це сайт Gun | Track"
 	},
 	"@Actions": {
+		"all": "Всi",
 		"other": "Прочее",
 		"training": "Тренування",
 		"dry_training": "Холосте тренування",

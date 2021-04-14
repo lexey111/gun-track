@@ -214,7 +214,7 @@
 </div>
 
 <div class="modal-footer">
-	<button class="press press-blue press-ghost" on:click={onCancel}>Cancel</button>
+	<button class="press press-ghost" on:click={onCancel}>Cancel</button>
 	<button class="press press-blue"
 	        on:click={handleConfirm}>Save
 	</button>
