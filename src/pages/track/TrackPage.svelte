@@ -11,9 +11,11 @@
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import {TGunsState} from '../../stores/guns/guns-store.interface';
+	import {isEmpty} from '../../utils/objects';
 	import ActionList from './list/ActionList.svelte';
 	import ActionModal from './modals/ActionModal.svelte';
 	import GunNavigator from './navigator/GunNavigator.svelte';
+	import ActionsStat from './stat/ActionsStat.svelte';
 
 	export let id;
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
@@ -167,47 +169,29 @@
 	</p>
 {:else }
 	<GunNavigator id={id} gunsState={gunsState}/>
+
 	<div class="top-panel">
 		<div>
 			<button class="press press-blue" on:click={showNewActionDialog}>Add an action</button>
 		</div>
 
-		<div>
-			<ul>
-				<li>
-					Total shots: <b>{actionsState?.totalShots}</b>
-				</li>
-				<li>
-					Records: <b>{actionsState?.actions.length}</b>
-				</li>
-			</ul>
-		</div>
+		{#if (!isEmpty(actionsState?.actions))}
+			<ActionsStat actionsState={actionsState}/>
 
-
-		{#if (actionsState?.expenses && Object.keys(actionsState?.expenses).length)}
-			<div class="stat-exp">
-				Expenses
-			</div>
+			<div class="stub"></div>
 
 			<div>
-				<ul>
-					{#each Object.keys(actionsState.expenses) as currency}
-						<li><b>{actionsState.expenses[currency]}</b> {currency}</li>
-					{/each}
-				</ul>
+				<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
 			</div>
 		{/if}
-
-		<div class="stub"></div>
-
-		<div>
-			<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
-		</div>
 	</div>
-	<ActionList
-		onEdit={handleEdit}
-		onDelete={handleDelete}
-		actionsState={actionsState}/>
+
+	{#if (!isEmpty(actionsState?.actions))}
+		<ActionList
+			onEdit={handleEdit}
+			onDelete={handleDelete}
+			actionsState={actionsState}/>
+	{/if}
 {/if}
 
 <style lang="less">

@@ -73,6 +73,7 @@
 				<Done>Add repair</Done>
 			</li>
 			<li>Restrict string lengths</li>
+			<li>Date editor</li>
 		</ul>
 
 		<h3>Gun list</h3>

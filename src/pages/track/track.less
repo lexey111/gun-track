@@ -5,30 +5,14 @@
 	font-size: var(--app-small-font-size);
 	margin-top: 3em;
 
-	& > div {
-		&:not(:last-child) {
-			margin-right: 2em;
-		}
-
-		ul {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			li {
-				line-height: 1em;
-				padding: 0;
-				margin: 0 0 8px 0;
-			}
-		}
-
-		&.stat-exp {
-			margin-right: 1em;
-		}
-	}
-
 	.stub {
 		width: 100%;
 	}
+
+	transform-origin: top left;
+	animation-name: top-panel-appear;
+	animation-duration: .4s;
+	animation-timing-function: ease-in-out;
 }
 
 :global {
@@ -47,3 +31,16 @@
 		overflow-y: auto;
 	}
 }
+
+@keyframes top-panel-appear {
+	0% {
+		opacity: 0;
+		transform: translateY(-15px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@import "stat/actions-stat.less";
