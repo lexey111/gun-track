@@ -180,7 +180,7 @@
 		{/if}
 
 		{#if (actionsState?.actions?.length > 0 || ActionsStore.isFiltered())}
-			<ActionsFilter actionsState={actionsState}/>
+			<ActionsFilter/>
 		{/if}
 	</div>
 

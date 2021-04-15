@@ -50,13 +50,19 @@
 			<li>
 				<Done>Better colors for track</Done>
 			</li>
+			<li>Dropdowns</li>
+			<li>Tabs for login</li>
+			<li>Stats on Home</li>
+			<li>Contacts page</li>
 			<li>Extract favicon and remove loader NPM</li>
 			<li>Navigator offline mode (disable requests)</li>
 		</ul>
 
 		<h3>Track list</h3>
 		<ul>
-			<li>Filter by type (dropdown menu)</li>
+			<li>
+				<Done>Filter by type (dropdown menu)</Done>
+			</li>
 			<li>
 				<Done>Expenses display</Done>
 			</li>
@@ -66,9 +72,6 @@
 			<li>
 				<Done>Better hover</Done>
 			</li>
-			<li>
-				<Done>Filtering</Done>
-			</li>
 			<li>Floating add button</li>
 			<li>Block UI when busy state</li>
 			<li>Compact view</li>
@@ -77,6 +80,7 @@
 			</li>
 			<li>Restrict string lengths</li>
 			<li>Date editor</li>
+			<li>Groups in type</li>
 		</ul>
 
 		<h3>Gun list</h3>

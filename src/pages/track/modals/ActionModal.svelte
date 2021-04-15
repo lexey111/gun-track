@@ -143,6 +143,14 @@
 			</div>
 
 			<div class="form-group">
+				<label for="date">Date</label>
+				<input
+					type="date"
+					bind:value={date}
+					id="date"/>
+			</div>
+
+			<div class="form-group">
 				<label for="name">Title</label>
 				<input
 					placeholder="Carbine fundamentals"
