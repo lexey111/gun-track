@@ -1,8 +1,16 @@
 <script lang="ts">
+	import Add32 from 'carbon-icons-svelte/lib/Add32';
+	import * as dayjs from 'dayjs';
+	import {onDestroy, onMount} from 'svelte';
+	import Datepicker from 'svelte-calendar';
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';
+	import {Calendar} from '../../components/i18n/calendar';
 	import I18n from '../../components/i18n/I18n.svelte';
 	import {ActionTypes} from '../../stores/actions/actions-store.types';
-	import Add32 from "carbon-icons-svelte/lib/Add32";
+	import {AppStateStore} from '../../stores/app/app-state-store';
+
+	const minDate = dayjs().subtract(10, 'year').toDate();
+	const maxDate = dayjs().add(1, 'year').toDate();
 
 	let date = new Date();
 
@@ -26,6 +34,22 @@
 		console.log('Apply!');
 		closeDropdown1();
 	}
+
+	const app_state = {dateLocale: 'uk'};
+	let appState$;
+	let showPicker = false;
+	onMount(() => {
+		appState$ = AppStateStore.subscribe(value => {
+			app_state.dateLocale = value.dateLocale;
+			showPicker = false;
+			setTimeout(() => {showPicker = true}, 0);
+		})
+	});
+
+	onDestroy(() => {
+		appState$ && appState$();
+	});
+
 </script>
 
 <div class="app-page">
@@ -51,18 +75,6 @@
 					Hello, guys!
 				</p>
 				<button class="press press-ghost press-amber" on:click={closeDropdown}>Close</button>
-			</div>
-		</Dropdown>
-	</div>
-
-	<div class="form-group">
-		<label>Test</label>
-		<Dropdown title="Test title">
-			<div class="some-content">
-				<h1>Some content</h1>
-				<p>
-					Hello, guys!
-				</p>
 			</div>
 		</Dropdown>
 	</div>
@@ -95,6 +107,17 @@
 					</label>
 				</p>
 			{/each}
+		</div>
+		<div>
+			{#if showPicker}
+				<Datepicker
+					weekStart={app_state.dateLocale === 'en' ? 0 : 1}
+					monthsOfYear={Calendar[app_state.dateLocale].monthsOfYear}
+					daysOfWeek={Calendar[app_state.dateLocale].daysOfWeek}
+					format={Calendar[app_state.dateLocale].dateFormat}
+					start={minDate}
+					end={maxDate}/>
+			{/if}
 		</div>
 	</div>
 
