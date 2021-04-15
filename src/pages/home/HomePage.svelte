@@ -67,30 +67,50 @@
 	</div>
 
 
-	{#each ActionTypes as actionType}
-		<p>
-			<input type="checkbox"
-			       id={actionType.id}
-			       checked={Math.random() > .5}/>
-			<label for={actionType.id}>
-				<I18n text={'@Actions.' + actionType.id}/>
-			</label>
-		</p>
-	{/each}
+	<div class="two-columns">
+		<div>
+			{#each ActionTypes as actionType}
+				<p>
+					<input type="checkbox"
+					       id={actionType.id}
+					       disabled={Math.random() > .8}
+					       checked={Math.random() > .5}/>
+					<label for={actionType.id}>
+						<I18n text={'@Actions.' + actionType.id}/>
+					</label>
+				</p>
+			{/each}
+		</div>
+		<div>
+			{#each ActionTypes as actionType}
+				<p>
+					<input type="checkbox"
+					       class="small"
+					       id={'_' + actionType.id}
+					       disabled={Math.random() > .8}
+					       checked={Math.random() > .5}/>
+					<label for={'_' + actionType.id}>
+						<I18n text={'@Actions.' + actionType.id}/>
+					</label>
+				</p>
+			{/each}
+		</div>
+	</div>
 
 </div>
 
 <style lang="less">
-    .some-content {
-        white-space: nowrap;
-    }
+	.some-content {
+		white-space: nowrap;
+	}
 
-    p {
-        font-size: var(--app-small-font-size);
+	.two-columns {
+		display: flex;
+		flex-flow: row nowrap;
 
-    label {
-        font-size: var(--app-small-font-size);
-    }
-
-    }
+		div {
+			margin-right: 32px;
+			margin-left: 16px;
+		}
+	}
 </style>

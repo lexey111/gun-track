@@ -90,6 +90,7 @@
 		{#each ActionTypes as actionType}
 			<p>
 				<input type="checkbox"
+				       class="small"
 				       id={actionType.id}
 				       checked={selection.includes(actionType.id)}
 				       on:change={() => handleChange(actionType.id)}/>
@@ -98,8 +99,6 @@
 				</label>
 			</p>
 		{/each}
-		<hr>
-
 		<div class="af-actions">
 			<button class="press press-ghost press-sm" on:click={cancelFilter}>Cancel</button>
 			<button class="press press-ghost press-sm press-deeppurple" on:click={applyFilter}>Apply</button>
@@ -109,6 +108,8 @@
 
 <style lang="less">
 	.af-dropdown-content {
+		display: flex;
+		flex-flow: column wrap;
 		font-size: var(--app-small-font-size);
 
 		hr {
@@ -117,12 +118,14 @@
 
 		p {
 			line-height: 1.0em;
-			label {
-				font-size: var(--app-small-font-size);
-			}
+			padding: 0;
+			margin: 6px 0;
 		}
 
 		.af-actions {
+			border-top: 1px dashed var(--app-border-color);
+			margin-top: 8px;
+			padding-top: 8px;
 			display: flex;
 			flex-flow: row wrap;
 			width: 100%;
