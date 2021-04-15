@@ -5,6 +5,7 @@
 	import {AppStateStore} from '../stores/app/app-state-store';
 	import {AuthStore} from '../stores/auth/auth-store';
 	import {TAuthState} from '../stores/auth/auth-store.interface';
+	import LocaleMenu from './dropdown/LocaleMenu.svelte';
 
 	let activeRoutes = [];
 	let current_path = 'home';
@@ -56,6 +57,7 @@
 	{#each activeRoutes as [path, name, className], i}
 		<Link to={path} class={className}>{name}</Link>
 	{/each}
+	<LocaleMenu/>
 </nav>
 
 <style lang="less">
@@ -78,13 +80,14 @@
 		.app-navigation {
 			display: flex;
 			flex-flow: row wrap;
+			z-index: 2;
 
 			background-color: rgba(52, 105, 132, 0.5);
 			backdrop-filter: blur(7px);
 
 			justify-content: center;
 			font-size: .8rem;
-			height: 40px;
+			height: 50px;
 			transition: background-color .2s ease, color .1s ease;
 
 			a, a:visited {
@@ -103,7 +106,7 @@
 					background-color: rgba(255, 255, 255, .2);
 				}
 
-				&[aria-current="page"], &.active{
+				&[aria-current="page"], &.active {
 					background-color: var(--app-background);
 					color: var(--app-menu-logged-in-bg);
 				}

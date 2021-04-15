@@ -3,20 +3,21 @@
 
 	import {Router} from 'svelte-routing';
 	import AppMenu from '../components/AppMenu.svelte';
-	import AppSpinnerComponent from '../components/spinners/AppSpinnerComponent.svelte';
 	import Footer from '../components/Footer.svelte';
+	import {I18nService} from '../components/i18n/i18n.service';
+	import '../components/i18n/i18n.service.ts';
+	import BgImage from '../components/images/BgImage.svelte';
+	import ModalComponent from '../components/modal/ModalComponent.svelte';
+	import NotifyComponent from '../components/notifications/NotifyComponent.svelte';
+	import AppSpinnerComponent from '../components/spinners/AppSpinnerComponent.svelte';
 	import Routing from '../config/Routing.svelte';
 	import {AppStateStore} from '../stores/app/app-state-store';
+	import {AppLocales} from '../stores/app/app-state-store.interface';
 
 	import {AuthStore} from '../stores/auth/auth-store';
 	import {TAuthState} from '../stores/auth/auth-store.interface';
-	import BgImage from '../components/images/BgImage.svelte';
 
 	import {extendHistoryTracking} from './history-helper';
-	import {I18nService} from '../components/i18n/i18n.service';
-	import '../components/i18n/i18n.service.ts';
-	import ModalComponent from '../components/modal/ModalComponent.svelte';
-	import NotifyComponent from '../components/notifications/NotifyComponent.svelte';
 
 	// auth store and state
 	let auth_state: TAuthState;
@@ -35,6 +36,12 @@
 		authUnsubscribe = AuthStore.subscribe(value => {
 			auth_state = value;
 		});
+		let initialLocale = localStorage.getItem('app.locale');
+		if (!AppLocales[initialLocale]) {
+			initialLocale = 'en-EN';
+		}
+
+		AppStateStore.setLocale(initialLocale as any);
 
 		appStateUnsubscribe = AppStateStore.subscribe(value => {
 			app_state.modal = value.modal;

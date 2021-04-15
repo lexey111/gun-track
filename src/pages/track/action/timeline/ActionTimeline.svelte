@@ -2,9 +2,11 @@
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 	import * as relativeTime from 'dayjs/plugin/relativeTime';
+	import {onDestroy, onMount} from 'svelte';
 	import I18n from '../../../../components/i18n/I18n.svelte';
 	import {TAction} from '../../../../stores/actions/actions-store.interface';
 	import {getTypeColor} from '../../../../stores/actions/actions-store.types';
+	import {AppStateStore} from '../../../../stores/app/app-state-store';
 
 	dayjs.extend(localizedFormat);
 	dayjs.extend(relativeTime)
@@ -13,14 +15,28 @@
 
 	$: color = getTypeColor(action?.type)
 
+	let appState$;
+	const state = {dateLocale: 'en'};
+	onMount(() => {
+		appState$ = AppStateStore.subscribe(value => {
+			if (value.dateLocale && value.dateLocale !== state.dateLocale) {
+				state.dateLocale = value.dateLocale;
+			}
+		})
+	});
+
+	onDestroy(() => {
+		appState$ && appState$();
+	});
+
 </script>
 
 <div class="action-date">
 		<span>
-			{dayjs(action.date).fromNow()}
+			{dayjs(action.date).locale(state.dateLocale).fromNow()}
 		</span>
 	<span class="extra-date">
-			{dayjs(action.date).format('LL LT')}
+			{dayjs(action.date).locale(state.dateLocale).format('LL LT')}
 		</span>
 
 	<i class="pre-action-type"></i>

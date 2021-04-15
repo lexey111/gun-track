@@ -6,15 +6,8 @@ import 'dayjs/locale/ru';
 import 'dayjs/locale/uk';
 
 import {writable} from 'svelte/store';
-import {AppLocales, IAppStateStore, TAppLocale, TAppState} from './app-state-store.interface';
+import {IAppStateStore, TAppLocale, TAppState} from './app-state-store.interface';
 
-// restore last locale
-let initialLocale = localStorage.getItem('app.locale');
-if (!AppLocales[initialLocale]) {
-	initialLocale = 'en-EN';
-}
-
-setDayJSLocale(initialLocale as TAppLocale);
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
 	subscribe,
@@ -26,16 +19,18 @@ const {
 		open: null,
 		close: null
 	},
-	locale: initialLocale as TAppLocale,
+	locale: 'en-EN',
+	dateLocale: 'en',
 	isGlobalSpinnerVisible: false
 });
 
-function setDayJSLocale(locale: TAppLocale): void {
+function setDayJSLocale(locale: TAppLocale): string {
 	let dateLocale = locale.split('-')[0];
 	if (dateLocale === 'ua') {
 		dateLocale = 'uk'; // f* this mapping
 	}
 	dayjs.locale(dateLocale);
+	return dateLocale;
 }
 
 export const AppStateStore: IAppStateStore = {
@@ -52,11 +47,12 @@ export const AppStateStore: IAppStateStore = {
 
 	setLocale: (locale: TAppLocale) => {
 		localStorage.setItem('app.locale', locale);
-		setDayJSLocale(locale);
+		const dateLocale = setDayJSLocale(locale);
 
 		update(state => ({
 			...state,
-			locale
+			locale,
+			dateLocale
 		}));
 	},
 

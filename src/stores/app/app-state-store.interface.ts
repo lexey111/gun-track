@@ -23,6 +23,7 @@ export type TAppState = {
 		close?: () => void
 	}
 	locale: TAppLocale
+	dateLocale: string
 	isGlobalSpinnerVisible: boolean
 };
 

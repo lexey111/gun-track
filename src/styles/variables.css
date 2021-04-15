@@ -36,6 +36,9 @@
     --app-text: #333;
     --app-placeholder-text: #ccc;
 
+    --app-menu-bg: #1872d2;
+    --app-menu-text: #fff;
+
     --app-border-color: #1872d2;
     --app-border-color-active: #9118d2;
     --app-border-color-disabled: #ccc;

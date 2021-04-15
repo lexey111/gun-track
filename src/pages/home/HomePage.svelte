@@ -2,6 +2,7 @@
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';
 	import I18n from '../../components/i18n/I18n.svelte';
 	import {ActionTypes} from '../../stores/actions/actions-store.types';
+	import Add32 from "carbon-icons-svelte/lib/Add32";
 
 	let date = new Date();
 
@@ -66,7 +67,7 @@
 		</Dropdown>
 	</div>
 
-
+	<Add32/>
 	<div class="two-columns">
 		<div>
 			{#each ActionTypes as actionType}
