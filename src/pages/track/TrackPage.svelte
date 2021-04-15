@@ -179,7 +179,7 @@
 			<div class="stub"></div>
 		{/if}
 
-		{#if (actionsState?.actions?.length > 0 || ActionsStore.isFiltered())}
+		{#if (actionsState?.actions?.length > 1 || ActionsStore.isFiltered())}
 			<ActionsFilter/>
 		{/if}
 	</div>

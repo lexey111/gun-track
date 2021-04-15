@@ -120,6 +120,11 @@
 				position: relative;
 				padding-right: 10px;
 				outline: none;
+				display: flex;
+				flex-flow: row nowrap;
+				height: 1em;
+				align-items: center;
+				align-content: center;
 
 				i {
 					width: 0;
