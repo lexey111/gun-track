@@ -49,7 +49,9 @@
 			<li>
 				<Done>Backgrounds</Done>
 			</li>
-			<li>Language switcher</li>
+			<li>
+				<Done>Language switcher</Done>
+			</li>
 			<li>
 				<Done>Better colors for track</Done>
 			</li>
@@ -90,6 +92,9 @@
 		<h3>Gun list</h3>
 		<ul>
 			<li>
+				"Make"/"Model" fields
+			</li>
+			<li>
 				<Done>Guns to store</Done>
 			</li>
 			<li>
@@ -106,6 +111,9 @@
 			</li>
 			<li>
 				<Done>Delete action</Done>
+			</li>
+			<li>
+				<Done>Cards</Done>
 			</li>
 			<li>Delete gun with records</li>
 			<li>SS selectors? delete actions?</li>
@@ -137,6 +145,14 @@
 			<li>
 				<Done>Route guard</Done>
 			</li>
+		</ul>
+
+		<h3>Home</h3>
+		<ul>
+			<li>BTS photo with price tags</li>
+			<li>Gun selector if > 1</li>
+			<li>Gun stat (async)</li>
+			<li>- Dynamic bg</li>
 		</ul>
 
 		<h3>Database</h3>

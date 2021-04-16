@@ -6,7 +6,6 @@
 	import Footer from '../components/Footer.svelte';
 	import {I18nService} from '../components/i18n/i18n.service';
 	import '../components/i18n/i18n.service.ts';
-	import BgImage from '../components/images/BgImage.svelte';
 	import ModalComponent from '../components/modal/ModalComponent.svelte';
 	import NotifyComponent from '../components/notifications/NotifyComponent.svelte';
 	import AppSpinnerComponent from '../components/spinners/AppSpinnerComponent.svelte';
@@ -58,7 +57,7 @@
 
 	setContext('AppState', app_state);
 
-	// routing ans history
+	// routing and history
 	export let url = '';
 
 	extendHistoryTracking();
@@ -77,7 +76,6 @@
 <ModalComponent/>
 <NotifyComponent/>
 <AppSpinnerComponent/>
-<BgImage/>
 
 <main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
 	<h1>GUN | TRACK</h1>

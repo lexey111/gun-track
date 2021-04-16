@@ -4,11 +4,13 @@
 	import {IConfirmDialog} from '../../../components/modal/Confirm.interface';
 	import Confirm from '../../../components/modal/Confirm.svelte';
 	import {Gun} from '../../../models';
+	import GunCard from '../gun/GunCard.svelte';
 
 	dayjs.extend(localizedFormat);
 
 	export let onRemove: (id: string) => void;
 	export let onEdit: (id: string) => void;
+	export let dateLocale: string;
 
 	export let guns: Array<Gun>;
 
@@ -27,42 +29,12 @@ Gun to delete: ${gun.name}
 	}
 </script>
 
-<div class="app-list">
-	<Confirm bind:this={confirmDialog}/>
-	<table class="data-table active">
-		<thead>
-		<tr>
-			<th>Name</th>
-			<th>Registered</th>
-			<th class="centered">Actions</th>
-		</tr>
-		</thead>
-		<tbody>
-		{#each guns as gun}
-			<tr on:dblclick={() => onEdit(gun.id)}>
-				<td width="*">
-					<a on:click={() => onEdit(gun.id)}>
-						{gun.name}
-					</a>
-				</td>
-				<td class="width-20">
-					{#if (gun.dateCreated)}
-						{dayjs(gun.dateCreated).format('LL LT')}
-					{/if}
-				</td>
-				<td class="actions width-10">
-					<div>
-						<a on:click={() => onEdit(gun.id)}>
-							Change
-						</a>
-						<span class="stub"></span>
-						<a on:click={() => handleOnDelete(gun.id)} class="danger">
-							Delete
-						</a>
-					</div>
-				</td>
-			</tr>
-		{/each}
-		</tbody>
-	</table>
+<Confirm bind:this={confirmDialog}/>
+<div class="guns-list">
+	{#each guns as gun}
+		<GunCard gun={gun}
+		         onEdit={onEdit}
+		         onRemove={handleOnDelete}
+		         dateLocale={dateLocale}/>
+	{/each}
 </div>

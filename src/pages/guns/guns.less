@@ -1,0 +1,110 @@
+:global {
+	.guns-list {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: 64px;
+	}
+
+	.gun-card {
+		background-color: var(--app-card-background);
+		color: var(--app-card-text);
+		font-size: var(--app-small-font-size);
+		border-radius: 7px;
+		overflow: hidden;
+		display: flex;
+		flex-flow: column wrap;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+		transition: all .2s ease;
+
+		flex: 1 0 250px; /* can grow, can't shrink, minimum width 200px */
+		max-width: 450px;
+		min-height: 200px;
+		margin: 5px;
+		opacity: .9;
+
+		.gc-actions {
+			opacity: 0;
+			transition: all .2s ease;
+		}
+
+		.gc-title-content, .gc-date {
+			transition: transform .2s ease;
+			transform: translateY(32px);
+		}
+
+		.gc-title {
+			transition: background-color .2s ease-in-out, color .2s ease-in-out;
+		}
+
+		&:hover, &:focus-within {
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+			opacity: 1;
+
+			.gc-actions {
+				opacity: 1;
+			}
+
+			.gc-title-content, .gc-date {
+				transform: translateY(0);
+			}
+
+			.gc-title {
+				background-color: var(--app-accent-background);
+				color: var(--app-accent-text);
+			}
+		}
+
+		.gc-content {
+			height: 100%;
+			overflow: hidden;
+			display: flex;
+			flex-flow: column nowrap;
+
+			div {
+				display: flex;
+				flex-flow: row nowrap;
+				width: 100%;
+				justify-content: center;
+				text-align: center;
+			}
+		}
+
+		.gc-title {
+			font-size: var(--app-very-big-font-size);
+			border-radius: 7px 7px 0 0;
+
+			.gc-title-content {
+				padding: 16px;
+			}
+		}
+
+		.gc-date {
+			color: var(--app-remark-text);
+			margin: 8px 0 0 0;
+			padding: 0 16px;
+		}
+
+		.gc-actions {
+			margin-top: auto;
+			padding: 16px;
+
+			button {
+				height: auto;
+				display: inline-flex;
+				align-content: center;
+				align-items: center;
+				justify-content: center;
+				justify-items: center;
+			}
+
+			button:not(:last-child) {
+				margin-right: 8px;
+
+				svg {
+					margin-right: .4em;
+				}
+			}
+		}
+	}
+
+}
