@@ -1,7 +1,8 @@
 {
 	"@Common": {
 		"Welcome": "Приветствуем",
-		"ThisIsGunTrack": "Это сайт Gun | Track"
+		"ThisIsGunTrack": "Это сайт Gun | Track",
+		"Today": "Сегодня"
 	},
 	"@Actions": {
 		"all": "Все",
@@ -18,11 +19,11 @@
 		"selling": "Продажа",
 		"cleanup": "Чистка"
 	},
-	"@Currencies" : {
-		"USD" : "USD",
-		"EUR" : "EUR",
-		"UAH" : "UAH",
-		"PLN" : "PLN",
-		"OTH" : "Другое"
+	"@Currencies": {
+		"USD": "USD",
+		"EUR": "EUR",
+		"UAH": "UAH",
+		"PLN": "PLN",
+		"OTH": "Другое"
 	}
 }

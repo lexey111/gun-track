@@ -1,18 +1,18 @@
 <script lang="ts">
 	import Add32 from 'carbon-icons-svelte/lib/Add32';
-	import * as dayjs from 'dayjs';
-	import {onDestroy, onMount} from 'svelte';
-	import Datepicker from 'svelte-calendar';
+	import LocalisedDatepicker from '../../components/datepicker/LocalisedDatepicker.svelte';
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';
-	import {Calendar} from '../../components/i18n/calendar';
 	import I18n from '../../components/i18n/I18n.svelte';
 	import {ActionTypes} from '../../stores/actions/actions-store.types';
-	import {AppStateStore} from '../../stores/app/app-state-store';
 
-	const minDate = dayjs().subtract(10, 'year').toDate();
-	const maxDate = dayjs().add(1, 'year').toDate();
-
-	let date = new Date();
+	let date1 = new Date();
+	const onDate1Changed = (d: Date) => {
+		date1 = d;
+	};
+	const onDate2Changed = (d: Date) => {
+		date2 = d;
+	};
+	let date2 = new Date();
 
 	let title = 'Test 1';
 
@@ -29,27 +29,13 @@
 	}
 
 	let closeDropdown1;
+	let type;
+	let shots = 100;
 
 	function closeDropdown() {
 		console.log('Apply!');
 		closeDropdown1();
 	}
-
-	const app_state = {dateLocale: 'uk'};
-	let appState$;
-	let showPicker = false;
-	onMount(() => {
-		appState$ = AppStateStore.subscribe(value => {
-			app_state.dateLocale = value.dateLocale;
-			showPicker = false;
-			setTimeout(() => {showPicker = true}, 0);
-		})
-	});
-
-	onDestroy(() => {
-		appState$ && appState$();
-	});
-
 </script>
 
 <div class="app-page">
@@ -109,15 +95,33 @@
 			{/each}
 		</div>
 		<div>
-			{#if showPicker}
-				<Datepicker
-					weekStart={app_state.dateLocale === 'en' ? 0 : 1}
-					monthsOfYear={Calendar[app_state.dateLocale].monthsOfYear}
-					daysOfWeek={Calendar[app_state.dateLocale].daysOfWeek}
-					format={Calendar[app_state.dateLocale].dateFormat}
-					start={minDate}
-					end={maxDate}/>
-			{/if}
+			<LocalisedDatepicker date={date1} onDateChange={onDate1Changed}/>
+			<p>
+				{date1}
+			</p>
+			<LocalisedDatepicker date={date2} onDateChange={onDate2Changed}/>
+			<p>
+				{date2}
+			</p>
+			<div class="form-group">
+				<label for="type">Type</label>
+				<select bind:value={type} id="type" class="short-field">
+					{#each ActionTypes as actionType}
+						<option value={actionType.id}>
+							<I18n text={'@Actions.' + actionType.id}/>
+						</option>
+					{/each}
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="shots">Shots made</label>
+				<input
+					class="short-field"
+					type="number"
+					autocomplete="off"
+					bind:value={shots}
+					id="shots"/>
+			</div>
 		</div>
 	</div>
 

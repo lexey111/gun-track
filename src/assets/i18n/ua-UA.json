@@ -1,28 +1,29 @@
 {
 	"@Common": {
 		"Welcome": "Вітання",
-		"ThisIsGunTrack": "Це сайт Gun | Track"
+		"ThisIsGunTrack": "Це сайт Gun | Track",
+		"Today": "Сьогодні"
 	},
 	"@Actions": {
 		"all": "Всi",
-		"other": "Прочее",
+		"other": "Інше",
 		"training": "Тренування",
 		"dry_training": "Холосте тренування",
-		"pers_training": "Индивидуальная тренування",
+		"pers_training": "індивідуальне тренування",
 		"competition": "Змагання",
-		"tuning": "Тюнинг",
+		"tuning": "Тюнінг",
 		"spare_parts": "Запчастини",
 		"repair": "Ремонт",
-		"bullets": "Боеприпасы",
-		"purchase": "Покупка",
-		"selling": "Продажа",
-		"cleanup": "Чистка"
+		"bullets": "Боєприпаси",
+		"purchase": "Купівля",
+		"selling": "Продаж",
+		"cleanup": "Чищення"
 	},
-	"@Currencies" : {
-		"USD" : "USD",
-		"EUR" : "EUR",
-		"UAH" : "UAH",
-		"PLN" : "PLN",
-		"OTH" : "Iнше"
+	"@Currencies": {
+		"USD": "USD",
+		"EUR": "EUR",
+		"UAH": "UAH",
+		"PLN": "PLN",
+		"OTH": "Інше"
 	}
 }

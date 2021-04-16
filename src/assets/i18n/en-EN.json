@@ -1,7 +1,8 @@
 {
 	"@Common": {
 		"Welcome": "Welcome",
-		"ThisIsGunTrack": "This is Gun | Track site"
+		"ThisIsGunTrack": "This is Gun | Track site",
+		"Today": "Today"
 	},
 	"@Actions": {
 		"all": "All",
@@ -18,11 +19,11 @@
 		"selling": "Selling",
 		"cleanup": "Cleanup"
 	},
-	"@Currencies" : {
-		"USD" : "USD",
-		"EUR" : "EUR",
-		"UAH" : "UAH",
-		"PLN" : "PLN",
-		"OTH" : "Other"
+	"@Currencies": {
+		"USD": "USD",
+		"EUR": "EUR",
+		"UAH": "UAH",
+		"PLN": "PLN",
+		"OTH": "Other"
 	}
 }

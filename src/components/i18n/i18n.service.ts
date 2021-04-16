@@ -1,26 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable no-console */
 import {TAppLocale} from '../../stores/app/app-state-store.interface';
 
-let controller = new AbortController();
-let actualPromise;
-let {signal} = controller;
-
-const memoryCache = {};
+const memoryCache: Record<string, Promise<unknown>> = {};
 let currentLocale: TAppLocale;
 
-function loadLocale(locale: TAppLocale): Promise<any> {
+function loadLocale(locale: TAppLocale): Promise<Record<string, any>> {
 	const localeToLoad = !locale ? 'en-EN' : locale;
 
 	currentLocale = locale;
 
-	if (memoryCache[localeToLoad]) {
-		return Promise.resolve();
+	if (typeof memoryCache[localeToLoad] !== 'undefined') {
+		return memoryCache[localeToLoad];
 	}
 
-	controller.abort(); // stop obsolete
-	controller = new AbortController(); // start new
-	signal = controller.signal;
-	actualPromise = fetch('/i18n/' + localeToLoad + '.json', {signal})
+	memoryCache[localeToLoad] = fetch('/i18n/' + localeToLoad + '.json')
 		.then(response => {
 			if (response && response.status === 200 || response.status === 204) {
 				return response.json();
@@ -30,22 +23,13 @@ function loadLocale(locale: TAppLocale): Promise<any> {
 			}
 			throw new Error('Invalid Locale response!');
 		})
-		.then(data => {
-			if (data && typeof data === 'object') {
-				memoryCache[localeToLoad] = data;
-			}
-			return data;
-		})
 		.catch(e => {
-			if (e.name !== 'AbortError') {
-				console.error('Error on loading locale', localeToLoad);
-				console.error(e);
-				throw new Error(e);
-			}
-			return actualPromise;
+			console.error('Error on loading locale', localeToLoad);
+			console.error(e);
+			throw new Error(e);
 		});
 
-	return actualPromise;
+	return memoryCache[localeToLoad];
 }
 
 export const I18nService = {
@@ -57,9 +41,12 @@ export const I18nService = {
 
 	translate: (textToTranslate: string): Promise<string> => {
 		const [namespace, key] = textToTranslate.split('.'); // @Common.Welcome
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return loadLocale(currentLocale)
-			.then(_ => {
-				return memoryCache[currentLocale]?.[namespace]?.[key] || '';
+			.then(data => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access
+				return data?.[namespace]?.[key] || '';
 			})
 			.catch(_ => {
 				return textToTranslate;

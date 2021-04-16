@@ -49,7 +49,7 @@ export const Calendar = {
 			['Листопад', 'Лис'],
 			['Грудень', 'Гру']
 		],
-		dateFormat: '#{d}.#{m}.#{Y}'
+		dateFormat: '#{F}, #{d} / #{Y} (#{d}.#{m}.#{y})'
 	},
 	ru: {
 		daysOfWeek: [
@@ -75,6 +75,6 @@ export const Calendar = {
 			['Ноябрь', 'Ноя'],
 			['Декабрь', 'Дек']
 		],
-		dateFormat: '#{d}.#{m}.#{Y}'
+		dateFormat: '#{F}, #{d} / #{Y} (#{d}.#{m}.#{y})'
 	}
 };

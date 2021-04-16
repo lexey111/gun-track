@@ -3,6 +3,7 @@
 
 	import CKEditor from 'ckeditor5-svelte';
 	import {onDestroy, onMount} from 'svelte';
+	import LocalisedDatepicker from '../../../components/datepicker/LocalisedDatepicker.svelte';
 	import I18n from '../../../components/i18n/I18n.svelte';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import Tab from '../../../components/tabs/Tab.svelte';
@@ -78,7 +79,7 @@
 	let dialogTitle = 'New record';
 	let id = '';
 	let title = '';
-	let date = '';
+	let date: Date = Date();
 	let type = '';
 	let comment = '';
 	let shots = 0;
@@ -86,6 +87,10 @@
 	let expenses = 0.0;
 	let trainingNotes = '';
 	let color = '';
+
+	const onDateChanged = (d: Date) => {
+		date = d;
+	}
 
 	const handleConfirm = () => {
 		onConfirm({
@@ -98,7 +103,7 @@
 			expenses,
 			trainingNotes,
 			color,
-			date: date || new Date().toISOString()
+			date: date ? date.toISOString() : new Date().toISOString()
 		});
 	}
 
@@ -109,7 +114,7 @@
 		dialogTitle = 'Change record';
 		id = action.id;
 		title = action.title;
-		date = action.date;
+		date = new Date(action.date);
 		type = action.type;
 		comment = action.comment;
 		shots = action.shots;
@@ -143,11 +148,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="date">Date</label>
-				<input
-					type="date"
-					bind:value={date}
-					id="date"/>
+				<label>Date</label>
+				<LocalisedDatepicker date={date} onDateChange={onDateChanged}/>
 			</div>
 
 			<div class="form-group">

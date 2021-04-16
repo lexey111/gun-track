@@ -117,6 +117,9 @@
 		<h3>i18n</h3>
 		<ul>
 			<li>Translations</li>
+			<li>
+				<Done>Replace cancelled requests with smth. other</Done>
+			</li>
 		</ul>
 
 		<h3>Routing</h3>
