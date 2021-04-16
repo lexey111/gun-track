@@ -1,5 +1,4 @@
 <script lang="ts">
-	import * as dayjs from 'dayjs'
 	import {getContext, onDestroy, onMount} from 'svelte';
 	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
 	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
@@ -27,11 +26,11 @@
 		modal.open(GunModal, {
 			closeButton: true,
 			componentProps: {
-				isNew: true,
-				onConfirm: async (name: string) => {
+				gun: null,
+				onConfirm: async (gun: Gun) => {
 					modal.close();
-					if (await GunsStore.createGun(name)) {
-						showSuccess('New gun was successfully registered.', name);
+					if (await GunsStore.createGun(gun)) {
+						showSuccess('New gun was successfully registered.', gun.name || gun.make || gun.model);
 					}
 				},
 				onCancel: () => modal.close(),
@@ -49,12 +48,10 @@
 		modal.open(GunModal, {
 			closeButton: true,
 			componentProps: {
-				isNew: false,
-				name: gun.name,
-				registered: dayjs().format(gun.dateCreated),
-				onConfirm: (name: string) => {
+				gun,
+				onConfirm: (gun: Gun) => {
 					modal.close();
-					GunsStore.saveGun(id, name);
+					GunsStore.saveGun(gun);
 				},
 				onCancel: () => modal.close(),
 			}
@@ -115,9 +112,9 @@
 
 {#if (gunsState.isEmpty === false)}
 	<h2>
-		Registered guns | {gunsState?.guns?.length}
+		Registered guns [{gunsState?.guns?.length}]
 		<span>
-			<a href="#" on:click={showNewGunDialog}>Register a gun</a>
+			<a href="#" on:click={showNewGunDialog}>Add one more</a>
 		</span>
 	</h2>
 	<Guns

@@ -11,7 +11,6 @@ export type TAction = {
 	expenses?: number
 	currency?: string
 	trainingNotes?: string
-	color?: string
 };
 
 export type ActionExtended = Action & { sum?: number; totalExpenses?: Record<string, number> };

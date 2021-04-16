@@ -6,8 +6,10 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 export declare class Gun {
   readonly id: string;
-  readonly name: string;
-  readonly color?: string;
+  readonly name?: string;
+  readonly make?: string;
+  readonly model?: string;
+  readonly notes?: string;
   readonly dateCreated: string;
   readonly actions?: (Action | null)[];
   constructor(init: ModelInit<Gun>);
@@ -24,7 +26,6 @@ export declare class Action {
   readonly expenses?: number;
   readonly currency?: string;
   readonly trainingNotes?: string;
-  readonly color?: string;
   readonly gun?: Gun;
   constructor(init: ModelInit<Action>);
   static copyOf(source: Action, mutator: (draft: MutableModel<Action>) => MutableModel<Action> | void): Action;

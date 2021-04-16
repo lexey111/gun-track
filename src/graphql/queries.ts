@@ -18,7 +18,9 @@ export const syncGuns = /* GraphQL */ `
       items {
         id
         name
-        color
+        make
+        model
+        notes
         dateCreated
         actions {
           nextToken
@@ -41,7 +43,9 @@ export const getGun = /* GraphQL */ `
     getGun(id: $id) {
       id
       name
-      color
+      make
+      model
+      notes
       dateCreated
       actions {
         items {
@@ -54,7 +58,6 @@ export const getGun = /* GraphQL */ `
           expenses
           currency
           trainingNotes
-          color
           gunID
           _version
           _deleted
@@ -85,7 +88,9 @@ export const listGuns = /* GraphQL */ `
       items {
         id
         name
-        color
+        make
+        model
+        notes
         dateCreated
         actions {
           nextToken
@@ -126,12 +131,13 @@ export const syncActions = /* GraphQL */ `
         expenses
         currency
         trainingNotes
-        color
         gunID
         gun {
           id
           name
-          color
+          make
+          model
+          notes
           dateCreated
           _version
           _deleted
@@ -164,12 +170,13 @@ export const getAction = /* GraphQL */ `
       expenses
       currency
       trainingNotes
-      color
       gunID
       gun {
         id
         name
-        color
+        make
+        model
+        notes
         dateCreated
         actions {
           nextToken
@@ -208,12 +215,13 @@ export const listActions = /* GraphQL */ `
         expenses
         currency
         trainingNotes
-        color
         gunID
         gun {
           id
           name
-          color
+          make
+          model
+          notes
           dateCreated
           _version
           _deleted

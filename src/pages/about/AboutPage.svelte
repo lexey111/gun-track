@@ -92,8 +92,10 @@
 		<h3>Gun list</h3>
 		<ul>
 			<li>
-				"Make"/"Model" fields
+				<Done>"Make"/"Model" fields</Done>
 			</li>
+			<li>Caliber field</li>
+			<li>Notes editor</li>
 			<li>
 				<Done>Guns to store</Done>
 			</li>
@@ -116,6 +118,7 @@
 				<Done>Cards</Done>
 			</li>
 			<li>Delete gun with records</li>
+			<li>Extra confirmation if records</li>
 			<li>SS selectors? delete actions?</li>
 			<li>Photo uploading for guns</li>
 			<li>

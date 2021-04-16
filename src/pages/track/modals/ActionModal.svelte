@@ -87,7 +87,6 @@
 	let currency = '';
 	let expenses = 0.0;
 	let trainingNotes = '';
-	let color = '';
 
 	const onDateChanged = (d: Date) => {
 		date = d;
@@ -104,7 +103,6 @@
 			currency,
 			expenses,
 			trainingNotes,
-			color,
 			date: dateToSave.toISOString()
 		});
 	}
@@ -123,7 +121,6 @@
 		currency = action.currency || 'OTH';
 		expenses = action.expenses;
 		trainingNotes = action.trainingNotes;
-		color = action.color;
 	});
 </script>
 

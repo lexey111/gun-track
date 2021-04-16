@@ -176,7 +176,6 @@ async function saveAction(action: Action): Promise<boolean> {
 			Action.copyOf(_action, updated => {
 				updated.title = action.title;
 				updated.type = action.type;
-				updated.color = action.color;
 				updated.date = action.date;
 				updated.comment = action.comment;
 				updated.currency = action.currency;

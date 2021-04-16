@@ -10,7 +10,9 @@ export const createGun = /* GraphQL */ `
     createGun(input: $input, condition: $condition) {
       id
       name
-      color
+      make
+      model
+      notes
       dateCreated
       actions {
         items {
@@ -23,7 +25,6 @@ export const createGun = /* GraphQL */ `
           expenses
           currency
           trainingNotes
-          color
           gunID
           _version
           _deleted
@@ -52,7 +53,9 @@ export const updateGun = /* GraphQL */ `
     updateGun(input: $input, condition: $condition) {
       id
       name
-      color
+      make
+      model
+      notes
       dateCreated
       actions {
         items {
@@ -65,7 +68,6 @@ export const updateGun = /* GraphQL */ `
           expenses
           currency
           trainingNotes
-          color
           gunID
           _version
           _deleted
@@ -94,7 +96,9 @@ export const deleteGun = /* GraphQL */ `
     deleteGun(input: $input, condition: $condition) {
       id
       name
-      color
+      make
+      model
+      notes
       dateCreated
       actions {
         items {
@@ -107,7 +111,6 @@ export const deleteGun = /* GraphQL */ `
           expenses
           currency
           trainingNotes
-          color
           gunID
           _version
           _deleted
@@ -143,12 +146,13 @@ export const createAction = /* GraphQL */ `
       expenses
       currency
       trainingNotes
-      color
       gunID
       gun {
         id
         name
-        color
+        make
+        model
+        notes
         dateCreated
         actions {
           nextToken
@@ -185,12 +189,13 @@ export const updateAction = /* GraphQL */ `
       expenses
       currency
       trainingNotes
-      color
       gunID
       gun {
         id
         name
-        color
+        make
+        model
+        notes
         dateCreated
         actions {
           nextToken
@@ -227,12 +232,13 @@ export const deleteAction = /* GraphQL */ `
       expenses
       currency
       trainingNotes
-      color
       gunID
       gun {
         id
         name
-        color
+        make
+        model
+        notes
         dateCreated
         actions {
           nextToken

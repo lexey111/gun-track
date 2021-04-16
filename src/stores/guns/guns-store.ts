@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment */
 import {DataStore} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
@@ -57,7 +57,7 @@ async function loadGuns(): Promise<void> {
 	}
 }
 
-async function createGun(name: string): Promise<boolean> {
+async function createGun(gun: Gun): Promise<boolean> {
 	update(state => ({
 		...state,
 		busy: true
@@ -66,7 +66,7 @@ async function createGun(name: string): Promise<boolean> {
 	try {
 		await DataStore.save(
 			new Gun({
-				name,
+				...gun,
 				dateCreated: new Date().toISOString()
 			})
 		);
@@ -77,9 +77,9 @@ async function createGun(name: string): Promise<boolean> {
 	return true;
 }
 
-async function saveGun(id: string, name: string): Promise<boolean> {
-	const gun = getGunById(id);
-	if (!gun) {
+async function saveGun(gun: Gun): Promise<boolean> {
+	const _gun = getGunById(gun?.id);
+	if (!_gun) {
 		throw new Error('Gun not found!');
 	}
 
@@ -90,8 +90,11 @@ async function saveGun(id: string, name: string): Promise<boolean> {
 
 	try {
 		await DataStore.save(
-			Gun.copyOf(gun, updated => {
-				updated.name = name;
+			Gun.copyOf(_gun, updated => {
+				updated.name = gun.name;
+				updated.make = gun.make;
+				updated.model = gun.model;
+				updated.notes = gun.notes;
 			})
 		);
 	} catch (error) {
