@@ -1,6 +1,7 @@
 <script lang="ts">
-	import * as dayjs from 'dayjs'
+	import * as dayjs from 'dayjs';
 	import * as isToday from 'dayjs/plugin/isToday';
+	import * as isYesterday from 'dayjs/plugin/isYesterday';
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 	import * as relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -13,6 +14,7 @@
 	dayjs.extend(localizedFormat);
 	dayjs.extend(relativeTime)
 	dayjs.extend(isToday)
+	dayjs.extend(isYesterday)
 
 	export let action: TAction;
 
@@ -32,14 +34,28 @@
 		appState$ && appState$();
 	});
 
+	let isDateToday;
+	$: {
+		isDateToday = dayjs(action.date).startOf('day').isToday();
+	}
+
+	let isDateYesterday;
+	$: {
+		isDateYesterday = dayjs(action.date).startOf('day').isYesterday();
+	}
+
 </script>
 
 <div class="action-date">
 	<span>
-		{#if (dayjs(action.date).isToday())}
+		{#if (isDateToday)}
 			<I18n text="@Common.Today"/>
 		{:else}
-			{dayjs(action.date).locale(state.dateLocale).fromNow()}
+			{#if (isDateYesterday)}
+				<I18n text="@Common.Yesterday"/>
+			{:else }
+				{dayjs(action.date).locale(state.dateLocale).fromNow()}
+			{/if}
 		{/if}
 	</span>
 	<span class="extra-date">

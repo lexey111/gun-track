@@ -2,7 +2,8 @@
 	"@Common": {
 		"Welcome": "Welcome",
 		"ThisIsGunTrack": "This is Gun | Track site",
-		"Today": "Today"
+		"Today": "Today",
+		"Yesterday": "Yesterday"
 	},
 	"@Actions": {
 		"all": "All",

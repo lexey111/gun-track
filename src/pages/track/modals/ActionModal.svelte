@@ -2,6 +2,7 @@
 	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
 
 	import CKEditor from 'ckeditor5-svelte';
+	import * as dayjs from 'dayjs';
 	import {onDestroy, onMount} from 'svelte';
 	import LocalisedDatepicker from '../../../components/datepicker/LocalisedDatepicker.svelte';
 	import I18n from '../../../components/i18n/I18n.svelte';
@@ -79,7 +80,7 @@
 	let dialogTitle = 'New record';
 	let id = '';
 	let title = '';
-	let date: Date = Date();
+	let date: Date = new Date();
 	let type = '';
 	let comment = '';
 	let shots = 0;
@@ -93,6 +94,7 @@
 	}
 
 	const handleConfirm = () => {
+		const dateToSave = dayjs(date || new Date()).toDate();
 		onConfirm({
 			...action,
 			title,
@@ -103,7 +105,7 @@
 			expenses,
 			trainingNotes,
 			color,
-			date: date ? date.toISOString() : new Date().toISOString()
+			date: dateToSave.toISOString()
 		});
 	}
 

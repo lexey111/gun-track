@@ -16,25 +16,29 @@
 
 	input, select {
 		box-sizing: border-box;
-		font-size: 1em;
 		display: flex;
 		align-content: center;
 		align-items: center;
-		height: 32px;
-		line-height: 32px;
-		padding: 2px 6px;
-		border: 1px solid var(--app-border-color);
-		background-color: var(--app-background-lighten);
+		height: 37px;
+		line-height: 37px;
+		padding: 0 0 0 6px;
+		border: none;
+		background-color: var(--app-control-bg);
 		width: 100%;
 		min-width: 250px;
 		outline: none !important;
-		box-shadow: none !important;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+		font-size: var(--app-small-font-size);
+		border-radius: 7px;
 		transition: border .2s ease, background .2s ease;
+
+		&:before {
+
+		}
 
 		&:focus, &:active {
 			outline: none;
-			box-shadow: none !important;
-			border-color: var(--app-border-color-active);
+			box-shadow: 0 0 0 4px rgba(129, 34, 237, 0.2);
 		}
 
 		&.short-field {

@@ -2,14 +2,15 @@
 	"@Common": {
 		"Welcome": "Вітання",
 		"ThisIsGunTrack": "Це сайт Gun | Track",
-		"Today": "Сьогодні"
+		"Today": "Сьогодні",
+		"Yesterday": "Вчора"
 	},
 	"@Actions": {
 		"all": "Всi",
 		"other": "Інше",
 		"training": "Тренування",
 		"dry_training": "Холосте тренування",
-		"pers_training": "індивідуальне тренування",
+		"pers_training": "Індивідуальне тренування",
 		"competition": "Змагання",
 		"tuning": "Тюнінг",
 		"spare_parts": "Запчастини",

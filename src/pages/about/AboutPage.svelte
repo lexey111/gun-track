@@ -36,7 +36,10 @@
 			<li>
 				<Done>Fullscreen spinner</Done>
 			</li>
-			<li>Icons</li>
+			<li>
+				<Done>Icons</Done>
+			</li>
+			<li>Modal - reserve scrollbar's place</li>
 			<li>
 				<Done>Table</Done>
 			</li>
@@ -54,7 +57,6 @@
 			<li>Tabs for login</li>
 			<li>Stats on Home</li>
 			<li>Contacts page</li>
-			<li>Extract favicon and remove loader NPM</li>
 			<li>Navigator offline mode (disable requests)</li>
 		</ul>
 
@@ -79,7 +81,9 @@
 				<Done>Add repair</Done>
 			</li>
 			<li>Restrict string lengths</li>
-			<li>Date editor</li>
+			<li>
+				<Done>Date editor</Done>
+			</li>
 			<li>Groups in type</li>
 		</ul>
 

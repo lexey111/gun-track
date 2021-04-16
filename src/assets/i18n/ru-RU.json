@@ -2,7 +2,8 @@
 	"@Common": {
 		"Welcome": "Приветствуем",
 		"ThisIsGunTrack": "Это сайт Gun | Track",
-		"Today": "Сегодня"
+		"Today": "Сегодня",
+		"Yesterday": "Вчера"
 	},
 	"@Actions": {
 		"all": "Все",
