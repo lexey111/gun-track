@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {Auth, CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 import {DataStore} from '@aws-amplify/datastore';
 import * as Md5 from 'md5';
@@ -78,7 +79,7 @@ async function signIn(email: string, password: string): Promise<any> {
 		user = await Auth.signIn(email, password);
 	} catch (error) {
 		AppStateStore.hideSpinner();
-		console.log('error signing in', error);
+		console.log('Error signing in', error);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
 	}
@@ -94,7 +95,7 @@ async function confirmSignUp(email: string, code: string): Promise<boolean> {
 		result = await Auth.confirmSignUp(email, code);
 	} catch (error) {
 		AppStateStore.hideSpinner();
-		console.log('error confirming sign up', error);
+		console.log('Error confirming sign up', error);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
 	}
@@ -112,7 +113,7 @@ async function changePassword(oldPwd: string, newPwd: string): Promise<boolean> 
 		result = await Auth.changePassword(user, oldPwd, newPwd);
 	} catch (error) {
 		AppStateStore.hideSpinner();
-		console.log('error changing password', error);
+		console.log('Error changing password', error);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
 	}
@@ -129,7 +130,7 @@ async function forgotPassword(email: string): Promise<boolean> {
 		result = await Auth.forgotPassword(email);
 	} catch (error) {
 		AppStateStore.hideSpinner();
-		console.log('error sending reset code', error);
+		console.log('Error sending reset code', error);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
 	}
@@ -146,7 +147,7 @@ async function confirmForgotPassword(email: string, code: string, newPassword: s
 		result = await Auth.forgotPasswordSubmit(email, code, newPassword);
 	} catch (error) {
 		AppStateStore.hideSpinner();
-		console.log('error setting up new password', error);
+		console.log('Error setting up new password', error);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return error;
 	}
@@ -169,10 +170,6 @@ export const AuthStore: IAuthStore = {
 
 	setLoggedIn: (id: string, provider: string, email: string) => {
 		AppStateStore.hideSpinner();
-		console.log('******* LOGIN ********');
-		console.log('id', id);
-		console.log('provider', provider);
-		console.log('email', email);
 		userId = id;
 
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment

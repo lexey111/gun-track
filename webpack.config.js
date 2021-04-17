@@ -5,7 +5,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const sveltePreprocess = require('svelte-preprocess');
@@ -63,7 +62,10 @@ module.exports = (env, args) => {
 				svelte: path.resolve('node_modules', 'svelte'),
 			},
 			extensions: ['.mjs', '.js', '.svelte', '.ts'],
-			mainFields: ['svelte', 'browser', 'module', 'main']
+			mainFields: ['svelte', 'browser', 'module', 'main'],
+			fallback: {
+				'buffer': require.resolve('buffer/')
+			}
 		},
 		module: {
 			rules: [
@@ -97,6 +99,7 @@ module.exports = (env, args) => {
 				},
 				{
 					test: /\.(html|svelte)$/,
+					exclude: /index/,
 					use: {
 						loader: 'svelte-loader',
 						options: {
@@ -177,8 +180,9 @@ module.exports = (env, args) => {
 				filename: isProduction ? '[name]-[contenthash].css' : '[name].css',
 			}),
 
-			new HtmlWebpackPlugin({title: 'Gun|Track'}),
-			new FaviconsWebpackPlugin('./assets/icons/logo.png'),
+			new HtmlWebpackPlugin({
+				template: './assets/index.html'
+			}),
 
 			new CopyWebpackPlugin({
 				patterns: [
@@ -188,8 +192,8 @@ module.exports = (env, args) => {
 						toType: 'dir'
 					},
 					{
-						from: path.resolve('./src/assets/images'),
-						to: outPath + '/images',
+						from: path.resolve('./src/assets/icons'),
+						to: outPath + '/icons',
 						toType: 'dir'
 					},
 				]

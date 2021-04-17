@@ -9,6 +9,13 @@
 
 	<div class="three-columns">
 
+		<h3>Tech</h3>
+		<ul>
+			<li>
+				<Done>Remove favicons plugin</Done>
+			</li>
+		</ul>
+
 		<h3>UI</h3>
 		<ul>
 			<li>Design system - colors etc.</li>
@@ -55,7 +62,10 @@
 			<li>
 				<Done>Better colors for track</Done>
 			</li>
-			<li>Dropdowns</li>
+			<li>Buttons</li>
+			<li>
+				<Done>Dropdowns</Done>
+			</li>
 			<li>Tabs for login</li>
 			<li>Stats on Home</li>
 			<li>Contacts page</li>
