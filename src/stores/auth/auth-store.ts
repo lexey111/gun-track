@@ -183,7 +183,7 @@ export const AuthStore: IAuthStore = {
 				id,
 				providerId: provider,
 				email,
-				profileImageUrl: `https://www.gravatar.com/avatar/${md5Email}`,
+				profileImageUrl: `https://www.gravatar.com/avatar/${md5Email}?d=mp`,
 				loggedIn: true
 			};
 		});

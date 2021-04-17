@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '../../../components/buttons/Button.svelte';
 	import {IConfirmDialog} from '../../../components/modal/Confirm.interface';
 	import Confirm from '../../../components/modal/Confirm.svelte';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
@@ -19,8 +20,8 @@
 
 <Confirm bind:this={confirmDialog}/>
 
-<button
-	on:click={handleConfirmLogoutDialog}
-	class="press press-ghost press-red">
+<Button
+	type="danger"
+	onClick={handleConfirmLogoutDialog}>
 	Logout
-</button>
+</Button>

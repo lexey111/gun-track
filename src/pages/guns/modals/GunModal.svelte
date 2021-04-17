@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import {onDestroy, onMount} from 'svelte';
+	import Button from '../../../components/buttons/Button.svelte';
 	import {Gun} from '../../../models';
 	import {AppStateStore, dateLocale} from '../../../stores/app/app-state-store';
 	import {autoFocusWithSelect} from '../../../utils/autofocus';
@@ -103,9 +104,8 @@
 </div>
 
 <div class="modal-footer">
-	<button class="press press-ghost" on:click={onCancel}>Cancel</button>
-	<button class="press press-blue"
-	        disabled={disabled}
-	        on:click={handleConfirm}>{isNew ? 'Register' : 'Update'}
-	</button>
+	<Button onClick={onCancel} type="text">Cancel</Button>
+	<Button disabled={disabled}
+	        onClick={handleConfirm}>{isNew ? 'Register' : 'Update'}
+	</Button>
 </div>

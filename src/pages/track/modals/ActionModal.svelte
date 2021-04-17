@@ -4,6 +4,7 @@
 	import CKEditor from 'ckeditor5-svelte';
 	import * as dayjs from 'dayjs';
 	import {onDestroy, onMount} from 'svelte';
+	import Button from '../../../components/buttons/Button.svelte';
 	import LocalisedDatepicker from '../../../components/datepicker/LocalisedDatepicker.svelte';
 	import I18n from '../../../components/i18n/I18n.svelte';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
@@ -223,8 +224,8 @@
 </div>
 
 <div class="modal-footer">
-	<button class="press press-ghost" on:click={onCancel}>Cancel</button>
-	<button class="press press-blue"
-	        on:click={handleConfirm}>Save
-	</button>
+	<Button type="text" onClick={onCancel}>Cancel</Button>
+	<Button
+		onClick={handleConfirm}>Save
+	</Button>
 </div>

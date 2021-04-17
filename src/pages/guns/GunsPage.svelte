@@ -1,5 +1,8 @@
 <script lang="ts">
+	import AddIcon from 'carbon-icons-svelte/lib/Add32';
+
 	import {getContext, onDestroy, onMount} from 'svelte';
+	import Button from '../../components/buttons/Button.svelte';
 	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
 	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
 	import {Gun} from '../../models';
@@ -106,7 +109,10 @@
 		But it is the best time to start, you're lucky!
 	</p>
 	<p>
-		<button class="press press-ghost press-blue" on:click={showNewGunDialog}>Register a Gun</button>
+		<Button onClick={showNewGunDialog}>
+			<AddIcon/>
+			Register a Gun
+		</Button>
 	</p>
 {/if}
 
@@ -114,7 +120,7 @@
 	<h2>
 		Registered guns [{gunsState?.guns?.length}]
 		<span>
-			<a href="#" on:click={showNewGunDialog}>Add one more</a>
+			<Button type="text" onClick={showNewGunDialog}><AddIcon/> Add one more...</Button>
 		</span>
 	</h2>
 	<Guns
@@ -130,6 +136,8 @@
 	h2 {
 		display: flex;
 		flex-flow: row nowrap;
+		align-content: center;
+		align-items: center;
 
 		span {
 			display: flex;
@@ -137,8 +145,8 @@
 			align-content: center;
 			align-items: center;
 			margin-left: 32px;
-			padding-left: 32px;
-			border-left: 1px dashed var(--app-border-color);
+			padding-left: 16px;
+			border-left: 1px dashed #ccc;
 
 			a {
 				padding: 0;

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from '../buttons/Button.svelte';
+
 	export let title = 'Confirmation';
 	export let text = 'Are you sure?';
 	export let confirmText = 'Confirm';
@@ -16,10 +18,10 @@
 </div>
 
 <div class="modal-footer">
-	<button class="press press-blue press-ghost"
-	        on:click={onCancel}>Cancel
-	</button>
-	<button class="press press-red"
-	        on:click={onConfirm}>{confirmText}
-	</button>
+	<Button type="text"
+	        onClick={onCancel}>Cancel
+	</Button>
+	<Button type="danger"
+	        onClick={onConfirm}>{confirmText}
+	</Button>
 </div>

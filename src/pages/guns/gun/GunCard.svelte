@@ -4,6 +4,7 @@
 
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
+	import Button from '../../../components/buttons/Button.svelte';
 	import {Gun} from '../../../models';
 
 	dayjs.extend(localizedFormat);
@@ -49,13 +50,13 @@
 				</div>
 			{/if}
 			<div class="gc-actions">
-				<button class="press press-deeppurple press-round" on:click={() => onEdit(gun.id)}>
+				<Button size="small" onClick={() => onEdit(gun.id)}>
 					<Edit/>
 					Change
-				</button>
-				<button class="press press-red press-round" on:click={() => onRemove(gun.id)}>
+				</Button>
+				<Button size="small" type="danger" onClick={() => onRemove(gun.id)}>
 					<Trash/>
-				</button>
+				</Button>
 			</div>
 		</div>
 	</div>

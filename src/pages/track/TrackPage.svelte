@@ -1,6 +1,9 @@
 <script lang="ts">
 	import {getContext, onDestroy, onMount} from 'svelte';
+	import AddIcon from 'carbon-icons-svelte/lib/Add32';
+
 	import {navigate} from 'svelte-routing';
+	import Button from '../../components/buttons/Button.svelte';
 	import {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
 	import {showSuccess, showWarning} from '../../components/notifications/notify';
@@ -163,7 +166,7 @@
 
 	<div class="top-panel">
 		<div>
-			<button class="press press-blue" on:click={showNewActionDialog}>Add an action</button>
+			<Button onClick={showNewActionDialog}><AddIcon/> Add an action</Button>
 		</div>
 
 

@@ -62,7 +62,11 @@
 			<li>
 				<Done>Better colors for track</Done>
 			</li>
-			<li>Buttons</li>
+			<li>
+				<Done>Buttons</Done>
+			</li>
+			<li>Buttons in login</li>
+			<li>Better login with tabs</li>
 			<li>
 				<Done>Dropdowns</Done>
 			</li>
@@ -74,6 +78,9 @@
 
 		<h3>Track list</h3>
 		<ul>
+			<li>
+				Dropdown gun selector
+			</li>
 			<li>
 				<Done>Filter by type (dropdown menu)</Done>
 			</li>

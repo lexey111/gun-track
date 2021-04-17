@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '../../../components/buttons/Button.svelte';
 	import {showError, showInfo} from '../../../components/notifications/notify';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
@@ -56,10 +57,9 @@
 
 <div class="form-group button-row">
 	<label/>
-	<button
-		class="press press-amber press-ghost"
+	<Button
 		disabled={!newPasswordAllowed}
-		on:click={changePassword}>
+		onClick={changePassword}>
 		Change password
-	</button>
+	</Button>
 </div>
