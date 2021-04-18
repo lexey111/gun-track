@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '../../../components/buttons/Button.svelte';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;
@@ -17,6 +18,6 @@
 		Via social network
 	</label>
 
-	<button on:click={handleLoginWithFacebook} class="press press-ghost press-blue">Facebook</button>
-	<button on:click={handleLoginWithGoogle} class="press press-ghost press-blue">Google</button>
+	<Button onClick={handleLoginWithFacebook}>Facebook</Button>
+	<Button onClick={handleLoginWithGoogle}>Google</Button>
 </div>

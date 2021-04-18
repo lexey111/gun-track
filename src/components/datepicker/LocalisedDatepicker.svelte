@@ -52,7 +52,7 @@
 	:global {
 		.datepicker {
 			button.calendar-button:focus {
-				box-shadow: 0 0 0 4px rgba(129, 34, 237, 0.2) !important;
+				box-shadow: 0 0 0 4px rgba(129, 34, 237, 0.4) !important;
 				outline: none;
 			}
 		}

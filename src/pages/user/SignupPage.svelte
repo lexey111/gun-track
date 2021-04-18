@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
 	import {Link} from 'svelte-routing';
+	import Button from '../../components/buttons/Button.svelte';
 
 	import {showError, showInfo} from '../../components/notifications/notify';
 	import {IAuthStore} from '../../stores/auth/auth-store.interface';
@@ -88,12 +89,11 @@
 
 		<div class="form-group">
 			<label/>
-			<button
-				class="press press-green press-ghost"
+			<Button
 				disabled={!signupAllowed}
-				on:click={signUp}>
+				onClick={signUp}>
 				Register
-			</button>
+			</Button>
 		</div>
 	</section>
 
@@ -127,12 +127,11 @@
 
 			<div class="form-group">
 				<label/>
-				<button
-					class="press press-green press-ghost"
+				<Button
 					disabled={!codeAllowed}
-					on:click={signUpVerify}>
+					onClick={signUpVerify}>
 					Confirm & Sign in
-				</button>
+				</Button>
 			</div>
 		</div>
 	</section>

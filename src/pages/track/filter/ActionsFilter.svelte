@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Filter from 'carbon-icons-svelte/lib/Filter16';
 	import {onMount} from 'svelte';
+	import Button from '../../../components/buttons/Button.svelte';
 	import Dropdown from '../../../components/dropdown/Dropdown.svelte';
 	import I18n from '../../../components/i18n/I18n.svelte';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
@@ -102,8 +103,8 @@
 			</p>
 		{/each}
 		<div class="af-actions">
-			<button class="press press-ghost press-sm" on:click={cancelFilter}>Cancel</button>
-			<button class="press press-ghost press-sm press-deeppurple" on:click={applyFilter}>Apply</button>
+			<Button size="small" type="text" onClick={cancelFilter}>Cancel</Button>
+			<Button size="small" onClick={applyFilter}>Apply</Button>
 		</div>
 	</div>
 </Dropdown>

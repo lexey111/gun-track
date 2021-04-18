@@ -65,12 +65,13 @@
 			<li>
 				<Done>Buttons</Done>
 			</li>
-			<li>Buttons in login</li>
+			<li>
+				<Done>Buttons in login</Done>
+			</li>
 			<li>Better login with tabs</li>
 			<li>
 				<Done>Dropdowns</Done>
 			</li>
-			<li>Tabs for login</li>
 			<li>Stats on Home</li>
 			<li>Contacts page</li>
 			<li>Navigator offline mode (disable requests)</li>
@@ -79,7 +80,7 @@
 		<h3>Track list</h3>
 		<ul>
 			<li>
-				Dropdown gun selector
+				Dropdown gun navigator
 			</li>
 			<li>
 				<Done>Filter by type (dropdown menu)</Done>
@@ -93,6 +94,7 @@
 			<li>
 				<Done>Better hover</Done>
 			</li>
+			<li>Stat cards</li>
 			<li>Floating add button</li>
 			<li>Block UI when busy state</li>
 			<li>Compact view</li>

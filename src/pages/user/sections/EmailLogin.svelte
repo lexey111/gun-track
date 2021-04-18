@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
+	import Button from '../../../components/buttons/Button.svelte';
 	import {showError} from '../../../components/notifications/notify';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
@@ -48,10 +49,9 @@
 
 	<span class="stub"></span>
 
-	<button
-		class="press press-blue"
+	<Button
 		disabled={!signinAllowed}
-		on:click={signIn}>
+		onClick={signIn}>
 		Sign in
-	</button>
+	</Button>
 </div>

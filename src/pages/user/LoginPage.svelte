@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
+	import Button from '../../components/buttons/Button.svelte';
 	import {IAuthStore} from '../../stores/auth/auth-store.interface';
 	import EmailLogin from './sections/EmailLogin.svelte';
 	import ProfileLogin from './sections/SocialLogin.svelte';
@@ -31,11 +32,11 @@
 	<h3>New user?</h3>
 	<section>
 		<p>
-			Register new local user via e-mail:
+			Register new local user with e-mail:
 		</p>
-		<button class="press press-green press-ghost"
-		        on:click={() => navigate('login/signup')}>Sign up!
-		</button>
+		<Button onClick={() => navigate('login/signup')}>
+			Sign up!
+		</Button>
 	</section>
 </div>
 

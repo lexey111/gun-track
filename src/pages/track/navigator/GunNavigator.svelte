@@ -16,7 +16,7 @@
 	{#each gunsState.guns as gun}
 		<a on:click={() => handleGunSwitch(gun.id)}
 		   class={id === gun.id ? 'active' : ''}>
-			{gun.name}
+			{gun.name || gun.make || gun.model}
 		</a>
 	{/each}
 </div>

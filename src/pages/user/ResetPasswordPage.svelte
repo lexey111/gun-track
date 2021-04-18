@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
 	import {Link} from 'svelte-routing';
+	import Button from '../../components/buttons/Button.svelte';
 
 	import {showError, showInfo} from '../../components/notifications/notify';
 	import {IAuthStore} from '../../stores/auth/auth-store.interface';
@@ -64,12 +65,11 @@
 
 		<div class="form-group button-row">
 			<label/>
-			<button
-				class="press press-amber press-ghost"
+			<Button
 				disabled={!sendResetCodeAllowed}
-				on:click={sendResetCode}>
+				onClick={sendResetCode}>
 				Get password reset code
-			</button>
+			</Button>
 		</div>
 	</section>
 
@@ -124,12 +124,11 @@
 
 		<div class="form-group button-row">
 			<label/>
-			<button
-				class="press press-amber press-ghost"
+			<Button
 				disabled={!newPasswordAllowed}
-				on:click={sendResetCodeConfirm}>
+				onClick={sendResetCodeConfirm}>
 				Change password
-			</button>
+			</Button>
 		</div>
 	</section>
 
