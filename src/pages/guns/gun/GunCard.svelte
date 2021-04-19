@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
+	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {Gun} from '../../../models';
@@ -11,6 +12,11 @@
 	export let dateLocale: string;
 	export let onRemove: (id: string) => void;
 	export let onEdit: (id: string) => void;
+
+	const handleNavigate = (id: string) => {
+		navigate('/track/' + id);
+		console.log('navigate to', id);
+	};
 
 	let title;
 	let hasName;
@@ -28,7 +34,7 @@
 	<div class="gun-card">
 		<div class="gc-content">
 			<div class="gc-title">
-				<div class="gc-title-content">
+				<div class="gc-title-content" on:click={() => onEdit(gun.id)}>
 					{title}
 				</div>
 			</div>
@@ -48,6 +54,9 @@
 				</div>
 			{/if}
 			<div class="gc-actions">
+				<Button size="small" type="text" onClick={() => handleNavigate(gun.id)}>
+					<Icon type="goto"/>
+				</Button>
 				<Button size="small" onClick={() => onEdit(gun.id)}>
 					<Icon type="edit"/>
 					Change

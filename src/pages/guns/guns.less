@@ -34,6 +34,7 @@
 
 		.gc-title {
 			transition: background-color .2s ease-in-out, color .2s ease-in-out;
+			cursor: pointer;
 		}
 
 		&:hover, &:focus-within {
@@ -101,6 +102,11 @@
 
 			button:not(:last-child) {
 				margin-right: 8px;
+
+				.text {
+					padding-left: 8px;
+					padding-right: 8px;
+				}
 
 				svg {
 					margin-right: .4em;

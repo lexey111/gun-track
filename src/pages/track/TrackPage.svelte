@@ -75,6 +75,15 @@
 
 		const resetNeeded = (id && !record) || (storedId && !storedRecord) || (!id && !storedRecord);
 
+		if (id && record && (storedId !== id)) {
+			localStorage.setItem('gun.current', id);
+			return;
+		}
+
+		if (id && record) {
+			return;
+		}
+
 		if (resetNeeded) {
 			localStorage.setItem('gun.current', value.guns[0].id);
 			navigate('/track/' + value.guns[0].id);
@@ -94,7 +103,6 @@
 			componentProps: {
 				onConfirm: async (action: TAction) => {
 					modal.close();
-					console.log('action', action);
 					if (await ActionsStore.registerAction(id, action)) {
 						showSuccess('Action registered.');
 					}

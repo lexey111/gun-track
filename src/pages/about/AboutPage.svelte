@@ -126,7 +126,9 @@
 
 		<h3>Gun list</h3>
 		<ul>
-			<li>Goto Track link</li>
+			<li>
+				<Done>Goto Track link</Done>
+			</li>
 			<li>
 				<Done>"Make"/"Model" fields</Done>
 			</li>
