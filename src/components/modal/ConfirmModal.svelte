@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Button from '../buttons/Button.svelte';
+	import Icon from '../icons/Icon.svelte';
 
 	export let title = 'Confirmation';
 	export let text = 'Are you sure?';
 	export let confirmText = 'Confirm';
+	export let confirmIcon = '';
 
 	export let onConfirm: (name: string) => void;
 	export let onCancel: () => void;
@@ -22,6 +24,9 @@
 	        onClick={onCancel}>Cancel
 	</Button>
 	<Button type="danger"
-	        onClick={onConfirm}>{confirmText}
+	        onClick={onConfirm}>
+		{#if confirmIcon}
+			<Icon type={confirmIcon} class="inline"/>
+		{/if}{confirmText}
 	</Button>
 </div>

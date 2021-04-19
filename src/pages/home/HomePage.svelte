@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Button from '../../components/buttons/Button.svelte';
 	import I18n from '../../components/i18n/I18n.svelte';
+	import Icon from '../../components/icons/Icon.svelte';
+	import {IconsMap} from '../../components/icons/icons-map';
 </script>
 
 <div class="app-page">
@@ -49,7 +51,34 @@
 		<Button size="big" type="text-danger">Text</Button>
 		<Button size="big" type="text-danger" disabled={true}>Text danger disabled</Button>
 	</div>
+
+	<h4>Icons</h4>
+	<div class="icon-list">
+		{#each Object.keys(IconsMap) as type}
+			<div>
+				<Icon type={type} size="24px"/>
+				<p>{type}</p>
+			</div>
+		{/each}
+	</div>
 </div>
 
 <style lang="less">
+	.icon-list {
+		display: flex;
+		flex-flow: row wrap;
+
+		& > div {
+			display: flex;
+			flex-flow: column wrap;
+			margin: 10px;
+			background-color: #fff;
+			padding: 16px;
+			border-radius: 7px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+			align-items: center;
+			align-content: center;
+			text-align: center;
+		}
+	}
 </style>

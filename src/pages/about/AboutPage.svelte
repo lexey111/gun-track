@@ -18,6 +18,9 @@
 
 		<h3>UI</h3>
 		<ul>
+			<li>
+				<Done>Own SVG</Done>
+			</li>
 			<li>Design system - colors etc.</li>
 			<li>
 				<Done>Modal</Done>

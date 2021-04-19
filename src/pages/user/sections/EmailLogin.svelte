@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import Icon from '../../../components/icons/Icon.svelte';
 	import {showError} from '../../../components/notifications/notify';
 	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
@@ -52,6 +53,7 @@
 	<Button
 		disabled={!signinAllowed}
 		onClick={signIn}>
+		<Icon type="login" class="inline" size="24px"/>
 		Sign in
 	</Button>
 </div>

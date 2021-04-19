@@ -3,6 +3,7 @@
 	import {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {TConfirmProps} from './Confirm.interface';
 	import ConfirmModal from './ConfirmModal.svelte';
+
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 
 	export const showConfirmDialog = (props: TConfirmProps): void => {
@@ -12,6 +13,7 @@
 				title: props.title,
 				text: props.text,
 				confirmText: props.confirmText,
+				confirmIcon: props.confirmIcon,
 				onConfirm: () => {
 					modal.close();
 					props.onConfirm();

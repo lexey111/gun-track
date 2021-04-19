@@ -1,8 +1,7 @@
 <script lang="ts">
-	import AddIcon from 'carbon-icons-svelte/lib/Add32';
-
 	import {getContext, onDestroy, onMount} from 'svelte';
 	import Button from '../../components/buttons/Button.svelte';
+	import Icon from '../../components/icons/Icon.svelte';
 	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
 	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
 	import {Gun} from '../../models';
@@ -110,7 +109,7 @@
 	</p>
 	<p>
 		<Button onClick={showNewGunDialog}>
-			<AddIcon/>
+			<Icon type="plus-circle" size="24px" class="inline"/>
 			Register a Gun
 		</Button>
 	</p>
@@ -120,7 +119,7 @@
 	<h2>
 		Registered guns [{gunsState?.guns?.length}]
 		<span>
-			<Button type="text" onClick={showNewGunDialog}><AddIcon/> Add one more...</Button>
+			<Button type="text" onClick={showNewGunDialog}><Icon type="plus-circle" size="24px" class="inline"/> Add one more...</Button>
 		</span>
 	</h2>
 	<Guns
@@ -147,12 +146,6 @@
 			margin-left: 32px;
 			padding-left: 16px;
 			border-left: 1px dashed #ccc;
-
-			a {
-				padding: 0;
-				margin: 0;
-				font-size: var(--app-font-size);
-			}
 		}
 	}
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from '../../components/icons/Icon.svelte';
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
@@ -35,6 +36,7 @@
 			Register new local user with e-mail:
 		</p>
 		<Button onClick={() => navigate('login/signup')}>
+			<Icon type="user-add" class="inline" size="24px"/>
 			Sign up!
 		</Button>
 	</section>

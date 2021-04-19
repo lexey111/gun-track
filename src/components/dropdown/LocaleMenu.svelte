@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Wikis from 'carbon-icons-svelte/lib/Wikis24';
 	import {onDestroy, onMount} from 'svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import {TAppLocale} from '../../stores/app/app-state-store.interface';
+	import Icon from '../icons/Icon.svelte';
 	import Dropdown from './Dropdown.svelte';
 
 	let closeMenu;
@@ -27,7 +27,7 @@
 {#if app_state?.locale}
 	<Dropdown className="locale-menu" bind:close={closeMenu}>
 		<span slot="title">
-			<Wikis/>
+			<Icon type="world" size="24px"/>
 		</span>
 
 		<div class="dropdown-menu">

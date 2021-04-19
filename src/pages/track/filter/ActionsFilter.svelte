@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Filter from 'carbon-icons-svelte/lib/Filter16';
 	import {onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Dropdown from '../../../components/dropdown/Dropdown.svelte';
 	import I18n from '../../../components/i18n/I18n.svelte';
+	import Icon from '../../../components/icons/Icon.svelte';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import {ActionTypes} from '../../../stores/actions/actions-store.types';
 
@@ -78,7 +78,7 @@
           onActiveChanged={handleDropdownOpened}
           className="af-filter"
           bind:close={closeDropdown}>
-	<span slot="title" class="af-title"><Filter/> {title}</span>
+	<span slot="title" class="af-title"><Icon type="filter" class="inline"/> {title}</span>
 	<div class="af-dropdown-content">
 		<p>
 			<input type="checkbox" id={'all'}

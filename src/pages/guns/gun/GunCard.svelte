@@ -1,10 +1,8 @@
 <script lang="ts">
-	import Edit from 'carbon-icons-svelte/lib/Edit16';
-	import Trash from 'carbon-icons-svelte/lib/TrashCan16';
-
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 	import Button from '../../../components/buttons/Button.svelte';
+	import Icon from '../../../components/icons/Icon.svelte';
 	import {Gun} from '../../../models';
 
 	dayjs.extend(localizedFormat);
@@ -51,11 +49,11 @@
 			{/if}
 			<div class="gc-actions">
 				<Button size="small" onClick={() => onEdit(gun.id)}>
-					<Edit/>
+					<Icon type="edit"/>
 					Change
 				</Button>
 				<Button size="small" type="danger" onClick={() => onRemove(gun.id)}>
-					<Trash/>
+					<Icon type="delete"/>
 				</Button>
 			</div>
 		</div>
