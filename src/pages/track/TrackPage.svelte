@@ -196,6 +196,14 @@
 			onDelete={handleDelete}
 			actionsState={actionsState}/>
 	{/if}
+
+	{#if (actionsState?.actions?.length > 4)}
+		<div class="container-floating">
+			<div class="floating-add-action" on:click={showNewActionDialog}>
+				<Icon type="plus-circle" size="48px"/>
+			</div>
+		</div>
+	{/if}
 {/if}
 
 <style lang="less">

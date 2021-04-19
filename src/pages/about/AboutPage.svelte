@@ -104,17 +104,24 @@
 				<Done>Better hover</Done>
 			</li>
 			<li>Stat cards</li>
-			<li>Floating add button</li>
+			<li>
+				<Done>Floating add button</Done>
+			</li>
 			<li>Block UI when busy state</li>
 			<li>Compact view</li>
 			<li>
 				<Done>Add repair</Done>
 			</li>
-			<li>Restrict string lengths</li>
 			<li>
 				<Done>Date editor</Done>
 			</li>
+		</ul>
+
+		<h3>Action editor</h3>
+		<ul>
+			<li>Better tabs</li>
 			<li>Groups in type</li>
+			<li>Restrict string lengths</li>
 		</ul>
 
 		<h3>Gun list</h3>
@@ -123,8 +130,6 @@
 			<li>
 				<Done>"Make"/"Model" fields</Done>
 			</li>
-			<li>Caliber field</li>
-			<li>Notes editor</li>
 			<li>
 				<Done>Guns to store</Done>
 			</li>
@@ -149,13 +154,20 @@
 			<li>Delete gun with records</li>
 			<li>Extra confirmation if records</li>
 			<li>SS selectors? delete actions?</li>
-			<li>Photo uploading for guns</li>
+			<li>Show photo on cards</li>
 			<li>
 				<Done>Big text editor</Done>
 			</li>
 			<li>Dashboard and graphs</li>
 			<li>CSV export</li>
 			<li>Mobile views</li>
+		</ul>
+
+		<h3>Gun editor</h3>
+		<ul>
+			<li>Notes</li>
+			<li>Photo uploading</li>
+			<li>Caliber field</li>
 		</ul>
 
 		<h3>i18n</h3>
