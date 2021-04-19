@@ -1,0 +1,215 @@
+:global {
+	.dropdown-container {
+		position: relative;
+		min-height: 1em;
+
+		hr {
+			margin: 0 0 8px 0;
+			padding: 0;
+		}
+
+		.dc-title {
+			cursor: pointer;
+			color: var(--app-link-text);
+			transition: all .2s ease;
+			position: relative;
+			padding-right: 10px;
+			outline: none;
+			display: flex;
+			flex-flow: row nowrap;
+			height: 1em;
+			align-items: center;
+			align-content: center;
+
+			i {
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 6px 3px 0 3px;
+				position: absolute;
+				right: 0;
+				top: 50%;
+				margin-top: -3px;
+				border-color: var(--app-link-text) transparent transparent transparent;
+				transition: all .2s ease;
+				transform-origin: center center;
+			}
+
+			&:focus {
+				text-decoration: underline;
+			}
+		}
+
+		.dc-dropdown-wrapper {
+			position: absolute;
+			top: 100%;
+			margin-top: 2px;
+			right: -2px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+			background-color: var(--app-page-background);
+			padding: 8px 16px;
+			border-radius: 6px;
+			pointer-events: none;
+			opacity: 0;
+			z-index: -1;
+			transition: all .2s ease;
+			transform-origin: top right;
+			transform: scaleY(.5);
+		}
+
+		&.active, &:focus {
+			.dc-title {
+				color: var(--app-link-text-active);
+
+				i {
+					transform: rotate(180deg);
+					border-color: var(--app-link-text-active) transparent transparent transparent;
+				}
+
+				&:focus {
+					outline: none;
+				}
+			}
+
+			.dc-dropdown-wrapper {
+				pointer-events: all;
+				z-index: 1000;
+				opacity: 1;
+				transform: scaleY(1);
+			}
+		}
+
+		&.menu-left {
+			.dc-dropdown-wrapper {
+				left: 0;
+				right: unset;
+			}
+		}
+
+		&.menu {
+			display: flex;
+			flex-flow: row nowrap;
+			height: 100%;
+			align-items: center;
+			align-content: center;
+			position: relative;
+			width: auto;
+
+			.dc-dropdown-wrapper {
+				display: flex;
+				flex-flow: column nowrap;
+
+				.dc-dropdown-content {
+					display: flex;
+					flex-flow: column nowrap;
+
+					.dropdown-menu {
+						display: flex;
+						flex-flow: column nowrap;
+
+						a {
+							padding: 8px 16px 8px 22px;
+							font-size: var(--app-small-font-size);
+							color: var(--app-text);
+							transition: all .2s ease;
+							white-space: nowrap;
+							position: relative;
+							border-radius: 7px;
+							line-height: 1.2;
+
+							&:hover, &:focus {
+								background-color: var(--app-menu-bg);
+								color: var(--app-menu-text);
+								box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+							}
+
+							&:before {
+								content: '';
+								width: 16px;
+								position: absolute;
+								left: 6px;
+								color: var(--app-menu-bg);
+								transition: color .2s ease;
+							}
+
+							&.selected {
+								font-weight: bold;
+
+								&:before {
+									content: '✔';
+								}
+
+								&:hover, &:focus {
+									&:before {
+										color: var(--app-menu-text);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&.menu-button {
+			.dc-title {
+				background-color: var(--app-primary-bg);
+				height: 42px;
+				padding: 0 32px 0 16px;
+				border-radius: 12px;
+				color: var(--app-primary-text);
+				box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+				max-width: 20em;
+
+				i {
+					right: 12px;
+					border-top-color: var(--app-primary-text);
+				}
+
+				&:focus {
+					box-shadow: 0 0 0 4px rgba(129, 34, 237, 0.4);
+					background-color: var(--app-primary-bg-darken);
+					text-decoration: none;
+				}
+
+				&:hover {
+					background-color: var(--app-primary-bg-lighen);
+				}
+			}
+
+			.dc-dropdown-wrapper {
+				background-color: var(--app-primary-bg);
+				margin-top: 0;
+
+				.dc-dropdown-content {
+					.dropdown-menu {
+						a {
+							color: var(--app-primary-text);
+							font-size: var(--app-small-font-size);
+
+							&:hover, &:focus {
+								background-color: var(--app-primary-bg-lighen);
+								color: var(--app-primary-text);
+							}
+
+							&:before {
+								color: var(--app-primary-text);
+								opacity: .8;
+							}
+
+							&.selected {
+								&:hover, &:focus {
+									&:before {
+										color: var(--app-primary-text);
+										opacity: 1;
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+		}
+	}
+}

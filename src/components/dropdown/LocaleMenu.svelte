@@ -25,7 +25,7 @@
 </script>
 
 {#if app_state?.locale}
-	<Dropdown className="locale-menu" bind:close={closeMenu}>
+	<Dropdown className="locale-menu menu" bind:close={closeMenu}>
 		<span slot="title">
 			<Icon type="world" size="24px"/>
 		</span>
@@ -41,12 +41,6 @@
 <style lang="less">
 	:global {
 		.locale-menu {
-			display: flex;
-			flex-flow: row nowrap;
-			height: 100%;
-			align-items: center;
-			align-content: center;
-
 			&.dropdown-container {
 				.dc-title {
 					color: #fff !important;
@@ -87,46 +81,6 @@
 							border-width: 10px 6px 0 6px;
 							top: 100%;
 							margin-top: -8px;
-						}
-					}
-				}
-			}
-
-			.dc-dropdown-wrapper {
-				.dc-dropdown-content {
-					.dropdown-menu {
-						a {
-							padding: 8px 16px;
-							font-size: var(--app-small-font-size);
-							color: var(--app-text);
-							transition: all .2s ease;
-
-							&:hover, &:focus {
-								background-color: var(--app-menu-bg);
-								color: var(--app-menu-text)
-							}
-
-							&:before {
-								content: '';
-								width: 1em;
-								margin-right: .4em;
-								color: var(--app-menu-bg);
-								transition: color .2s ease;
-							}
-
-							&.selected {
-								font-weight: bold;
-
-								&:before {
-									content: '✔';
-								}
-
-								&:hover, &:focus {
-									&:before {
-										color: var(--app-menu-text);
-									}
-								}
-							}
 						}
 					}
 				}

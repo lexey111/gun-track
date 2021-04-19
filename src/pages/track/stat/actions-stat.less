@@ -1,13 +1,15 @@
 :global {
 	.top-panel {
 		& > div {
-			&:not(:last-child) {
+			&:not(:last-child):not(:first-child) {
 				margin-right: 2em;
 			}
+
 			transform-origin: top left;
 			animation-name: top-panel-appear;
 			animation-duration: .4s;
 			animation-timing-function: ease-in-out;
+
 			ul {
 				list-style: none;
 				margin: 0;

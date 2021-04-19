@@ -80,7 +80,7 @@
 		document.removeEventListener('visibilitychange', onPageVisibilityChanged);
 		storeUnsubscribe$ && storeUnsubscribe$();
 		clearTimeout(openTimeout);
-	})
+	});
 </script>
 
 <div class={'dropdown-container' + (active ? ' active' : '') + (className ? ' ' + className : '')}
@@ -103,86 +103,5 @@
 </div>
 
 <style lang="less">
-	:global {
-		.dropdown-container {
-			position: relative;
-			min-height: 1em;
-
-			hr {
-				margin: 0 0 8px 0;
-				padding: 0;
-			}
-
-			.dc-title {
-				cursor: pointer;
-				color: var(--app-link-text);
-				transition: all .2s ease;
-				position: relative;
-				padding-right: 10px;
-				outline: none;
-				display: flex;
-				flex-flow: row nowrap;
-				height: 1em;
-				align-items: center;
-				align-content: center;
-
-				i {
-					width: 0;
-					height: 0;
-					border-style: solid;
-					border-width: 6px 3px 0 3px;
-					position: absolute;
-					right: 0;
-					top: 50%;
-					margin-top: -3px;
-					border-color: var(--app-link-text) transparent transparent transparent;
-					transition: all .2s ease;
-					transform-origin: center center;
-				}
-
-				&:focus {
-					text-decoration: underline;
-				}
-			}
-
-			.dc-dropdown-wrapper {
-				position: absolute;
-				top: 100%;
-				margin-top: 2px;
-				right: -2px;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
-				background-color: var(--app-page-background);
-				padding: 8px 16px;
-				border-radius: 6px;
-				pointer-events: none;
-				opacity: 0;
-				z-index: -1;
-				transition: all .2s ease;
-				transform-origin: top right;
-				transform: scaleY(.5);
-			}
-
-			&.active, &:focus {
-				.dc-title {
-					color: var(--app-link-text-active);
-
-					i {
-						transform: rotate(180deg);
-						border-color: var(--app-link-text-active) transparent transparent transparent;
-					}
-
-					&:focus {
-						outline: none;
-					}
-				}
-
-				.dc-dropdown-wrapper {
-					pointer-events: all;
-					z-index: 1000;
-					opacity: 1;
-					transform: scaleY(1);
-				}
-			}
-		}
-	}
+	@import "dropdown.less";
 </style>

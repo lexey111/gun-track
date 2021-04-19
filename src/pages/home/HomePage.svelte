@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '../../components/buttons/Button.svelte';
+	import Dropdown from '../../components/dropdown/Dropdown.svelte';
 	import I18n from '../../components/i18n/I18n.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 	import {IconsMap} from '../../components/icons/icons-map';
@@ -15,6 +16,36 @@
 	<h3>
 		<I18n>@Common.ThisIsGunTrack</I18n>
 	</h3>
+	<h4>Dropdown</h4>
+	<div style="display: inline-flex">
+		<Dropdown className="menu menu-left menu-button">
+			<span slot="title">AAAA</span>
+			<div class="dropdown-menu">
+				<a>
+					sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a class="selected">
+					Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a>LK ;lkewew p[ssda</a>
+				<a>IUI Y78 8799</a>
+			</div>
+		</Dropdown>
+		&mdash;
+		<Dropdown className="menu menu-left">
+			<span slot="title">AAAA</span>
+			<div class="dropdown-menu">
+				<a>
+					sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a class="selected">
+					Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a>LK ;lkewew p[ssda</a>
+				<a>IUI Y78 8799</a>
+			</div>
+		</Dropdown>
+	</div>
 
 	<h4>Default</h4>
 	<div>
@@ -61,6 +92,7 @@
 			</div>
 		{/each}
 	</div>
+
 </div>
 
 <style lang="less">

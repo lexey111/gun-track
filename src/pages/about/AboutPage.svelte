@@ -80,10 +80,16 @@
 			<li>Navigator offline mode (disable requests)</li>
 		</ul>
 
+		<h3>Login</h3>
+		<ul>
+			<li>Better design</li>
+			<li>Email fields validation</li>
+		</ul>
+
 		<h3>Track list</h3>
 		<ul>
 			<li>
-				Dropdown gun navigator
+				<Done>Dropdown gun navigator</Done>
 			</li>
 			<li>
 				<Done>Filter by type (dropdown menu)</Done>
@@ -113,6 +119,7 @@
 
 		<h3>Gun list</h3>
 		<ul>
+			<li>Goto Track link</li>
 			<li>
 				<Done>"Make"/"Model" fields</Done>
 			</li>

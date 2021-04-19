@@ -162,12 +162,12 @@
 		Loading...
 	</p>
 {:else }
-	<GunNavigator id={id} gunsState={gunsState}/>
-
 	<div class="top-panel">
+		<GunNavigator id={id} gunsState={gunsState}/>
+
 		<div>
-			<Button onClick={showNewActionDialog}>
-				<Icon type="plus-circle" size="24px" class="inline"/>
+			<Button onClick={showNewActionDialog} type="text">
+				<Icon type="plus-circle" class="inline" size="24px"/>
 				Add an action
 			</Button>
 		</div>
