@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {ActionsStore} from '../../../stores/actions/actions-store';
-	import {TActionsState} from '../../../stores/actions/actions-store.interface';
+	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 
 	const changeSortDirection = () => {
 		if (ActionsStore.getOrder() === 'asc') {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {ActionExtended} from '../../../../stores/actions/actions-store.interface';
+	import type {ActionExtended} from '../../../../stores/actions/actions-store.interface';
 	import {getCurrencySign} from '../../../../stores/actions/actions-store.types';
 
 	export let action: ActionExtended;

@@ -4,7 +4,8 @@
 	 */
 	import {onDestroy} from 'svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
-	import {prepareSuperModal, TSuperModal} from './modal-helper';
+	import type {TSuperModal} from './modal-helper';
+	import {prepareSuperModal} from './modal-helper';
 
 	export const closeButton = true;
 	export const closeOnEsc = true;

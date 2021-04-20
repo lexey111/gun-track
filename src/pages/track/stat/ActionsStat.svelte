@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {TActionsState} from '../../../stores/actions/actions-store.interface';
+	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 
 	export let actionsState: TActionsState;
 

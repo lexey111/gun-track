@@ -2,7 +2,7 @@
 	import {onDestroy} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import {AuthStore} from '../stores/auth/auth-store';
-	import {TAuthState} from '../stores/auth/auth-store.interface';
+	import type {TAuthState} from '../stores/auth/auth-store.interface';
 
 	export let redirectTo = '/home';
 	export let logout = false;

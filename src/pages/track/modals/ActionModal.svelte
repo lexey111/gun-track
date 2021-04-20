@@ -1,7 +1,7 @@
 <script lang="ts">
 	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
 
-	import CKEditor from 'ckeditor5-svelte';
+	import CKEditor from 'ckeditor5-svelte/dist';
 	import * as dayjs from 'dayjs';
 	import {onDestroy, onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
@@ -43,7 +43,7 @@
 	let ckStarted = false;
 
 	let ckDelay;
-	const activateCK = () => {
+	const activateCK = (): void => {
 		if (ckStarted || ckDelay) {
 			return;
 		}
@@ -52,7 +52,7 @@
 		}, 200);
 	};
 
-	const deactivateCK = () => {
+	const deactivateCK = (): void => {
 		clearTimeout(ckDelay);
 		ckDelay = null;
 		ckStarted = false;

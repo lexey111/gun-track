@@ -3,12 +3,11 @@
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showError} from '../../../components/notifications/notify';
-	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
+	import type {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;
 
 	let email = '';
-	let emailCode = '';
 	let pwd = '';
 
 	$: signinAllowed = !!email.trim() && !!pwd.trim();

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Image from '../../../components/images/Image.svelte';
-	import {IAuthStore, TAuthState} from '../../../stores/auth/auth-store.interface';
+	import type {IAuthStore, TAuthState} from '../../../stores/auth/auth-store.interface';
 	import ProfileLogout from './ProfileLogout.svelte';
 
 	export let authStore: IAuthStore = null;
@@ -25,7 +25,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<ProfileLogout authStore={authStore} authState={authState}/>
+			<ProfileLogout authStore={authStore}/>
 		</td>
 	</tr>
 </table>

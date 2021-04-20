@@ -7,7 +7,7 @@
 	export let confirmText = 'Confirm';
 	export let confirmIcon = '';
 
-	export let onConfirm: (name: string) => void;
+	export let onConfirm: () => void;
 	export let onCancel: () => void;
 </script>
 

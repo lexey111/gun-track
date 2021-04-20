@@ -1,5 +1,5 @@
-import {Writable} from 'svelte/store';
-import {Gun} from '../../models';
+import type {Writable} from 'svelte/store';
+import type {Gun} from '../../models';
 
 export type TGunsState = {
 	busy: boolean

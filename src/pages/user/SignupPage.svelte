@@ -4,7 +4,7 @@
 	import Button from '../../components/buttons/Button.svelte';
 
 	import {showError, showInfo} from '../../components/notifications/notify';
-	import {IAuthStore} from '../../stores/auth/auth-store.interface';
+	import type {IAuthStore} from '../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;
 
@@ -17,7 +17,7 @@
 	$: codeAllowed = !!email.trim() && !!code.trim();
 
 	const signUp = async () => {
-		const result: unknown = await authStore.signUp(email, pwd);
+		const result: any = await authStore.signUp(email, pwd);
 		if (result.message) {
 			showError(`Registration failed: ${result.message}`);
 		} else {
@@ -26,7 +26,7 @@
 	}
 
 	const signUpVerify = async () => {
-		const result: unknown = await authStore.confirmSignUp(email, code);
+		const result: any = await authStore.confirmSignUp(email, code);
 		if (result.message) {
 			showError(`Confirmation failed: ${result.message}`);
 		} else {

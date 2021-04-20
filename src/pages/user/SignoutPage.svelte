@@ -3,8 +3,10 @@
 	import {navigate} from 'svelte-routing';
 
 	onMount(() => {
-		navigate('/home');
-	})
+		setTimeout(() => {
+			navigate('/home');
+		}, 500);
+	});
 </script>
 
 <div class={"app-page"}>

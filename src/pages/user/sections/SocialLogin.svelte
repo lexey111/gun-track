@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
-	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
+	import type {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;
 

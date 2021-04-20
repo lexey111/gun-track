@@ -4,7 +4,7 @@
 	import {menuRoutes} from '../config/menu.config';
 	import {AppStateStore} from '../stores/app/app-state-store';
 	import {AuthStore} from '../stores/auth/auth-store';
-	import {TAuthState} from '../stores/auth/auth-store.interface';
+	import type {TAuthState} from '../stores/auth/auth-store.interface';
 	import LocaleMenu from './dropdown/LocaleMenu.svelte';
 
 	let activeRoutes = [];

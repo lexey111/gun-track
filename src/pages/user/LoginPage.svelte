@@ -3,7 +3,7 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
-	import {IAuthStore} from '../../stores/auth/auth-store.interface';
+	import type {IAuthStore} from '../../stores/auth/auth-store.interface';
 	import EmailLogin from './sections/EmailLogin.svelte';
 	import ProfileLogin from './sections/SocialLogin.svelte';
 

@@ -4,7 +4,7 @@
 	import Button from '../../components/buttons/Button.svelte';
 
 	import {showError, showInfo} from '../../components/notifications/notify';
-	import {IAuthStore} from '../../stores/auth/auth-store.interface';
+	import type {IAuthStore} from '../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;
 
@@ -17,7 +17,7 @@
 	$: newPasswordAllowed = !!email.trim() && !!code.trim() && !!pwd.trim() && pwd === pwd2;
 
 	const sendResetCode = async () => {
-		const result: unknown = await authStore.forgotPassword(email);
+		const result: any = await authStore.forgotPassword(email);
 		if (result?.message) {
 			showError(`Sending code failed: ${result.message}`);
 		} else {
@@ -26,7 +26,7 @@
 	}
 
 	const sendResetCodeConfirm = async () => {
-		const result: unknown = await authStore.confirmForgotPassword(email, code, pwd);
+		const result: any = await authStore.confirmForgotPassword(email, code, pwd);
 		if (result?.message) {
 			showError(`Confirmation failed: ${result.message}`);
 		} else {

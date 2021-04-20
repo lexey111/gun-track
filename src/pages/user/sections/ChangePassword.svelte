@@ -1,19 +1,18 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
 	import {showError, showInfo} from '../../../components/notifications/notify';
-	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
+	import type {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	export let authStore: IAuthStore = null;
 
 	let oldPwd = '';
 	let pwd = '';
 	let pwd2 = '';
-	let code = '';
 
 	$: newPasswordAllowed = !!oldPwd.trim() && !!pwd.trim() && pwd === pwd2;
 
 	const changePassword = async () => {
-		const result: unknown = await authStore.changePassword(oldPwd, pwd);
+		const result: any = await authStore.changePassword(oldPwd, pwd);
 		if (result?.message) {
 			showError(`Change password failed: ${result.message}`);
 		} else {

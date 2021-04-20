@@ -7,7 +7,7 @@
 
 	import {onDestroy, onMount} from 'svelte';
 	import I18n from '../../../../components/i18n/I18n.svelte';
-	import {TAction} from '../../../../stores/actions/actions-store.interface';
+	import type {TAction} from '../../../../stores/actions/actions-store.interface';
 	import {getTypeColor} from '../../../../stores/actions/actions-store.types';
 	import {AppStateStore} from '../../../../stores/app/app-state-store';
 
@@ -34,12 +34,12 @@
 		appState$ && appState$();
 	});
 
-	let isDateToday;
+	let isDateToday: boolean;
 	$: {
 		isDateToday = dayjs(action.date).startOf('day').isToday();
 	}
 
-	let isDateYesterday;
+	let isDateYesterday: boolean;
 	$: {
 		isDateYesterday = dayjs(action.date).startOf('day').isYesterday();
 	}

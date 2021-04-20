@@ -14,7 +14,7 @@
 	import {AppLocales} from '../stores/app/app-state-store.interface';
 
 	import {AuthStore} from '../stores/auth/auth-store';
-	import {TAuthState} from '../stores/auth/auth-store.interface';
+	import type {TAuthState} from '../stores/auth/auth-store.interface';
 
 	import {extendHistoryTracking} from './history-helper';
 

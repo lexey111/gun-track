@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
-		"target": "es6",
+		"target": "esnext",
+		"module": "esnext",
 		"moduleResolution": "node",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
@@ -11,18 +12,23 @@
 		"removeComments": true,
 		"noImplicitAny": false,
 		"skipLibCheck": true,
+		"importsNotUsedAsValues": "error",
+		"isolatedModules": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"noUnusedLocals": true,
+		"forceConsistentCasingInFileNames": true,
+		"allowJs": true,
+		"checkJs": true,
 		"lib": [
 			"dom",
-			"es2015",
-			"es2017"
+			"es2018"
 		],
 		"baseUrl": ".",
 		"typeRoots": [
 			"node_modules/@types"
 		],
 		"types": [
+			"vite/client",
 			"svelte",
 			"svelte/store",
 			"svelte/motion",
@@ -32,7 +38,11 @@
 		]
 	},
 	"include": [
-		"./src/**/*", ".eslintrc.js"
+		"./src/**/*",
+		".eslintrc.js",
+		"src/**/*.d.ts",
+		"src/**/*.js",
+		"src/**/*.svelte"
 	],
 	"exclude": [
 		"node_modules/**/*"

@@ -4,11 +4,11 @@
 	import Icon from '../../components/icons/Icon.svelte';
 	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
 	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
-	import {Gun} from '../../models';
+	import type {Gun} from '../../models';
 	import {AppStateStore} from '../../stores/app/app-state-store';
-	import {TAppModal} from '../../stores/app/app-state-store.interface';
+	import type {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
-	import {TGunsState} from '../../stores/guns/guns-store.interface';
+	import type {TGunsState} from '../../stores/guns/guns-store.interface';
 	import Guns from './guns/Guns.svelte';
 	import GunModal from './modals/GunModal.svelte';
 

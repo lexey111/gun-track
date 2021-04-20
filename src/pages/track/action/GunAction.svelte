@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {TAction} from '../../../stores/actions/actions-store.interface';
+	import type {TAction} from '../../../stores/actions/actions-store.interface';
 	import {getTypeColor} from '../../../stores/actions/actions-store.types';
 	import ActionData from './content/ActionData.svelte';
 	import ActionNotes from './content/ActionNotes.svelte';

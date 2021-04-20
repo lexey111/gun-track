@@ -4,7 +4,7 @@
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
-	import {Gun} from '../../../models';
+	import type {Gun} from '../../../models';
 
 	dayjs.extend(localizedFormat);
 
@@ -18,10 +18,10 @@
 		console.log('navigate to', id);
 	};
 
-	let title;
-	let hasName;
-	let hasMake;
-	let hasModel;
+	let title: string;
+	let hasName: boolean;
+	let hasMake: boolean;
+	let hasModel: boolean;
 	$: {
 		title = gun?.name || gun?.make || gun?.model || 'no name';
 		hasName = !!gun?.name;

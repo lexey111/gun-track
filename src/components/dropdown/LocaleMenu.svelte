@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
-	import {TAppLocale} from '../../stores/app/app-state-store.interface';
+	import type {TAppLocale} from '../../stores/app/app-state-store.interface';
 	import Icon from '../icons/Icon.svelte';
 	import Dropdown from './Dropdown.svelte';
 

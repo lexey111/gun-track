@@ -3,14 +3,12 @@
 
 	export let type = 'star';
 	export let size = '1rem';
-	export let focusable = false;
 
 	const displayIcon = IconsMap[type] || IconsMap.star;
 </script>
 
 <svg
 	class={$$props.class}
-	{focusable}
 	width={size}
 	height={size}
 	fill="currentColor"

@@ -1,4 +1,5 @@
-export const autoFocus = (node: HTMLInputElement): { destroy: () => void } => {
+/* eslint-disable */
+export const autoFocus = (node: any): { destroy: () => void } => {
 	let delay;
 
 	if (node.focus) {

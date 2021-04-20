@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {IAuthStore, TAuthState} from '../../stores/auth/auth-store.interface';
+	import type {IAuthStore, TAuthState} from '../../stores/auth/auth-store.interface';
 	import ChangePassword from './sections/ChangePassword.svelte';
 	import ProfileDetails from './sections/ProfileDetails.svelte';
 

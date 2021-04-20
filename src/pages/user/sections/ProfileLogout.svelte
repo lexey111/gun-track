@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
-	import {IConfirmDialog} from '../../../components/modal/Confirm.interface';
+	import type {IConfirmDialog} from '../../../components/modal/Confirm.interface';
 	import Confirm from '../../../components/modal/Confirm.svelte';
-	import {IAuthStore} from '../../../stores/auth/auth-store.interface';
+	import type {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
 	let confirmDialog: IConfirmDialog;
 

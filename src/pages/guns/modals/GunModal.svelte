@@ -2,7 +2,7 @@
 	import * as dayjs from 'dayjs'
 	import {onDestroy, onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
-	import {Gun} from '../../../models';
+	import type {Gun} from '../../../models';
 	import {AppStateStore, dateLocale} from '../../../stores/app/app-state-store';
 	import {autoFocusWithSelect} from '../../../utils/autofocus';
 
@@ -17,7 +17,7 @@
 	export let onConfirm: (gun) => void;
 	export let onCancel: () => void;
 
-	let appState$;
+	let appState$: any;
 	const state = {dateLocale: 'en'};
 
 	const handleConfirm = () => {
@@ -52,7 +52,7 @@
 		appState$ && appState$();
 	});
 
-	let disabled;
+	let disabled: boolean;
 	$ : {
 		disabled = !name.trim() && !make.trim() && !model.trim();
 	}

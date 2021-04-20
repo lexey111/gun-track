@@ -1,9 +1,9 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
 	import Dropdown from '../../../components/dropdown/Dropdown.svelte';
-	import {Gun} from '../../../models';
+	import type {Gun} from '../../../models';
 	import {GunsStore} from '../../../stores/guns/guns-store';
-	import {TGunsState} from '../../../stores/guns/guns-store.interface';
+	import type {TGunsState} from '../../../stores/guns/guns-store.interface';
 
 	export let id;
 	export let gunsState: TGunsState;

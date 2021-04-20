@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {getContext} from 'svelte';
-	import {TAppModal} from '../../stores/app/app-state-store.interface';
-	import {TConfirmProps} from './Confirm.interface';
+	import type {TAppModal} from '../../stores/app/app-state-store.interface';
+	import type {TConfirmProps} from './Confirm.interface';
 	import ConfirmModal from './ConfirmModal.svelte';
 
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;

@@ -4,7 +4,7 @@ import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
 import {Gun} from '../../models';
 import {getErrorText} from '../../utils/errors';
-import {IGunStore, TGunsState} from './guns-store.interface';
+import type {IGunStore, TGunsState} from './guns-store.interface';
 
 let _guns: Array<Gun> = [];
 let storeSubscribed = false;

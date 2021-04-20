@@ -6,7 +6,7 @@ import {Action} from '../../models';
 import {getErrorText} from '../../utils/errors';
 import {CompareStringArrays} from '../../utils/objects';
 import {GunsStore} from '../guns/guns-store';
-import {ActionExtended, IActionsStore, TAction, TActionsState} from './actions-store.interface';
+import type {ActionExtended, IActionsStore, TAction, TActionsState} from './actions-store.interface';
 import {ActionCurrencies, ActionTypes} from './actions-store.types';
 
 let currentOrder: SortDirection = SortDirection.DESCENDING;

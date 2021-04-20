@@ -1,7 +1,7 @@
 <script lang="ts">
 
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
-	import {TActionsState} from '../../../stores/actions/actions-store.interface';
+	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 	import {isEmpty} from '../../../utils/objects';
 	import GunAction from '../action/GunAction.svelte';
 

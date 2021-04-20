@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
 	import {NotifyStore} from './notify-store';
-	import {TNotificationState} from './notify-store.interface';
+	import type {TNotificationState} from './notify-store.interface';
 
 	let notificationUnsubscribe;
 
