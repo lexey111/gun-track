@@ -111,7 +111,6 @@
 			}
 		});
 	}
-
 	onMount(() => {
 		gunsUnsubscribe = GunsStore.subscribe((value: TGunsState) => {
 			if (!value) {

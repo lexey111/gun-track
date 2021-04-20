@@ -6,15 +6,14 @@
 	import {onDestroy, onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
 	import LocalisedDatepicker from '../../../components/datepicker/LocalisedDatepicker.svelte';
+	import CurrencyMenu from '../../../components/dropdown/CurrencyMenu.svelte';
 	import TypeMenu from '../../../components/dropdown/TypeMenu.svelte';
-	import I18n from '../../../components/i18n/I18n.svelte';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import Tab from '../../../components/tabs/Tab.svelte';
 	import TabHeader from '../../../components/tabs/TabHeader.svelte';
 	import TabPanel from '../../../components/tabs/TabPanel.svelte';
 	import Tabs from '../../../components/tabs/Tabs.svelte';
 	import {Action} from '../../../models';
-	import {ActionCurrencies} from '../../../stores/actions/actions-store.types';
 
 	let editor = DecoupledEditor;
 	let editorInstance = null;
@@ -96,17 +95,21 @@
 		type = t;
 	};
 
+	const handleCurrencyChange = (t: string) => {
+		currency = t;
+	};
+
 	const handleConfirm = () => {
 		const dateToSave = dayjs(date || new Date()).toDate();
 		onConfirm({
 			...action,
-			title,
+			title: title.substring(0, 128),
 			type,
-			comment,
+			comment: comment.substring(0, 128),
 			shots,
 			currency,
 			expenses,
-			trainingNotes,
+			trainingNotes: trainingNotes.substring(0, 2048),
 			date: dateToSave.toISOString()
 		});
 	}
@@ -190,15 +193,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="currency">Currency</label>
-				<select bind:value={currency} id="currency" class="short-field">
-					{#each ActionCurrencies as currency}
-						<option value={currency.id}>
-							{currency.sign}
-							<I18n text={'@Currencies.' + currency.id}/>
-						</option>
-					{/each}
-				</select>
+				<label>Currency</label>
+				<CurrencyMenu {currency} onChange={handleCurrencyChange}/>
 			</div>
 		</TabPanel>
 

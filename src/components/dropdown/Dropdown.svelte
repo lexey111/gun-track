@@ -100,13 +100,13 @@
 		<Icon type="down" size=".7em" class="dc-down"/>
 	</div>
 
+	{#if (active)}
 	<div class="dc-dropdown-wrapper">
 		<div class="dc-dropdown-content">
-			{#if (active)}
 				<slot></slot>
-			{/if}
 		</div>
 	</div>
+	{/if}
 </div>
 
 <style lang="less">

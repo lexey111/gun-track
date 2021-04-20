@@ -61,46 +61,48 @@
 <div class="modal-header">{isNew ? 'New gun' : 'Edit gun'}</div>
 
 <div class="modal-content">
-	<div class="form-group">
-		<label for="name">Name of the gun</label>
-		<input
-			placeholder="Black rifle .223"
-			autocomplete="off"
-			maxlength="64"
-			required
-			use:autoFocusWithSelect
-			bind:value={name}
-			id="name"/>
-	</div>
-
-	<div class="form-group">
-		<label for="make">Make</label>
-		<input
-			placeholder="Inter Ordnance"
-			autocomplete="off"
-			maxlength="64"
-			required
-			bind:value={make}
-			id="make"/>
-	</div>
-
-	<div class="form-group">
-		<label for="model">Model</label>
-		<input
-			placeholder="Savage MSR-15 Recon"
-			autocomplete="off"
-			maxlength="64"
-			required
-			bind:value={model}
-			id="model"/>
-	</div>
-
-	{#if (!isNew)}
+	<div class="modal-content-wrapper">
 		<div class="form-group">
-			<label>Registered</label>
-			<span>{registered}</span>
+			<label for="name">Name of the gun</label>
+			<input
+				placeholder="Black rifle .223"
+				autocomplete="off"
+				maxlength="64"
+				required
+				use:autoFocusWithSelect
+				bind:value={name}
+				id="name"/>
 		</div>
-	{/if}
+
+		<div class="form-group">
+			<label for="make">Make</label>
+			<input
+				placeholder="Inter Ordnance"
+				autocomplete="off"
+				maxlength="64"
+				required
+				bind:value={make}
+				id="make"/>
+		</div>
+
+		<div class="form-group">
+			<label for="model">Model</label>
+			<input
+				placeholder="Savage MSR-15 Recon"
+				autocomplete="off"
+				maxlength="64"
+				required
+				bind:value={model}
+				id="model"/>
+		</div>
+
+		{#if (!isNew)}
+			<div class="form-group">
+				<label>Registered</label>
+				<span>{registered}</span>
+			</div>
+		{/if}
+	</div>
 </div>
 
 <div class="modal-footer">

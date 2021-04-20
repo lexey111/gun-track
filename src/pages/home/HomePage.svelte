@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CurrencyMenu from '../../components/dropdown/CurrencyMenu.svelte';
 	import Button from '../../components/buttons/Button.svelte';
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';
 	import TypeMenu from '../../components/dropdown/TypeMenu.svelte';
@@ -10,6 +11,12 @@
 	const changeType = (t: string) => {
 		console.log('>', t);
 		type = t;
+	}
+
+	let currency = 'UAH';
+	const changeCurrency = (t: string) => {
+		console.log('>', t);
+		currency = t;
 	}
 </script>
 
@@ -28,6 +35,11 @@
 	<div class="form-group">
 		<label>Type</label>
 		<TypeMenu type={type} onChange={changeType}/>
+	</div>
+
+	<div class="form-group">
+		<label>Type</label>
+		<CurrencyMenu currency={currency} onChange={changeCurrency}/>
 	</div>
 
 	<div style="display: inline-flex">

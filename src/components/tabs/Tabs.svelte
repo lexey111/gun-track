@@ -68,3 +68,7 @@
 <div class="tabs">
 	<slot></slot>
 </div>
+
+<style lang="less">
+	@import "tabs.less";
+</style>

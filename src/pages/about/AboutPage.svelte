@@ -129,8 +129,12 @@
 			<li>
 				<Done>Groups in type</Done>
 			</li>
-			<li>Dropdown for currencies</li>
-			<li>Restrict string lengths</li>
+			<li>
+				<Done>Dropdown for currencies</Done>
+			</li>
+			<li>
+				<Done>Restrict string lengths</Done>
+			</li>
 		</ul>
 
 		<h3>Gun list</h3>
@@ -207,7 +211,9 @@
 			<li>BTS photo with price tags</li>
 			<li>Gun selector if > 1</li>
 			<li>Gun stat (async)</li>
-			<li>- Dynamic bg</li>
+			<li>
+				<Done>- Dynamic bg</Done>
+			</li>
 		</ul>
 
 		<h3>Database</h3>
@@ -240,7 +246,6 @@
 				<Done>Gun records table</Done>
 			</li>
 			<li>Gun records stats</li>
-			<li>Schema cleanup (- gunid)</li>
 			<li>graph ql</li>
 		</ul>
 	</div>

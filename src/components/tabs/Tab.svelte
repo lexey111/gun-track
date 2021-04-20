@@ -16,6 +16,3 @@
 	<slot></slot>
 </button>
 
-<style lang="less">
-	@import "tabs.less";
-</style>

@@ -14,9 +14,11 @@
 <div class="modal-header">{title}</div>
 
 <div class="modal-content">
-	{#each text.split('\n') as line}
-		<p>{line}</p>
-	{/each}
+	<div class="modal-content-wrapper">
+		{#each text.split('\n') as line}
+			<p>{line}</p>
+		{/each}
+	</div>
 </div>
 
 <div class="modal-footer">
