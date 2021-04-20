@@ -21,6 +21,7 @@ export const syncGuns = /* GraphQL */ `
         make
         model
         notes
+        caliber
         dateCreated
         actions {
           nextToken
@@ -46,6 +47,7 @@ export const getGun = /* GraphQL */ `
       make
       model
       notes
+      caliber
       dateCreated
       actions {
         items {
@@ -91,6 +93,7 @@ export const listGuns = /* GraphQL */ `
         make
         model
         notes
+        caliber
         dateCreated
         actions {
           nextToken
@@ -138,6 +141,7 @@ export const syncActions = /* GraphQL */ `
           make
           model
           notes
+          caliber
           dateCreated
           _version
           _deleted
@@ -177,6 +181,7 @@ export const getAction = /* GraphQL */ `
         make
         model
         notes
+        caliber
         dateCreated
         actions {
           nextToken
@@ -222,6 +227,7 @@ export const listActions = /* GraphQL */ `
           make
           model
           notes
+          caliber
           dateCreated
           _version
           _deleted

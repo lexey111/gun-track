@@ -10,6 +10,7 @@ export declare class Gun {
   readonly make?: string;
   readonly model?: string;
   readonly notes?: string;
+  readonly caliber?: string;
   readonly dateCreated: string;
   readonly actions?: (Action | null)[];
   constructor(init: ModelInit<Gun>);

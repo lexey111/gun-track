@@ -216,6 +216,12 @@
 			</li>
 		</ul>
 
+		<h3>Footer</h3>
+		<ul>
+			<li>TOS</li>
+			<li>Contacts</li>
+		</ul>
+
 		<h3>Database</h3>
 		<ul>
 			<li>

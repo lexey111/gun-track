@@ -8,6 +8,7 @@ export type CreateGunInput = {
   make?: string | null,
   model?: string | null,
   notes?: string | null,
+  caliber?: string | null,
   dateCreated: string,
   _version?: number | null,
 };
@@ -17,6 +18,7 @@ export type ModelGunConditionInput = {
   make?: ModelStringInput | null,
   model?: ModelStringInput | null,
   notes?: ModelStringInput | null,
+  caliber?: ModelStringInput | null,
   dateCreated?: ModelStringInput | null,
   and?: Array< ModelGunConditionInput | null > | null,
   or?: Array< ModelGunConditionInput | null > | null,
@@ -70,6 +72,7 @@ export type Gun = {
   make?: string | null,
   model?: string | null,
   notes?: string | null,
+  caliber?: string | null,
   dateCreated?: string,
   actions?: ModelActionConnection,
   _version?: number,
@@ -114,6 +117,7 @@ export type UpdateGunInput = {
   make?: string | null,
   model?: string | null,
   notes?: string | null,
+  caliber?: string | null,
   dateCreated?: string | null,
   _version?: number | null,
 };
@@ -217,6 +221,7 @@ export type ModelGunFilterInput = {
   make?: ModelStringInput | null,
   model?: ModelStringInput | null,
   notes?: ModelStringInput | null,
+  caliber?: ModelStringInput | null,
   dateCreated?: ModelStringInput | null,
   and?: Array< ModelGunFilterInput | null > | null,
   or?: Array< ModelGunFilterInput | null > | null,
@@ -259,6 +264,7 @@ export type CreateGunMutation = {
     make?: string | null,
     model?: string | null,
     notes?: string | null,
+    caliber?: string | null,
     dateCreated: string,
     actions?:  {
       __typename: "ModelActionConnection",
@@ -306,6 +312,7 @@ export type UpdateGunMutation = {
     make?: string | null,
     model?: string | null,
     notes?: string | null,
+    caliber?: string | null,
     dateCreated: string,
     actions?:  {
       __typename: "ModelActionConnection",
@@ -353,6 +360,7 @@ export type DeleteGunMutation = {
     make?: string | null,
     model?: string | null,
     notes?: string | null,
+    caliber?: string | null,
     dateCreated: string,
     actions?:  {
       __typename: "ModelActionConnection",
@@ -412,6 +420,7 @@ export type CreateActionMutation = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -459,6 +468,7 @@ export type UpdateActionMutation = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -506,6 +516,7 @@ export type DeleteActionMutation = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -545,6 +556,7 @@ export type SyncGunsQuery = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -575,6 +587,7 @@ export type GetGunQuery = {
     make?: string | null,
     model?: string | null,
     notes?: string | null,
+    caliber?: string | null,
     dateCreated: string,
     actions?:  {
       __typename: "ModelActionConnection",
@@ -625,6 +638,7 @@ export type ListGunsQuery = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -672,6 +686,7 @@ export type SyncActionsQuery = {
         make?: string | null,
         model?: string | null,
         notes?: string | null,
+        caliber?: string | null,
         dateCreated: string,
         _version: number,
         _deleted?: boolean | null,
@@ -716,6 +731,7 @@ export type GetActionQuery = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -766,6 +782,7 @@ export type ListActionsQuery = {
         make?: string | null,
         model?: string | null,
         notes?: string | null,
+        caliber?: string | null,
         dateCreated: string,
         _version: number,
         _deleted?: boolean | null,
@@ -798,6 +815,7 @@ export type OnCreateGunSubscription = {
     make?: string | null,
     model?: string | null,
     notes?: string | null,
+    caliber?: string | null,
     dateCreated: string,
     actions?:  {
       __typename: "ModelActionConnection",
@@ -844,6 +862,7 @@ export type OnUpdateGunSubscription = {
     make?: string | null,
     model?: string | null,
     notes?: string | null,
+    caliber?: string | null,
     dateCreated: string,
     actions?:  {
       __typename: "ModelActionConnection",
@@ -890,6 +909,7 @@ export type OnDeleteGunSubscription = {
     make?: string | null,
     model?: string | null,
     notes?: string | null,
+    caliber?: string | null,
     dateCreated: string,
     actions?:  {
       __typename: "ModelActionConnection",
@@ -948,6 +968,7 @@ export type OnCreateActionSubscription = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -994,6 +1015,7 @@ export type OnUpdateActionSubscription = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",
@@ -1040,6 +1062,7 @@ export type OnDeleteActionSubscription = {
       make?: string | null,
       model?: string | null,
       notes?: string | null,
+      caliber?: string | null,
       dateCreated: string,
       actions?:  {
         __typename: "ModelActionConnection",

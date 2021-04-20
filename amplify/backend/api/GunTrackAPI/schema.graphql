@@ -4,6 +4,7 @@ type Gun @model @auth(rules: [{ allow: owner }]) {
     make: String
     model: String
     notes: String
+    caliber: String
     dateCreated: AWSDateTime!
     actions: [Action] @connection(keyName: "byGun", fields: ["id"])
 }

@@ -38,6 +38,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "caliber": {
+                    "name": "caliber",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "dateCreated": {
                     "name": "dateCreated",
                     "isArray": false,
@@ -208,5 +215,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "64e59a73c9080f64891ad76433bc0d88"
+    "version": "ae635a54cc40a4b3f0a5cb8e2c6d6e1f"
 };
