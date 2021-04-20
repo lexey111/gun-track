@@ -6,7 +6,7 @@ import 'dayjs/locale/ru';
 import 'dayjs/locale/uk';
 
 import {writable} from 'svelte/store';
-import {IAppStateStore, TAppLocale, TAppState} from './app-state-store.interface';
+import type {IAppStateStore, TAppLocale, TAppState} from './app-state-store.interface';
 
 export let dateLocale;
 // eslint-disable-next-line @typescript-eslint/unbound-method

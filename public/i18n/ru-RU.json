@@ -9,6 +9,7 @@
 		"all": "Все",
 		"other": "Прочее",
 		"training": "Тренировка",
+		"hunting": "Охота",
 		"dry_training": "Холостая тренировка",
 		"pers_training": "Индивидуальная тренировка",
 		"competition": "Соревнования",
@@ -19,6 +20,12 @@
 		"purchase": "Покупка",
 		"selling": "Продажа",
 		"cleanup": "Чистка"
+	},
+	"@Groups": {
+		"shooting": "Со стрельбой",
+		"no_shooting": "Без стрельбы",
+		"parts": "Запчасти и тюнинг",
+		"buy_and_sell": "Расходы и доходы"
 	},
 	"@Currencies": {
 		"USD": "USD",

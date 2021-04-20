@@ -6,6 +6,7 @@
 	import {onDestroy, onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
 	import LocalisedDatepicker from '../../../components/datepicker/LocalisedDatepicker.svelte';
+	import TypeMenu from '../../../components/dropdown/TypeMenu.svelte';
 	import I18n from '../../../components/i18n/I18n.svelte';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import Tab from '../../../components/tabs/Tab.svelte';
@@ -13,9 +14,7 @@
 	import TabPanel from '../../../components/tabs/TabPanel.svelte';
 	import Tabs from '../../../components/tabs/Tabs.svelte';
 	import {Action} from '../../../models';
-	import {ActionCurrencies, ActionTypes} from '../../../stores/actions/actions-store.types';
-
-	import {autoFocus} from '../../../utils/autofocus';
+	import {ActionCurrencies} from '../../../stores/actions/actions-store.types';
 
 	let editor = DecoupledEditor;
 	let editorInstance = null;
@@ -89,9 +88,13 @@
 	let expenses = 0.0;
 	let trainingNotes = '';
 
-	const onDateChanged = (d: Date) => {
+	const handleDateChanged = (d: Date) => {
 		date = d;
 	}
+
+	const handleTypeChange = (t: string) => {
+		type = t;
+	};
 
 	const handleConfirm = () => {
 		const dateToSave = dayjs(date || new Date()).toDate();
@@ -137,19 +140,13 @@
 
 		<TabPanel>
 			<div class="form-group">
-				<label for="type">Type</label>
-				<select bind:value={type} id="type" class="short-field" use:autoFocus>
-					{#each ActionTypes as actionType}
-						<option value={actionType.id}>
-							<I18n text={'@Actions.' + actionType.id}/>
-						</option>
-					{/each}
-				</select>
+				<label>Type</label>
+				<TypeMenu {type} onChange={handleTypeChange}/>
 			</div>
 
 			<div class="form-group">
 				<label>Date</label>
-				<LocalisedDatepicker date={date} onDateChange={onDateChanged}/>
+				<LocalisedDatepicker date={date} onDateChange={handleDateChanged}/>
 			</div>
 
 			<div class="form-group">

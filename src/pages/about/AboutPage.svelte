@@ -14,10 +14,14 @@
 			<li>
 				<Done>Remove favicons plugin</Done>
 			</li>
+			<li>Fix svelte-check remarks</li>
 		</ul>
 
 		<h3>UI</h3>
 		<ul>
+			<li>
+				<Done>Chevron icon for dropdowns</Done>
+			</li>
 			<li>
 				<Done>Own SVG</Done>
 			</li>
@@ -119,8 +123,13 @@
 
 		<h3>Action editor</h3>
 		<ul>
-			<li>Better tabs</li>
-			<li>Groups in type</li>
+			<li>
+				<Done>Better tabs</Done>
+			</li>
+			<li>
+				<Done>Groups in type</Done>
+			</li>
+			<li>Dropdown for currencies</li>
 			<li>Restrict string lengths</li>
 		</ul>
 

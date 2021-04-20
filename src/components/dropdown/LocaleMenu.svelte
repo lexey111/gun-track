@@ -52,9 +52,8 @@
 					align-items: center;
 					padding: 0 24px 0 16px;
 
-					i {
-						right: 8px;
-						border-top-color: #fff !important;
+					svg {
+						color: #fff !important;
 					}
 
 					&:focus {
@@ -68,19 +67,8 @@
 						opacity: 1;
 						background-color: rgba(255, 255, 255, .2);
 
-						i {
-							border-color: #fff transparent transparent transparent;
-						}
-					}
-				}
-
-				&.active {
-					.dc-title {
-						i {
-							z-index: 200;
-							border-width: 10px 6px 0 6px;
-							top: 100%;
-							margin-top: -8px;
+						svg {
+							color: #fff;
 						}
 					}
 				}

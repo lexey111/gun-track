@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
 	import {clickOutside} from '../../utils/click-outside';
+	import Icon from '../icons/Icon.svelte';
 
 	import {stateStore} from './dropdown-store';
 
@@ -8,9 +9,12 @@
 	export let className = '';
 	export let onActiveChange: (activate: boolean) => void;
 	export let onActiveChanged: (open: boolean) => void;
+
 	export const close = () => {
 		setInactive();
 	};
+
+	export let dropdown: any;
 
 	let storeUnsubscribe$;
 
@@ -85,7 +89,7 @@
 
 <div class={'dropdown-container' + (active ? ' active' : '') + (className ? ' ' + className : '')}
      use:clickOutside on:click_outside={handleClickOutside}>
-	<div class="dc-title" tabindex="0"
+	<div class="dc-title" tabindex="0" bind:this={dropdown}
 	     on:keypress={onKeypress}
 	     on:click={toggleActive}>
 		{#if title}
@@ -93,11 +97,14 @@
 		{:else }
 			<slot name="title"></slot>
 		{/if}
-		<i></i>
+		<Icon type="down" size=".7em" class="dc-down"/>
 	</div>
+
 	<div class="dc-dropdown-wrapper">
 		<div class="dc-dropdown-content">
-			<slot></slot>
+			{#if (active)}
+				<slot></slot>
+			{/if}
 		</div>
 	</div>
 </div>

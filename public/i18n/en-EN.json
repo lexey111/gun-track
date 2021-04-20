@@ -9,6 +9,7 @@
 		"all": "All",
 		"other": "Other",
 		"training": "Training",
+		"hunting": "Hunting",
 		"dry_training": "Dry training",
 		"pers_training": "Personal training",
 		"competition": "Competition",
@@ -19,6 +20,12 @@
 		"purchase": "Purchase",
 		"selling": "Selling",
 		"cleanup": "Cleanup"
+	},
+	"@Groups": {
+		"shooting": "Shooting",
+		"no_shooting": "Not shooting",
+		"parts": "Parts & tuning",
+		"buy_and_sell": "Debit & Credit"
 	},
 	"@Currencies": {
 		"USD": "USD",

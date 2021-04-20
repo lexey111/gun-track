@@ -13,7 +13,6 @@
 			color: var(--app-link-text);
 			transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
 			position: relative;
-			padding-right: 10px;
 			outline: none;
 			display: flex;
 			flex-flow: row nowrap;
@@ -21,18 +20,11 @@
 			align-items: center;
 			align-content: center;
 
-			i {
-				width: 0;
-				height: 0;
-				border-style: solid;
-				border-width: 6px 3px 0 3px;
-				position: absolute;
-				right: 0;
-				top: 50%;
-				margin-top: -3px;
-				border-color: var(--app-link-text) transparent transparent transparent;
-				transition: all .2s ease;
+			svg.dc-down {
+				padding: 0 .4em;
+				margin-left: auto;
 				transform-origin: center center;
+				transition: all .2s ease-in-out;
 			}
 
 			&:focus {
@@ -61,9 +53,9 @@
 			.dc-title {
 				color: var(--app-link-text-active);
 
-				i {
+				svg.dc-down {
 					transform: rotate(180deg);
-					border-color: var(--app-link-text-active) transparent transparent transparent;
+					color: var(--app-link-text-active);
 				}
 
 				&:focus {
@@ -116,11 +108,13 @@
 							position: relative;
 							border-radius: 7px;
 							line-height: 1.2;
+							text-decoration: none;
 
 							&:hover, &:focus {
 								background-color: var(--app-menu-bg);
 								color: var(--app-menu-text);
 								box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+								outline: none;
 							}
 
 							&:before {
@@ -133,15 +127,20 @@
 							}
 
 							&.selected {
-								font-weight: bold;
+								background-color: rgba(0, 0, 0, 0.2);
+								box-shadow: none;
+								border: none;
 
 								&:before {
 									content: '✔';
 								}
 
 								&:hover, &:focus {
+									background-color: var(--app-menu-bg);
+									box-shadow: none;
 									&:before {
 										color: var(--app-menu-text);
+										box-shadow: none;
 									}
 								}
 							}
@@ -155,15 +154,14 @@
 			.dc-title {
 				background-color: var(--app-primary-bg);
 				height: 42px;
-				padding: 0 32px 0 16px;
+				padding: 0 12px;
 				border-radius: 12px;
 				color: var(--app-primary-text);
 				box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
 				max-width: 20em;
 
-				i {
-					right: 12px;
-					border-top-color: var(--app-primary-text);
+				svg.dc-down {
+					color: var(--app-primary-text);
 				}
 
 				&:focus {
@@ -183,6 +181,10 @@
 					border-bottom-left-radius: 0;
 					pointer-events: none;
 					background-color: var(--app-primary-bg-darken);
+
+					svg.dc-down {
+						color: var(--app-primary-text);
+					}
 
 					&:focus {
 						box-shadow: none;

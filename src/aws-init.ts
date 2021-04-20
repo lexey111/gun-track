@@ -9,7 +9,7 @@ import {AuthStore} from './stores/auth/auth-store';
 import {GunsStore} from './stores/guns/guns-store';
 
 Amplify.configure(awsconfig);
-DataStore.configure(awsconfig);
+DataStore.configure(awsconfig as any);
 
 async function signoutStores(): Promise<void> {
 	void await DataStore.clear();

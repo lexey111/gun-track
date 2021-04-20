@@ -1,9 +1,16 @@
 <script lang="ts">
 	import Button from '../../components/buttons/Button.svelte';
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';
+	import TypeMenu from '../../components/dropdown/TypeMenu.svelte';
 	import I18n from '../../components/i18n/I18n.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 	import {IconsMap} from '../../components/icons/icons-map';
+
+	let type;
+	const changeType = (t: string) => {
+		console.log('>', t);
+		type = t;
+	}
 </script>
 
 <div class="app-page">
@@ -17,6 +24,12 @@
 		<I18n>@Common.ThisIsGunTrack</I18n>
 	</h3>
 	<h4>Dropdown</h4>
+
+	<div class="form-group">
+		<label>Type</label>
+		<TypeMenu type={type} onChange={changeType}/>
+	</div>
+
 	<div style="display: inline-flex">
 		<Dropdown className="menu menu-left menu-button">
 			<span slot="title">AAAA</span>
