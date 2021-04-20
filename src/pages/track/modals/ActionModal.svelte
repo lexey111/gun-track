@@ -1,6 +1,5 @@
 <script lang="ts">
 	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
-
 	import CKEditor from 'ckeditor5-svelte/dist';
 	import * as dayjs from 'dayjs';
 	import {onDestroy, onMount} from 'svelte';
@@ -58,7 +57,7 @@
 
 	onDestroy(() => {
 		clearTimeout(ckDelay);
-	})
+	});
 
 	function onReady({detail: editor}) {
 		ckReady = true;

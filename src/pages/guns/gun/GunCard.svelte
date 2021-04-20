@@ -4,7 +4,9 @@
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
+	import Info from '../../../components/modal/Info.svelte';
 	import type {Gun} from '../../../models';
+	import {GunsStore} from '../../../stores/guns/guns-store';
 
 	dayjs.extend(localizedFormat);
 
@@ -15,7 +17,18 @@
 
 	const handleNavigate = (id: string) => {
 		navigate('/track/' + id);
-		console.log('navigate to', id);
+	};
+
+	let infoNotes: any;
+	const onShowNotes = (id: string) => {
+		const notes = GunsStore.getGunById(id)?.notes;
+		if (!notes) {
+			return;
+		}
+		infoNotes.showInfoDialog({
+			text: notes,
+			title: 'Notes'
+		});
 	};
 
 	let title: string;
@@ -29,6 +42,8 @@
 		hasModel = !!gun?.model;
 	}
 </script>
+
+<Info bind:this={infoNotes}/>
 
 {#if (gun)}
 	<div class="gun-card">
@@ -53,18 +68,159 @@
 					{dayjs(gun.dateCreated).locale(dateLocale).format('LL')}
 				</div>
 			{/if}
+			{#if (gun.caliber)}
+				<div class="gc-caliber">
+					{gun.caliber}
+				</div>
+			{/if}
 			<div class="gc-actions">
 				<Button size="small" type="text" onClick={() => handleNavigate(gun.id)}>
-					<Icon type="goto"/>
+					<Icon type="arrow-right" alt="Go to Tracking"/>
 				</Button>
+				{#if (gun.notes)}
+					<Button size="small" type="text" onClick={() => onShowNotes(gun.id)}>
+						<Icon type="file" alt="Notes..."/>
+					</Button>
+				{/if}
 				<Button size="small" onClick={() => onEdit(gun.id)}>
 					<Icon type="edit"/>
 					Change
 				</Button>
-				<Button size="small" type="danger" onClick={() => onRemove(gun.id)}>
+				<Button size="small" type="text-danger" onClick={() => onRemove(gun.id)}>
 					<Icon type="delete"/>
 				</Button>
 			</div>
 		</div>
 	</div>
 {/if}
+
+
+<style lang="less">
+	:global {
+		.gun-card {
+			background-color: var(--app-card-background);
+			color: var(--app-card-text);
+			font-size: var(--app-small-font-size);
+			border-radius: 7px;
+			overflow: hidden;
+			display: flex;
+			flex-flow: column wrap;
+			box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+			transition: all .2s ease;
+
+			flex: 1 0 300px; /* can grow, can't shrink, minimum width 300px */
+			max-width: 500px;
+			min-height: 200px;
+			margin: 10px;
+			opacity: .9;
+
+			.gc-actions {
+				opacity: 0;
+				transition: all .2s ease;
+			}
+
+			.gc-title-content, .gc-date, .gc-make, .gc-model, .gc-caliber {
+				transition: transform .2s ease;
+				transform: translateY(32px);
+			}
+
+			.gc-title {
+				transition: background-color .2s ease-in-out, color .2s ease-in-out;
+				cursor: pointer;
+			}
+
+			&:hover, &:focus-within {
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+				opacity: 1;
+
+				.gc-actions {
+					opacity: 1;
+				}
+
+				.gc-title-content, .gc-date, .gc-make, .gc-model, .gc-caliber {
+					transform: translateY(0);
+				}
+
+				.gc-title {
+					background-color: var(--app-accent-background);
+					box-shadow: inset 0 -2px 2px rgba(0, 0, 0, .2);
+					color: var(--app-accent-text);
+				}
+			}
+
+			.gc-content {
+				height: 100%;
+				max-width: 100%;
+				width: 100%;
+				overflow: hidden;
+				display: flex;
+				flex-flow: column nowrap;
+
+				div {
+					display: flex;
+					flex-flow: row nowrap;
+					width: 100%;
+					justify-content: center;
+					text-align: center;
+				}
+			}
+
+			.gc-title {
+				font-size: var(--app-very-big-font-size);
+				border-radius: 7px 7px 0 0;
+
+				.gc-title-content {
+					padding: 16px;
+				}
+			}
+
+			.gc-make, .gc-model, .gc-date, .gc-caliber {
+				margin-top: 8px;
+
+				span {
+					padding: 0 16px;
+				}
+			}
+
+			.gc-make {
+				color: #000;
+			}
+
+			.gc-date {
+				color: var(--app-remark-text);
+			}
+
+			.gc-actions {
+				margin-top: auto;
+				padding: 32px 0 16px 0;
+				display: flex;
+				flex-flow: row nowrap;
+				align-items: flex-end;
+				box-sizing: border-box;
+
+				button {
+					height: 36px;
+					padding: 8px 16px;
+
+					&.press-ghost {
+						padding-left: 8px;
+						padding-right: 8px;
+						margin: 0;
+
+						svg {
+							margin: 0;
+						}
+					}
+				}
+
+				button:not(:last-child) {
+					margin-right: 8px;
+
+					svg {
+						margin-right: .4em;
+					}
+				}
+			}
+		}
+	}
+</style>

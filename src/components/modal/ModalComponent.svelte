@@ -189,6 +189,11 @@
 
 						.modal-content-wrapper {
 							padding: 32px;
+							min-width: 100px;
+							min-height: 50px;
+							max-width: 70vw;
+							max-height: 70vh;
+							overflow: auto;
 						}
 					}
 

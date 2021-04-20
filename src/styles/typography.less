@@ -156,3 +156,26 @@ code {
 	padding: 2px 8px;
 }
 
+.ck-editor-tab {
+	min-width: 600px;
+	min-height: 400px;
+	max-height: 70vh;
+	max-width: 70vw;
+	overflow: auto;
+
+	.tab-content {
+		height: 100%;
+	}
+
+	.ck-focused {
+		outline: none !important;
+		border: none !important;
+	}
+}
+
+.ck-editor__editable, .ck-editor__editable_inline {
+	min-height: 400px;
+	max-height: 60vh;
+	overflow-y: auto;
+	background-color: var(--app-page-background);
+}

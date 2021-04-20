@@ -180,9 +180,13 @@
 
 		<h3>Gun editor</h3>
 		<ul>
-			<li>Notes</li>
+			<li>
+				<Done>Notes</Done>
+			</li>
 			<li>Photo uploading</li>
-			<li>Caliber field</li>
+			<li>
+				<Done>Caliber field</Done>
+			</li>
 		</ul>
 
 		<h3>i18n</h3>

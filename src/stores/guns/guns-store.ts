@@ -91,10 +91,11 @@ async function saveGun(gun: Gun): Promise<boolean> {
 	try {
 		await DataStore.save(
 			Gun.copyOf(_gun, updated => {
-				updated.name = gun.name;
-				updated.make = gun.make;
-				updated.model = gun.model;
-				updated.notes = gun.notes;
+				updated.name = (gun.name || '').substring(0, 64);
+				updated.make = (gun.make || '').substring(0, 64);
+				updated.model = (gun.model || '').substring(0, 64);
+				updated.notes = (gun.notes || '').substring(0, 2048);
+				updated.caliber = (gun.caliber || '').substring(0, 32);
 			})
 		);
 	} catch (error) {

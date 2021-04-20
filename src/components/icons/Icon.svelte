@@ -3,8 +3,9 @@
 
 	export let type = 'star';
 	export let size = '1rem';
+	export let alt = '';
 
-	const displayIcon = IconsMap[type] || IconsMap.star;
+	const displayIcon = (alt ? `<title>${alt}</title>` : '') + IconsMap[type] || IconsMap.star;
 </script>
 
 <svg
@@ -16,8 +17,8 @@
 	{@html displayIcon}</svg>
 
 <style>
-	svg.inline {
-		 display: inline-flex;
-		 margin-right: .4em;
-	}
+    svg.inline {
+        display: inline-flex;
+        margin-right: .4em;
+    }
 </style>

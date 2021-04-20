@@ -1,5 +1,5 @@
 import {writable} from 'svelte/store';
-import {INotifyStore, TNotification, TNotificationExtended, TNotificationState} from './notify-store.interface';
+import type {INotifyStore, TNotification, TNotificationExtended, TNotificationState} from './notify-store.interface';
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const {
