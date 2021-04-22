@@ -33,7 +33,6 @@ body.no-scroll {
 	min-width: 600px;
 	max-width: 80vw;
 	margin: 0 auto;
-	box-shadow: 0 0 32px rgba(0, 0, 0, .3);
 }
 
 .app-pages {
@@ -41,31 +40,26 @@ body.no-scroll {
 	flex-flow: column nowrap;
 	flex-grow: 2;
 	width: 100%;
-	background-color: var(--app-background);
-	transition: background-color .2s ease;
 
 	.app-page {
-		margin: 16px 32px;
+		margin: 32px 0 0 0;
+		padding: 32px;
 		flex-grow: 2;
+		background-color: var(--app-background);
+		border-radius: 17px 17px 0 0;
 
 		display: block;
-		// overflow: hidden;
 		position: relative;
 
 		&.no-paddings {
-			margin: 0;
+			padding: 0;
+		}
+
+		.page-content {
+			border-radius: 17px 17px 0 0;
+			padding: 0;
+			margin: 32px 0 0 0;
 		}
 	}
-
-	.logged-out & {
-		// background-color: var(--app-background);
-	}
 }
 
-body.page-semitransparent {
-	.app-pages {
-		//background-color: var(--app-white-bg);
-		background-color: rgba(242, 242, 242, .8);
-		backdrop-filter: blur(7px);
-	}
-}

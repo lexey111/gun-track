@@ -101,8 +101,8 @@
 			text-transform: uppercase;
 			font-size: 2rem;
 
-			background-color: rgba(255, 255, 255, .5);
-			backdrop-filter: blur(10px);
+			background-color: var(--app-primary-bg);
+			color: var(--app-primary-text);
 		}
 	}
 </style>

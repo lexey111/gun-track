@@ -47,6 +47,7 @@
 				.stat {
 					height: 100%;
 					flex: 1;
+					background-color: var(--app-primary-bg-light-shade-1) !important;
 				}
 
 				.stat-row {
@@ -63,9 +64,9 @@
 						color: var(--app-primary-text-darken);
 
 						li {
-							line-height: 1em;
+							line-height: 1.4em;
 							padding: 0;
-							margin: 0 0 8px 0;
+							margin: 0;
 						}
 					}
 

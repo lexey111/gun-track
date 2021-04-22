@@ -92,13 +92,13 @@
 	<div class="dc-title" tabindex="0" bind:this={dropdown}
 	     on:keypress={onKeypress}
 	     on:click={toggleActive}>
+		<span>
 		{#if title}
-			<span>{title}</span>
+			{title}
 		{:else }
-			<span>
-				<slot name="title"></slot>
-			</span>
+			<slot name="title"></slot>
 		{/if}
+		</span>
 		<Icon type="down" size=".7em" class="dc-down"/>
 	</div>
 

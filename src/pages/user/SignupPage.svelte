@@ -33,15 +33,6 @@
 			showInfo('Successful registration. Now you can login with these credentials.');
 		}
 	}
-
-	onMount(() => {
-		document.body.classList.add('page-semitransparent');
-	});
-
-	onDestroy(() => {
-		document.body.classList.remove('page-semitransparent');
-	});
-
 </script>
 
 <div class="app-page-signup">

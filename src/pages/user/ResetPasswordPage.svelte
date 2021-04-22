@@ -1,5 +1,4 @@
 <script lang="ts">
-	import {onDestroy, onMount} from 'svelte';
 	import {Link} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
 
@@ -33,15 +32,6 @@
 			showInfo('Password updated. Now you can login with these credentials.');
 		}
 	}
-
-	onMount(() => {
-		document.body.classList.add('page-semitransparent');
-	});
-
-	onDestroy(() => {
-		document.body.classList.remove('page-semitransparent');
-	});
-
 </script>
 
 <div class="app-page-reset">

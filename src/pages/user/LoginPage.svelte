@@ -1,21 +1,13 @@
 <script lang="ts">
-	import Icon from '../../components/icons/Icon.svelte';
-	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
+	import Icon from '../../components/icons/Icon.svelte';
 	import type {IAuthStore} from '../../stores/auth/auth-store.interface';
 	import EmailLogin from './sections/EmailLogin.svelte';
 	import ProfileLogin from './sections/SocialLogin.svelte';
 
 	export let authStore: IAuthStore = null;
 
-	onMount(() => {
-		document.body.classList.add('page-semitransparent');
-	});
-
-	onDestroy(() => {
-		document.body.classList.remove('page-semitransparent');
-	});
 </script>
 
 <div class={"app-page-login"}>

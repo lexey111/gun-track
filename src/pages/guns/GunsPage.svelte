@@ -119,7 +119,7 @@
 	<h2>
 		Registered guns [{gunsState?.guns?.length}]
 		<span>
-			<Button type="text" onClick={showNewGunDialog}><Icon type="plus-circle" size="24px" class="inline"/> Add one more...</Button>
+			<Button type="text" onClick={showNewGunDialog}><Icon type="plus-circle" size="24px" class="inline"/> Register one more...</Button>
 		</span>
 	</h2>
 	<Guns

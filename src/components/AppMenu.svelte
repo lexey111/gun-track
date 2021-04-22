@@ -6,6 +6,7 @@
 	import {AuthStore} from '../stores/auth/auth-store';
 	import type {TAuthState} from '../stores/auth/auth-store.interface';
 	import LocaleMenu from './dropdown/LocaleMenu.svelte';
+	import Icon from './icons/Icon.svelte';
 
 	let activeRoutes = [];
 	let current_path = 'home';
@@ -55,60 +56,54 @@
 
 <nav class="app-navigation">
 	{#each activeRoutes as [path, name, className], i}
-		<Link to={path} class={className}>{name}</Link>
+		<Link to={path} class={className}>
+			{#if (path === 'home')}
+				<Icon type="home"/> &nbsp;
+			{/if}
+			{name}
+		</Link>
 	{/each}
 	<LocaleMenu/>
 </nav>
 
 <style lang="less">
 	:global {
-		.logged-out nav.app-navigation {
-			background-color: rgba(125, 128, 128, .5);
-			backdrop-filter: blur(7px);
-
-			a, a:visited {
-				color: var(--app-menu-logged-out-text);
-
-				&[aria-current="page"], &.active {
-					background-color: rgba(242, 242, 242, .5);
-					backdrop-filter: blur(7px);
-					color: var(--app-text);
-				}
-			}
-		}
-
 		.app-navigation {
 			display: flex;
 			flex-flow: row wrap;
 			z-index: 2;
 
-			background-color: rgba(52, 105, 132, 0.5);
-			backdrop-filter: blur(7px);
+			background-color: var(--app-primary-bg);
 
-			justify-content: center;
+			justify-content: flex-start;
 			font-size: .8rem;
-			height: 50px;
+			height: 70px;
 			transition: background-color .2s ease, color .1s ease;
 
-			a, a:visited {
+			& > a, a:visited {
 				text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
 				display: flex;
 				align-content: center;
 				align-items: center;
 				width: auto;
 				padding: 8px 16px;
-				color: var(--app-menu-logged-in-text);
+				margin: 8px;
+				color: var(--app-primary-text);
 				text-decoration: none;
 				transition: background-color .2s ease, color .1s ease;
+				border-radius: 7px;
+				text-transform: uppercase;
 
-				&:hover, &:active {
+				&:hover, &:active, &:focus {
 					color: #fff;
-					background-color: rgba(255, 255, 255, .2);
+					background-color: rgba(255, 255, 255, .1);
+					outline: none !important;
 				}
 
 				&[aria-current="page"], &.active {
-					background-color: var(--app-background);
-					color: var(--app-menu-logged-in-bg);
+					background-color: var(--app-primary-bg-light);
+					color: var(--app-primary-text);
+					font-weight: bold;
 				}
 			}
 		}

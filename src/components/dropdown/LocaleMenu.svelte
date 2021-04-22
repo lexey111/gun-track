@@ -51,6 +51,7 @@
 					align-content: center;
 					align-items: center;
 					padding: 0 24px 0 16px;
+					border-radius: 7px;
 
 					svg {
 						color: #fff !important;
@@ -58,18 +59,21 @@
 
 					&:focus {
 						opacity: 1;
-						background-color: rgba(255, 255, 255, .2);
+						background-color: rgba(255, 255, 255, .1);
 					}
 				}
 
 				&.active, &:focus, &:hover {
 					.dc-title {
 						opacity: 1;
-						background-color: rgba(255, 255, 255, .2);
+						background-color: rgba(255, 255, 255, .1);
 
 						svg {
 							color: #fff;
 						}
+					}
+					.dc-dropdown-wrapper {
+						margin-top: -8px;
 					}
 				}
 			}

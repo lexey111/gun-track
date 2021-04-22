@@ -48,7 +48,6 @@
 		text-align: center;
 		color: var(--app-remark-text);
 		background-color: rgba(0, 0, 0, .5);
-		backdrop-filter: blur(10px);
 	}
 
 	.app-page-footer-content {
