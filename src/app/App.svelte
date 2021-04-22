@@ -91,7 +91,6 @@
 <style lang="less">
 	main {
 		h1 {
-			color: #1f3e5f;
 			font-weight: 100;
 			display: inline-flex;
 			justify-content: center;
@@ -101,7 +100,6 @@
 			text-transform: uppercase;
 			font-size: 2rem;
 
-			background-color: var(--app-primary-bg);
 			color: var(--app-primary-text);
 		}
 	}

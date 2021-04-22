@@ -45,6 +45,10 @@ function resetStore(): void {
 	}));
 }
 
+function getActionById(actionID: string): Action {
+	return _actions.find(g => g.id === actionID);
+}
+
 async function loadActions(gunId?: string): Promise<void> {
 	if (gunId) {
 		currentGunId = gunId;
@@ -290,5 +294,7 @@ export const ActionsStore: IActionsStore = {
 
 	getFilter,
 	setFilter,
-	isFiltered
+	isFiltered,
+
+	getActionById
 };

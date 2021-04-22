@@ -47,7 +47,7 @@
 		font-size: .8em;
 		text-align: center;
 		color: var(--app-remark-text);
-		background-color: rgba(0, 0, 0, .5);
+		z-index: 0;
 	}
 
 	.app-page-footer-content {

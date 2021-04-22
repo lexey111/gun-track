@@ -73,8 +73,6 @@
 			flex-flow: row wrap;
 			z-index: 2;
 
-			background-color: var(--app-primary-bg);
-
 			justify-content: flex-start;
 			font-size: .8rem;
 			height: 70px;

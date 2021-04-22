@@ -166,10 +166,11 @@
 
 	};
 
+
 	let currentGun: Gun;
 	let currentGunTitle;
 	$: {
-		currentGun = GunsStore.getGunById(id);
+		currentGun = GunsStore.getGunById(id || '');
 		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';
 	}
 
@@ -214,7 +215,7 @@
 		{:else }
 			{#if (actionsState?.isEmpty === true)}
 				<div class="no-records">
-					<h2>No records here for {currentGunTitle}, yet.</h2>
+					<h2>No records here for <i>{currentGunTitle}</i>, yet.</h2>
 					<p>
 						But it is the best time to create one!
 					</p>
@@ -247,156 +248,12 @@
 <style lang="less">
 	:global {
 		.no-records {
-			padding: 0 32px;
+			padding: 32px;
 		}
 
 		.top-panel {
-			button.press-ghost {
-				color: var(--app-primary-text);
-
-				&:hover {
-					color: var(--app-primary-text) !important;
-				}
-			}
-		}
-
-		.top-panel {
-			display: flex;
-			align-items: flex-start;
-			width: 100%;
-			white-space: nowrap;
-			font-size: var(--app-small-font-size);
-
-			background-color: var(--app-primary-bg);
-			color: var(--app-primary-text);
-			padding: 0;
-
 			.top-panel-content {
-				display: grid;
 				grid-template-columns: 2fr 3fr 1fr 1fr;
-				grid-gap: 8px;
-				align-items: stretch;
-				width: 100%;
-				max-width: 100%;
-				white-space: nowrap;
-				margin: 0 0 8px 0;
-
-				.row {
-					display: flex;
-					flex-flow: row nowrap;
-					align-items: center;
-					align-content: center;
-					background-color: var(--app-primary-bg-light);
-					color: var(--app-primary-text);
-					padding: 0 16px;
-					min-height: 80px;
-					border-radius: 7px;
-					transform-origin: top left;
-
-					height: 100%;
-					animation-name: top-panel-appear;
-					animation-duration: .4s;
-					animation-timing-function: ease-in-out;
-				}
-
-				.stat {
-					display: flex;
-					flex-flow: row nowrap;
-					align-items: center;
-					justify-content: flex-end;
-					padding: 0 16px;
-					min-height: 40px;
-					height: 100%;
-
-					background-color: var(--app-primary-bg-light);
-					color: var(--app-primary-text);
-					border-radius: 7px;
-					transform-origin: top left;
-
-					animation-name: top-panel-appear;
-					animation-duration: .4s;
-					animation-timing-function: ease-in-out;
-				}
-
-				.stat-content {
-					display: flex;
-					flex-flow: row nowrap;
-					padding: 16px 0;
-				}
-			}
-
-			position: relative;
-
-			&:after {
-				content: '';
-				display: block;
-				position: absolute;
-				top: -32px;
-				z-index: -1;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background-color: var(--app-primary-bg);
-				animation: none;
-			}
-
-			transform-origin: top left;
-			animation-name: top-panel-appear;
-			animation-duration: .4s;
-			animation-timing-function: ease-in-out;
-		}
-
-		.page-content {
-			animation-name: page-panel-appear;
-			animation-duration: .4s;
-			animation-timing-function: ease-in-out;
-			position: relative;
-			background-color: var(--app-background);
-			border-radius: 17px 17px 0 0;
-
-			&:after {
-				content: '';
-				display: block;
-				position: absolute;
-				top: -32px;
-				z-index: 1;
-				left: 0;
-				right: 0;
-				height: 32px;
-				background-color: var(--app-primary-bg);
-			}
-
-			&:before {
-				content: '';
-				display: block;
-				position: absolute;
-				top: -32px;
-				z-index: 2;
-				left: 0;
-				right: 0;
-				height: 32px;
-				background-color: var(--app-background);
-				border-radius: 17px 17px 0 0;
-			}
-		}
-
-		@keyframes top-panel-appear {
-			0% {
-				transform: translateY(15px);
-			}
-			100% {
-				transform: translateY(0);
-			}
-		}
-
-		@keyframes page-panel-appear {
-			0% {
-				opacity: 0;
-				transform: translateY(-15px);
-			}
-			100% {
-				opacity: 1;
-				transform: translateY(0);
 			}
 		}
 	}
@@ -414,21 +271,21 @@
 			position: absolute;
 			right: 40px;
 			bottom: 0;
-			background-color: var(--app-link-text);
+			background-color: var(--app-primary-bg);
 			width: 48px;
 			height: 48px;
 			border-radius: 48px;
 			cursor: pointer;
 			color: #fff;
 			transition: all .2s ease;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+			box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
 			opacity: .8;
 			backdrop-filter: blur(8px);
 			padding: 2px;
 
 			&:hover {
-				background-color: var(--app-link-text-active);
-				box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+				background-color: var(--app-primary-bg-lighten);
+				box-shadow: 0 0 12px rgba(0, 0, 0, .5);
 				opacity: 1;
 				transform: scale(1.2);
 			}

@@ -1,5 +1,5 @@
-import {Writable} from 'svelte/store';
-import {Action} from '../../models';
+import type {Writable} from 'svelte/store';
+import type {Action} from '../../models';
 
 export type TAction = {
 	id: string
@@ -41,4 +41,6 @@ export interface IActionsStore extends Writable<TActionsState> {
 	getFilter: () => Array<string>
 	setFilter: (types?: Array<string> | 'all') => void
 	isFiltered: () => boolean
+
+	getActionById: (actionID: string) => Action
 }

@@ -84,6 +84,7 @@
 		width: 200px;
 		align-items: flex-end;
 		position: relative;
+		z-index: 0;
 
 		span {
 			display: inline-flex;

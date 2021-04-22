@@ -143,7 +143,7 @@
 
 				.gc-title {
 					background-color: var(--app-accent-background);
-					box-shadow: inset 0 -2px 2px rgba(0, 0, 0, .2);
+					box-shadow: 0 2px 12px rgba(0, 0, 0, .2);
 					color: var(--app-accent-text);
 				}
 			}

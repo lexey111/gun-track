@@ -3,7 +3,6 @@
 	import Button from '../../components/buttons/Button.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
-	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
 	import type {Gun} from '../../models';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import type {TAppModal} from '../../stores/app/app-state-store.interface';
@@ -31,9 +30,12 @@
 				gun: null,
 				onConfirm: async (gun: Gun) => {
 					modal.close();
+					AppStateStore.showSpinner();
 					if (await GunsStore.createGun(gun)) {
 						showSuccess('New gun was successfully registered.', gun.name || gun.make || gun.model);
 					}
+					AppStateStore.hideSpinner();
+
 				},
 				onCancel: () => modal.close(),
 			}
@@ -51,9 +53,11 @@
 			closeButton: true,
 			componentProps: {
 				gun,
-				onConfirm: (gun: Gun) => {
+				onConfirm: async (gun: Gun) => {
 					modal.close();
-					GunsStore.saveGun(gun);
+					AppStateStore.showSpinner();
+					await GunsStore.saveGun(gun);
+					AppStateStore.hideSpinner();
 				},
 				onCancel: () => modal.close(),
 			}
@@ -61,17 +65,21 @@
 	}
 
 	const handleRemoveGun = async (id) => {
+		AppStateStore.showSpinner();
 		const result = await GunsStore.removeGun(id)
 		if (result) {
 			showWarning('Record was removed successfully', 'Done');
 		}
+		AppStateStore.hideSpinner();
 	};
 
 	onMount(() => {
+		AppStateStore.showSpinner();
 		gunsState$ = GunsStore.subscribe(value => {
 			if (!value || value.isEmpty === null) {
 				return;
 			}
+			AppStateStore.hideSpinner();
 			gunsState = value;
 		});
 
@@ -88,48 +96,68 @@
 	});
 </script>
 
-{#if (gunsState?.isEmpty === true)}
-	<h2>There is no guns here yet</h2>
-	<p>
-		So it's the best time to register the first one!
-	</p>
-{/if}
+{#if (gunsState?.isEmpty !== null)}
+	{#if (gunsState?.isEmpty === true)}
+		<div class="page-content extra-paddings">
+			<h2>No guns is registered yet.</h2>
+			<p>
+				But it is the best time to start, you're lucky!
+			</p>
+			<p>
+				<Button onClick={showNewGunDialog}>
+					<Icon type="plus-circle" size="24px" class="inline"/>
+					Register a Gun
+				</Button>
+			</p>
+		</div>
+	{/if}
 
-{#if (!gunsState || gunsState?.isEmpty === null)}
-	<p>
-		<SpinnerComponent/>
-		Please wait, loading data from server...
-	</p>
-{/if}
+	{#if (gunsState?.isEmpty === false)}
+		<div class="top-panel">
+			<div class="top-panel-content">
+				<div class="stat">
+					<Button
+						type="text"
+						onClick={showNewGunDialog}>
+						<Icon type="plus-circle" size="24px" class="inline"/>
+						Register one more...
+					</Button>
+				</div>
 
-{#if (gunsState.isEmpty === true)}
-	<h2>No guns is registered yet.</h2>
-	<p>
-		But it is the best time to start, you're lucky!
-	</p>
-	<p>
-		<Button onClick={showNewGunDialog}>
-			<Icon type="plus-circle" size="24px" class="inline"/>
-			Register a Gun
-		</Button>
-	</p>
-{/if}
+				<div class="stat stat-info">
+					<div class="stat-exp">
+						Registered
+					</div>
+					<ul>
+						<li>{gunsState?.guns?.length}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-{#if (gunsState.isEmpty === false)}
-	<h2>
-		Registered guns [{gunsState?.guns?.length}]
-		<span>
-			<Button type="text" onClick={showNewGunDialog}><Icon type="plus-circle" size="24px" class="inline"/> Register one more...</Button>
-		</span>
-	</h2>
-	<Guns
-		guns={gunsState.guns}
-		dateLocale={state.dateLocale}
-		onRemove={handleRemoveGun}
-		onEdit={showGunEditDialog}/>
+		<div class="page-content extra-paddings">
+			<Guns
+				guns={gunsState.guns}
+				dateLocale={state.dateLocale}
+				onRemove={handleRemoveGun}
+				onEdit={showGunEditDialog}/>
+		</div>
+	{/if}
 {/if}
 
 <style lang="less">
+	.top-panel {
+		.top-panel-content {
+			grid-template-columns: 1fr 1fr 4fr;
+
+			.stat, .stat.stat-info {
+				text-align: left;
+				justify-items: flex-start;
+				justify-content: flex-start;
+			}
+		}
+	}
+
 	h2 {
 		display: flex;
 		flex-flow: row nowrap;

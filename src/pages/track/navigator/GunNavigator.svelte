@@ -26,7 +26,7 @@
 </script>
 
 <div>
-	<Dropdown className="menu menu-left menu-button menu-button-secondary gun-navigator" bind:close={closeMenu}>
+	<Dropdown className="menu menu-left menu-button menu-button-ghost gun-navigator" bind:close={closeMenu}>
 		<span slot="title">{currentGunTitle}</span>
 		<div class="dropdown-menu">
 			{#each gunsState.guns as gun}

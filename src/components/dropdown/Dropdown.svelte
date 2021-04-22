@@ -116,14 +116,16 @@
 		.dropdown-container {
 			position: relative;
 			min-height: 1em;
+			z-index: 1;
 
 			.dc-title {
 				cursor: pointer;
 				color: var(--app-link-text);
-				transition: background-color .2s ease, opacity .2s ease, color .2s ease, box-shadow .2s ease;
+				transition: background-color .2s ease, opacity .2s ease, color .2s ease;
 				position: relative;
 				outline: none;
-				display: flex;
+				display: inline-flex;
+				margin-right: .4em;
 				flex-flow: row nowrap;
 				height: 1em;
 				align-items: center;
@@ -279,7 +281,6 @@
 					padding: 0 12px;
 					border-radius: 12px;
 					color: var(--app-primary-text);
-					box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
 					max-width: 20em;
 
 					svg.dc-down {

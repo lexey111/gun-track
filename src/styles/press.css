@@ -10,7 +10,6 @@
     text-align: center;
     text-decoration: none;
     transition: background-color .2s ease, color .2s ease, opacity .2s ease;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
     outline: none;
     font-size: var(--app-font-size);
     border-radius: 12px;

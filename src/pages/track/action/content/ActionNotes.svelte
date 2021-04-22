@@ -1,16 +1,43 @@
 <script lang="ts">
+	import Icon from '../../../../components/icons/Icon.svelte';
+	import Info from '../../../../components/modal/Info.svelte';
+	import {ActionsStore} from '../../../../stores/actions/actions-store';
 	import type {TAction} from '../../../../stores/actions/actions-store.interface';
 
 	export let action: TAction;
+
+	let infoNotes: any;
+	const onShowNotes = (id: string) => {
+		const notes = ActionsStore.getActionById(id)?.trainingNotes;
+		if (!notes) {
+			return;
+		}
+		infoNotes.showInfoDialog({
+			text: notes,
+			title: 'Notes'
+		});
+	};
 </script>
 
+<Info bind:this={infoNotes}/>
+
 {#if (action.trainingNotes)}
-	<div class="action-notes">{@html action.trainingNotes}</div>
+	<div class="action-notes" on:click={() => onShowNotes(action.id)}>
+		<Icon type="file"/>
+		{@html action.trainingNotes}
+	</div>
 {/if}
 
 <style lang="less">
 	:global {
 		.action-notes {
+			svg {
+				display: block;
+				float: left;
+				clear: both;
+				padding: 4px 8px 0 0;
+			}
+
 			font-size: var(--app-small-font-size);
 			max-height: 64px;
 			overflow: hidden;
@@ -20,7 +47,13 @@
 			position: relative;
 			border-radius: 6px;
 			min-height: 24px;
-			transition: transform .4s ease-in-out;
+			transition: transform .4s ease-in-out, opacity .2s ease-in-out;
+			cursor: pointer;
+			opacity: .8;
+
+			&:hover {
+				opacity: 1;
+			}
 
 			&:before {
 				content: '';

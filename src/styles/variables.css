@@ -5,31 +5,28 @@
     --app-small-font-size: 14px;
     --app-very-small-font-size: 12px;
 
-    --app-accent-background: #9835ee;
+    --app-accent-background: #eec635;
     --app-accent-text: #fff;
 
     --app-background: #f0f0f0;
     --app-background-wall: var(--app-primary-bg);
     --app-white-bg: #fff;
 
-    --app-primary-bg: #0683b8;
-    --app-primary-bg-lighten: #079ede;
-    --app-primary-bg-light: #239dd0;
-    --app-primary-bg-light-shade-1: #6493a7;
-    --app-primary-bg-darken: #056892;
+    --app-primary-bg: #10619c;
+    --app-primary-bg-darken: #0f5b91;
+    --app-primary-bg-dark: #0c4771;
+    --app-primary-bg-darkest: #0d3049;
+    --app-primary-bg-lighten: #1271b5;
+    --app-primary-bg-light: #1b84cf;
+    --app-primary-bg-light-shade-1: #3d83b6;
     --app-primary-text: #fff;
-    --app-primary-text-darken: #c0d9e3;
-
-    --app-secondary-bg: #bdd6de;
-    --app-secondary-bg-lighen: #079ede;
-    --app-secondary-bg-darken: #056892;
-    --app-secondary-text: #fff;
+    --app-primary-text-darken: #c0d5e3;
 
     --app-card-background: #fff;
     --app-card-text: #555;
 
-    --app-info-bg: #1872d2;
-    --app-info-bg-darken: #135dac;
+    --app-info-bg: #206d9e;
+    --app-info-bg-darken: #164b6d;
     --app-info-text: #fff;
 
     --app-warn-bg: #fac802;

@@ -2,9 +2,11 @@
 	import type {TAction} from '../../../../stores/actions/actions-store.interface';
 
 	export let action: TAction;
+	export let onEdit: (id: string) => void;
+
 </script>
 
-<div class="action-main-column">
+<div class="action-main-column" on:click={() => onEdit(action.id)}>
 	<h1>
 		{action.title}
 	</h1>
@@ -27,10 +29,12 @@
 			font-size: var(--app-big-font-size);
 			display: flex;
 			flex-flow: column nowrap;
+			cursor: pointer;
 		}
 
 		.action-comment {
 			color: var(--app-remark-text);
+			cursor: pointer;
 
 			&.no-data {
 				opacity: .5;

@@ -47,7 +47,7 @@
 	<Route path="tos" component={TosPage}/>
 
 	<Route path="guns">
-		<AuthGuardPage component={GunsPage} redirectTo="/login"/>
+		<AuthGuardPage component={GunsPage} redirectTo="/login" class="no-paddings"/>
 	</Route>
 
 	<Route path="track">
