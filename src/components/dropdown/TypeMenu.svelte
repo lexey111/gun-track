@@ -82,7 +82,7 @@
 								font-weight: bold;
 								color: var(--app-primary-text);
 								font-size: var(--app-small-font-size);
-								border-bottom: 1px dashed var(--app-primary-bg-lighen);
+								border-bottom: 1px dashed var(--app-primary-bg-lighten);
 								opacity: .8;
 								margin: 8px 0;
 								padding: 2px 0 6px 0;

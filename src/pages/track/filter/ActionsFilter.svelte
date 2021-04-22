@@ -74,40 +74,44 @@
 	}
 </script>
 
-<Dropdown onActiveChange={handleDropdownOpen}
-          onActiveChanged={handleDropdownOpened}
-          className="af-filter"
-          bind:close={closeDropdown}>
-	<span slot="title" class="af-title"><Icon type="filter" class="inline"/> {title}</span>
-	<div class="af-dropdown-content">
-		<p>
-			<input type="checkbox" id={'all'}
-			       checked={allSelected}
-			       on:change={handleSelectAll}
-			/>
-			<label for={'all'}>
-				<I18n text={'@Actions.all'}/>
-			</label>
-		</p>
-		<hr>
-		{#each ActionTypes as actionType}
-			<p>
-				<input type="checkbox"
-				       class="small"
-				       id={actionType.id}
-				       checked={selection.includes(actionType.id)}
-				       on:change={() => handleChange(actionType.id)}/>
-				<label for={actionType.id}>
-					<I18n text={'@Actions.' + actionType.id}/>
-				</label>
-			</p>
-		{/each}
-		<div class="af-actions">
-			<Button size="small" type="text" onClick={cancelFilter}>Cancel</Button>
-			<Button size="small" onClick={applyFilter}>Apply</Button>
-		</div>
+<div class="stat">
+	<div class="stat-content">
+		<Dropdown onActiveChange={handleDropdownOpen}
+		          onActiveChanged={handleDropdownOpened}
+		          className="af-filter"
+		          bind:close={closeDropdown}>
+			<span slot="title" class="af-title"><Icon type="filter" class="inline"/> {title}</span>
+			<div class="af-dropdown-content">
+				<p>
+					<input type="checkbox" id={'all'}
+					       checked={allSelected}
+					       on:change={handleSelectAll}
+					/>
+					<label for={'all'}>
+						<I18n text={'@Actions.all'}/>
+					</label>
+				</p>
+				<hr>
+				{#each ActionTypes as actionType}
+					<p>
+						<input type="checkbox"
+						       class="small"
+						       id={actionType.id}
+						       checked={selection.includes(actionType.id)}
+						       on:change={() => handleChange(actionType.id)}/>
+						<label for={actionType.id}>
+							<I18n text={'@Actions.' + actionType.id}/>
+						</label>
+					</p>
+				{/each}
+				<div class="af-actions">
+					<Button size="small" type="text" onClick={cancelFilter}>Cancel</Button>
+					<Button size="small" onClick={applyFilter}>Apply</Button>
+				</div>
+			</div>
+		</Dropdown>
 	</div>
-</Dropdown>
+</div>
 
 <style lang="less">
 	:global {
@@ -118,10 +122,12 @@
 				display: inline-flex;
 				align-content: center;
 				align-items: center;
+				color: var(--app-primary-text);
+				font-size: var(--app-font-size);
+			}
 
-				svg {
-					margin-right: .4em;
-				}
+			svg.dc-down {
+				color: var(--app-primary-text);
 			}
 		}
 
@@ -129,6 +135,7 @@
 			display: flex;
 			flex-flow: column wrap;
 			font-size: var(--app-small-font-size);
+			color: var(--app-text);
 			padding: 0 16px 0 0;
 			min-width: 200px;
 
@@ -150,6 +157,14 @@
 				flex-flow: row wrap;
 				width: 100%;
 				justify-content: flex-end;
+
+				button.press-ghost {
+					color: var(--app-link-text);
+
+					&:hover, &:focus {
+						color: var(--app-link-text-active) !important;
+					}
+				}
 			}
 		}
 	}

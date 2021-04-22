@@ -16,3 +16,26 @@
 		<div class="action-comment no-data">No data</div>
 	{/if}
 </div>
+
+
+<style lang="less">
+	.action-main-column {
+		width: 100%;
+
+		h1 {
+			margin: 0 auto 0 0;
+			font-size: var(--app-big-font-size);
+			display: flex;
+			flex-flow: column nowrap;
+		}
+
+		.action-comment {
+			color: var(--app-remark-text);
+
+			&.no-data {
+				opacity: .5;
+				font-size: var(--app-small-font-size);
+			}
+		}
+	}
+</style>

@@ -122,7 +122,7 @@
 	}
 </script>
 
-<div class="modal-header">{isNew ? 'New gun' : 'Edit gun'}</div>
+<div class="modal-header">{isNew ? 'New gun record' : 'Edit gun record'}</div>
 
 <div class="modal-content">
 	<Tabs>
@@ -208,6 +208,6 @@
 <div class="modal-footer">
 	<Button onClick={onCancel} type="text">Cancel</Button>
 	<Button disabled={disabled}
-	        onClick={handleConfirm}>{isNew ? 'Register' : 'Update'}
+	        onClick={handleConfirm}>{isNew ? 'Register' : 'Save'}
 	</Button>
 </div>

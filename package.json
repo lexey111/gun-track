@@ -22,13 +22,13 @@
 	"author": "lexey111",
 	"license": "ISC",
 	"dependencies": {
-		"@ckeditor/ckeditor5-build-decoupled-document": "^27.0.0",
+		"@ckeditor/ckeditor5-build-decoupled-document": "^27.1.0",
 		"ckeditor5-svelte": "0.0.10",
 		"dayjs": "^1.10.4",
 		"md5": "^2.3.0",
 		"svelte": "^3.37.0",
-		"svelte-routing": "^1.5.0",
-		"svelte-calendar": "^2.0.4"
+		"svelte-calendar": "^2.0.4",
+		"svelte-routing": "^1.6.0"
 	},
 	"devDependencies": {
 		"@aws-amplify/datastore": "^2.9.16",

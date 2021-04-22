@@ -51,11 +51,11 @@
 	</Route>
 
 	<Route path="track">
-		<AuthGuardPage component={TrackPage} redirectTo="/login"/>
+		<AuthGuardPage component={TrackPage} redirectTo="/login" class="no-paddings"/>
 	</Route>
 
 	<Route path="track/:id" let:params>
-		<AuthGuardPage component={TrackPage} redirectTo="/login" params={params} />
+		<AuthGuardPage component={TrackPage} redirectTo="/login" class="no-paddings" params={params}/>
 	</Route>
 
 	<Route path="home" component={HomePage}/>

@@ -25,22 +25,24 @@
 	}
 </script>
 
-<Dropdown className="menu menu-left menu-button gun-navigator" bind:close={closeMenu}>
-	<span slot="title">{currentGunTitle}</span>
-	<div class="dropdown-menu">
-		{#each gunsState.guns as gun}
-			<a on:click={() => handleGunSwitch(gun.id)}
-			   class={id === gun.id ? 'selected' : ''}>
-				{gun.name || gun.make || gun.model || 'unknown'}
-				{#if (gun.name && (gun.make || gun.model))}
-					<br/>
-					<i>{gun.make} {gun.model}</i>
-				{/if}
-				{#if (!gun.name && (gun.make && gun.model))}
-					<br/>
-					<i>{gun.model}</i>
-				{/if}
-			</a>
-		{/each}
-	</div>
-</Dropdown>
+<div>
+	<Dropdown className="menu menu-left menu-button menu-button-secondary gun-navigator" bind:close={closeMenu}>
+		<span slot="title">{currentGunTitle}</span>
+		<div class="dropdown-menu">
+			{#each gunsState.guns as gun}
+				<a href="#" on:click={() => handleGunSwitch(gun.id)}
+				   class={id === gun.id ? 'selected' : ''}>
+					{gun.name || gun.make || gun.model || 'unknown'}
+					{#if (gun.name && (gun.make || gun.model))}
+						<br/>
+						<i>{gun.make} {gun.model}</i>
+					{/if}
+					{#if (!gun.name && (gun.make && gun.model))}
+						<br/>
+						<i>{gun.model}</i>
+					{/if}
+				</a>
+			{/each}
+		</div>
+	</Dropdown>
+</div>

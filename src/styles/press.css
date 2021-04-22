@@ -9,7 +9,7 @@
     padding: 12px 24px;
     text-align: center;
     text-decoration: none;
-    transition: background-color .2s ease, color .2s ease;
+    transition: background-color .2s ease, color .2s ease, opacity .2s ease;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
     outline: none;
     font-size: var(--app-font-size);
@@ -59,7 +59,7 @@
 .press-blue {
     --p: var(--app-primary-bg);
     --c: var(--app-primary-text);
-    --h: var(--app-primary-bg-lighen);
+    --h: var(--app-primary-bg-lighten);
     --a: var(--app-primary-bg-darken);
 }
 

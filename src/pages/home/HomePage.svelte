@@ -1,11 +1,12 @@
 <script lang="ts">
-	import CurrencyMenu from '../../components/dropdown/CurrencyMenu.svelte';
 	import Button from '../../components/buttons/Button.svelte';
+	import CurrencyMenu from '../../components/dropdown/CurrencyMenu.svelte';
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';
 	import TypeMenu from '../../components/dropdown/TypeMenu.svelte';
 	import I18n from '../../components/i18n/I18n.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 	import {IconsMap} from '../../components/icons/icons-map';
+	import {showError, showInfo} from '../../components/notifications/notify';
 
 	let type;
 	const changeType = (t: string) => {
@@ -56,6 +57,32 @@
 				<a>IUI Y78 8799</a>
 			</div>
 		</Dropdown>
+		<Dropdown className="menu menu-left menu-button menu-button-ghost">
+			<span slot="title">AAAA</span>
+			<div class="dropdown-menu">
+				<a>
+					sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a class="selected">
+					Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a>LK ;lkewew p[ssda</a>
+				<a>IUI Y78 8799</a>
+			</div>
+		</Dropdown>
+		<Dropdown className="menu menu-left menu-button menu-button-secondary">
+			<span slot="title">AAAA</span>
+			<div class="dropdown-menu">
+				<a>
+					sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a class="selected">
+					Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				</a>
+				<a>LK ;lkewew p[ssda</a>
+				<a>IUI Y78 8799</a>
+			</div>
+		</Dropdown>
 		&mdash;
 		<Dropdown className="menu menu-left">
 			<span slot="title">AAAA</span>
@@ -74,9 +101,9 @@
 
 	<h4>Default</h4>
 	<div>
-		<Button>Default</Button>
+		<Button onClick={() => showInfo('AAAAAAAAAA')}>Default</Button>
 		<Button disabled={true}>Default disabled</Button>
-		<Button type="danger">Danger</Button>
+		<Button type="danger" onClick={() => showError('AAAAAAAAAA')}>Danger</Button>
 		<Button type="danger" disabled={true}>Danger disabled</Button>
 		<Button type="text">Text</Button>
 		<Button type="text" disabled={true}>Text disabled</Button>

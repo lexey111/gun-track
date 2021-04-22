@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '../../../components/buttons/Button.svelte';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 
@@ -15,6 +16,8 @@
 
 </script>
 
-<div>
-	<a href="#" on:click={changeSortDirection}>By date {sortOrder}</a>
+<div class="stat">
+	<div class="stat-content">
+		<Button type="text" onClick={changeSortDirection}>By date {sortOrder}</Button>
+	</div>
 </div>

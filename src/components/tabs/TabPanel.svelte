@@ -24,3 +24,16 @@
 		</div>
 	</div>
 {/if}
+
+<style lang="less">
+	.tab-panel {
+		background-color: var(--app-background);
+		z-index: 1;
+		margin: 0;
+
+		.tab-content {
+			padding: 16px 32px;
+			overflow: visible;
+		}
+	}
+</style>

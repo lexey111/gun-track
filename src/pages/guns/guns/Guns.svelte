@@ -38,3 +38,11 @@ Gun to delete: ${gun.name}
 		         dateLocale={dateLocale}/>
 	{/each}
 </div>
+
+<style>
+    .guns-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 64px;
+    }
+</style>

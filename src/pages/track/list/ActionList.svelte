@@ -39,5 +39,37 @@
 </div>
 
 <style lang="less">
-	@import "action-list.less";
+	.actions-list {
+		margin: 16px 16px 100px 16px;
+
+		.actions-list-header {
+			font-size: var(--app-big-font-size);
+			color: var(--app-text);
+			text-transform: uppercase;
+			font-weight: 100;
+			display: flex;
+			flex-flow: row nowrap;
+			flex-direction: row-reverse;
+			width: 100%;
+			align-content: flex-end;
+
+			.alh-money, .alh-shots {
+				display: flex;
+				flex-flow: column wrap;
+				width: 233px;
+				align-content: flex-end;
+
+				span {
+					text-align: right;
+					padding-right: 16px;
+				}
+			}
+
+			.alh-money {
+				span {
+					padding-right: 32px;
+				}
+			}
+		}
+	}
 </style>

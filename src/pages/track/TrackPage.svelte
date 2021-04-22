@@ -170,31 +170,30 @@
 	</p>
 {:else }
 	<div class="top-panel">
-		<GunNavigator id={id} gunsState={gunsState}/>
+		<div class="top-panel-content">
+			<div class="row">
+				<GunNavigator id={id} gunsState={gunsState}/>
 
-		<div>
-			<Button onClick={showNewActionDialog} type="text">
-				<Icon type="plus-circle" class="inline" size="24px"/>
-				Add an action
-			</Button>
-		</div>
+				<div>
+					<Button onClick={showNewActionDialog} type="text">
+						<Icon type="plus-circle" class="inline" size="24px"/>
+						Add an action
+					</Button>
+				</div>
+			</div>
 
-
-		{#if (!isEmpty(actionsState?.actions))}
-			<ActionsStat actionsState={actionsState}/>
-			<div class="stub"></div>
+			{#if (!isEmpty(actionsState?.actions))}
+				<ActionsStat actionsState={actionsState}/>
+			{/if}
 
 			{#if (actionsState?.actions?.length > 1)}
 				<ActionsSort actionsState={actionsState}/>
 			{/if}
 
-		{:else }
-			<div class="stub"></div>
-		{/if}
-
-		{#if (actionsState?.actions?.length > 1 || ActionsStore.isFiltered())}
-			<ActionsFilter/>
-		{/if}
+			{#if (actionsState?.actions?.length > 1 || ActionsStore.isFiltered())}
+				<ActionsFilter/>
+			{/if}
+		</div>
 	</div>
 
 	{#if (!isEmpty(actionsState?.actions))}
@@ -214,5 +213,132 @@
 {/if}
 
 <style lang="less">
-	@import "track.less";
+	:global {
+		.top-panel {
+			button.press-ghost {
+				color: var(--app-primary-text);
+
+				&:hover {
+					color: var(--app-primary-text) !important;
+				}
+			}
+		}
+
+		.top-panel {
+			display: flex;
+			align-items: flex-start;
+			width: 100%;
+			white-space: nowrap;
+			font-size: var(--app-small-font-size);
+
+			background-color: var(--app-primary-bg);
+			color: var(--app-primary-text);
+			padding: 0;
+
+			.top-panel-content {
+				display: grid;
+				grid-template-columns: 2fr 3fr 1fr 1fr;
+				grid-gap: 8px;
+				align-items: stretch;
+				width: 100%;
+				max-width: 100%;
+				white-space: nowrap;
+				margin: 8px;
+
+				.row {
+					display: flex;
+					flex-flow: row nowrap;
+					align-items: center;
+					align-content: center;
+					background-color: var(--app-primary-bg-light);
+					color: var(--app-primary-text);
+					padding: 0 16px;
+					min-height: 80px;
+					border-radius: 7px;
+					transform-origin: top left;
+
+					height: 100%;
+					animation-name: top-panel-appear;
+					animation-duration: .4s;
+					animation-timing-function: ease-in-out;
+				}
+
+				.stat {
+					display: flex;
+					flex-flow: row nowrap;
+					align-items: center;
+					justify-content: flex-end;
+					padding: 0 16px;
+					min-height: 40px;
+					height: 100%;
+
+					background-color: var(--app-primary-bg-light);
+					color: var(--app-primary-text);
+					border-radius: 7px;
+					transform-origin: top left;
+
+					animation-name: top-panel-appear;
+					animation-duration: .4s;
+					animation-timing-function: ease-in-out;
+				}
+
+				.stat-content {
+					display: flex;
+					flex-flow: row nowrap;
+					padding: 16px 0;
+				}
+			}
+
+
+			transform-origin: top left;
+			animation-name: top-panel-appear;
+			animation-duration: .4s;
+			animation-timing-function: ease-in-out;
+		}
+
+		@keyframes top-panel-appear {
+			0% {
+				opacity: 0;
+				transform: translateY(-15px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+
+	.container-floating {
+		position: fixed;
+		margin: 0 auto;
+		min-width: 600px;
+		max-width: 80vw;
+		width: 100%;
+		bottom: 64px;
+		z-index: 10;
+
+		.floating-add-action {
+			position: absolute;
+			right: 40px;
+			bottom: 0;
+			background-color: var(--app-link-text);
+			width: 48px;
+			height: 48px;
+			border-radius: 48px;
+			cursor: pointer;
+			color: #fff;
+			transition: all .2s ease;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+			opacity: .8;
+			backdrop-filter: blur(8px);
+			padding: 2px;
+
+			&:hover {
+				background-color: var(--app-link-text-active);
+				box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+				opacity: 1;
+				transform: scale(1.2);
+			}
+		}
+	}
 </style>

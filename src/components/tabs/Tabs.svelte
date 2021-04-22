@@ -70,5 +70,9 @@
 </div>
 
 <style lang="less">
-	@import "tabs.less";
+	.tabs {
+		margin: 0;
+		padding-top: 8px;
+		background-color: var(--app-white-bg);
+	}
 </style>

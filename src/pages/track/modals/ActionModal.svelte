@@ -133,7 +133,6 @@
 <div class="modal-header">{dialogTitle}</div>
 
 <div class="modal-content">
-
 	<Tabs>
 		<TabHeader>
 			<Tab>Main data</Tab>
@@ -221,3 +220,15 @@
 		onClick={handleConfirm}>Save
 	</Button>
 </div>
+
+
+<style lang="less">
+	:global {
+		.track-modal {
+			width: 700px;
+			min-width: 600px;
+			height: 450px;
+			min-height: 400px;
+		}
+	}
+</style>

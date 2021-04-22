@@ -51,6 +51,10 @@ body.no-scroll {
 		display: block;
 		// overflow: hidden;
 		position: relative;
+
+		&.no-paddings {
+			margin: 0;
+		}
 	}
 
 	.logged-out & {
@@ -60,7 +64,7 @@ body.no-scroll {
 
 body.page-semitransparent {
 	.app-pages {
-		//background-color: var(--app-page-background);
+		//background-color: var(--app-white-bg);
 		background-color: rgba(242, 242, 242, .8);
 		backdrop-filter: blur(7px);
 	}

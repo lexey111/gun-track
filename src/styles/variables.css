@@ -10,12 +10,19 @@
 
     --app-background: #f0f0f0;
     --app-background-wall: #565e5f;
-    --app-page-background: #fff;
+    --app-white-bg: #fff;
 
     --app-primary-bg: #0683b8;
-    --app-primary-bg-lighen: #079ede;
+    --app-primary-bg-lighten: #079ede;
+    --app-primary-bg-light: #239dd0;
     --app-primary-bg-darken: #056892;
     --app-primary-text: #fff;
+    --app-primary-text-darken: #a3ddf1;
+
+    --app-secondary-bg: #bdd6de;
+    --app-secondary-bg-lighen: #079ede;
+    --app-secondary-bg-darken: #056892;
+    --app-secondary-text: #fff;
 
     --app-card-background: #fff;
     --app-card-text: #555;

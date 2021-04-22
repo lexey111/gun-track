@@ -130,8 +130,6 @@
 {/if}
 
 <style lang="less">
-	@import "guns.less";
-
 	h2 {
 		display: flex;
 		flex-flow: row nowrap;
