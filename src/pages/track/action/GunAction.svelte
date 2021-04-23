@@ -38,11 +38,11 @@
 			display: flex;
 			width: 100%;
 			flex-flow: row nowrap;
-			margin: 8px 0 16px;
+			margin: 16px 0;
 
 			.action-content {
 				width: 100%;
-				margin-left: 24px;
+				margin: 0 24px 0 32px;
 				flex-grow: 2;
 				background-color: var(--app-white-bg);
 				padding: 16px;

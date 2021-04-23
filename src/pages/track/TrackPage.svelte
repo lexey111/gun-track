@@ -179,13 +179,11 @@
 <Confirm bind:this={confirmDialog}/>
 
 {#if (gunsState && gunsState.fullReady)}
-	{#if (!isEmpty(actionsState?.actions))}
+	{#if (!isEmpty(actionsState?.actions) || ActionsStore.isFiltered())}
 		<div class="top-panel">
 			<div class="top-panel-content">
-				<div class="row">
-					<GunNavigator id={id} gunsState={gunsState}/>
-
-					<div>
+				<div class="stat">
+					<div class="stat-content">
 						<Button onClick={showNewActionDialog} type="text">
 							<Icon type="plus-circle" class="inline" size="24px"/>
 							Add record...
@@ -209,11 +207,12 @@
 	<div class="page-content">
 		{#if (!isEmpty(actionsState?.actions))}
 			<ActionList
+				{id} {gunsState}
 				onEdit={handleEdit}
 				onDelete={handleDelete}
 				actionsState={actionsState}/>
 		{:else }
-			{#if (actionsState?.isEmpty === true)}
+			{#if (actionsState?.isEmpty === true && !ActionsStore.isFiltered())}
 				<div class="no-records">
 					<h2>No records here for <i>{currentGunTitle}</i>, yet.</h2>
 					<p>
@@ -231,6 +230,14 @@
 							<GunNavigator id={id} gunsState={gunsState}/>
 						</div>
 					{/if}
+				</div>
+			{/if}
+			{#if (actionsState?.isEmpty === true && ActionsStore.isFiltered())}
+				<div class="no-records">
+					<h2>No data to display</h2>
+					<p>
+						There are no records here for <i>{currentGunTitle}</i> with filtering applied.
+					</p>
 				</div>
 			{/if}
 		{/if}
@@ -253,7 +260,7 @@
 
 		.top-panel {
 			.top-panel-content {
-				grid-template-columns: 2fr 3fr 1fr 1fr;
+				grid-template-columns: 1fr 2fr 1fr 1fr;
 			}
 		}
 	}

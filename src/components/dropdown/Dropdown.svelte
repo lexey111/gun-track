@@ -395,7 +395,7 @@
 					}
 				}
 
-				&.active {
+				&.active{
 					.dc-title {
 						border-bottom: none;
 
@@ -415,6 +415,7 @@
 					.dc-dropdown-wrapper {
 						background-color: var(--app-white-bg);
 						border: 2px solid var(--app-primary-bg-lighten);
+						z-index: -1;
 
 						.dc-dropdown-content {
 							.dropdown-menu {

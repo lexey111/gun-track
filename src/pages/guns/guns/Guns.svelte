@@ -27,9 +27,11 @@ Gun to delete: ${gun.name}
 			onConfirm: () => onRemove(id)
 		});
 	}
+	console.log('guns', guns);
 </script>
 
 <Confirm bind:this={confirmDialog}/>
+
 <div class="guns-list">
 	{#each guns as gun}
 		<GunCard gun={gun}

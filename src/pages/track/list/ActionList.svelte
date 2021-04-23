@@ -1,24 +1,23 @@
 <script lang="ts">
 
-	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
+	import type {TGunsState} from '../../../stores/guns/guns-store.interface';
 	import {isEmpty} from '../../../utils/objects';
 	import GunAction from '../action/GunAction.svelte';
+	import GunNavigator from '../navigator/GunNavigator.svelte';
 
+	export let gunsState: TGunsState;
+	export let id: string;
 	export let actionsState: TActionsState;
 	export let onEdit: (id: string) => void;
 	export let onDelete: (id: string) => void;
 
 	$: hasExpensesAtAll = !isEmpty(actionsState?.expenses);
+
 </script>
 
 <div class="actions-list">
-	{#if (!actionsState)}
-		<p>
-			<SpinnerComponent/>
-			Loading...
-		</p>
-	{:else }
+	{#if (actionsState)}
 		{#if (actionsState?.actions?.length)}
 			<div class="actions-list-header">
 				{#if (hasExpensesAtAll)}
@@ -27,6 +26,9 @@
 				{#if (actionsState?.totalShots > 0)}
 					<div class="alh-shots"><span>Shots</span></div>
 				{/if}
+				<div class="alh-name">
+					<GunNavigator {id} {gunsState}/>
+				</div>
 			</div>
 		{/if}
 		{#each actionsState.actions as action, idx}
@@ -40,28 +42,33 @@
 
 <style lang="less">
 	.actions-list {
-		margin: 16px 16px 100px 16px;
+		margin: 0 0 100px 0;
 
 		.actions-list-header {
-			font-size: var(--app-big-font-size);
-			color: var(--app-text);
-			text-transform: uppercase;
-			font-weight: 100;
 			display: flex;
 			flex-flow: row nowrap;
 			flex-direction: row-reverse;
 			width: 100%;
 			align-content: flex-end;
+			padding: 12px 0;
+			border-radius: 17px 17px 0 0;
+			border-bottom: 2px solid var(--app-primary-bg);
+			background-color: var(--app-primary-bg);
 
 			.alh-money, .alh-shots {
 				display: flex;
 				flex-flow: column wrap;
 				width: 233px;
 				align-content: flex-end;
+				justify-content: flex-end;
+				font-size: var(--app-big-font-size);
+				color: var(--app-primary-text-darken);
+				text-transform: uppercase;
+				font-weight: 100;
 
 				span {
 					text-align: right;
-					padding-right: 16px;
+					padding-right: 32px;
 				}
 			}
 
@@ -69,6 +76,11 @@
 				span {
 					padding-right: 32px;
 				}
+			}
+
+			.alh-name {
+				margin-right: auto;
+				margin-left: 1em;
 			}
 		}
 	}

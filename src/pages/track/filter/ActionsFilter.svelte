@@ -124,6 +124,10 @@
 				align-items: center;
 				color: var(--app-primary-text);
 				font-size: var(--app-font-size);
+
+				&:hover, &:focus {
+					text-decoration: underline;
+				}
 			}
 
 			svg.dc-down {

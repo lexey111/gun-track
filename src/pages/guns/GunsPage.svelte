@@ -137,7 +137,7 @@
 
 		<div class="page-content extra-paddings">
 			<Guns
-				guns={gunsState.guns}
+				guns={gunsState?.guns}
 				dateLocale={state.dateLocale}
 				onRemove={handleRemoveGun}
 				onEdit={showGunEditDialog}/>
