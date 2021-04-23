@@ -6,14 +6,14 @@
 
 </script>
 
-<div class="stat-wrapper">
-	<div class="stat stat-info stat-row">
-		<div class="stat-exp">
-			<ul>
-				<li>Shots</li>
-				<li>Records</li>
-			</ul>
-		</div>
+<div class="block block-info">
+	<div class="stat-exp">
+		<ul>
+			<li>Shots</li>
+			<li>Records</li>
+		</ul>
+	</div>
+	<div class="block-content">
 		<ul>
 			<li>
 				<b>{actionsState?.totalShots}</b>
@@ -23,16 +23,18 @@
 			</li>
 		</ul>
 	</div>
+</div>
 
-	{#if (actionsState?.expenses && Object.keys(actionsState?.expenses).length)}
-		<div class="stat stat-info stat-row">
-			<div class="stat-exp">
-				<ul>
-					{#each Object.keys(actionsState.expenses) as currency}
-						<li>{getCurrencySign(currency)} {currency}</li>
-					{/each}
-				</ul>
-			</div>
+{#if (actionsState?.expenses && Object.keys(actionsState?.expenses).length)}
+	<div class="block block-info">
+		<div class="stat-exp">
+			<ul>
+				{#each Object.keys(actionsState.expenses) as currency}
+					<li>{getCurrencySign(currency)} {currency}</li>
+				{/each}
+			</ul>
+		</div>
+		<div class="block-content">
 			<ul>
 				{#each Object.keys(actionsState.expenses) as currency}
 					<li>
@@ -41,19 +43,5 @@
 				{/each}
 			</ul>
 		</div>
-	{/if}
-</div>
-
-<style lang="less">
-	:global {
-		.top-panel-content {
-			.stat-wrapper {
-				margin: 0;
-				padding: 0;
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-				grid-gap: 8px;
-			}
-		}
-	}
-</style>
+	</div>
+{/if}

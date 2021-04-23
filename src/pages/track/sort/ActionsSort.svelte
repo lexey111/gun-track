@@ -16,8 +16,8 @@
 
 </script>
 
-<div class="stat">
-	<div class="stat-content">
+<div class="block">
+	<div class="block-content">
 		<Button type="text" onClick={changeSortDirection}>By date {sortOrder}</Button>
 	</div>
 </div>

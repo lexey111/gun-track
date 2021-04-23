@@ -14,7 +14,7 @@
 		border-radius: 17px;
 		transition: none;
 		z-index: 1;
-		overflow: hidden;
+		// overflow: hidden;
 
 		display: block;
 		position: relative;
@@ -74,66 +74,46 @@
 	}
 
 	display: flex;
-	align-items: flex-start;
-	width: 100%;
+	flex-flow: column nowrap;
+	align-items: stretch;
 	white-space: nowrap;
 	font-size: var(--app-small-font-size);
 	z-index: 1;
+	min-width: 100%;
+	margin: 0 -4px 0 0;
 
 	color: var(--app-primary-text);
 	padding: 0;
 
 	.top-panel-content {
-		display: grid;
-		// grid-template-columns: 2fr 3fr 1fr 1fr;
-		grid-gap: 8px;
+		display: flex;
+		flex-flow: row wrap;
 		align-items: stretch;
-		width: 100%;
+		justify-items: stretch;
+		justify-content: stretch;
 		max-width: 100%;
-		white-space: nowrap;
-		margin: 0 0 8px 0;
+		margin: 0 -8px 0 0;
 
-		.row {
-			display: flex;
-			flex-flow: row nowrap;
-			align-items: center;
-			align-content: center;
-			background-color: var(--app-primary-bg-light);
-			color: var(--app-primary-text);
-			padding: 0 16px;
-			min-height: 80px;
-			border-radius: 7px;
-			transform-origin: top left;
-
-			height: 100%;
-			animation-name: top-panel-appear;
-			animation-duration: .4s;
-			animation-timing-function: ease-in-out;
-			opacity: .6;
-			transition: opacity .2s ease;
-
-			&:hover, &:focus-within {
-				opacity: 1;
-			}
-
-		}
-
-		.stat {
+		.block {
 			cursor: default;
 			display: flex;
+			flex-grow: 1;
+			flex-shrink: 1;
 			flex-flow: row nowrap;
 			align-items: center;
 			justify-content: flex-end;
-			padding: 0 16px;
+			padding: 0 8px;
 			min-height: 40px;
-			height: 100%;
 
 			background-color: var(--app-primary-bg-light);
 			color: var(--app-primary-text);
 			border-radius: 7px;
 			transform-origin: top left;
-			opacity: .6;
+			opacity: .8;
 			transition: opacity .2s ease;
+			margin-bottom: 8px;
+
+			margin-right: 4px;
 
 			&:hover {
 				opacity: 1;
@@ -158,12 +138,12 @@
 			.stat-exp {
 				display: flex;
 				flex-flow: row nowrap;
+				height: 100%;
 				margin-right: 1em;
 				padding-right: 1em;
 				padding-left: 16px;
 				color: var(--app-primary-text-darken);
 				border-right: 2px solid var(--app-primary-bg);
-				height: 100%;
 				align-items: center;
 
 				ul {
@@ -173,37 +153,24 @@
 				}
 			}
 
-
 			animation-name: top-panel-appear;
 			animation-duration: .4s;
 			animation-timing-function: ease-in-out;
 		}
 
-		.stat-info {
-			height: 100%;
-			flex: 1;
+		.block-info {
+			// flex: 1;
 			background-color: var(--app-primary-bg-light-shade-1) !important;
 		}
 
-		.stat-content {
+		.block-content {
 			display: flex;
 			flex-flow: row nowrap;
-			padding: 16px 0;
+			padding: 8px 0;
 		}
 
-		.stat-wrapper {
-			margin: 0;
-			padding: 0;
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-			grid-gap: 8px;
-
-			.stat-row {
-				flex-flow: row nowrap;
-				height: 100%;
-				margin-right: 0 !important;
-			}
-
+		.block-left {
+			justify-content: flex-start;
 		}
 	}
 

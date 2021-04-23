@@ -149,7 +149,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 	{#if (gunsState?.isEmpty === false)}
 		<div class="top-panel">
 			<div class="top-panel-content">
-				<div class="stat">
+				<div class="block block-left">
 					<Button
 						type="text"
 						onClick={showNewGunDialog}>
@@ -158,13 +158,15 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 					</Button>
 				</div>
 
-				<div class="stat stat-info">
+				<div class="block block-info">
 					<div class="stat-exp">
 						Registered
 					</div>
-					<ul>
-						<li>{gunsState?.guns?.length}</li>
-					</ul>
+					<div class="block-content">
+						<ul>
+							<li>{gunsState?.guns?.length}</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

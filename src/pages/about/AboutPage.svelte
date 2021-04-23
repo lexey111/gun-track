@@ -19,13 +19,16 @@
 
 		<h3>UI</h3>
 		<ul>
+			<li>Mobile views</li>
 			<li>
 				<Done>Chevron icon for dropdowns</Done>
 			</li>
 			<li>
 				<Done>Own SVG</Done>
 			</li>
-			<li>Design system - colors etc.</li>
+			<li>
+				<Done>Design system - colors etc.</Done>
+			</li>
 			<li>
 				<Done>Modal</Done>
 			</li>
@@ -92,6 +95,8 @@
 
 		<h3>Track list</h3>
 		<ul>
+			<li>Save filter and sort for gun</li>
+			<li>Filtered/total</li>
 			<li>
 				<Done>Dropdown gun navigator</Done>
 			</li>
@@ -107,7 +112,9 @@
 			<li>
 				<Done>Better hover</Done>
 			</li>
-			<li>Stat cards</li>
+			<li>
+				<Done>Stat cards</Done>
+			</li>
 			<li>
 				<Done>Floating add button</Done>
 			</li>
@@ -166,16 +173,21 @@
 			<li>
 				<Done>Cards</Done>
 			</li>
-			<li>Delete gun with records</li>
-			<li>Extra confirmation if records</li>
-			<li>SS selectors? delete actions?</li>
+			<li>
+				<Done>Delete gun with records</Done>
+			</li>
+			<li>
+				<Done>Extra confirmation if records</Done>
+			</li>
+			<li>
+				<Done>SS selectors? delete actions?</Done>
+			</li>
 			<li>Show photo on cards</li>
 			<li>
 				<Done>Big text editor</Done>
 			</li>
 			<li>Dashboard and graphs</li>
 			<li>CSV export</li>
-			<li>Mobile views</li>
 		</ul>
 
 		<h3>Gun editor</h3>
@@ -255,8 +267,12 @@
 			<li>
 				<Done>Gun records table</Done>
 			</li>
-			<li>Gun records stats</li>
-			<li>graph ql</li>
+			<li>
+				<Done>Gun records stats</Done>
+			</li>
+			<li>
+				<Done>graph ql</Done>
+			</li>
 		</ul>
 	</div>
 </div>

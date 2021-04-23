@@ -24,7 +24,10 @@
 					<div class="alh-money"><span>Expenses</span></div>
 				{/if}
 				{#if (actionsState?.totalShots > 0)}
-					<div class="alh-shots"><span>Shots</span></div>
+					<div class="alh-shots"><span>
+						Shots
+						({actionsState?.totalShots})
+					</span></div>
 				{/if}
 				<div class="alh-name">
 					<GunNavigator {id} {gunsState}/>

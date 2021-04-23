@@ -74,8 +74,8 @@
 	}
 </script>
 
-<div class="stat">
-	<div class="stat-content">
+<div class="block">
+	<div class="block-content">
 		<Dropdown onActiveChange={handleDropdownOpen}
 		          onActiveChanged={handleDropdownOpened}
 		          className="af-filter"

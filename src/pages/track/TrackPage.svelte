@@ -180,8 +180,8 @@
 	{#if (!isEmpty(actionsState?.actions) || ActionsStore.isFiltered())}
 		<div class="top-panel">
 			<div class="top-panel-content">
-				<div class="stat">
-					<div class="stat-content">
+				<div class="block block-left">
+					<div class="block-content">
 						<Button onClick={showNewActionDialog} type="text">
 							<Icon type="plus-circle" class="inline" size="24px"/>
 							Add record...
@@ -241,12 +241,6 @@
 		.no-records {
 			padding: 32px;
 		}
-
-		.top-panel {
-			.top-panel-content {
-				grid-template-columns: 1fr 2fr 1fr 1fr;
-			}
-		}
 	}
 
 	.container-floating {
@@ -274,11 +268,29 @@
 			backdrop-filter: blur(8px);
 			padding: 2px;
 
+			transform-origin: center center;
+			animation-name: floating-appear;
+			animation-duration: 1s;
+			animation-timing-function: ease-in-out;
+
 			&:hover {
-				background-color: var(--app-primary-bg-lighten);
+				background-color: var(--app-primary-bg-darken);
 				box-shadow: 0 0 12px rgba(0, 0, 0, .5);
 				opacity: 1;
 				transform: scale(1.2);
+			}
+		}
+
+		@keyframes floating-appear {
+			0% {
+				opacity: 0;
+				transform: translateY(15px);
+				box-shadow: 0 -8px 2px rgba(0, 0, 0, .2);
+			}
+			100% {
+				opacity: .8;
+				transform: translateY(0);
+				box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
 			}
 		}
 	}
