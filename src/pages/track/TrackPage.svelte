@@ -18,7 +18,9 @@
 	import ActionsFilter from './filter/ActionsFilter.svelte';
 	import ActionList from './list/ActionList.svelte';
 	import ActionModal from './modals/ActionModal.svelte';
-	import GunNavigator from './navigator/GunNavigator.svelte';
+	import NoGuns from './sections/NoGuns.svelte';
+	import NoRecords from './sections/NoRecords.svelte';
+	import NoRecordsByFilter from './sections/NoRecordsByFilter.svelte';
 	import ActionsSort from './sort/ActionsSort.svelte';
 	import ActionsStat from './stat/ActionsStat.svelte';
 
@@ -52,7 +54,7 @@
 		}
 	}
 	$: {
-		if (!actionsState || actionsState?.busy) {
+		if (actionsUnsubscribe && !actionsState || actionsState?.busy) {
 			AppStateStore.showSpinner();
 		} else {
 			AppStateStore.hideSpinner();
@@ -115,10 +117,7 @@
 	}
 	onMount(() => {
 		gunsUnsubscribe = GunsStore.subscribe((value: TGunsState) => {
-			if (!value) {
-				return;
-			}
-			if (!value.fullReady) {
+			if (!value?.fullReady) {
 				return;
 			}
 			processStore(value);
@@ -166,7 +165,6 @@
 
 	};
 
-
 	let currentGun: Gun;
 	let currentGunTitle;
 	$: {
@@ -205,40 +203,26 @@
 	{/if}
 
 	<div class="page-content">
+		{#if (!id)}
+			<NoGuns/>
+		{/if}
 		{#if (!isEmpty(actionsState?.actions))}
 			<ActionList
-				{id} {gunsState}
+				{id}
+				{gunsState}
 				onEdit={handleEdit}
 				onDelete={handleDelete}
 				actionsState={actionsState}/>
 		{:else }
 			{#if (actionsState?.isEmpty === true && !ActionsStore.isFiltered())}
-				<div class="no-records">
-					<h2>No records here for <i>{currentGunTitle}</i>, yet.</h2>
-					<p>
-						But it is the best time to create one!
-					</p>
-					<p>
-						<Button onClick={showNewActionDialog}>
-							<Icon type="plus-circle" size="24px" class="inline"/>
-							Add record...
-						</Button>
-					</p>
-					{#if gunsState.guns.length > 1}
-						<div>
-							<p>Or you can select another gun:</p>
-							<GunNavigator id={id} gunsState={gunsState}/>
-						</div>
-					{/if}
-				</div>
+				<NoRecords
+					{id}
+					{gunsState}
+					{currentGunTitle}
+					{showNewActionDialog}/>
 			{/if}
 			{#if (actionsState?.isEmpty === true && ActionsStore.isFiltered())}
-				<div class="no-records">
-					<h2>No data to display</h2>
-					<p>
-						There are no records here for <i>{currentGunTitle}</i> with filtering applied.
-					</p>
-				</div>
+				<NoRecordsByFilter {currentGunTitle}/>
 			{/if}
 		{/if}
 

@@ -2,16 +2,21 @@
 	import {getContext, onDestroy, onMount} from 'svelte';
 	import Button from '../../components/buttons/Button.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
+	import type {IConfirmDialog} from '../../components/modal/Confirm.interface';
+	import Confirm from '../../components/modal/Confirm.svelte';
 	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
 	import type {Gun} from '../../models';
+	import {ActionsStore} from '../../stores/actions/actions-store';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import type {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import type {TGunsState} from '../../stores/guns/guns-store.interface';
+	import {getErrorText} from '../../utils/errors';
 	import Guns from './guns/Guns.svelte';
 	import GunModal from './modals/GunModal.svelte';
 
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
+	let confirmDialog: IConfirmDialog;
 
 	let gunsState$;
 	let gunsState: TGunsState = {
@@ -64,13 +69,40 @@
 		});
 	}
 
-	const handleRemoveGun = async (id) => {
-		AppStateStore.showSpinner();
-		const result = await GunsStore.removeGun(id)
-		if (result) {
-			showWarning('Record was removed successfully', 'Done');
+	const doRemoveGun = async (id: string) => {
+		try {
+			const result = await GunsStore.removeGun(id);
+			if (result) {
+				showWarning('Record was removed successfully', 'Done');
+			}
+		} catch (e) {
+			showError(getErrorText(e));
 		}
-		AppStateStore.hideSpinner();
+	};
+
+	const handleRemoveGun = async (id) => {
+		try {
+			const gun = GunsStore.getGunById(id);
+			if (!gun) {
+				throw new Error('Gun not found!');
+			}
+			AppStateStore.showSpinner();
+			const actionsCount = await ActionsStore.countRecordsForGun(id);
+			console.log('Records count', actionsCount);
+
+			confirmDialog.showConfirmDialog({
+				text: `Are you sure you want to delete this gun? Operation cannot be undone!
+\n
+Gun to delete: [${gun.name}], records: ${actionsCount}.
+			`,
+				confirmText: 'Delete',
+				onConfirm: () => doRemoveGun(id)
+			});
+		} catch (e) {
+			showError(getErrorText(e));
+		} finally {
+			AppStateStore.hideSpinner();
+		}
 	};
 
 	onMount(() => {
@@ -95,6 +127,8 @@
 		appState$ && appState$();
 	});
 </script>
+
+<Confirm bind:this={confirmDialog}/>
 
 {#if (gunsState?.isEmpty !== null)}
 	{#if (gunsState?.isEmpty === true)}

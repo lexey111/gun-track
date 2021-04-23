@@ -1,8 +1,6 @@
 <script lang="ts">
 	import * as dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
-	import type {IConfirmDialog} from '../../../components/modal/Confirm.interface';
-	import Confirm from '../../../components/modal/Confirm.svelte';
 	import type {Gun} from '../../../models';
 	import GunCard from '../gun/GunCard.svelte';
 
@@ -13,30 +11,13 @@
 	export let dateLocale: string;
 
 	export let guns: Array<Gun>;
-
-	let confirmDialog: IConfirmDialog;
-	const handleOnDelete = (id: string) => {
-		const gun = guns.find(x => x.id === id);
-
-		confirmDialog.showConfirmDialog({
-			text: `Are you sure you want to delete this gun? Operation cannot be undone!
-\n
-Gun to delete: ${gun.name}
-			`,
-			confirmText: 'Delete',
-			onConfirm: () => onRemove(id)
-		});
-	}
-	console.log('guns', guns);
 </script>
-
-<Confirm bind:this={confirmDialog}/>
 
 <div class="guns-list">
 	{#each guns as gun}
 		<GunCard gun={gun}
 		         onEdit={onEdit}
-		         onRemove={handleOnDelete}
+		         onRemove={() => onRemove(gun.id)}
 		         dateLocale={dateLocale}/>
 	{/each}
 </div>

@@ -1,0 +1,24 @@
+type Gun @model @auth(rules: [{ allow: owner }]) {
+    id: ID!
+    name: String
+    make: String
+    model: String
+    notes: String
+    caliber: String
+    dateCreated: AWSDateTime!
+    actions: [Action] @connection(keyName: "byGun", fields: ["id"])
+}
+
+type Action @model @key(name: "byGun", fields: ["gunID"]) @auth(rules: [{ allow: owner }]) {
+    id: ID!
+    title: String
+    type: String
+    comment: String
+    shots: Int!
+    date: AWSDateTime!
+    expenses: Float
+    currency: String
+    trainingNotes: String
+    gunID: ID!
+    gun: Gun @connection(fields: ["gunID"])
+}

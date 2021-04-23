@@ -43,4 +43,5 @@ export interface IActionsStore extends Writable<TActionsState> {
 	isFiltered: () => boolean
 
 	getActionById: (actionID: string) => Action
+	countRecordsForGun: (gunId: string) => Promise<number>
 }

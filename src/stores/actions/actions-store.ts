@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/restrict-template-expressions,@typescript-eslint/no-unsafe-call */
 import {DataStore, Predicates, SortDirection} from '@aws-amplify/datastore';
 import {writable} from 'svelte/store';
 import {showError} from '../../components/notifications/notify';
@@ -8,6 +7,9 @@ import {CompareStringArrays} from '../../utils/objects';
 import {GunsStore} from '../guns/guns-store';
 import type {ActionExtended, IActionsStore, TAction, TActionsState} from './actions-store.interface';
 import {ActionCurrencies, ActionTypes} from './actions-store.types';
+
+
+const gunNotFoundMessage = 'Gun not found!';
 
 let currentOrder: SortDirection = SortDirection.DESCENDING;
 let currentFiltering: Array<string> = [];
@@ -49,7 +51,78 @@ function getActionById(actionID: string): Action {
 	return _actions.find(g => g.id === actionID);
 }
 
+// function getGraphQLError(e: any): string {
+// 	if (Array.isArray(e?.errors)) {
+// 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+// 		return e.errors.map(x => x.message).join(', ');
+// 	}
+// 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+// 	return e?.message ? e.message : e.toString();
+// }
+//
+// function getActionFilter(gunId: string, typeFilter?: Array<string>, sortFn?: any): any {
+// 	const variables = {
+// 		filter: {
+// 			gunID: {
+// 				eq: gunId
+// 			}
+// 		}
+// 	};
+//
+// 	if (typeFilter && typeFilter.length > 0) {
+// 		if (typeFilter.length === 1 && typeFilter[0] !== 'other') {
+// 			variables.filter = {...variables.filter, ...{type: {'eq': typeFilter[0]}}};
+// 		}
+//
+// 		if (typeFilter.length > 1 || typeFilter[0] === 'other') {
+// 			const conditions: Array<any> = typeFilter.map(c => ({type: {eq: c}}));
+// 			if (typeFilter.includes('other')) {
+// 				conditions.push({type: {attributeExists: false}});
+// 			}
+// 			variables.filter = {...variables.filter, ...{or: conditions}};
+// 		}
+// 	}
+//
+// 	if (sortFn) {
+// 		variables['sort'] = sortFn;
+// 	}
+//
+// 	console.log('var', JSON.stringify(variables, null, 4));
+// 	return variables;
+// }
+//
+// async function getActionsByGun(gunId: string, typeFilter?: Array<string>, sortFn?: any): Promise<[Action]> {
+// 	let rawActions: any;
+//
+// 	const variables = getActionFilter(gunId, typeFilter, sortFn);
+//
+// 	try {
+// 		rawActions = await API.graphql(graphqlOperation(listActions, variables));
+// 	} catch (e) {
+// 		throw new Error(getGraphQLError(e));
+// 	}
+// 	console.log('-==', rawActions?.data?.listActions);
+// 	return rawActions?.data?.listActions?.items as [Action];
+// }
+
+
+async function countRecordsForGun(gunId: string): Promise<number> {
+	const gun = GunsStore.getGunById(gunId);
+	if (!gun) {
+		throw new Error(gunNotFoundMessage);
+	}
+	const rawActions: Array<ActionExtended> = (await DataStore.query(Action, Predicates.ALL))
+		.filter(c => c.gun?.id === gunId);
+
+	return rawActions?.length || 0;
+}
+
 async function loadActions(gunId?: string): Promise<void> {
+	const gun = GunsStore.getGunById(gunId || currentGunId);
+	if (!gun) {
+		return;
+	}
+
 	if (gunId) {
 		currentGunId = gunId;
 	}
@@ -60,15 +133,12 @@ async function loadActions(gunId?: string): Promise<void> {
 	}));
 
 	try {
-		const gun = GunsStore.getGunById(currentGunId);
-		if (!gun) {
-			throw new Error('Gun not found!');
-		}
-
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		// const rawActions = await getActionsByGun(currentGunId, currentFiltering, a => a.date(currentOrder));
 		const rawActions: Array<ActionExtended> = (await DataStore.query(Action, Predicates.ALL, {
 			sort: a => a.date(currentOrder)
 		}))
-			.filter((c: any) => c.gun?.id === currentGunId)
+			.filter(c => c.gun?.id === currentGunId)
 			.filter(c => {
 				if (!currentFiltering.length) {
 					return true;
@@ -143,8 +213,13 @@ async function registerAction(gunId: string, action: TAction): Promise<boolean> 
 	const gun = GunsStore.getGunById(gunId);
 	try {
 		if (!gun) {
-			throw new Error('Gun not found!');
+			throw new Error(gunNotFoundMessage);
 		}
+
+		if (!action.type) {
+			action.type = 'other';
+		}
+
 		await DataStore.save(
 			new Action({
 				...action,
@@ -179,7 +254,7 @@ async function saveAction(action: Action): Promise<boolean> {
 		await DataStore.save(
 			Action.copyOf(_action, updated => {
 				updated.title = action.title;
-				updated.type = action.type;
+				updated.type = action.type || 'other';
 				updated.date = action.date;
 				updated.comment = action.comment;
 				updated.currency = action.currency;
@@ -296,5 +371,6 @@ export const ActionsStore: IActionsStore = {
 	setFilter,
 	isFiltered,
 
-	getActionById
+	getActionById,
+	countRecordsForGun
 };

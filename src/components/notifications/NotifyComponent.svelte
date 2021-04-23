@@ -63,10 +63,11 @@
 			font-size: var(--app-small-font-size);
 			box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
 			margin-bottom: 16px;
-			padding: 16px 24px;
+			padding: 24px 32px;
 			cursor: default;
-			max-width: 600px;
+			max-width: 50vw;
 			overflow: hidden;
+			border-radius: 7px;
 
 			border: 2px solid transparent;
 			box-sizing: border-box;
