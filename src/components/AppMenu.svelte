@@ -1,7 +1,7 @@
 <script lang="ts">
 	import {onDestroy} from 'svelte';
 	import {Link} from 'svelte-routing';
-	import {menuRoutes} from '../config/menu.config';
+	import {menuRoutes} from '../routing/menu.config';
 	import {AppStateStore} from '../stores/app/app-state-store';
 	import {AuthStore} from '../stores/auth/auth-store';
 	import type {TAuthState} from '../stores/auth/auth-store.interface';

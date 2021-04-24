@@ -9,7 +9,7 @@
 	import ModalComponent from '../components/modal/ModalComponent.svelte';
 	import NotifyComponent from '../components/notifications/NotifyComponent.svelte';
 	import AppSpinnerComponent from '../components/spinners/AppSpinnerComponent.svelte';
-	import Routing from '../config/Routing.svelte';
+	import Routing from '../routing/Routing.svelte';
 	import {AppStateStore} from '../stores/app/app-state-store';
 	import {AppLocales} from '../stores/app/app-state-store.interface';
 
