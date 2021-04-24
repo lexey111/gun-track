@@ -62,6 +62,7 @@
 	}
 
 	function processStore(value: TGunsState) {
+		AppStateStore.hideSpinner();
 		gunsState = value;
 		if (!value?.guns || value.guns.length === 0) {
 			if (id) {
@@ -117,6 +118,7 @@
 	}
 
 	onMount(() => {
+		AppStateStore.showSpinner();
 		gunsUnsubscribe = GunsStore.subscribe((value: TGunsState) => {
 			if (!value?.fullReady) {
 				return;

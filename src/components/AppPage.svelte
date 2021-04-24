@@ -18,7 +18,6 @@
 	const needAuth = onlyLoggedOut || onlyLoggedIn;
 
 	const setComponent = (component: any) => {
-		console.log('component assigned');
 		cmp = component;
 	}
 
@@ -43,7 +42,6 @@
 				return;
 			}
 			if (!cmp) {
-				console.log('auth resolved, loading:', pageId);
 				void resolvePage(pageId)
 					.then(setComponent);
 			}

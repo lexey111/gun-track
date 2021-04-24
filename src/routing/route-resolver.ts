@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const getModule = (module: { default: any }): any => {
-	console.log('module loaded', module);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return module.default;
 };
