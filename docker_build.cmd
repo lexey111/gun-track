@@ -1,6 +1,6 @@
 #!/bin/bash
-docker build -f Dockerfile.prod -t gunhistory .
-docker run --name temp gunhistory
+docker build -f Dockerfile.prod -t gun-track .
+docker run --name temp gun-track
 docker cp temp:/app/dist ./dist
 docker rm temp
-docker image rm gunhistory
+docker image rm gun-track
