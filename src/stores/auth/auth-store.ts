@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import {Auth, CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 import {DataStore} from '@aws-amplify/datastore';
-import * as Md5 from 'md5';
+import Md5 from 'md5';
 import {writable} from 'svelte/store';
 import {AppStateStore} from '../app/app-state-store';
-import {IAuthStore, TAuthState} from './auth-store.interface';
+import type {IAuthStore, TAuthState} from './auth-store.interface';
 import {USER_INITIAL} from './user-model';
 
 export let userId = '';

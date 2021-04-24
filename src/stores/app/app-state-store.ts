@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import 'dayjs/locale/en';
 import 'dayjs/locale/ru';

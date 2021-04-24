@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as dayjs from 'dayjs';
+	import dayjs from 'dayjs';
 	import * as isToday from 'dayjs/plugin/isToday';
 	import * as isYesterday from 'dayjs/plugin/isYesterday';
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
@@ -18,6 +18,7 @@
 
 	export let action: TAction;
 
+	let color = '';
 	$: color = getTypeColor(action?.type)
 
 	let appState$;

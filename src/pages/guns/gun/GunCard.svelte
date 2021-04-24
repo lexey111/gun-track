@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as dayjs from 'dayjs'
+	import dayjs from 'dayjs'
 	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';

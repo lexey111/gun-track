@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as dayjs from 'dayjs';
+	import dayjs from 'dayjs';
 	import {onDestroy, onMount} from 'svelte';
 	import Datepicker from 'svelte-calendar';
 	import {AppStateStore} from '../../stores/app/app-state-store';

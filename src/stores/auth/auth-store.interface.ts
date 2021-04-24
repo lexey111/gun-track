@@ -1,5 +1,5 @@
-import {Writable} from 'svelte/store';
-import {TUser} from './user-model';
+import type {Writable} from 'svelte/store';
+import type {TUser} from './user-model';
 
 export type TAuthState = TUser & {
 	fetching: boolean

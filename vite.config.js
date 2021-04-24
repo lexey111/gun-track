@@ -8,7 +8,6 @@ export default defineConfig({
 		svelte(
 			{
 				preprocess: preprocess(),
-				dev: true,
 				hot: true
 			})
 	],
@@ -23,7 +22,13 @@ export default defineConfig({
 	build: {
 		rollupOptions: {
 			output: {
-				intro: 'if(exports === undefined){var exports ={}; var self = {}}'
+				format: 'es',
+				intro: 'if(exports === undefined){var exports ={}; var self = {}}',
+				manualChunks: {
+					'aws-amplify': ['aws-amplify'],
+					'dayjs': ['dayjs'],
+					'svelte': ['svelte'],
+				}
 			}
 		}
 	},

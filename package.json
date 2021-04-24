@@ -7,10 +7,9 @@
 		"url": "https://github.com/lexey111"
 	},
 	"scripts": {
-		"cleanup": "rimraf ./dist",
 		"svelte-check": "svelte-check",
 		"start": "vite",
-		"build": "npm run cleanup && vite build",
+		"build": "vite build",
 		"serve": "vite preview"
 	},
 	"keywords": [
@@ -32,21 +31,20 @@
 	},
 	"devDependencies": {
 		"@aws-amplify/datastore": "^2.9.16",
-		"@aws-sdk/client-cognito-identity": "^3.13.0",
-		"@aws-sdk/types": "^3.12.0",
+		"@aws-sdk/client-cognito-identity": "^3.13.1",
+		"@aws-sdk/types": "^3.13.1",
 		"@sveltejs/vite-plugin-svelte": "next",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
 		"@typescript-eslint/parser": "^4.22.0",
 		"aws-amplify": "^3.3.27",
 		"buffer": "^6.0.3",
-		"eslint": "^7.24.0",
+		"eslint": "^7.25.0",
 		"eslint-plugin-optimize-regex": "^1.2.0",
 		"eslint-plugin-promise": "^5.1.0",
-		"eslint-plugin-sonarjs": "^0.6.0",
-		"eslint-plugin-svelte3": "^3.1.2",
+		"eslint-plugin-sonarjs": "^0.7.0",
+		"eslint-plugin-svelte3": "^3.2.0",
 		"less": "^4.1.1",
-		"rimraf": "^3.0.2",
-		"svelte-check": "^1.4.0",
+		"svelte-check": "^1.5.1",
 		"svelte-preprocess": "^4.7.2",
 		"typescript": "^4.2.4",
 		"vite": "^2.2.1"
