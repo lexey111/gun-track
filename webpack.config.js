@@ -58,6 +58,13 @@ module.exports = (env, args) => {
 			version: true,
 			warnings: true,
 		},
+		cache: {
+			type: 'filesystem',
+
+			buildDependencies: {
+				config: [__filename],
+			},
+		},
 		resolve: {
 			alias: {
 				svelte: path.resolve('node_modules', 'svelte'),

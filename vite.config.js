@@ -10,7 +10,7 @@ export default defineConfig({
 			{
 				preprocess: preprocess(),
 				hot: true
-			})
+			}),
 	],
 	rollupDedupe: ['svelte'],
 	// https://github.com/aws-amplify/amplify-js/issues/7499
@@ -26,11 +26,11 @@ export default defineConfig({
 			output: {
 				format: 'es',
 				intro: 'if(exports === undefined){var exports ={}; var self = {}}',
-				manualChunks: {
-					'aws-amplify': ['aws-amplify'],
-					'dayjs': ['dayjs'],
-					'svelte': ['svelte'],
-				}
+				// manualChunks: {
+				// 	'aws-amplify': ['aws-amplify'],
+				// 	'dayjs': ['dayjs'],
+				// 	'svelte': ['svelte'],
+				// }
 			}
 		}
 	},

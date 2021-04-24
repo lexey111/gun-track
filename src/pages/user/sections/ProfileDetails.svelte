@@ -58,8 +58,6 @@
 	.avatar {
 		width: 96px;
 		height: 96px;
-		box-shadow: 0 1px 4px rgba(0, 0, 0, .5);
-		border-radius: 100%;
 		overflow: hidden;
 	}
 </style>

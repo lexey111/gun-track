@@ -12,15 +12,16 @@
 			loaded = true;
 		}
 	});
-
 </script>
 
 <style>
     img {
         opacity: 0;
-        transition: opacity 1.2s ease-out;
-	     width: 100%;
-	     border-radius: 100%;
+        transition: opacity .2s ease-out;
+        width: 100%;
+        border-radius: 100%;
+        box-sizing: border-box;
+        border: 4px solid var(--app-primary-bg);
     }
 
     img.loaded {
