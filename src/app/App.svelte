@@ -20,7 +20,7 @@
 
 	// auth store and state
 	let auth_state: TAuthState;
-	let authUnsubscribe;
+	let authUnsubscribe: any;
 
 	// app context (state)
 	let app_state = {
@@ -29,7 +29,7 @@
 		locale: ''
 	};
 
-	let appStateUnsubscribe;
+	let appStateUnsubscribe: any;
 
 	onMount(() => {
 		authUnsubscribe = AuthStore.subscribe(value => {
@@ -93,7 +93,7 @@
 		h1 {
 			font-weight: 100;
 			display: inline-flex;
-			justify-content: center;
+			justify-content: flex-start;
 			align-items: center;
 			margin: 0;
 			padding: .5em 0;

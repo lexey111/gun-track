@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,sonarjs/no-collapsible-if,@typescript-eslint/no-unsafe-call */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function clickOutside(node: HTMLElement): any {
+export function clickOutside(node: HTMLDivElement): any {
 
 	const handleClick = (event: any): void => {
 		if (node && !node.contains(event.target)) {

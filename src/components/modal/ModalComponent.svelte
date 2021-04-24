@@ -17,7 +17,7 @@
 	let props = null;
 
 	let handler: TSuperModal;
-	let scrollPos;
+	let scrollPos: number;
 
 	const open = (NewComponent: unknown, newProps = {}) => {
 		scrollPos = document.documentElement.scrollTop;

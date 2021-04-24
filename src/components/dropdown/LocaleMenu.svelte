@@ -5,14 +5,14 @@
 	import Icon from '../icons/Icon.svelte';
 	import Dropdown from './Dropdown.svelte';
 
-	let closeMenu;
+	let closeMenu: any;
 	const setLocale = (locale: TAppLocale) => {
 		AppStateStore.setLocale(locale);
 		closeMenu();
 	};
 
 	const app_state = {locale: void 0};
-	let appState$;
+	let appState$: any;
 	onMount(() => {
 		appState$ = AppStateStore.subscribe(value => {
 			app_state.locale = value.locale;
@@ -31,8 +31,11 @@
 		</span>
 
 		<div class="dropdown-menu">
+			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#" on:click={() => setLocale('en-EN')} class:selected={app_state.locale === 'en-EN'}>English</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#" on:click={() => setLocale('ua-UA')} class:selected={app_state.locale === 'ua-UA'}>Украинська</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#" on:click={() => setLocale('ru-RU')} class:selected={app_state.locale === 'ru-RU'}>Русский</a>
 		</div>
 	</Dropdown>
@@ -72,6 +75,7 @@
 							color: #fff;
 						}
 					}
+
 					.dc-dropdown-wrapper {
 						margin-top: -8px;
 					}

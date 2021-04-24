@@ -7,7 +7,7 @@
 
 	let translation = '';
 	let _toTranslate = '';
-	let slot;
+	let slot: any;
 	let translated = false;
 	let _inTranslation = false;
 
@@ -25,7 +25,7 @@
 
 	// re-render if system locale changed
 	let locale = '';
-	let appStateUnsubscribe;
+	let appStateUnsubscribe: any;
 	onMount(() => {
 		appStateUnsubscribe = AppStateStore.subscribe(value => {
 			if (locale !== value.locale) {
@@ -66,16 +66,16 @@
 </span>
 
 <style>
-	.hide {
-		display: none;
-	}
+    .hide {
+        display: none;
+    }
 
-	span {
-		opacity: 0;
-		transition: opacity 0.2s ease;
-	}
+    span {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
 
-	.translated {
-		opacity: 1;
-	}
+    .translated {
+        opacity: 1;
+    }
 </style>

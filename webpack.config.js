@@ -212,6 +212,7 @@ module.exports = (env, args) => {
 			ignored: /node_modules/
 		},
 		devServer: {
+			hot: true,
 			headers: {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Expose-Headers': 'Content-Length',

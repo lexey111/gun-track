@@ -35,6 +35,7 @@
 		</span>
 	<div class="dropdown-menu">
 		{#each ActionCurrencies as item}
+			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#"
 			   on:click={() => handleType(item.id)}
 			   class:selected={item.id === currency}

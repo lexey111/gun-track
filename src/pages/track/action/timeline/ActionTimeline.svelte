@@ -1,9 +1,9 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
-	import * as isToday from 'dayjs/plugin/isToday';
-	import * as isYesterday from 'dayjs/plugin/isYesterday';
-	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
-	import * as relativeTime from 'dayjs/plugin/relativeTime';
+	import isToday from 'dayjs/plugin/isToday';
+	import isYesterday from 'dayjs/plugin/isYesterday';
+	import localizedFormat from 'dayjs/plugin/localizedFormat';
+	import relativeTime from 'dayjs/plugin/relativeTime';
 
 	import {onDestroy, onMount} from 'svelte';
 	import I18n from '../../../../components/i18n/I18n.svelte';

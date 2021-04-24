@@ -3,7 +3,7 @@
 	import {NotifyStore} from './notify-store';
 	import type {TNotificationState} from './notify-store.interface';
 
-	let notificationUnsubscribe;
+	let notificationUnsubscribe: any;
 
 	let notificationsState: TNotificationState = {
 		notifications: []

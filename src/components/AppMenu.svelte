@@ -29,7 +29,7 @@
 				}
 				return result;
 			})
-			.map(entry => [entry[0], entry[1], getActiveClass(entry[0])]);
+			.map((entry: any) => [entry[0], entry[1], getActiveClass(entry[0])]);
 	}
 
 	// initial state
@@ -55,7 +55,7 @@
 </script>
 
 <nav class="app-navigation">
-	{#each activeRoutes as [path, name, className], i}
+	{#each activeRoutes as [path, name, className]}
 		<Link to={path} class={className}>
 			{#if (path === 'home')}
 				<Icon type="home"/> &nbsp;

@@ -11,7 +11,7 @@
 		return module;
 	}
 
-	const logError = err => {
+	const logError = (err) => {
 		console.error(err && err.stack || err);
 	}
 

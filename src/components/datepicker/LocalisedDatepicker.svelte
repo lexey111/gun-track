@@ -1,7 +1,7 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 	import {onDestroy, onMount} from 'svelte';
-	import Datepicker from 'svelte-calendar';
+	import Datepicker from 'svelte-calendar/src/Components/Datepicker.svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import {Calendar} from '../i18n/calendar';
 
@@ -12,7 +12,7 @@
 	const maxDate = dayjs().add(1, 'year').toDate();
 
 	const app_state = {dateLocale: 'uk'};
-	let appState$;
+	let appState$: any;
 	let showPicker = false;
 
 	const onDateSelected = (event: CustomEvent) => {

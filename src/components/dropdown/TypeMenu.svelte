@@ -18,7 +18,7 @@
 		}, 200)
 	};
 
-	const groups: Array<string> = [];
+	const groups = [];
 	ActionTypes.forEach(item => {
 		if (!groups[item.group]) {
 			groups[item.group] = [];
@@ -36,12 +36,13 @@
 			{/if}
 		</span>
 	<div class="dropdown-menu">
-		{#each Object.keys(groups) as group}
+		{#each Object.keys(groups) as groupName}
 			<div>
 				<h4>
-					<I18n text={'@Groups.' + group}/>
+					<I18n text={'@Groups.' + groupName}/>
 				</h4>
-				{#each groups[group] as item}
+				{#each groups[groupName] as item}
+					<!--  svelte-ignore a11y-invalid-attribute-->
 					<a href="#"
 					   on:click={() => handleType(item.id)}
 					   class:selected={item.id === type}

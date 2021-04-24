@@ -4,7 +4,7 @@
 	export let disabled = false;
 	export let onClick: () => void = null;
 
-	let className;
+	let className: string;
 	$: {
 		className = 'app-btn press';
 		if (type === '' || type === 'default') {

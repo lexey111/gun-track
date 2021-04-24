@@ -9,18 +9,15 @@
 	export let component = void 0;
 	export let props = {};
 
-	export let params;
-
-	let authRequested = false;
+	export let params: any;
 
 	let authProps = {
 		authState: {} as TAuthState,
 		authStore: AuthStore
 	};
 
-	const authUnsubscribe = AuthStore.subscribe(value => {
+	const authUnsubscribe: any = AuthStore.subscribe(value => {
 		authProps.authState = value;
-		authRequested = value.started;
 
 		if (logout) {
 			if (authProps.authState.started && !authProps.authState.fetching && authProps.authState.loggedIn) {

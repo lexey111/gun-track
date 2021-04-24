@@ -16,10 +16,10 @@
 
 	export let dropdown: any;
 
-	let storeUnsubscribe$;
+	let storeUnsubscribe$: any;
 
 	let active = false;
-	let openTimeout;
+	let openTimeout: any;
 
 	const setActive = () => {
 		stateStore.set(true);
@@ -395,7 +395,7 @@
 					}
 				}
 
-				&.active{
+				&.active {
 					.dc-title {
 						border-bottom: none;
 

@@ -19,12 +19,12 @@
 	let firstTop = 0;
 	let secondTop = 0;
 
-	let firstImage;
-	let secondImage;
+	let firstImage: any;
+	let secondImage: any;
 	let phase = 1;
 
-	let imageUpdater;
-	let firstDelay;
+	let imageUpdater: any;
+	let firstDelay: any;
 
 	function updateWindowsSize() {
 		const height1 = firstImage.height;
