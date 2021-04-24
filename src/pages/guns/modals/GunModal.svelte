@@ -1,6 +1,6 @@
 <script lang="ts">
 	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
-	import CKEditor from 'ckeditor5-svelte/dist';
+	import CKEditor from 'ckeditor5-svelte/src/Ckeditor.svelte';
 	import dayjs from 'dayjs'
 	import {onDestroy, onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
@@ -22,18 +22,17 @@
 	let caliber = '';
 	let isNew = false;
 
-	export let onConfirm: (gun) => void;
+	export let onConfirm: (gun: Gun) => void;
 	export let onCancel: () => void;
 
 	let appState$: any;
 	const state = {dateLocale: 'en'};
 
 	let editor = DecoupledEditor;
-	let editorInstance = null;
 	// If needed, custom editor config can be passed through to the component
 	// Uncomment the custom editor config if you need to customise the editor.
 	// Note: If you don't pass toolbar object then Document editor will use default set of toolbar items.
-	let editorConfig = {
+	let editorConfig: any = {
 		toolbar: {
 			items: [
 				'heading',
@@ -53,7 +52,7 @@
 	let ckReady = false;
 	let ckStarted = false;
 
-	let ckDelay;
+	let ckDelay: any;
 	const activateCK = (): void => {
 		if (ckStarted || ckDelay) {
 			return;
@@ -72,7 +71,6 @@
 	function onReady({detail: editor}) {
 		ckReady = true;
 		// Insert the toolbar before the editable area.
-		editorInstance = editor;
 		editor.ui
 			.getEditableElement()
 			.parentElement.insertBefore(
@@ -181,6 +179,7 @@
 
 				{#if (!isNew)}
 					<div class="form-group">
+						<!--  svelte-ignore a11y-label-has-associated-control -->
 						<label>Registered</label>
 						<span>{registered}</span>
 					</div>

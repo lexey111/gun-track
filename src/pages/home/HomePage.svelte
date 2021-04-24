@@ -8,7 +8,7 @@
 	import {IconsMap} from '../../components/icons/icons-map';
 	import {showError, showInfo} from '../../components/notifications/notify';
 
-	let type;
+	let type: string;
 	const changeType = (t: string) => {
 		console.log('>', t);
 		type = t;
@@ -33,11 +33,13 @@
 <h4>Dropdown</h4>
 
 <div class="form-group">
+	<!--  svelte-ignore a11y-label-has-associated-control -->
 	<label>Type</label>
 	<TypeMenu type={type} onChange={changeType}/>
 </div>
 
 <div class="form-group">
+	<!--  svelte-ignore a11y-label-has-associated-control -->
 	<label>Type</label>
 	<CurrencyMenu currency={currency} onChange={changeCurrency}/>
 </div>
@@ -46,54 +48,70 @@
 	<Dropdown className="menu menu-left menu-button">
 		<span slot="title">AAAA</span>
 		<div class="dropdown-menu">
-			<a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">
 				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a class="selected">
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a class="selected" href="#">
 				Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a>LK ;lkewew p[ssda</a>
-			<a>IUI Y78 8799</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">LK ;lkewew p[ssda</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">IUI Y78 8799</a>
 		</div>
 	</Dropdown>
 	<Dropdown className="menu menu-left menu-button menu-button-ghost">
 		<span slot="title">AAAA</span>
 		<div class="dropdown-menu">
-			<a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">
 				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a class="selected">
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a class="selected" href="#">
 				Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a>LK ;lkewew p[ssda</a>
-			<a>IUI Y78 8799</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">LK ;lkewew p[ssda</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">IUI Y78 8799</a>
 		</div>
 	</Dropdown>
 	<Dropdown className="menu menu-left menu-button menu-button-secondary">
 		<span slot="title">AAAA</span>
 		<div class="dropdown-menu">
-			<a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">
 				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a class="selected">
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#" class="selected">
 				Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a>LK ;lkewew p[ssda</a>
-			<a>IUI Y78 8799</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">LK ;lkewew p[ssda</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">IUI Y78 8799</a>
 		</div>
 	</Dropdown>
 	&mdash;
 	<Dropdown className="menu menu-left">
 		<span slot="title">AAAA</span>
 		<div class="dropdown-menu">
-			<a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">
 				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a class="selected">
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#" class="selected">
 				Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
 			</a>
-			<a>LK ;lkewew p[ssda</a>
-			<a>IUI Y78 8799</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">LK ;lkewew p[ssda</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#">IUI Y78 8799</a>
 		</div>
 	</Dropdown>
 </div>

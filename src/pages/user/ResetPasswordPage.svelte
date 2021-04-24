@@ -54,6 +54,7 @@
 		</div>
 
 		<div class="form-group button-row">
+			<!--  svelte-ignore a11y-label-has-associated-control -->
 			<label/>
 			<Button
 				disabled={!sendResetCodeAllowed}
@@ -113,6 +114,7 @@
 		</div>
 
 		<div class="form-group button-row">
+			<!--  svelte-ignore a11y-label-has-associated-control -->
 			<label/>
 			<Button
 				disabled={!newPasswordAllowed}

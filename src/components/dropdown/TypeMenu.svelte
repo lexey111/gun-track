@@ -25,6 +25,10 @@
 		}
 		groups[item.group].push(item);
 	});
+
+	function getGroupContent(groupId: string): Array<{ id: string }> {
+		return groups[groupId];
+	}
 </script>
 
 <Dropdown className="type-menu menu menu-button" bind:close={closeMenu} bind:dropdown={dropdown}>
@@ -41,7 +45,7 @@
 				<h4>
 					<I18n text={'@Groups.' + groupName}/>
 				</h4>
-				{#each groups[groupName] as item}
+				{#each getGroupContent(groupName) as item}
 					<!--  svelte-ignore a11y-invalid-attribute-->
 					<a href="#"
 					   on:click={() => handleType(item.id)}

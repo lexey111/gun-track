@@ -7,7 +7,7 @@
 	import type {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
 	import {showSuccess, showWarning} from '../../components/notifications/notify';
-	import {Gun} from '../../models';
+	import type {Gun} from '../../models';
 	import {ActionsStore} from '../../stores/actions/actions-store';
 	import type {TAction, TActionsState} from '../../stores/actions/actions-store.interface';
 	import {AppStateStore} from '../../stores/app/app-state-store';
@@ -24,14 +24,14 @@
 	import ActionsSort from './sort/ActionsSort.svelte';
 	import ActionsStat from './stat/ActionsStat.svelte';
 
-	export let id;
+	export let id: string;
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 
 	let gunsState: TGunsState;
-	let gunsUnsubscribe;
+	let gunsUnsubscribe: any;
 
 	let actionsState: TActionsState;
-	let actionsUnsubscribe;
+	let actionsUnsubscribe: any;
 
 	function subscribeToActions(gunId: string) {
 		actionsUnsubscribe && actionsUnsubscribe();
@@ -115,6 +115,7 @@
 			}
 		});
 	}
+
 	onMount(() => {
 		gunsUnsubscribe = GunsStore.subscribe((value: TGunsState) => {
 			if (!value?.fullReady) {
@@ -166,7 +167,7 @@
 	};
 
 	let currentGun: Gun;
-	let currentGunTitle;
+	let currentGunTitle: string;
 	$: {
 		currentGun = GunsStore.getGunById(id || '');
 		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';

@@ -43,9 +43,11 @@
 </div>
 
 <div class="form-group button-row">
+	<!--  svelte-ignore a11y-label-has-associated-control -->
 	<label/>
 
-	<a href="javascript:void(0)" on:click={() => navigate('login/restore')}>Forgot password?</a>
+	<!--  svelte-ignore a11y-invalid-attribute-->
+	<a href="#" on:click={() => navigate('login/restore')}>Forgot password?</a>
 
 	<span class="stub"></span>
 

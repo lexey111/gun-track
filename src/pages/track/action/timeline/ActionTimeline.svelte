@@ -21,7 +21,7 @@
 	let color = '';
 	$: color = getTypeColor(action?.type)
 
-	let appState$;
+	let appState$: any;
 	const state = {dateLocale: 'en'};
 	onMount(() => {
 		appState$ = AppStateStore.subscribe(value => {

@@ -15,6 +15,7 @@
 </script>
 
 <div class="form-group button-row">
+	<!--  svelte-ignore a11y-label-has-associated-control -->
 	<label>
 		Via social network
 	</label>

@@ -45,7 +45,7 @@
 	}
 
 	let title = 'Filter';
-	let closeDropdown;
+	let closeDropdown: any;
 
 	function applyFilter() {
 		ActionsStore.setFilter(selection);

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import dayjs from 'dayjs'
-	import * as localizedFormat from 'dayjs/plugin/localizedFormat';
+	import localizedFormat from 'dayjs/plugin/localizedFormat';
 	import type {Gun} from '../../../models';
 	import GunCard from '../gun/GunCard.svelte';
 

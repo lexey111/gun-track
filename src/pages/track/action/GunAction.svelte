@@ -11,6 +11,7 @@
 	export let onEdit: (id: string) => void;
 	export let onDelete: (id: string) => void;
 
+	let color: string;
 	$: color = getTypeColor(action?.type)
 </script>
 
@@ -26,7 +27,9 @@
 		<ActionNotes action={action}/>
 
 		<div class="action-actions">
+			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#" on:click={() => onEdit(action.id)}>Change</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#" class="danger" on:click={() => onDelete(action.id)}>Delete</a>
 		</div>
 	</div>

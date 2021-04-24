@@ -18,14 +18,14 @@
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 	let confirmDialog: IConfirmDialog;
 
-	let gunsState$;
+	let gunsState$: any;
 	let gunsState: TGunsState = {
 		busy: true,
 		fullReady: false,
 		isEmpty: null,
 		guns: []
 	};
-	let appState$;
+	let appState$: any;
 	const state = {dateLocale: 'en'};
 
 	const showNewGunDialog = () => {
@@ -80,7 +80,7 @@
 		}
 	};
 
-	const handleRemoveGun = async (id) => {
+	const handleRemoveGun = async (id: string) => {
 		try {
 			const gun = GunsStore.getGunById(id);
 			if (!gun) {

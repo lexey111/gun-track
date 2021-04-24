@@ -3,8 +3,8 @@
 	import {TABS} from './Tabs.svelte';
 
 	export let className = '';
-	export let onActivate: () => {} = null;
-	export let onDeactivate: () => {} = null;
+	export let onActivate: () => void = null;
+	export let onDeactivate: () => void = null;
 	const panel = {
 		onActivate,
 		onDeactivate

@@ -13,11 +13,15 @@
 		<li>
 			<Done>Remove favicons plugin</Done>
 		</li>
-		<li>Fix svelte-check remarks</li>
+		<li>
+			<Done>Fix svelte-check remarks</Done>
+		</li>
 		<li>
 			<Done>Dynamic loading</Done>
 		</li>
-		<li>Dynamic for Auth pages</li>
+		<li>
+			<Done>Dynamic for Auth pages</Done>
+		</li>
 	</ul>
 
 	<h3>UI</h3>

@@ -22,10 +22,6 @@
 		cmp = component;
 	}
 
-	const logError = (err: any) => {
-		console.error(err && err.stack || err);
-	}
-
 	let authProps = {
 		authState: {} as TAuthState,
 		authStore: AuthStore

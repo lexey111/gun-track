@@ -1,5 +1,4 @@
 <script lang="ts">
-	import {onDestroy, onMount} from 'svelte';
 	import {Link} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
 
@@ -79,6 +78,7 @@
 		</div>
 
 		<div class="form-group">
+			<!--  svelte-ignore a11y-label-has-associated-control -->
 			<label/>
 			<Button
 				disabled={!signupAllowed}
@@ -117,6 +117,7 @@
 			</div>
 
 			<div class="form-group">
+				<!--  svelte-ignore a11y-label-has-associated-control -->
 				<label/>
 				<Button
 					disabled={!codeAllowed}

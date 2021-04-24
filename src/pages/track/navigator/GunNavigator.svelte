@@ -5,10 +5,10 @@
 	import {GunsStore} from '../../../stores/guns/guns-store';
 	import type {TGunsState} from '../../../stores/guns/guns-store.interface';
 
-	export let id;
+	export let id: string;
 	export let gunsState: TGunsState;
 
-	let closeMenu;
+	let closeMenu: any;
 
 	const handleGunSwitch = (id: string) => {
 		closeMenu();
@@ -18,7 +18,7 @@
 	};
 
 	let currentGun: Gun;
-	let currentGunTitle;
+	let currentGunTitle: string;
 	$: {
 		currentGun = GunsStore.getGunById(id);
 		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';
@@ -30,6 +30,7 @@
 		<span slot="title">{currentGunTitle}</span>
 		<div class="dropdown-menu">
 			{#each gunsState.guns as gun}
+				<!--  svelte-ignore a11y-invalid-attribute-->
 				<a href="#" on:click={() => handleGunSwitch(gun.id)}
 				   class={id === gun.id ? 'selected' : ''}>
 					{gun.name || gun.make || gun.model || 'unknown'}
