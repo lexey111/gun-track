@@ -208,7 +208,7 @@
 }
 
 .press-ghost:hover {
-    color: var(--app-link-text-active) !important;
+    color: var(--app-link-text-active);
     text-decoration: underline;
 }
 
@@ -225,6 +225,43 @@
 .press-ghost:focus, .press-ghost:focus-within {
     text-decoration: underline;
     box-shadow: none !important;
+}
+
+.press-frame {
+    color: var(--app-primary-bg);
+    background-color: #fff;
+    border: 2px solid #fff;
+    opacity: .9;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2) !important;
+}
+
+.press-frame:hover, .press-frame:focus, .press-frame:focus-within {
+    opacity: 1;
+    background-color: #fff !important;
+}
+
+.press-frame-ghost {
+    color: var(--app-primary-bg);
+    background-color: transparent;
+    border: 2px solid var(--app-primary-bg-light);
+    opacity: .9;
+    transition: all .2s ease-in-out;
+}
+
+.press-frame-ghost:hover, .press-frame-ghost:focus, .press-frame-ghost:focus-within {
+    opacity: 1;
+    background-color: var(--app-primary-bg) !important;
+    color: var(--app-primary-text);
+    border: 2px solid var(--app-primary-bg);
+}
+
+.press-frame-ghost:disabled {
+    color: #aaa;
+    background-color: transparent;
+    border: 2px solid #aaa;
+    opacity: .9;
+    pointer-events: none;
+    transition: all .2s ease-in-out;
 }
 
 .press:hover:not(:disabled) {

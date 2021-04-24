@@ -65,7 +65,7 @@
 
 	<i class="pre-action-type"></i>
 
-	<i class="action-type"></i>
+	<i class="action-type" style="background-color:{color}"></i>
 
 	<div class="action-type-tag">
 		<i style="background-color:{color}"></i>
@@ -117,8 +117,10 @@
 			width: 20px;
 			height: 20px;
 			border-radius: 20px;
+			border: 4px solid #fff;
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, .3);
+			box-sizing: border-box;
 			background-color: var(--app-white-bg);
-			box-sizing: content-box;
 			color: var(--app-text);
 			top: 0;
 			right: -9px;

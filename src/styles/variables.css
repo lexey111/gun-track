@@ -50,6 +50,8 @@
     --app-placeholder-text: #ccc;
 
     --app-menu-bg: #1872d2;
+    --app-menu-bg-hover: #d2dbe7;
+    --app-menu-text-hover: #1872d2;
     --app-menu-bg-active: #1562b4;
     --app-menu-text: #fff;
 

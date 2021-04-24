@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from '../../../components/buttons/Button.svelte';
+	import Icon from '../../../components/icons/Icon.svelte';
 	import type {TAction} from '../../../stores/actions/actions-store.interface';
 	import {getTypeColor} from '../../../stores/actions/actions-store.types';
 	import ActionData from './content/ActionData.svelte';
@@ -27,10 +29,12 @@
 		<ActionNotes action={action}/>
 
 		<div class="action-actions">
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#" on:click={() => onEdit(action.id)}>Change</a>
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#" class="danger" on:click={() => onDelete(action.id)}>Delete</a>
+			<Button onClick={() => onEdit(action.id)} type="text-ghost" size="small">
+				<Icon type="edit"/> &nbsp; Edit
+			</Button>
+			<Button onClick={() => onDelete(action.id)} type="text-danger" size="small">
+				<Icon type="delete"/>
+			</Button>
 		</div>
 	</div>
 </div>
@@ -67,7 +71,7 @@
 
 				.action-actions {
 					margin-top: 8px;
-					padding-top: 8px;
+					padding-top: 12px;
 					display: flex;
 					flex-flow: row wrap;
 					align-content: flex-end;
@@ -78,19 +82,19 @@
 					opacity: 0;
 					transition: opacity .2s ease-in;
 
-					a:last-child {
-						margin-left: 3em;
+					button:last-child {
+						margin-left: 1em;
 					}
 				}
 			}
 
 			&:not(:hover) {
 				.action-columns {
-					transform: translateY(16px);
+					transform: translateY(32px);
 				}
 
 				.action-notes {
-					transform: translateY(16px);
+					transform: translateY(40px);
 				}
 			}
 

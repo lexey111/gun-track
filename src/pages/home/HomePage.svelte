@@ -138,6 +138,8 @@
 	<Button size="small" type="text" disabled={true}>Text disabled</Button>
 	<Button size="small" type="text-danger">Text</Button>
 	<Button size="small" type="text-danger" disabled={true}>Text danger disabled</Button>
+	<Button size="small" type="text-ghost">Text ghost</Button>
+	<Button size="small" type="text-ghost" disabled={true}>Text ghost disabled</Button>
 </div>
 
 <h4>Big</h4>

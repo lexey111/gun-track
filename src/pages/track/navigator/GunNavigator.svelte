@@ -7,6 +7,7 @@
 
 	export let id: string;
 	export let gunsState: TGunsState;
+	export let onTitle = false;
 
 	let closeMenu: any;
 
@@ -26,7 +27,7 @@
 </script>
 
 <div>
-	<Dropdown className="menu menu-left menu-button menu-button-ghost gun-navigator" bind:close={closeMenu}>
+	<Dropdown className={'menu menu-left menu-button' + (onTitle ? ' menu-button-ghost' : '')} bind:close={closeMenu}>
 		<span slot="title">{currentGunTitle}</span>
 		<div class="dropdown-menu">
 			{#each gunsState.guns as gun}

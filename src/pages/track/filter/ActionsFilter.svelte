@@ -44,7 +44,7 @@
 		allSelected = selection.length === ActionTypes.length;
 	}
 
-	let title = 'Filter';
+	let title = 'Filter...';
 	let closeDropdown: any;
 
 	function applyFilter() {
@@ -66,19 +66,19 @@
 
 	function handleDropdownOpened(active: boolean): void {
 		if (!active) {
-			title = 'Filter';
+			title = 'Filter...';
 			if (selection.length && !allSelected) {
-				title += ' [' + selection.length + ']';
+				title = 'Filter [' + selection.length + ']';
 			}
 		}
 	}
 </script>
 
-<div class="block">
+<div class="block block-min">
 	<div class="block-content">
 		<Dropdown onActiveChange={handleDropdownOpen}
 		          onActiveChanged={handleDropdownOpened}
-		          className="af-filter"
+		          className="menu menu-button menu-button-ghost af-filter"
 		          bind:close={closeDropdown}>
 			<span slot="title" class="af-title"><Icon type="filter" class="inline"/> {title}</span>
 			<div class="af-dropdown-content">
@@ -116,23 +116,18 @@
 <style lang="less">
 	:global {
 		.af-filter {
-			height: 1.2em;
-
-			.af-title {
-				display: inline-flex;
-				align-content: center;
-				align-items: center;
-				color: var(--app-primary-text);
-				font-size: var(--app-font-size);
-
-				&:hover, &:focus {
-					text-decoration: underline;
-				}
+			.dc-title {
+				background-color: rgba(0, 0, 0, .1);
+				border: 2px solid var(--app-primary-text-darken);
+				box-shadow: 0 0 4px rgba(0, 0, 0, .1) !important;
+				border-radius: 12px;
+				min-height: 46px;
+				box-sizing: border-box !important;
 			}
+		}
 
-			svg.dc-down {
-				color: var(--app-primary-text);
-			}
+		.af-title {
+			font-size: var(--app-font-size);
 		}
 
 		.af-dropdown-content {

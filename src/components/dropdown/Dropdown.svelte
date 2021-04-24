@@ -15,6 +15,7 @@
 	};
 
 	export let dropdown: any;
+	let titleWidth: number;
 
 	let storeUnsubscribe$: any;
 
@@ -26,7 +27,10 @@
 
 		onActiveChange && onActiveChange(true);
 		active = true;
+		titleWidth = dropdown.clientWidth - 32;
+
 		clearTimeout(openTimeout);
+
 		if (onActiveChanged) {
 			openTimeout = setTimeout(() => {
 				onActiveChanged && onActiveChanged(true);
@@ -96,16 +100,16 @@
 		{#if title}
 			{title}
 		{:else }
-			<slot name="title"></slot>
+			<slot name="title"/>
 		{/if}
 		</span>
 		<Icon type="down" size=".7em" class="dc-down"/>
 	</div>
 
 	{#if (active)}
-		<div class="dc-dropdown-wrapper">
+		<div class="dc-dropdown-wrapper" style="min-width: {titleWidth}px">
 			<div class="dc-dropdown-content">
-				<slot></slot>
+				<slot/>
 			</div>
 		</div>
 	{/if}
@@ -116,6 +120,13 @@
 		.dropdown-container {
 			position: relative;
 			min-height: 1em;
+			display: inline-flex;
+			flex-flow: row nowrap;
+			align-items: stretch;
+			justify-items: stretch;
+			justify-content: stretch;
+			padding: 0;
+			margin: 0;
 			z-index: 1;
 
 			.dc-title {
@@ -124,22 +135,28 @@
 				transition: background-color .2s ease, opacity .2s ease, color .2s ease;
 				position: relative;
 				outline: none;
-				display: inline-flex;
-				margin-right: .4em;
+				display: flex;
 				flex-flow: row nowrap;
-				height: 1em;
+				flex-grow: 2;
+				flex-shrink: 2;
 				align-items: center;
 				align-content: center;
+				justify-items: flex-start;
+				justify-content: flex-start;
 
 				span {
+					display: flex;
+					flex-flow: row nowrap;
 					overflow: hidden;
+					align-items: center;
+					align-content: center;
+					justify-items: center;
+					justify-content: center;
 				}
 
 				svg.dc-down {
 					display: inline-block;
-					padding: 0 .4em;
-					margin-top: 2px;
-					margin-left: auto;
+					margin: 2px .4em;
 					transform-origin: center center;
 					transition: all .2s ease-in-out;
 				}
@@ -157,11 +174,11 @@
 				position: absolute;
 				top: 100%;
 				margin-top: 2px;
-				right: -2px;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+				right: 0;
+				box-shadow: 0 4px 4px rgba(0, 0, 0, .2);
 				background-color: var(--app-white-bg);
 				padding: 8px 16px;
-				border-radius: 6px;
+				border-radius: 7px;
 				pointer-events: none;
 				opacity: 0;
 				z-index: -1;
@@ -223,10 +240,10 @@
 							flex-flow: column nowrap;
 
 							a {
-								padding: 8px 16px 8px 22px;
+								padding: 12px 16px 12px 22px;
 								font-size: var(--app-small-font-size);
 								color: var(--app-text);
-								transition: all .2s ease;
+								transition: all .1s ease;
 								white-space: nowrap;
 								position: relative;
 								border-radius: 7px;
@@ -234,8 +251,8 @@
 								text-decoration: none;
 
 								&:hover, &:focus {
-									background-color: var(--app-menu-bg) !important;
-									color: var(--app-menu-text);
+									background-color: var(--app-menu-bg-hover) !important;
+									color: var(--app-menu-text-hover) !important;
 									box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 									outline: none;
 								}
@@ -246,20 +263,22 @@
 									position: absolute;
 									left: 6px;
 									color: var(--app-menu-bg);
-									transition: color .2s ease;
+									transition: color .1s ease;
 								}
 
 								&.selected {
 									background-color: rgba(0, 0, 0, 0.2);
 									box-shadow: none;
 									border: none;
+									font-weight: bold;
 
 									&:before {
 										content: '✔';
 									}
 
 									&:hover, &:focus {
-										background-color: var(--app-menu-bg);
+										background-color: var(--app-menu-bg) !important;
+										color: var(--app-menu-text) !important;
 										box-shadow: none;
 
 										&:before {
@@ -319,8 +338,8 @@
 					background-color: var(--app-primary-bg-darken);
 					margin-top: 0;
 					border-top-left-radius: 0;
-					box-shadow: 0 4px 4px rgba(0, 0, 0, .2);
-
+					border-top-right-radius: 0;
+					// box-shadow: 0 4px 4px rgba(0, 0, 0, .2);
 
 					.dc-dropdown-content {
 						.dropdown-menu {
@@ -353,35 +372,6 @@
 				}
 			}
 
-			&.menu-button.menu-button-secondary {
-				.dc-title {
-					border: 2px solid var(--app-white-bg);
-					box-sizing: border-box;
-				}
-
-				&.active {
-					.dc-title {
-						border-bottom: none;
-
-						&:after {
-							content: '';
-							display: block;
-							z-index: 1001;
-							background-color: var(--app-primary-bg-darken);
-							position: absolute;
-							bottom: -4px;
-							left: 0;
-							right: 0;
-							height: 4px;
-						}
-					}
-
-					.dc-dropdown-wrapper {
-						border: 2px solid var(--app-white-bg);
-					}
-				}
-			}
-
 			&.menu-button.menu-button-ghost {
 				.dc-title {
 					box-sizing: border-box;
@@ -397,7 +387,7 @@
 
 				&.active {
 					.dc-title {
-						border-bottom: none;
+						border-bottom-color: transparent;
 
 						&:after {
 							content: '';
@@ -415,7 +405,8 @@
 					.dc-dropdown-wrapper {
 						background-color: var(--app-white-bg);
 						border: 2px solid var(--app-primary-bg-lighten);
-						z-index: -1;
+						z-index: 1000;
+						margin-top: -2px;
 
 						.dc-dropdown-content {
 							.dropdown-menu {

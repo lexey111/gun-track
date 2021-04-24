@@ -183,16 +183,14 @@
 	{#if (!isEmpty(actionsState?.actions) || ActionsStore.isFiltered())}
 		<div class="top-panel">
 			<div class="top-panel-content">
-				<div class="block block-left">
+				<div class="block block-left block-min">
 					<div class="block-content">
-						<Button onClick={showNewActionDialog} type="text">
+						<Button onClick={showNewActionDialog} type="text-frame">
 							<Icon type="plus-circle" class="inline" size="24px"/>
 							Add record...
 						</Button>
 					</div>
 				</div>
-
-				<ActionsStat actionsState={actionsState}/>
 
 				{#if (actionsState?.actions?.length > 1)}
 					<ActionsSort actionsState={actionsState}/>
@@ -201,6 +199,7 @@
 				{#if (actionsState?.actions?.length > 1 || ActionsStore.isFiltered())}
 					<ActionsFilter/>
 				{/if}
+				<ActionsStat actionsState={actionsState}/>
 			</div>
 		</div>
 	{/if}

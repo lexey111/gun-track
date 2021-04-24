@@ -16,8 +16,8 @@
 
 </script>
 
-<div class="block">
+<div class="block block-min">
 	<div class="block-content">
-		<Button type="text" onClick={changeSortDirection}>By date {sortOrder}</Button>
+		<Button type="text-frame" onClick={changeSortDirection}>Sort: by date {sortOrder}</Button>
 	</div>
 </div>

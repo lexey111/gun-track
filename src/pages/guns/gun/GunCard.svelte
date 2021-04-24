@@ -82,7 +82,7 @@
 						<Icon type="file" alt="Notes..."/>
 					</Button>
 				{/if}
-				<Button size="small" onClick={() => onEdit(gun.id)}>
+				<Button size="small" type="text-ghost" onClick={() => onEdit(gun.id)}>
 					<Icon type="edit"/>
 					Change
 				</Button>
@@ -195,30 +195,15 @@
 				padding: 32px 0 16px 0;
 				display: flex;
 				flex-flow: row nowrap;
-				align-items: flex-end;
 				box-sizing: border-box;
+				align-items: center;
 
 				button {
-					height: 36px;
 					padding: 8px 16px;
-
-					&.press-ghost {
-						padding-left: 8px;
-						padding-right: 8px;
-						margin: 0;
-
-						svg {
-							margin: 0;
-						}
-					}
 				}
 
 				button:not(:last-child) {
 					margin-right: 8px;
-
-					svg {
-						margin-right: .4em;
-					}
 				}
 			}
 		}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let type: '' | 'default' | 'text' | 'danger' | 'text-danger' = '';
+	export let type: '' | 'default' | 'text' | 'danger' | 'text-danger' | 'text-frame' | 'text-ghost' = '';
 	export let size: 'small' | 'default' | 'big' = 'default';
 	export let disabled = false;
 	export let onClick: () => void = null;
@@ -18,6 +18,12 @@
 		}
 		if (type === 'text-danger') {
 			className += ' press-ghost press-red';
+		}
+		if (type === 'text-frame') {
+			className += ' press-frame';
+		}
+		if (type === 'text-ghost') {
+			className += ' press-frame-ghost';
 		}
 
 		if (size === 'small') {

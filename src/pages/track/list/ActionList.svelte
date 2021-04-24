@@ -30,7 +30,7 @@
 					</span></div>
 				{/if}
 				<div class="alh-name">
-					<GunNavigator {id} {gunsState}/>
+					<GunNavigator {id} {gunsState} onTitle={true}/>
 				</div>
 			</div>
 		{/if}
@@ -53,7 +53,7 @@
 			flex-direction: row-reverse;
 			width: 100%;
 			align-content: flex-end;
-			padding: 12px 0;
+			padding: 0;
 			border-radius: 17px 17px 0 0;
 			border-bottom: 2px solid var(--app-primary-bg);
 			background-color: var(--app-primary-bg);
@@ -64,15 +64,21 @@
 				width: 233px;
 				align-content: flex-end;
 				justify-content: flex-end;
-				font-size: var(--app-big-font-size);
+				font-size: var(--app-font-size);
 				color: var(--app-primary-text-darken);
 				text-transform: uppercase;
-				font-weight: 100;
+				font-weight: 200;
 
 				span {
 					text-align: right;
-					padding-right: 32px;
+					padding-right: 16px;
+					padding-bottom: 4px;
 				}
+			}
+
+			.alh-shots {
+				border-right: 2px solid rgba(0, 0, 0, 0.2);
+				margin-right: 22px;
 			}
 
 			.alh-money {
@@ -84,6 +90,7 @@
 			.alh-name {
 				margin-right: auto;
 				margin-left: 1em;
+				padding: 12px 0;
 			}
 		}
 	}
