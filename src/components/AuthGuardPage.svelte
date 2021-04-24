@@ -52,19 +52,3 @@
 		{/if}
 	{/if}
 </div>
-
-<style lang="less">
-	.wait-message {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 1px;
-		color: var(--app-remark-text);
-		font-style: italic;
-		font-size: .8em;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-</style>

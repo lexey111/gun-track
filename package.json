@@ -7,15 +7,17 @@
 		"url": "https://github.com/lexey111"
 	},
 	"scripts": {
+		"cleanup": "rimraf ./dist",
 		"svelte-check": "svelte-check",
-		"start": "vite",
-		"build": "vite build",
-		"serve": "vite preview"
+		"build": "npm run cleanup && webpack --config webpack.config.js --mode production",
+		"dev": "webpack --config webpack.config.js --mode development --progress",
+		"start": "webpack serve --config webpack.config.js --mode development --host 0.0.0.0",
+		"svelte-check-watch": "svelte-check --watch"
 	},
 	"keywords": [
 		"svelte",
 		"typescript",
-		"vite",
+		"webpack",
 		"aws"
 	],
 	"author": "lexey111",
@@ -33,20 +35,37 @@
 		"@aws-amplify/datastore": "^2.9.16",
 		"@aws-sdk/client-cognito-identity": "^3.13.1",
 		"@aws-sdk/types": "^3.13.1",
-		"@sveltejs/vite-plugin-svelte": "next",
+		"@types/webpack": "^5.28.0",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
 		"@typescript-eslint/parser": "^4.22.0",
 		"aws-amplify": "^3.3.27",
 		"buffer": "^6.0.3",
+		"copy-webpack-plugin": "^8.1.1",
+		"css-loader": "^5.2.2",
 		"eslint": "^7.25.0",
+		"eslint-loader": "^4.0.2",
 		"eslint-plugin-optimize-regex": "^1.2.0",
 		"eslint-plugin-promise": "^5.1.0",
 		"eslint-plugin-sonarjs": "^0.7.0",
 		"eslint-plugin-svelte3": "^3.2.0",
+		"file-loader": "^6.2.0",
+		"html-webpack-plugin": "^5.3.1",
+		"install": "^0.13.0",
 		"less": "^4.1.1",
+		"less-loader": "^8.1.1",
+		"mini-css-extract-plugin": "^1.5.0",
+		"npm": "^7.11.1",
+		"optimize-css-assets-webpack-plugin": "^5.0.4",
+		"rimraf": "^3.0.2",
+		"style-loader": "^2.0.0",
 		"svelte-check": "^1.5.1",
+		"svelte-loader": "^3.1.1",
 		"svelte-preprocess": "^4.7.2",
+		"terser-webpack-plugin": "^5.1.1",
+		"ts-loader": "^9.0.0",
 		"typescript": "^4.2.4",
-		"vite": "^2.2.1"
+		"webpack": "^5.33.2",
+		"webpack-cli": "^4.5.0",
+		"webpack-dev-server": "^3.11.2"
 	}
 }

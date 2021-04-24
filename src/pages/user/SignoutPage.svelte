@@ -9,9 +9,7 @@
 	});
 </script>
 
-<div class={"app-page"}>
-	<h1>Sign out</h1>
-	<p>
-		You will be redirected to Home page in a moment...
-	</p>
-</div>
+<h1>Sign out</h1>
+<p>
+	You will be redirected to Home page in a moment...
+</p>

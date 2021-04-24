@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {TAppLocale} from '../../stores/app/app-state-store.interface';
+import type {TAppLocale} from '../../stores/app/app-state-store.interface';
 
 const memoryCache: Record<string, Promise<unknown>> = {};
 let currentLocale: TAppLocale;

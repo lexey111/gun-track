@@ -54,6 +54,20 @@
 	}
 }
 
+.app-pages {
+	.app-page {
+		&.loaded {
+			animation-name: page-loaded-appear;
+			animation-duration: 0.2s;
+			animation-timing-function: ease-in-out;
+		}
+
+		&.not-loaded {
+			background: none;
+		}
+	}
+}
+
 .page-content {
 	animation-name: page-panel-appear;
 	animation-duration: 0.8s;
@@ -180,6 +194,29 @@
 	animation-name: top-panel-appear;
 	animation-duration: .4s;
 	animation-timing-function: ease-in-out;
+}
+
+.wait-message {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 1px;
+	color: var(--app-remark-text);
+	font-style: italic;
+	font-size: .8em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@keyframes page-loaded-appear {
+	0% {
+		transform: translateY(15px);
+	}
+	100% {
+		transform: translateY(0);
+	}
 }
 
 @keyframes top-panel-appear {

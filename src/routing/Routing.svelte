@@ -1,20 +1,14 @@
 <script lang="ts">
 	import {Route} from 'svelte-routing';
+	import AppPage from '../components/AppPage.svelte';
 	import AuthGuardPage from '../components/AuthGuardPage.svelte';
-
-	import AboutPage from '../pages/about/AboutPage.svelte';
 	import GunsPage from '../pages/guns/GunsPage.svelte';
-
-	import HomePage from '../pages/home/HomePage.svelte';
-	import TosPage from '../pages/tos/TosPage.svelte';
 	import TrackPage from '../pages/track/TrackPage.svelte';
 
 	import LoginPage from '../pages/user/LoginPage.svelte';
 
 	import ProfilePage from '../pages/user/ProfilePage.svelte';
 	import ResetPasswordPage from '../pages/user/ResetPasswordPage.svelte';
-
-	import SignoutPage from '../pages/user/SignoutPage.svelte';
 	import SignupPage from '../pages/user/SignupPage.svelte';
 </script>
 
@@ -39,12 +33,20 @@
 		<AuthGuardPage logout={true} component={ResetPasswordPage}/>
 	</Route>
 
-	<Route path="signout" component={SignoutPage}/>
-	<Route path="logout" component={SignoutPage}/>
+	<Route path="signout">
+		<AppPage pageId="signout"/>
+	</Route>
+	<Route path="logout">
+		<AppPage pageId="signout"/>
+	</Route>
 
-	<Route path="about" component={AboutPage}/>
+	<Route path="about">
+		<AppPage pageId="about"/>
+	</Route>
 
-	<Route path="tos" component={TosPage}/>
+	<Route path="tos">
+		<AppPage pageId="tos"/>
+	</Route>
 
 	<Route path="guns">
 		<AuthGuardPage component={GunsPage} redirectTo="/login" class="no-paddings"/>
@@ -58,10 +60,11 @@
 		<AuthGuardPage component={TrackPage} redirectTo="/login" class="no-paddings" params={params}/>
 	</Route>
 
-	<Route path="home" component={HomePage}/>
-
+	<Route path="home">
+		<AppPage pageId="home"/>
+	</Route>
 	<Route path="/">
-		<HomePage/>
+		<AppPage pageId="home"/>
 	</Route>
 </div>
 

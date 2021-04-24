@@ -180,34 +180,3 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 		</div>
 	{/if}
 {/if}
-
-<style lang="less">
-	.top-panel {
-		.top-panel-content {
-			grid-template-columns: 1fr 1fr 4fr;
-
-			.stat, .stat.stat-info {
-				text-align: left;
-				justify-items: flex-start;
-				justify-content: flex-start;
-			}
-		}
-	}
-
-	h2 {
-		display: flex;
-		flex-flow: row nowrap;
-		align-content: center;
-		align-items: center;
-
-		span {
-			display: flex;
-			flex-flow: row nowrap;
-			align-content: center;
-			align-items: center;
-			margin-left: 32px;
-			padding-left: 16px;
-			border-left: 1px dashed #ccc;
-		}
-	}
-</style>
