@@ -147,8 +147,7 @@
 
 .btn.small {
     font-size: var(--app-small-font-size);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 8px 16px;
 }
 
 .btn.big {

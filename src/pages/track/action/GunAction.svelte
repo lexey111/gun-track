@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
+	import Info from '../../../components/modal/Info.svelte';
+	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import type {TAction} from '../../../stores/actions/actions-store.interface';
 	import {getTypeColor} from '../../../stores/actions/actions-store.types';
 	import ActionData from './content/ActionData.svelte';
@@ -15,20 +17,39 @@
 
 	let color: string;
 	$: color = getTypeColor(action?.type)
+
+	let infoNotes: any;
+	const onShowNotes = (id: string) => {
+		const notes = ActionsStore.getActionById(id)?.trainingNotes;
+		if (!notes) {
+			return;
+		}
+		infoNotes.showInfoDialog({
+			text: notes,
+			title: 'Notes'
+		});
+	};
 </script>
 
+<Info bind:this={infoNotes}/>
+
 <div class={'gun-action' + (isLast ? ' last-item' : '')}>
-	<ActionTimeline action={action}/>
+	<ActionTimeline {action}/>
 
 	<div class="action-content" style="border-left-color: {color}">
 		<div class="action-columns">
-			<ActionData action={action} {onEdit}/>
-			<ActionStat action={action}/>
+			<ActionData {action} {onEdit}/>
+			<ActionStat {action}/>
 		</div>
 
-		<ActionNotes action={action}/>
+		<ActionNotes {onShowNotes} {action}/>
 
 		<div class="action-actions">
+			{#if (action.trainingNotes)}
+				<Button onClick={() => onShowNotes(action.id)} type="link" size="small">
+					<Icon type="file"/> &nbsp; Notes...
+				</Button>
+			{/if}
 			<Button onClick={() => onEdit(action.id)} type="ghost" size="small">
 				<Icon type="edit"/> &nbsp; Edit
 			</Button>
@@ -82,7 +103,7 @@
 					opacity: 0;
 					transition: opacity .2s ease-in;
 
-					button:last-child {
+					button {
 						margin-left: 1em;
 					}
 				}

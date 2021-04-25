@@ -1,25 +1,11 @@
 <script lang="ts">
 	import Icon from '../../../../components/icons/Icon.svelte';
-	import Info from '../../../../components/modal/Info.svelte';
-	import {ActionsStore} from '../../../../stores/actions/actions-store';
 	import type {TAction} from '../../../../stores/actions/actions-store.interface';
 
-	export let action: TAction;
+	export let action: TAction
+	export let onShowNotes: (id: string) => void;
 
-	let infoNotes: any;
-	const onShowNotes = (id: string) => {
-		const notes = ActionsStore.getActionById(id)?.trainingNotes;
-		if (!notes) {
-			return;
-		}
-		infoNotes.showInfoDialog({
-			text: notes,
-			title: 'Notes'
-		});
-	};
 </script>
-
-<Info bind:this={infoNotes}/>
 
 {#if (action.trainingNotes)}
 	<div class="action-notes" on:click={() => onShowNotes(action.id)}>
