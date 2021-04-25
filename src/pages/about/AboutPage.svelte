@@ -87,18 +87,21 @@
 		<li>
 			<Done>Buttons in login</Done>
 		</li>
-		<li>Better login with tabs</li>
 		<li>
 			<Done>Dropdowns</Done>
 		</li>
 		<li>Stats on Home</li>
 		<li>Contacts page</li>
 		<li>Navigator offline mode (disable requests)</li>
+		<li>Better notifications design</li>
+		<li>Hidden UI elements page</li>
 	</ul>
 
 	<h3>Login</h3>
 	<ul>
-		<li>Better design</li>
+		<li>
+			<Done>Better design</Done>
+		</li>
 		<li>Email fields validation</li>
 		<li>Telegram channel</li>
 		<li>Support email</li>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {Link} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
+	import Icon from '../../components/icons/Icon.svelte';
 
 	import {showError, showInfo} from '../../components/notifications/notify';
 	import type {IAuthStore} from '../../stores/auth/auth-store.interface';
@@ -35,100 +36,116 @@
 </script>
 
 <div class="app-page-signup">
-	<h2>
+	<h1>
+		<Link to="/login" class="outlink">
+			<Icon type="arrow-left" size="24px"/>
+		</Link>
 		Sign up
-	</h2>
+	</h1>
 
 	<p>
-		<span class="circle-badge success">1</span> New user? Please fill the form to register:
+		To be registered you need to provide valid e-mail address you have access to, and the credentials.
 	</p>
 
-	<section class="success">
+	<p>
+		Then we will send you a verification code you need to use within 15 minutes to confirm the email.
+	</p>
+
+	<hr/>
+
+	<h3 class="highlight-mark">
+		1. New user? Please fill the form to register:
+	</h3>
+
+	<div class="form-group">
+		<label for="email">E-mail</label>
+		<input
+			placeholder="some@server.com"
+			autocomplete="off"
+			maxlength="128"
+			required
+			bind:value={email}
+			id="email"/>
+	</div>
+
+	<div class="form-group">
+		<label for="pwd">Password</label>
+		<input
+			type="password"
+			autocomplete="off"
+			maxlength="32"
+			required
+			bind:value={pwd}
+			id="pwd"/>
+	</div>
+
+	<div class="form-group">
+		<label for="pwd2">Confirm password</label>
+		<input
+			type="password"
+			autocomplete="off"
+			maxlength="32"
+			required
+			bind:value={pwd2}
+			id="pwd2"/>
+	</div>
+
+	<div class="form-group">
+		<!--  svelte-ignore a11y-label-has-associated-control -->
+		<label/>
+		<Button
+			disabled={!signupAllowed}
+			onClick={signUp}>
+			Register
+		</Button>
+	</div>
+
+	<h3 class="highlight-mark">
+		2. Confirm your e-mail:
+	</h3>
+
+	<div class="form">
+
 		<div class="form-group">
-			<label for="email">E-mail</label>
+			<label for="email2">E-mail</label>
 			<input
 				placeholder="some@server.com"
 				autocomplete="off"
 				maxlength="128"
 				required
 				bind:value={email}
-				id="email"/>
+				id="email2"/>
 		</div>
 
 		<div class="form-group">
-			<label for="pwd">Password</label>
+			<label for="code">Verification code</label>
 			<input
-				type="password"
 				autocomplete="off"
 				maxlength="32"
 				required
-				bind:value={pwd}
-				id="pwd"/>
-		</div>
-
-		<div class="form-group">
-			<label for="pwd2">Confirm password</label>
-			<input
-				type="password"
-				autocomplete="off"
-				maxlength="32"
-				required
-				bind:value={pwd2}
-				id="pwd2"/>
+				bind:value={code}
+				id="code"/>
 		</div>
 
 		<div class="form-group">
 			<!--  svelte-ignore a11y-label-has-associated-control -->
 			<label/>
 			<Button
-				disabled={!signupAllowed}
-				onClick={signUp}>
-				Register
+				disabled={!codeAllowed}
+				onClick={signUpVerify}>
+				Confirm & Sign in
 			</Button>
 		</div>
-	</section>
-
-	<p>
-		<span class="circle-badge success">2</span> Verify your e-mail:
-	</p>
-
-	<section class="success">
-		<div class="form">
-
-			<div class="form-group">
-				<label for="email2">E-mail</label>
-				<input
-					placeholder="some@server.com"
-					autocomplete="off"
-					maxlength="128"
-					required
-					bind:value={email}
-					id="email2"/>
-			</div>
-
-			<div class="form-group">
-				<label for="code">Verification code</label>
-				<input
-					autocomplete="off"
-					maxlength="32"
-					required
-					bind:value={code}
-					id="code"/>
-			</div>
-
-			<div class="form-group">
-				<!--  svelte-ignore a11y-label-has-associated-control -->
-				<label/>
-				<Button
-					disabled={!codeAllowed}
-					onClick={signUpVerify}>
-					Confirm & Sign in
-				</Button>
-			</div>
-		</div>
-	</section>
+	</div>
 
 	<p class="return-to-login">
 		<Link to="login">&larr; Back to login page</Link>
 	</p>
 </div>
+
+<style lang="less">
+	.app-page-signup {
+		max-width: 500px;
+		margin: 0 auto;
+	}
+</style>

@@ -11,29 +11,37 @@
 </script>
 
 <div class={"app-page-login"}>
-	<h1>Sign in</h1>
+	<h1 class="highlight-mark">Sign in</h1>
 
-	<section>
-		<ProfileLogin authStore={authStore}/>
-	</section>
+	<ProfileLogin authStore={authStore}/>
 
-	<h3>Or with local credentials</h3>
-	<section>
-		<EmailLogin authStore={authStore}/>
-	</section>
+	<hr/>
 
-	<h3>New user?</h3>
-	<section>
+	<h3 class="highlight-mark">Or with local credentials</h3>
+	<EmailLogin authStore={authStore}/>
+
+	<hr/>
+
+	<div class="new-user">
+		<h3 class="highlight-mark">Want to register?</h3>
 		<p>
 			Register new local user with e-mail:
 		</p>
-		<Button onClick={() => navigate('login/signup')}>
-			<Icon type="user-add" class="inline" size="24px"/>
+
+		<Button onClick={() => navigate('login/signup')} type="ghost">
+			<Icon type="user-add" class="inline" size="18px"/>
 			Sign up!
 		</Button>
-	</section>
+	</div>
 </div>
 
 <style lang="less">
-	@import "user.less";
+	.app-page-login {
+		max-width: 500px;
+		margin: 0 auto;
+	}
+
+	.new-user {
+		margin-bottom: 64px;
+	}
 </style>

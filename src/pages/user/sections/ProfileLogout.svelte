@@ -23,8 +23,8 @@
 <Confirm bind:this={confirmDialog}/>
 
 <Button
-	type="danger"
+	type="ghost-danger"
 	onClick={handleConfirmLogoutDialog}>
-	<Icon type="logout" size="24px" class="inline"/>
+	<Icon type="logout" size="18px" class="inline"/>
 	Logout
 </Button>

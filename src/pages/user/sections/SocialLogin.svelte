@@ -17,15 +17,21 @@
 <div class="form-group button-row">
 	<!--  svelte-ignore a11y-label-has-associated-control -->
 	<label>
-		Via social network
+		Using social network
 	</label>
 
-	<Button onClick={handleLoginWithFacebook}>
-		<Icon type="facebook" class="inline" size="24px"/>
+	<Button onClick={handleLoginWithFacebook} type="ghost">
+		<Icon type="facebook" class="inline" size="18px"/>
 		Facebook
 	</Button>
-	<Button onClick={handleLoginWithGoogle}>
-		<Icon type="google" class="inline" size="24px"/>
+	<Button onClick={handleLoginWithGoogle} type="ghost">
+		<Icon type="google" class="inline" size="18px"/>
 		Google
 	</Button>
 </div>
+
+<style>
+    .form-group {
+        margin-bottom: 32px;
+    }
+</style>

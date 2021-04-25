@@ -9,7 +9,7 @@
 
 <table>
 	<tr>
-		<td style="width: 120px">
+		<td style="width: 120px; text-align: center">
 			{#if authState.profileImageUrl}
 				<Image src="{authState.profileImageUrl}" alt="avatar" class="avatar"/>
 			{/if}
@@ -22,9 +22,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2">
+		<td>
 			<ProfileLogout authStore={authStore}/>
 		</td>
+		<td></td>
 	</tr>
 </table>
 
@@ -42,13 +43,7 @@
 				h2 {
 					margin: 0;
 				}
-			}
-
-			&:last-child {
-				td {
-					padding: 16px 0 0 0;
-					text-align: right;
-				}
+				padding-bottom: 32px;
 			}
 		}
 	}

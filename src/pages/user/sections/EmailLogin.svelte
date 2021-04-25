@@ -20,41 +20,49 @@
 	}
 </script>
 
-<div class="form-group">
-	<label for="s_email">E-mail</label>
-	<input
-		placeholder="some@server.com"
-		autocomplete="off"
-		maxlength="128"
-		required
-		bind:value={email}
-		id="s_email"/>
+<div class="email-login">
+	<div class="form-group">
+		<label for="s_email">E-mail</label>
+		<input
+			placeholder="some@server.com"
+			autocomplete="off"
+			maxlength="128"
+			required
+			bind:value={email}
+			id="s_email"/>
+	</div>
+
+	<div class="form-group">
+		<label for="s_pwd">Password</label>
+		<input
+			type="password"
+			autocomplete="off"
+			maxlength="32"
+			required
+			bind:value={pwd}
+			id="s_pwd"/>
+	</div>
+
+	<div class="form-group button-row">
+		<!--  svelte-ignore a11y-label-has-associated-control -->
+		<label/>
+
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#" on:click={() => navigate('login/restore')}>Forgot password?</a>
+
+		<span class="stub"></span>
+
+		<Button
+			disabled={!signinAllowed}
+			onClick={signIn}>
+			<Icon type="login" class="inline" size="18px"/>
+			Sign in
+		</Button>
+	</div>
 </div>
 
-<div class="form-group">
-	<label for="s_pwd">Password</label>
-	<input
-		type="password"
-		autocomplete="off"
-		maxlength="32"
-		required
-		bind:value={pwd}
-		id="s_pwd"/>
-</div>
-
-<div class="form-group button-row">
-	<!--  svelte-ignore a11y-label-has-associated-control -->
-	<label/>
-
-	<!--  svelte-ignore a11y-invalid-attribute-->
-	<a href="#" on:click={() => navigate('login/restore')}>Forgot password?</a>
-
-	<span class="stub"></span>
-
-	<Button
-		disabled={!signinAllowed}
-		onClick={signIn}>
-		<Icon type="login" class="inline" size="24px"/>
-		Sign in
-	</Button>
-</div>
+<style>
+    .email-login {
+        margin-bottom: 32px;
+    }
+</style>
