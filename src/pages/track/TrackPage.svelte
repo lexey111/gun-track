@@ -84,6 +84,11 @@
 			const lastState: TStoredState = restoreState(id);
 			ActionsStore.initStore(gunId, lastState);
 
+			const storedId = localStorage.getItem('gun.current');
+			if (storedId !== gunId) {
+				localStorage.setItem('gun.current', gunId);
+			}
+
 			actionsUnsubscribe = ActionsStore.subscribe((value: TActionsState) => {
 				if (!value) {
 					return;

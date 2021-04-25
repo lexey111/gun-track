@@ -89,7 +89,7 @@
 				width: auto;
 				height: 50px;
 				padding: 0 16px;
-				margin: 8px;
+				margin: 0 8px 0 0;
 				color: var(--app-primary-text);
 				text-decoration: none;
 				transition: background-color .2s ease, color .1s ease;
