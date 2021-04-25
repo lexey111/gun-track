@@ -96,6 +96,31 @@ async function saveGun(gun: Gun): Promise<boolean> {
 				updated.model = (gun.model || '').substring(0, 64);
 				updated.notes = (gun.notes || '').substring(0, 2048);
 				updated.caliber = (gun.caliber || '').substring(0, 32);
+				updated.photo = (gun.photo || '').substring(0, 128);
+			})
+		);
+	} catch (error) {
+		showError(`Error on storing the gun:\n${getErrorText(error)}`, 'Error');
+		return false;
+	}
+	return true;
+}
+
+async function savePhoto(gunId: string, photoName: string): Promise<boolean> {
+	const _gun = getGunById(gunId);
+	if (!_gun) {
+		throw new Error('Gun not found!');
+	}
+
+	update(state => ({
+		...state,
+		busy: true
+	}));
+
+	try {
+		await DataStore.save(
+			Gun.copyOf(_gun, updated => {
+				updated.photo = (photoName || '').substring(0, 128);
 			})
 		);
 	} catch (error) {
@@ -171,5 +196,6 @@ export const GunsStore: IGunStore = {
 	saveGun,
 	removeGun,
 
-	getGunById
+	getGunById,
+	savePhoto
 };

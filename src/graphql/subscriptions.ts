@@ -12,6 +12,7 @@ export const onCreateGun = /* GraphQL */ `
       notes
       caliber
       dateCreated
+      photo
       actions {
         items {
           id
@@ -53,6 +54,7 @@ export const onUpdateGun = /* GraphQL */ `
       notes
       caliber
       dateCreated
+      photo
       actions {
         items {
           id
@@ -94,6 +96,7 @@ export const onDeleteGun = /* GraphQL */ `
       notes
       caliber
       dateCreated
+      photo
       actions {
         items {
           id
@@ -146,6 +149,7 @@ export const onCreateAction = /* GraphQL */ `
         notes
         caliber
         dateCreated
+        photo
         actions {
           nextToken
           startedAt
@@ -187,6 +191,7 @@ export const onUpdateAction = /* GraphQL */ `
         notes
         caliber
         dateCreated
+        photo
         actions {
           nextToken
           startedAt
@@ -228,6 +233,7 @@ export const onDeleteAction = /* GraphQL */ `
         notes
         caliber
         dateCreated
+        photo
         actions {
           nextToken
           startedAt

@@ -10,6 +10,7 @@ export type CreateGunInput = {
   notes?: string | null,
   caliber?: string | null,
   dateCreated: string,
+  photo?: string | null,
   _version?: number | null,
 };
 
@@ -20,6 +21,7 @@ export type ModelGunConditionInput = {
   notes?: ModelStringInput | null,
   caliber?: ModelStringInput | null,
   dateCreated?: ModelStringInput | null,
+  photo?: ModelStringInput | null,
   and?: Array< ModelGunConditionInput | null > | null,
   or?: Array< ModelGunConditionInput | null > | null,
   not?: ModelGunConditionInput | null,
@@ -74,6 +76,7 @@ export type Gun = {
   notes?: string | null,
   caliber?: string | null,
   dateCreated?: string,
+  photo?: string | null,
   actions?: ModelActionConnection,
   _version?: number,
   _deleted?: boolean | null,
@@ -119,6 +122,7 @@ export type UpdateGunInput = {
   notes?: string | null,
   caliber?: string | null,
   dateCreated?: string | null,
+  photo?: string | null,
   _version?: number | null,
 };
 
@@ -223,6 +227,7 @@ export type ModelGunFilterInput = {
   notes?: ModelStringInput | null,
   caliber?: ModelStringInput | null,
   dateCreated?: ModelStringInput | null,
+  photo?: ModelStringInput | null,
   and?: Array< ModelGunFilterInput | null > | null,
   or?: Array< ModelGunFilterInput | null > | null,
   not?: ModelGunFilterInput | null,
@@ -266,6 +271,7 @@ export type CreateGunMutation = {
     notes?: string | null,
     caliber?: string | null,
     dateCreated: string,
+    photo?: string | null,
     actions?:  {
       __typename: "ModelActionConnection",
       items?:  Array< {
@@ -314,6 +320,7 @@ export type UpdateGunMutation = {
     notes?: string | null,
     caliber?: string | null,
     dateCreated: string,
+    photo?: string | null,
     actions?:  {
       __typename: "ModelActionConnection",
       items?:  Array< {
@@ -362,6 +369,7 @@ export type DeleteGunMutation = {
     notes?: string | null,
     caliber?: string | null,
     dateCreated: string,
+    photo?: string | null,
     actions?:  {
       __typename: "ModelActionConnection",
       items?:  Array< {
@@ -422,6 +430,7 @@ export type CreateActionMutation = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -470,6 +479,7 @@ export type UpdateActionMutation = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -518,6 +528,7 @@ export type DeleteActionMutation = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -558,6 +569,7 @@ export type SyncGunsQuery = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -589,6 +601,7 @@ export type GetGunQuery = {
     notes?: string | null,
     caliber?: string | null,
     dateCreated: string,
+    photo?: string | null,
     actions?:  {
       __typename: "ModelActionConnection",
       items?:  Array< {
@@ -640,6 +653,7 @@ export type ListGunsQuery = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -688,6 +702,7 @@ export type SyncActionsQuery = {
         notes?: string | null,
         caliber?: string | null,
         dateCreated: string,
+        photo?: string | null,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
@@ -733,6 +748,7 @@ export type GetActionQuery = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -784,6 +800,7 @@ export type ListActionsQuery = {
         notes?: string | null,
         caliber?: string | null,
         dateCreated: string,
+        photo?: string | null,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
@@ -817,6 +834,7 @@ export type OnCreateGunSubscription = {
     notes?: string | null,
     caliber?: string | null,
     dateCreated: string,
+    photo?: string | null,
     actions?:  {
       __typename: "ModelActionConnection",
       items?:  Array< {
@@ -864,6 +882,7 @@ export type OnUpdateGunSubscription = {
     notes?: string | null,
     caliber?: string | null,
     dateCreated: string,
+    photo?: string | null,
     actions?:  {
       __typename: "ModelActionConnection",
       items?:  Array< {
@@ -911,6 +930,7 @@ export type OnDeleteGunSubscription = {
     notes?: string | null,
     caliber?: string | null,
     dateCreated: string,
+    photo?: string | null,
     actions?:  {
       __typename: "ModelActionConnection",
       items?:  Array< {
@@ -970,6 +990,7 @@ export type OnCreateActionSubscription = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -1017,6 +1038,7 @@ export type OnUpdateActionSubscription = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,
@@ -1064,6 +1086,7 @@ export type OnDeleteActionSubscription = {
       notes?: string | null,
       caliber?: string | null,
       dateCreated: string,
+      photo?: string | null,
       actions?:  {
         __typename: "ModelActionConnection",
         nextToken?: string | null,

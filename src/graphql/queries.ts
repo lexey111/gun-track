@@ -23,6 +23,7 @@ export const syncGuns = /* GraphQL */ `
         notes
         caliber
         dateCreated
+        photo
         actions {
           nextToken
           startedAt
@@ -49,6 +50,7 @@ export const getGun = /* GraphQL */ `
       notes
       caliber
       dateCreated
+      photo
       actions {
         items {
           id
@@ -95,6 +97,7 @@ export const listGuns = /* GraphQL */ `
         notes
         caliber
         dateCreated
+        photo
         actions {
           nextToken
           startedAt
@@ -143,6 +146,7 @@ export const syncActions = /* GraphQL */ `
           notes
           caliber
           dateCreated
+          photo
           _version
           _deleted
           _lastChangedAt
@@ -183,6 +187,7 @@ export const getAction = /* GraphQL */ `
         notes
         caliber
         dateCreated
+        photo
         actions {
           nextToken
           startedAt
@@ -229,6 +234,7 @@ export const listActions = /* GraphQL */ `
           notes
           caliber
           dateCreated
+          photo
           _version
           _deleted
           _lastChangedAt

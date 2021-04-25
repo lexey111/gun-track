@@ -1,9 +1,11 @@
 <script lang="ts">
+	import Storage from '@aws-amplify/storage'
 	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
 	import CKEditor from 'ckeditor5-svelte/src/Ckeditor.svelte';
 	import dayjs from 'dayjs'
 	import {onDestroy, onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
+	import Image from '../../../components/images/Image.svelte';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import Tab from '../../../components/tabs/Tab.svelte';
 	import TabHeader from '../../../components/tabs/TabHeader.svelte';
@@ -20,7 +22,10 @@
 	let model = '';
 	let notes = '';
 	let caliber = '';
+	let photo = '';
 	let isNew = false;
+
+	let photoUrl: string;
 
 	export let onConfirm: (gun: Gun) => void;
 	export let onCancel: () => void;
@@ -106,8 +111,21 @@
 		model = gun.model || '';
 		notes = gun.notes || '';
 		caliber = gun.caliber || '';
+		photo = gun.photo || '';
 		registered = dayjs(gun.dateCreated).locale(dateLocale).format('LL');
+
 	});
+
+	const activatePhoto = () => {
+		if (!photo) {
+			return;
+		}
+		Storage.get(photo, {
+			level: 'private'
+		}).then((result: string) => {
+			photoUrl = result;
+		});
+	}
 
 	onDestroy(() => {
 		clearTimeout(ckDelay);
@@ -127,6 +145,7 @@
 		<TabHeader>
 			<Tab>Main data</Tab>
 			<Tab>Notes</Tab>
+			<Tab>Photo</Tab>
 		</TabHeader>
 
 		<TabPanel>
@@ -201,6 +220,20 @@
 					bind:value={notes}/>
 			{/if}
 		</TabPanel>
+		<TabPanel onActivate={activatePhoto}>
+			<div class="gun-image">
+				{#if (photoUrl)}
+					<Image src={photoUrl} class="gun-image-preview"/>
+				{:else }
+					{#if (photo)}
+						<p>
+							<SpinnerComponent/>
+							Please wait...
+						</p>
+					{/if}
+				{/if}
+			</div>
+		</TabPanel>
 	</Tabs>
 </div>
 
@@ -210,3 +243,27 @@
 	        onClick={handleConfirm}>{isNew ? 'Register' : 'Save'}
 	</Button>
 </div>
+
+<style lang="less">
+	:global {
+		.gun-image {
+			display: flex;
+			align-items: center;
+			align-content: center;
+			flex-flow: column wrap;
+			width: 480px;
+			height: 310px;
+			margin: 0 auto;
+
+			.gun-image-preview {
+				display: flex;
+				max-width: 480px;
+				max-height: 310px;
+				margin: 0 auto;
+				border-radius: 7px;
+				background-color: var(--app-white-bg);
+				box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+			}
+		}
+	}
+</style>

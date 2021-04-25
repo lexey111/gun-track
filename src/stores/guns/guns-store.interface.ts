@@ -21,4 +21,5 @@ export interface IGunStore extends Writable<TGunsState> {
 	removeGun: (id: string) => Promise<boolean>
 
 	getGunById: (gunId: string) => Gun
+	savePhoto: (gunId: string, photoName: string) => Promise<boolean>
 }

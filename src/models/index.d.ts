@@ -12,6 +12,7 @@ export declare class Gun {
   readonly notes?: string;
   readonly caliber?: string;
   readonly dateCreated: string;
+  readonly photo?: string;
   readonly actions?: (Action | null)[];
   constructor(init: ModelInit<Gun>);
   static copyOf(source: Gun, mutator: (draft: MutableModel<Gun>) => MutableModel<Gun> | void): Gun;

@@ -1,14 +1,18 @@
 <script lang="ts">
 	import dayjs from 'dayjs'
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
+	import {getContext} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import Info from '../../../components/modal/Info.svelte';
 	import type {Gun} from '../../../models';
+	import type {TAppModal} from '../../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../../stores/guns/guns-store';
+	import GunPhoto from '../modals/GunPhoto.svelte';
 
 	dayjs.extend(localizedFormat);
+	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 
 	export let gun: Gun = null;
 	export let dateLocale: string;
@@ -29,6 +33,21 @@
 			text: notes,
 			title: 'Notes'
 		});
+	};
+
+	const onUploadPhoto = (id: string) => {
+		modal.open(GunPhoto, {
+			closeButton: true,
+			componentProps: {
+				id,
+				onConfirm: async () => {
+					modal.close();
+					console.log('ok');
+				},
+				onCancel: () => modal.close(),
+			}
+		});
+
 	};
 
 	let title: string;
@@ -82,6 +101,11 @@
 						<Icon type="file" alt="Notes..."/>
 					</Button>
 				{/if}
+
+				<Button size="small" type="link" onClick={() => onUploadPhoto(gun.id)}>
+					<Icon type="desktop" alt="Upload photo..."/>
+				</Button>
+
 				<Button size="small" type="ghost" onClick={() => onEdit(gun.id)}>
 					<Icon type="edit"/>
 					Change
