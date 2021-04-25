@@ -59,7 +59,7 @@
 
 	function handleDropdownOpen(active: boolean): void {
 		if (active) {
-			title = 'Filter';
+			title = 'Filter...';
 			resetSelection();
 		}
 	}
@@ -78,7 +78,8 @@
 	<div class="block-content">
 		<Dropdown onActiveChange={handleDropdownOpen}
 		          onActiveChanged={handleDropdownOpened}
-		          className="menu menu-button menu-button-ghost af-filter"
+		          isToolbar="true"
+		          className="af-filter"
 		          bind:close={closeDropdown}>
 			<span slot="title" class="af-title"><Icon type="filter" class="inline"/> {title}</span>
 			<div class="af-dropdown-content">
@@ -105,7 +106,8 @@
 					</p>
 				{/each}
 				<div class="af-actions">
-					<Button size="small" type="link" onClick={cancelFilter}>Cancel</Button>
+					<!--  svelte-ignore a11y-invalid-attribute-->
+					<a href="#" on:click={cancelFilter}>Cancel</a>
 					<Button size="small" onClick={applyFilter}>Apply</Button>
 				</div>
 			</div>
@@ -115,17 +117,6 @@
 
 <style lang="less">
 	:global {
-		.af-filter {
-			.dc-title {
-				background-color: rgba(0, 0, 0, .1);
-				border: 2px solid var(--app-primary-text-darken);
-				box-shadow: 0 0 4px rgba(0, 0, 0, .1) !important;
-				border-radius: 12px;
-				min-height: 46px;
-				box-sizing: border-box !important;
-			}
-		}
-
 		.af-title {
 			font-size: var(--app-font-size);
 		}
@@ -135,7 +126,7 @@
 			flex-flow: column wrap;
 			font-size: var(--app-small-font-size);
 			color: var(--app-text);
-			padding: 0 16px 0 0;
+			padding: 0 16px;
 			min-width: 200px;
 
 			hr {
@@ -149,20 +140,15 @@
 			}
 
 			.af-actions {
-				border-top: 1px dashed var(--app-border-color);
-				margin-top: 8px;
-				padding-top: 8px;
+				margin-top: 24px;
 				display: flex;
 				flex-flow: row wrap;
 				width: 100%;
 				justify-content: flex-end;
+				align-items: center;
 
-				button.press-ghost {
-					color: var(--app-link-text);
-
-					&:hover, &:focus {
-						color: var(--app-link-text-active) !important;
-					}
+				button {
+					margin-left: 1em;
 				}
 			}
 		}

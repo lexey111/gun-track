@@ -1,4 +1,5 @@
 <script lang="ts">
+	import LocaleMenu from '../../components/dropdown/LocaleMenu.svelte';
 	import Button from '../../components/buttons/Button.svelte';
 	import CurrencyMenu from '../../components/dropdown/CurrencyMenu.svelte';
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';
@@ -44,13 +45,33 @@
 	<CurrencyMenu currency={currency} onChange={changeCurrency}/>
 </div>
 
-<div style="display: inline-flex">
-	<Dropdown className="menu menu-left menu-button">
-		<span slot="title">AAAA</span>
+<Dropdown className="menu menu-left menu-button">
+	<span slot="title">Left</span>
+	<div class="dropdown-menu">
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#">
+			sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+		</a>
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a class="selected" href="#">
+			Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+		</a>
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#">LK ;lkewew p[ssda</a>
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#">IUI Y78 8799</a>
+	</div>
+</Dropdown>
+<h4>Toolbar</h4>
+<div style="padding: 8px; background-color: var(--app-primary-bg); display: flex">
+	<Button type="toolbar"><Icon type="home"/> &nbsp; Button</Button> &nbsp;
+
+	<Dropdown isToolbar="true">
+		<span slot="title"><Icon type="home"/> &nbsp;Toolbar button</span>
 		<div class="dropdown-menu">
 			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#">
-				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				sj askda Ajdhf skfdsjhfhsdjkfhsk
 			</a>
 			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a class="selected" href="#">
@@ -62,12 +83,13 @@
 			<a href="#">IUI Y78 8799</a>
 		</div>
 	</Dropdown>
-	<Dropdown className="menu menu-left menu-button menu-button-ghost">
-		<span slot="title">AAAA</span>
+	&nbsp;
+	<Dropdown isToolbar="true" left="true">
+		<span slot="title"><Icon type="home"/> &nbsp;Toolbar button</span>
 		<div class="dropdown-menu">
 			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#">
-				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+				sj askda Ajdhf skfdsjhfhsdjkfhsk
 			</a>
 			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a class="selected" href="#">
@@ -79,42 +101,28 @@
 			<a href="#">IUI Y78 8799</a>
 		</div>
 	</Dropdown>
-	<Dropdown className="menu menu-left menu-button menu-button-secondary">
-		<span slot="title">AAAA</span>
-		<div class="dropdown-menu">
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#">
-				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
-			</a>
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#" class="selected">
-				Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
-			</a>
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#">LK ;lkewew p[ssda</a>
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#">IUI Y78 8799</a>
-		</div>
-	</Dropdown>
-	&mdash;
-	<Dropdown className="menu menu-left">
-		<span slot="title">AAAA</span>
-		<div class="dropdown-menu">
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#">
-				sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
-			</a>
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#" class="selected">
-				Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
-			</a>
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#">LK ;lkewew p[ssda</a>
-			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#">IUI Y78 8799</a>
-		</div>
-	</Dropdown>
+	&nbsp;
+	<LocaleMenu/>
 </div>
+
+<h4>Left</h4>
+<Dropdown left="true">
+	<span slot="title">AAAA</span>
+	<div class="dropdown-menu">
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#">
+			sj askda Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+		</a>
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#" class="selected">
+			Ajdhf skfdsjhfk jsdkfjhsdjkfhsk
+		</a>
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#">LK ;lkewew p[ssda</a>
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#">IUI Y78 8799</a>
+	</div>
+</Dropdown>
 
 <h4>Default</h4>
 <Button onClick={() => showInfo('AAAAAAAAAA BBBBBB')}>Default</Button>

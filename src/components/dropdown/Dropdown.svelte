@@ -6,6 +6,8 @@
 	import {stateStore} from './dropdown-store';
 
 	export let title = '';
+	export let isToolbar = false;
+	export let left = false;
 	export let className = '';
 	export let onActiveChange: (activate: boolean) => void;
 	export let onActiveChanged: (open: boolean) => void;
@@ -27,7 +29,7 @@
 
 		onActiveChange && onActiveChange(true);
 		active = true;
-		titleWidth = dropdown.clientWidth - 32;
+		titleWidth = dropdown.clientWidth;
 
 		clearTimeout(openTimeout);
 
@@ -89,21 +91,28 @@
 		storeUnsubscribe$ && storeUnsubscribe$();
 		clearTimeout(openTimeout);
 	});
+
+	let dropdownClass: string;
+	$: {
+		dropdownClass = 'dropdown-container' +
+			(active ? ' active' : '') +
+			(className ? ' ' + className : '') +
+			(isToolbar ? ' menu menu-button toolbar' : '') +
+			(left ? ' menu-left' : '');
+	}
 </script>
 
-<div class={'dropdown-container' + (active ? ' active' : '') + (className ? ' ' + className : '')}
+<div class={dropdownClass}
      use:clickOutside on:click_outside={handleClickOutside}>
 	<div class="dc-title" tabindex="0" bind:this={dropdown}
 	     on:keypress={onKeypress}
 	     on:click={toggleActive}>
-		<span>
 		{#if title}
 			{title}
 		{:else }
 			<slot name="title"/>
 		{/if}
-		</span>
-		<Icon type="down" size=".7em" class="dc-down"/>
+		<Icon type="down" size="11px" class="dc-down"/>
 	</div>
 
 	{#if (active)}
@@ -118,16 +127,19 @@
 <style lang="less">
 	:global {
 		.dropdown-container {
-			position: relative;
 			min-height: 1em;
-			display: inline-flex;
 			flex-flow: row nowrap;
-			align-items: stretch;
 			justify-items: stretch;
 			justify-content: stretch;
 			padding: 0;
 			margin: 0;
-			z-index: 1;
+			display: flex;
+			flex-flow: row nowrap;
+			height: 100%;
+			align-items: center;
+			align-content: center;
+			position: relative;
+			width: auto;
 
 			.dc-title {
 				cursor: pointer;
@@ -152,11 +164,15 @@
 					align-content: center;
 					justify-items: center;
 					justify-content: center;
+					padding: 0;
+					margin: 0;
+					vertical-align: text-top;
+					line-height: 1;
 				}
 
 				svg.dc-down {
 					display: inline-block;
-					margin: 2px .4em;
+					margin: 0 .4em;
 					transform-origin: center center;
 					transition: all .2s ease-in-out;
 				}
@@ -181,10 +197,72 @@
 				border-radius: 7px;
 				pointer-events: none;
 				opacity: 0;
-				z-index: -1;
 				transition: all .1s ease;
 				transform-origin: top right;
 				transform: scaleY(.5);
+				display: flex;
+				flex-flow: column nowrap;
+				z-index: 1;
+
+				.dc-dropdown-content {
+					display: flex;
+					flex-flow: column nowrap;
+
+					.dropdown-menu {
+						display: flex;
+						flex-flow: column nowrap;
+
+						a {
+							padding: 12px 16px 12px 22px;
+							font-size: var(--app-small-font-size);
+							color: var(--app-text);
+							transition: all .1s ease;
+							white-space: nowrap;
+							position: relative;
+							border-radius: 7px;
+							line-height: 1.2;
+							text-decoration: none;
+
+							&:hover, &:focus {
+								background-color: var(--app-menu-bg-hover) !important;
+								color: var(--app-menu-text-hover) !important;
+								box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+								outline: none;
+							}
+
+							&:before {
+								content: '';
+								width: 16px;
+								position: absolute;
+								left: 6px;
+								color: var(--app-menu-bg);
+								transition: color .1s ease;
+							}
+
+							&.selected {
+								background-color: rgba(0, 0, 0, 0.2);
+								box-shadow: none;
+								border: none;
+								font-weight: bold;
+
+								&:before {
+									content: '✔';
+								}
+
+								&:hover, &:focus {
+									background-color: var(--app-menu-bg) !important;
+									color: var(--app-menu-text) !important;
+									box-shadow: none;
+
+									&:before {
+										color: var(--app-menu-text);
+										box-shadow: none;
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 
 			&.active, &:focus {
@@ -218,86 +296,13 @@
 				}
 			}
 
-			&.menu {
-				display: flex;
-				flex-flow: row nowrap;
-				height: 100%;
-				align-items: center;
-				align-content: center;
-				position: relative;
-				width: auto;
-
-				.dc-dropdown-wrapper {
-					display: flex;
-					flex-flow: column nowrap;
-
-					.dc-dropdown-content {
-						display: flex;
-						flex-flow: column nowrap;
-
-						.dropdown-menu {
-							display: flex;
-							flex-flow: column nowrap;
-
-							a {
-								padding: 12px 16px 12px 22px;
-								font-size: var(--app-small-font-size);
-								color: var(--app-text);
-								transition: all .1s ease;
-								white-space: nowrap;
-								position: relative;
-								border-radius: 7px;
-								line-height: 1.2;
-								text-decoration: none;
-
-								&:hover, &:focus {
-									background-color: var(--app-menu-bg-hover) !important;
-									color: var(--app-menu-text-hover) !important;
-									box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
-									outline: none;
-								}
-
-								&:before {
-									content: '';
-									width: 16px;
-									position: absolute;
-									left: 6px;
-									color: var(--app-menu-bg);
-									transition: color .1s ease;
-								}
-
-								&.selected {
-									background-color: rgba(0, 0, 0, 0.2);
-									box-shadow: none;
-									border: none;
-									font-weight: bold;
-
-									&:before {
-										content: '✔';
-									}
-
-									&:hover, &:focus {
-										background-color: var(--app-menu-bg) !important;
-										color: var(--app-menu-text) !important;
-										box-shadow: none;
-
-										&:before {
-											color: var(--app-menu-text);
-											box-shadow: none;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-
 			&.menu-button {
 				.dc-title {
 					background-color: var(--app-primary-bg);
-					height: 42px;
-					padding: 0 12px;
+					padding: 10px 24px;
+					border: 2px solid transparent;
+					box-sizing: content-box;
+					min-height: 1em;
 					border-radius: 12px;
 					color: var(--app-primary-text);
 					max-width: 20em;
@@ -321,7 +326,6 @@
 					.dc-title {
 						border-bottom-right-radius: 0;
 						border-bottom-left-radius: 0;
-						pointer-events: none;
 						background-color: var(--app-primary-bg-darken);
 
 						svg.dc-down {
@@ -339,7 +343,6 @@
 					margin-top: 0;
 					border-top-left-radius: 0;
 					border-top-right-radius: 0;
-					// box-shadow: 0 4px 4px rgba(0, 0, 0, .2);
 
 					.dc-dropdown-content {
 						.dropdown-menu {
@@ -372,16 +375,23 @@
 				}
 			}
 
-			&.menu-button.menu-button-ghost {
+			&.menu-button.toolbar {
 				.dc-title {
 					box-sizing: border-box;
-					border: 2px solid var(--app-primary-bg-lighten);
-					background-color: var(--app-white-bg);
 					color: var(--app-primary-bg);
-					opacity: .9;
+					background-color: rgba(255, 255, 255, .7);
+					box-shadow: 0 0 4px rgba(0, 0, 0, .4);
 
 					svg.dc-down {
 						color: var(--app-primary-bg);
+					}
+
+					&:hover, &:focus, &:focus-within {
+						background-color: rgba(255, 255, 255, 1);
+					}
+
+					&:focus, &:focus-within {
+						box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8);
 					}
 				}
 
@@ -400,13 +410,18 @@
 							right: 0;
 							height: 4px;
 						}
+
+						&:focus, &:focus-within {
+							box-shadow: none;
+						}
 					}
 
 					.dc-dropdown-wrapper {
 						background-color: var(--app-white-bg);
-						border: 2px solid var(--app-primary-bg-lighten);
+						border: none;
+						border-radius: 7px;
 						z-index: 1000;
-						margin-top: -2px;
+						margin-top: -5px;
 
 						.dc-dropdown-content {
 							.dropdown-menu {
