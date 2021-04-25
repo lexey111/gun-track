@@ -1,17 +1,24 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
+	import {Gun} from '../../../models';
+	import {GunsStore} from '../../../stores/guns/guns-store';
 	import type {TGunsState} from '../../../stores/guns/guns-store.interface';
-	import GunNavigator from '../navigator/GunNavigator.svelte';
+	import GunsMenu from './GunsMenu.svelte';
 
 	export let id = '';
-	export let currentGunTitle = '';
 	export let gunsState: TGunsState;
 	export let showNewActionDialog: () => void = null;
+	let currentGun: Gun;
+	let currentGunTitle: string;
+	$: {
+		currentGun = GunsStore.getGunById(id);
+		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';
+	}
 </script>
 
 <div class="no-records">
-	<h2>No records here for <i>{currentGunTitle}</i>, yet.</h2>
+	<h1>No records here for <i class="gun-name">{currentGunTitle}</i> yet.</h1>
 	<p>
 		But it is the best time to create one!
 	</p>
@@ -24,15 +31,22 @@
 
 	{#if gunsState.guns.length > 1}
 		<p>Or you can select another gun:</p>
-		<div class="navigator-container">
-			<GunNavigator id={id} gunsState={gunsState}/>
-		</div>
+		<GunsMenu/>
+
 	{/if}
 </div>
 
 <style>
-    .navigator-container {
-        width: auto;
-        display: inline-block;
+    .no-records {
+        min-height: 600px;
     }
+
+    i.gun-name {
+        background-color: var(--app-accent-background);
+        color: var(--app-accent-text);
+        padding: 4px 8px;
+        margin: 0 .2em;
+        border-radius: 7px;
+    }
+
 </style>

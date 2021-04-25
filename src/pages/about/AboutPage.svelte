@@ -110,7 +110,9 @@
 		<li>
 			<Done>Save filter and sort for gun</Done>
 		</li>
-		<li>Filtered/total</li>
+		<li>
+			<Done>Filtered/total</Done>
+		</li>
 		<li>
 			<Done>No records - reset/filter button</Done>
 		</li>

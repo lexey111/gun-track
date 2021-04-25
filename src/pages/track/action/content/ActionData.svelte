@@ -29,6 +29,7 @@
 			font-size: var(--app-big-font-size);
 			display: flex;
 			flex-flow: column nowrap;
+			align-items: flex-start;
 			cursor: pointer;
 		}
 

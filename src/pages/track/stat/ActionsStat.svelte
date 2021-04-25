@@ -20,6 +20,9 @@
 			</li>
 			<li>
 				<b>{actionsState?.actions.length}</b>
+				{#if (actionsState?.totalRecords !== actionsState?.actions.length)}
+					/ {actionsState?.totalRecords}
+				{/if}
 			</li>
 		</ul>
 	</div>

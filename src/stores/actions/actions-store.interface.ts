@@ -21,6 +21,7 @@ export type TActionsState = {
 	filteredBy: Array<string>
 	isEmpty: true | false | null
 	totalShots: number
+	totalRecords: number
 	expenses: Record<string, number> // {USD: 23, UAH: 1234...}
 	actions: Array<Action>
 };

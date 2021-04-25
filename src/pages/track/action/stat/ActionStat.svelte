@@ -3,7 +3,10 @@
 	import {getCurrencySign} from '../../../../stores/actions/actions-store.types';
 
 	export let action: ActionExtended;
+	let currencySign: string;
 	$: currencySign = getCurrencySign(action.currency);
+
+	let hasExpenses: boolean;
 	$: hasExpenses = action?.totalExpenses && Object.keys(action?.totalExpenses).length > 0;
 </script>
 

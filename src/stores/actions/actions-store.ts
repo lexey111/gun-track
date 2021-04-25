@@ -27,6 +27,7 @@ const {
 	filteredBy: [],
 	isEmpty: null,
 	totalShots: 0,
+	totalRecords: 0,
 	expenses: {},
 	actions: _actions
 });
@@ -41,6 +42,7 @@ function resetStore(): void {
 		sortOrder: 'desc',
 		filteredBy: [],
 		totalShots: 0,
+		totalRecords: 0,
 		expenses: {},
 		isEmpty: null,
 		busy: false
@@ -135,16 +137,17 @@ async function loadActions(gunId?: string): Promise<void> {
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		// const rawActions = await getActionsByGun(currentGunId, currentFiltering, a => a.date(currentOrder));
-		const rawActions: Array<ActionExtended> = (await DataStore.query(Action, Predicates.ALL, {
+		let rawActions: Array<ActionExtended> = (await DataStore.query(Action, Predicates.ALL, {
 			sort: a => a.date(currentOrder)
-		}))
-			.filter(c => c.gun?.id === currentGunId)
-			.filter(c => {
-				if (!currentFiltering.length) {
-					return true;
-				}
+		})).filter(c => c.gun?.id === currentGunId);
+
+		const totalRecords = rawActions.length;
+
+		if (currentFiltering.length > 0) {
+			rawActions = rawActions.filter(c => {
 				return currentFiltering.includes(c.type);
 			});
+		}
 
 		const data = rawActions.map(i => ({
 			...i,
@@ -195,6 +198,7 @@ async function loadActions(gunId?: string): Promise<void> {
 			isEmpty: data.length === 0,
 			filteredBy: currentFiltering,
 			totalShots,
+			totalRecords,
 			expenses,
 			busy: false
 		}));

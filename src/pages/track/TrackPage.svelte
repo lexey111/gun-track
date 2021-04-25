@@ -224,7 +224,7 @@
 	let currentGun: Gun;
 	let currentGunTitle: string;
 	$: {
-		currentGun = GunsStore.getGunById(id || '');
+		currentGun = GunsStore.getGunById(id);
 		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';
 	}
 
@@ -277,7 +277,6 @@
 				<NoRecords
 					{id}
 					{gunsState}
-					{currentGunTitle}
 					{showNewActionDialog}
 				/>
 			{/if}
@@ -285,7 +284,7 @@
 				<NoRecordsByFilter
 					{id}
 					{gunsState}
-					{currentGunTitle}
+					{actionsState}
 					{onResetFilters}
 				/>
 			{/if}
