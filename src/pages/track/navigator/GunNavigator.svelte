@@ -70,15 +70,13 @@
 
 <style lang="less">
 	.dropdown-menu {
-		.selected {
-			i {
-				display: inline-block;
-				margin-top: 8px;
-				font-weight: normal;
-				font-style: normal;
-				opacity: .8;
-				font-size: var(--app-very-small-font-size);
-			}
+		i {
+			display: inline-block;
+			margin-top: 8px;
+			font-weight: normal;
+			font-style: normal;
+			opacity: .8;
+			font-size: var(--app-very-small-font-size);
 		}
 	}
 </style>

@@ -26,7 +26,7 @@ export type TActionsState = {
 };
 
 export interface IActionsStore extends Writable<TActionsState> {
-	initStore: (gunId: string) => void
+	initStore: (gunId: string, options?: { sort?: string; filters?: [string] }) => void
 
 	loadActions: (gunId: string) => Promise<void>
 	unloadActions: () => void

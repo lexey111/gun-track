@@ -159,7 +159,6 @@
 				span {
 					display: flex;
 					flex-flow: row nowrap;
-					overflow: hidden;
 					align-items: center;
 					align-content: center;
 					justify-items: center;

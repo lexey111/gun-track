@@ -12,6 +12,7 @@
 	import type {TAction, TActionsState} from '../../stores/actions/actions-store.interface';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import type {TAppModal} from '../../stores/app/app-state-store.interface';
+	import type {TAuthState} from '../../stores/auth/auth-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import type {TGunsState} from '../../stores/guns/guns-store.interface';
 	import {isEmpty} from '../../utils/objects';
@@ -25,6 +26,8 @@
 	import ActionsStat from './stat/ActionsStat.svelte';
 
 	export let id: string;
+	export let authState: TAuthState;
+
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 
 	let gunsState: TGunsState;
@@ -33,11 +36,53 @@
 	let actionsState: TActionsState;
 	let actionsUnsubscribe: any;
 
+	type TStoredState = {
+		sort: string
+		filters: Array<string>
+	};
+
+	function restoreState(id: string): TStoredState {
+		if (!id) {
+			return;
+		}
+		const restoredData = localStorage.getItem('state.' + authState.id + '-' + id);
+		let restored;
+		try {
+			let _raw;
+			if (restoredData) {
+				_raw = JSON.parse(restoredData);
+			}
+			if (!_raw.sort && !_raw.filters) {
+				throw new Error('Invalid data format');
+			}
+			restored = {
+				sort: _raw.sort || 'desc',
+				filters: _raw.filters || []
+			};
+		} catch {
+			restored = null;
+		}
+		return restored as TStoredState;
+	}
+
+	function storePageState(id?: string, options?: { sort?: string; filters?: [string] }) {
+		if (!id) {
+			return;
+		}
+		const storedState: TStoredState = {
+			sort: options.sort,
+			filters: options.filters
+		}
+
+		localStorage.setItem('state.' + authState.id + '-' + id, JSON.stringify(storedState));
+	}
+
 	function subscribeToActions(gunId: string) {
 		actionsUnsubscribe && actionsUnsubscribe();
 
 		if (gunId) {
-			ActionsStore.initStore(gunId);
+			const lastState: TStoredState = restoreState(id);
+			ActionsStore.initStore(gunId, lastState);
 
 			actionsUnsubscribe = ActionsStore.subscribe((value: TActionsState) => {
 				if (!value) {
@@ -165,7 +210,14 @@
 				}
 			}
 		});
+	};
 
+	const onResetFilters = () => {
+		storePageState(id, {
+			sort: actionsState.sortOrder,
+			filters: []
+		});
+		ActionsStore.setFilter('all');
 	};
 
 	let currentGun: Gun;
@@ -193,11 +245,15 @@
 				</div>
 
 				{#if (actionsState?.actions?.length > 1)}
-					<ActionsSort actionsState={actionsState}/>
+					<ActionsSort
+						actionsState={actionsState}
+						onApply={(sort) => storePageState(id, {sort})}/>
 				{/if}
 
-				{#if (actionsState?.actions?.length > 1 || ActionsStore.isFiltered())}
-					<ActionsFilter/>
+				{#if (actionsState?.actions?.length > 1 || actionsState.filteredBy.length > 0)}
+					<ActionsFilter
+						storeFilters={actionsState.filteredBy}
+						onApply={(filters) => storePageState(id, {filters: filters})}/>
 				{/if}
 				<ActionsStat actionsState={actionsState}/>
 			</div>
@@ -216,15 +272,21 @@
 				onDelete={handleDelete}
 				actionsState={actionsState}/>
 		{:else }
-			{#if (actionsState?.isEmpty === true && !ActionsStore.isFiltered())}
+			{#if (actionsState?.isEmpty === true && !ActionsStore.isFiltered() && !actionsState.busy)}
 				<NoRecords
 					{id}
 					{gunsState}
 					{currentGunTitle}
-					{showNewActionDialog}/>
+					{showNewActionDialog}
+				/>
 			{/if}
-			{#if (actionsState?.isEmpty === true && ActionsStore.isFiltered())}
-				<NoRecordsByFilter {currentGunTitle}/>
+			{#if (actionsState?.isEmpty === true && ActionsStore.isFiltered() && !actionsState.busy)}
+				<NoRecordsByFilter
+					{id}
+					{gunsState}
+					{currentGunTitle}
+					{onResetFilters}
+				/>
 			{/if}
 		{/if}
 

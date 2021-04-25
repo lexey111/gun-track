@@ -350,8 +350,16 @@ export const ActionsStore: IActionsStore = {
 		}
 	},
 
-	initStore: (gunId: string) => {
+	initStore: (gunId: string, options?: { sort?: string; filters?: [string] }) => {
 		resetStore();
+
+		if (options?.sort) {
+			currentOrder = options.sort === 'asc' ? SortDirection.ASCENDING : SortDirection.DESCENDING;
+		}
+
+		if (options?.filters) {
+			currentFiltering = options.filters;
+		}
 
 		void loadActions(gunId);
 		actionsSubscription = DataStore.observe(Action).subscribe(_ => {

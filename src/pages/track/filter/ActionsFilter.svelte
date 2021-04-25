@@ -7,12 +7,15 @@
 	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import {ActionTypes} from '../../../stores/actions/actions-store.types';
 
+	export let storeFilters: Array<string> = [];
+	export let onApply: (filters: Array<string>) => void;
+
 	let selection: Array<string> = [];
 	let allSelected = false;
 
 	function resetSelection() {
 		selection = [];
-		const curFilter = ActionsStore.getFilter();
+		const curFilter = storeFilters; // ActionsStore.getFilter();
 		ActionTypes.forEach(type => {
 			if (!curFilter.length || curFilter.includes(type.id)) {
 				selection.push(type.id)
@@ -44,10 +47,17 @@
 		allSelected = selection.length === ActionTypes.length;
 	}
 
-	let title = 'Filter...';
+	let title: string;
+	$: {
+		title = 'Filter...';
+		if (selection.length && !allSelected) {
+			title = 'Filter [' + selection.length + ']';
+		}
+	}
 	let closeDropdown: any;
 
 	function applyFilter() {
+		onApply && onApply(selection);
 		ActionsStore.setFilter(selection);
 		closeDropdown();
 	}
@@ -59,17 +69,7 @@
 
 	function handleDropdownOpen(active: boolean): void {
 		if (active) {
-			title = 'Filter...';
 			resetSelection();
-		}
-	}
-
-	function handleDropdownOpened(active: boolean): void {
-		if (!active) {
-			title = 'Filter...';
-			if (selection.length && !allSelected) {
-				title = 'Filter [' + selection.length + ']';
-			}
 		}
 	}
 </script>
@@ -77,7 +77,6 @@
 <div class="block block-min">
 	<div class="block-content">
 		<Dropdown onActiveChange={handleDropdownOpen}
-		          onActiveChanged={handleDropdownOpened}
 		          isToolbar="true"
 		          className="af-filter"
 		          bind:close={closeDropdown}>
@@ -119,6 +118,7 @@
 	:global {
 		.af-title {
 			font-size: var(--app-font-size);
+			width: 7em;
 		}
 
 		.af-dropdown-content {

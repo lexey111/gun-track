@@ -21,10 +21,18 @@
 			Add record...
 		</Button>
 	</p>
+
 	{#if gunsState.guns.length > 1}
-		<div>
-			<p>Or you can select another gun:</p>
+		<p>Or you can select another gun:</p>
+		<div class="navigator-container">
 			<GunNavigator id={id} gunsState={gunsState}/>
 		</div>
 	{/if}
 </div>
+
+<style>
+    .navigator-container {
+        width: auto;
+        display: inline-block;
+    }
+</style>

@@ -3,10 +3,14 @@
 	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 
+	export let onApply: (sort: string) => void;
+
 	const changeSortDirection = () => {
 		if (ActionsStore.getOrder() === 'asc') {
-			ActionsStore.setOrder('desc')
+			onApply('desc');
+			ActionsStore.setOrder('desc');
 		} else {
+			onApply('asc');
 			ActionsStore.setOrder('asc');
 		}
 	}
