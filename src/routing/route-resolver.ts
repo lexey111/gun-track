@@ -17,6 +17,11 @@ export async function resolvePage(pageId: string): Promise<any> {
 				.then(getModule)
 				.catch(logError);
 
+		case 'ui':
+			return import('./../pages/home/UIPage.svelte')
+				.then(getModule)
+				.catch(logError);
+
 		case 'about':
 			return import('./../pages/about/AboutPage.svelte')
 				.then(getModule)

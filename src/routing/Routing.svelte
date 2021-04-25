@@ -50,6 +50,10 @@
 		<AppPage pageId="track" onlyLoggedIn={true} redirectTo="/login" class="no-paddings" params={params}/>
 	</Route>
 
+	<Route path="ui">
+		<AppPage pageId="ui"/>
+	</Route>
+
 	<Route path="home">
 		<AppPage pageId="home"/>
 	</Route>

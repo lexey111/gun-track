@@ -94,7 +94,9 @@
 		<li>Contacts page</li>
 		<li>Navigator offline mode (disable requests)</li>
 		<li>Better notifications design</li>
-		<li>Hidden UI elements page</li>
+		<li>
+			<Done>Hidden UI elements page</Done>
+		</li>
 	</ul>
 
 	<h3>Login</h3>
