@@ -83,7 +83,7 @@
 		<div class="form-group">
 			<label for="code">Code</label>
 			<input
-				type="text"
+				type="link"
 				autocomplete="off"
 				maxlength="32"
 				required

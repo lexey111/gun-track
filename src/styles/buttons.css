@@ -1,0 +1,157 @@
+.btn {
+    border: 2px solid transparent;
+    cursor: pointer;
+    margin: 0;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s ease, color .2s ease, opacity .2s ease;
+    outline: none;
+    font-size: var(--app-font-size);
+    border-radius: 12px;
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    box-sizing: content-box;
+}
+
+.btn-blue {
+    background-color: var(--app-primary-bg);
+    color: var(--app-primary-text);
+}
+
+.btn-blue:hover {
+    background-color: var(--app-primary-bg-lighten);
+}
+
+.btn-blue:focus, .btn-blue:focus-within {
+    background-color: var(--app-primary-bg-darken);
+}
+
+.btn-red {
+    background-color: var(--app-danger-bg);
+    color: var(--app-danger-text);
+}
+
+.btn-red:hover {
+    background-color: var(--app-danger-bg-lighten);
+}
+
+.btn-red:focus, .btn-red:focus-within {
+    background-color: var(--app-danger-bg-darken);
+}
+
+.btn:disabled {
+    cursor: default;
+    background-color: #ddd;
+    color: #aaa;
+}
+
+.btn-link {
+    color: var(--app-link-text);
+    background-color: transparent;
+}
+
+.btn-link:hover {
+    color: var(--app-primary-text);
+    background-color: var(--app-primary-bg);
+    text-decoration: underline;
+}
+
+.btn-link:disabled {
+    background-color: transparent;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.btn-link:focus, .btn-link:focus-within {
+    color: var(--app-primary-text);
+    background-color: var(--app-primary-bg);
+    text-decoration: underline;
+}
+
+.btn-link.btn-red {
+    color: var(--app-danger-bg);
+}
+
+.btn-link.btn-red:disabled {
+    color: #aaa;
+}
+
+.btn-link.btn-red:hover {
+    background-color: var(--app-danger-bg-lighten);
+    color: var(--app-danger-text);
+}
+
+.btn-link.btn-red:focus, .btn-link.btn-red:focus-within {
+    color: var(--app-danger-text);
+    background-color: var(--app-danger-bg-darken);
+}
+
+.btn-toolbar {
+    color: var(--app-primary-bg);
+    background-color: rgba(255, 255, 255, .7);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+}
+
+.btn-toolbar:hover, .btn-toolbar:focus, .btn-toolbar:focus-within {
+    background-color: #fff;
+}
+
+.btn-toolbar:disabled {
+    color: rgba(255, 255, 255, .3);
+    background-color: rgba(255, 255, 255, .2);
+    pointer-events: none;
+}
+
+.btn-ghost {
+    color: var(--app-primary-bg);
+    background-color: transparent;
+    border-color: var(--app-primary-bg-light);
+}
+
+.btn-ghost:hover, .btn-ghost:focus, .btn-ghost:focus-within {
+    opacity: 1;
+    background-color: var(--app-primary-bg);
+    color: var(--app-primary-text);
+    border-color: var(--app-primary-bg);
+}
+
+.btn-ghost:disabled, .btn-ghost-danger:disabled {
+    color: #aaa;
+    background-color: transparent;
+    border-color: #ddd;
+    opacity: .9;
+    pointer-events: none;
+}
+
+.btn-ghost-danger {
+    color: var(--app-danger-bg);
+    background-color: transparent;
+    border-color: var(--app-danger-bg);
+}
+
+.btn-ghost-danger:hover, .btn-ghost-danger:focus, .btn-ghost-danger:focus-within {
+    opacity: 1;
+    background-color: var(--app-danger-bg-darken);
+    color: var(--app-danger-text);
+    border-color: var(--app-danger-bg-darken);
+}
+
+.btn:focus, .btn:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8);
+}
+
+.btn.small {
+    font-size: var(--app-small-font-size);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn.big {
+    font-size: var(--app-big-font-size);
+    padding: 16px 32px;
+}

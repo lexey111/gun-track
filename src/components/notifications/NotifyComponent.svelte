@@ -132,8 +132,8 @@
 			}
 
 			&.error {
-				background: linear-gradient(var(--app-error-bg), var(--app-error-bg-darken));
-				color: var(--app-error-text);
+				background: linear-gradient(var(--app-danger-bg), var(--app-danger-bg-darken));
+				color: var(--app-danger-text);
 			}
 
 			&.success {

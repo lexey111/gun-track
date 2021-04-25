@@ -1,29 +1,32 @@
 <script lang="ts">
-	export let type: '' | 'default' | 'text' | 'danger' | 'text-danger' | 'text-frame' | 'text-ghost' = '';
+	export let type: '' | 'default' | 'link' | 'danger' | 'link-danger' | 'toolbar' | 'ghost' | 'ghost-danger' = '';
 	export let size: 'small' | 'default' | 'big' = 'default';
 	export let disabled = false;
 	export let onClick: () => void = null;
 
 	let className: string;
 	$: {
-		className = 'app-btn press';
+		className = 'btn';
 		if (type === '' || type === 'default') {
-			className += ' press-blue';
+			className += ' btn-blue';
 		}
 		if (type === 'danger') {
-			className += ' press-red';
+			className += ' btn-red';
 		}
-		if (type === 'text') {
-			className += ' press-ghost';
+		if (type === 'link') {
+			className += ' btn-link';
 		}
-		if (type === 'text-danger') {
-			className += ' press-ghost press-red';
+		if (type === 'link-danger') {
+			className += ' btn-link btn-red';
 		}
-		if (type === 'text-frame') {
-			className += ' press-frame';
+		if (type === 'toolbar') {
+			className += ' btn-toolbar';
 		}
-		if (type === 'text-ghost') {
-			className += ' press-frame-ghost';
+		if (type === 'ghost') {
+			className += ' btn-ghost';
+		}
+		if (type === 'ghost-danger') {
+			className += ' btn-ghost-danger';
 		}
 
 		if (size === 'small') {
@@ -35,27 +38,6 @@
 	}
 </script>
 
-<button class={className} disabled={disabled} on:click={onClick}>
+<button class={className} {disabled} on:click={onClick}>
 	<slot/>
 </button>
-
-<style lang="less">
-	:global {
-		.app-btn {
-			&.press.small {
-				font-size: var(--app-small-font-size);
-				padding-top: 10px;
-				padding-bottom: 10px;
-			}
-
-			&.press.big {
-				font-size: var(--app-big-font-size);
-				padding: 16px 32px;
-			}
-
-			&.press-ghost {
-				box-shadow: none;
-			}
-		}
-	}
-</style>

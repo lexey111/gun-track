@@ -33,9 +33,10 @@
     --app-warn-bg-darken: #d9ae00;
     --app-warn-text: #2b1206;
 
-    --app-error-bg: #f32152;
-    --app-error-bg-darken: #d51e49;
-    --app-error-text: #fff;
+    --app-danger-bg: #f32152;
+    --app-danger-bg-lighten: #f63f69;
+    --app-danger-bg-darken: #d51e49;
+    --app-danger-text: #fff;
 
     --app-success-bg: #b7f60a;
     --app-success-bg-darken: #99cd0a;

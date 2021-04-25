@@ -22,7 +22,7 @@
 </div>
 
 <div class="modal-footer">
-	<Button type="text"
+	<Button type="link"
 	        onClick={onCancel}>Cancel
 	</Button>
 	<Button type="danger"

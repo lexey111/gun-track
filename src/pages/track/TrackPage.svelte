@@ -185,7 +185,7 @@
 			<div class="top-panel-content">
 				<div class="block block-left block-min">
 					<div class="block-content">
-						<Button onClick={showNewActionDialog} type="text-frame">
+						<Button onClick={showNewActionDialog} type="toolbar">
 							<Icon type="plus-circle" class="inline" size="24px"/>
 							Add record...
 						</Button>

@@ -54,7 +54,7 @@
 			margin: 0 !important;
 
 			button.calendar-button:focus {
-				box-shadow: 0 0 0 4px rgba(129, 34, 237, 0.4) !important;
+				box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8) !important;
 				outline: none;
 			}
 		}

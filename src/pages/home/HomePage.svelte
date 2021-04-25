@@ -117,42 +117,38 @@
 </div>
 
 <h4>Default</h4>
-<div>
-	<Button onClick={() => showInfo('AAAAAAAAAA')}>Default</Button>
-	<Button disabled={true}>Default disabled</Button>
-	<Button type="danger" onClick={() => showError('AAAAAAAAAA')}>Danger</Button>
-	<Button type="danger" disabled={true}>Danger disabled</Button>
-	<Button type="text">Text</Button>
-	<Button type="text" disabled={true}>Text disabled</Button>
-	<Button type="text-danger">Text</Button>
-	<Button type="text-danger" disabled={true}>Text danger disabled</Button>
+<Button onClick={() => showInfo('AAAAAAAAAA BBBBBB')}>Default</Button>
+<Button disabled={true}>Default disabled</Button>
+
+<h4>Danger</h4>
+<Button type="danger" onClick={() => showError('AAAAAAAAAA  BBBBBB')}>Danger</Button>
+<Button type="danger" disabled={true}>Danger disabled</Button>
+
+<h4>Link</h4>
+<Button type="link">Link</Button>
+<Button type="link" disabled={true}>Link disabled</Button>
+
+<h4>Link danger</h4>
+<Button type="link-danger">Link danger</Button>
+<Button type="link-danger" disabled={true}>Link danger disabled</Button>
+
+<h4>Toolbar</h4>
+<div style="padding: 8px; background-color: var(--app-primary-bg)">
+	<Button type="danger">Default</Button>
+	<Button type="ghost">Ghost</Button>
+	<Button type="toolbar">Toolbar</Button>
+	<Button type="toolbar" disabled={true}>Toolbar disabled</Button>
 </div>
 
-<h4>Small</h4>
-<div>
-	<Button size="small">Small</Button>
-	<Button size="small" disabled={true}>Small disabled</Button>
-	<Button size="small" type="danger">Danger</Button>
-	<Button size="small" type="danger" disabled={true}>Danger disabled</Button>
-	<Button size="small" type="text">Text</Button>
-	<Button size="small" type="text" disabled={true}>Text disabled</Button>
-	<Button size="small" type="text-danger">Text</Button>
-	<Button size="small" type="text-danger" disabled={true}>Text danger disabled</Button>
-	<Button size="small" type="text-ghost">Text ghost</Button>
-	<Button size="small" type="text-ghost" disabled={true}>Text ghost disabled</Button>
-</div>
+<h4>Ghost</h4>
+<Button>Default</Button>
+<Button type="ghost">Ghost</Button>
+<Button type="ghost" disabled={true}>Ghost disabled</Button>
 
-<h4>Big</h4>
-<div>
-	<Button size="big">Big</Button>
-	<Button size="big" disabled={true}>Big disabled</Button>
-	<Button size="big" type="danger">Danger</Button>
-	<Button size="big" type="danger" disabled={true}>Danger disabled</Button>
-	<Button size="big" type="text">Text</Button>
-	<Button size="big" type="text" disabled={true}>Text disabled</Button>
-	<Button size="big" type="text-danger">Text</Button>
-	<Button size="big" type="text-danger" disabled={true}>Text danger disabled</Button>
-</div>
+<h4>Ghost danger</h4>
+<Button type="danger">Default</Button>
+<Button type="ghost-danger">Ghost danger</Button>
+<Button type="ghost-danger" disabled={true}>Ghost danger disabled</Button>
 
 <h4>Icons</h4>
 <div class="icon-list">

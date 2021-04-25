@@ -151,7 +151,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 			<div class="top-panel-content">
 				<div class="block block-left">
 					<Button
-						type="text-frame"
+						type="toolbar"
 						onClick={showNewGunDialog}>
 						<Icon type="plus-circle" size="24px" class="inline"/>
 						Register one more...

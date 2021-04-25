@@ -205,7 +205,7 @@
 </div>
 
 <div class="modal-footer">
-	<Button onClick={onCancel} type="text">Cancel</Button>
+	<Button onClick={onCancel} type="link">Cancel</Button>
 	<Button disabled={disabled}
 	        onClick={handleConfirm}>{isNew ? 'Register' : 'Save'}
 	</Button>

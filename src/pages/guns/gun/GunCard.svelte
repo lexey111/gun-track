@@ -74,19 +74,19 @@
 				</div>
 			{/if}
 			<div class="gc-actions">
-				<Button size="small" type="text" onClick={() => handleNavigate(gun.id)}>
+				<Button size="small" type="link" onClick={() => handleNavigate(gun.id)}>
 					<Icon type="arrow-right" alt="Go to Tracking"/>
 				</Button>
 				{#if (gun.notes)}
-					<Button size="small" type="text" onClick={() => onShowNotes(gun.id)}>
+					<Button size="small" type="link" onClick={() => onShowNotes(gun.id)}>
 						<Icon type="file" alt="Notes..."/>
 					</Button>
 				{/if}
-				<Button size="small" type="text-ghost" onClick={() => onEdit(gun.id)}>
+				<Button size="small" type="ghost" onClick={() => onEdit(gun.id)}>
 					<Icon type="edit"/>
 					Change
 				</Button>
-				<Button size="small" type="text-danger" onClick={() => onRemove(gun.id)}>
+				<Button size="small" type="link-danger" onClick={() => onRemove(gun.id)}>
 					<Icon type="delete"/>
 				</Button>
 			</div>

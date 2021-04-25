@@ -105,7 +105,7 @@
 					</p>
 				{/each}
 				<div class="af-actions">
-					<Button size="small" type="text" onClick={cancelFilter}>Cancel</Button>
+					<Button size="small" type="link" onClick={cancelFilter}>Cancel</Button>
 					<Button size="small" onClick={applyFilter}>Apply</Button>
 				</div>
 			</div>

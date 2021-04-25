@@ -29,10 +29,10 @@
 		<ActionNotes action={action}/>
 
 		<div class="action-actions">
-			<Button onClick={() => onEdit(action.id)} type="text-ghost" size="small">
+			<Button onClick={() => onEdit(action.id)} type="ghost" size="small">
 				<Icon type="edit"/> &nbsp; Edit
 			</Button>
-			<Button onClick={() => onDelete(action.id)} type="text-danger" size="small">
+			<Button onClick={() => onDelete(action.id)} type="link-danger" size="small">
 				<Icon type="delete"/>
 			</Button>
 		</div>
