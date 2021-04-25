@@ -63,7 +63,9 @@
 		<li>
 			<Done>Icons</Done>
 		</li>
-		<li>Modal - reserve scrollbar's place</li>
+		<li>
+			<Done>Modal - reserve scrollbar's place</Done>
+		</li>
 		<li>
 			<Done>Table</Done>
 		</li>
@@ -102,8 +104,10 @@
 
 	<h3>Track list</h3>
 	<ul>
+		<li>Modal size jumps</li>
 		<li>Save filter and sort for gun</li>
 		<li>Filtered/total</li>
+		<li>No records - reset/filter button</li>
 		<li>
 			<Done>Dropdown gun navigator</Done>
 		</li>

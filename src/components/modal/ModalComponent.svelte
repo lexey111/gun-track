@@ -6,7 +6,7 @@
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import Icon from '../icons/Icon.svelte';
 	import type {TSuperModal} from './modal-helper';
-	import {prepareSuperModal} from './modal-helper';
+	import {getScrollbarWidth, prepareSuperModal} from './modal-helper';
 
 	export const closeButton = true;
 	export const closeOnEsc = true;
@@ -18,6 +18,7 @@
 
 	let handler: TSuperModal;
 	let scrollPos: number;
+	let sbSize = getScrollbarWidth();
 
 	const open = (NewComponent: unknown, newProps = {}) => {
 		scrollPos = document.documentElement.scrollTop;
@@ -27,6 +28,7 @@
 		const waitDiv: HTMLDivElement = document.querySelector('#app-full-screen-message');
 		waitDiv.className = 'modal-like active';
 		document.body.classList.add('no-scroll');
+		document.body.style.marginRight = sbSize + 'px';
 
 		// remove focus from main page and put it to the trap or first focusable item
 		handler = prepareSuperModal(
@@ -39,6 +41,7 @@
 	const close = () => {
 		Component = null;
 		props = null;
+		document.body.style.marginRight = '0';
 
 		const waitDiv: HTMLDivElement = document.querySelector('#app-full-screen-message');
 		if (waitDiv) {
