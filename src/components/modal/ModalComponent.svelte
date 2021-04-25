@@ -33,7 +33,7 @@
 		// remove focus from main page and put it to the trap or first focusable item
 		handler = prepareSuperModal(
 			close,
-			props.closeOnEsc ?? true,
+			props.closeOnEsc ?? false,
 			props.closeOnOuterClick ?? true
 		);
 	};

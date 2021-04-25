@@ -36,6 +36,10 @@ export function prepareSuperModal(
 			onClose();
 		}
 
+		if (isEscPressed && !closeOnEsc) {
+			return;
+		}
+
 		if (!isTabPressed) {
 			return;
 		}

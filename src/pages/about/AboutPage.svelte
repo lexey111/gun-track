@@ -104,10 +104,16 @@
 
 	<h3>Track list</h3>
 	<ul>
-		<li>Modal size jumps</li>
-		<li>Save filter and sort for gun</li>
+		<li>
+			<Done>Modal size jumps</Done>
+		</li>
+		<li>
+			<Done>Save filter and sort for gun</Done>
+		</li>
 		<li>Filtered/total</li>
-		<li>No records - reset/filter button</li>
+		<li>
+			<Done>No records - reset/filter button</Done>
+		</li>
 		<li>
 			<Done>Dropdown gun navigator</Done>
 		</li>
@@ -129,7 +135,9 @@
 		<li>
 			<Done>Floating add button</Done>
 		</li>
-		<li>Block UI when busy state</li>
+		<li>
+			<Done>Block UI when busy state</Done>
+		</li>
 		<li>Compact view</li>
 		<li>
 			<Done>Add repair</Done>

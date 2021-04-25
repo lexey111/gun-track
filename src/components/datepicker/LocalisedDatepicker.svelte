@@ -45,10 +45,19 @@
 		format={Calendar[app_state.dateLocale].dateFormat}
 		start={minDate}
 		end={maxDate}/>
+{:else }
+	<div class="placeholder"></div>
 {/if}
 
 
 <style lang="less">
+	.placeholder {
+		height: 38px;
+		// background-color: rgba(0, 0, 0, .1);
+		border-radius: 7px;
+		width: 250px;
+	}
+
 	:global {
 		.datepicker {
 			margin: 0 !important;

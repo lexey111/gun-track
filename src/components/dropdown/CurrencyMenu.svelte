@@ -56,7 +56,7 @@
 				i {
 					font-style: normal;
 					opacity: .6;
-					padding: 0 16px;
+					padding: 0 16px 0 0;
 				}
 
 				.dc-dropdown-wrapper {

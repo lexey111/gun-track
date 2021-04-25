@@ -163,7 +163,7 @@
 					align-content: center;
 					justify-items: center;
 					justify-content: center;
-					padding: 0;
+					padding: 0 1em 0 0;
 					margin: 0;
 					vertical-align: text-top;
 					line-height: 1;
@@ -171,7 +171,7 @@
 
 				svg.dc-down {
 					display: inline-block;
-					margin: 0 .4em;
+					margin: 0 0 0 auto;
 					transform-origin: center center;
 					transition: all .2s ease-in-out;
 				}

@@ -221,10 +221,10 @@
 <style lang="less">
 	:global {
 		.track-modal {
-			width: 700px;
-			min-width: 600px;
-			height: 450px;
-			min-height: 400px;
+			.modal-content {
+				width: 700px;
+				min-height: 470px;
+			}
 		}
 	}
 </style>

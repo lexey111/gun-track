@@ -147,7 +147,7 @@
 	const showNewActionDialog = () => {
 		modal.open(ActionModal, {
 			closeButton: true,
-			// extraClass: 'almost-fullscreen',
+			extraClass: 'track-modal',
 			componentProps: {
 				onConfirm: async (action: TAction) => {
 					modal.close();
@@ -180,6 +180,7 @@
 	const handleEdit = (id: string) => {
 		modal.open(ActionModal, {
 			closeButton: true,
+			extraClass: 'track-modal',
 			componentProps: {
 				action: actionsState.actions.find(a => a.id === id),
 				onConfirm: async (action: TAction) => {
@@ -250,9 +251,9 @@
 						onApply={(sort) => storePageState(id, {sort})}/>
 				{/if}
 
-				{#if (actionsState?.actions?.length > 1 || actionsState.filteredBy.length > 0)}
+				{#if (actionsState?.actions?.length > 1 || actionsState?.filteredBy.length > 0)}
 					<ActionsFilter
-						storeFilters={actionsState.filteredBy}
+						storeFilters={actionsState?.filteredBy || []}
 						onApply={(filters) => storePageState(id, {filters: filters})}/>
 				{/if}
 				<ActionsStat actionsState={actionsState}/>
