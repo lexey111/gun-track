@@ -32,7 +32,7 @@
 
 <style lang="less">
 	table {
-		width: 100%;
+		width: auto;
 		border-collapse: collapse;
 
 		tr {

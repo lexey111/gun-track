@@ -11,7 +11,7 @@
 		"svelte-check": "svelte-check --compiler-warnings",
 		"build": "npm run cleanup && webpack --config webpack.config.js --mode production",
 		"dev": "webpack --config webpack.config.js --mode development --progress",
-		"start": "webpack serve --config webpack.config.js --mode development --host 0.0.0.0",
+		"start": "webpack serve --config webpack.config.js --mode development --host 0.0.0.0 --profile",
 		"svelte-check-watch": "svelte-check --watch"
 	},
 	"keywords": [

@@ -133,9 +133,9 @@
 				background-color: rgba(0, 0, 0, 0.2);
 				color: var(--app-text);
 				font-size: var(--app-font-size);
-				opacity: .98;
-				backdrop-filter: blur(6px);
-				-webkit-backdrop-filter: blur(6px);
+				// opacity: .98;
+				//backdrop-filter: blur(6px);
+				//-webkit-backdrop-filter: blur(6px);
 				display: flex;
 				flex-flow: row nowrap;
 				align-content: center;
@@ -144,6 +144,12 @@
 				justify-content: center;
 				justify-items: center;
 				justify-self: center;
+
+				animation-name: modal-appear;
+				animation-duration: .2s;
+				animation-play-state: running;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease;
 
 				.modal-like-content {
 					display: flex;
@@ -230,5 +236,15 @@
 			}
 		}
 
+		@keyframes modal-appear {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				-webkit-backdrop-filter: blur(16px);
+				backdrop-filter: blur(16px) saturate(50%);
+			}
+		}
 	}
 </style>

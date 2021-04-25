@@ -100,6 +100,8 @@
 	<ul>
 		<li>Better design</li>
 		<li>Email fields validation</li>
+		<li>Telegram channel</li>
+		<li>Support email</li>
 	</ul>
 
 	<h3>Track list</h3>

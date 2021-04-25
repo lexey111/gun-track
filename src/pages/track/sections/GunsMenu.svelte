@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
+	import {navigate} from 'svelte-routing';
 	import type {Gun} from '../../../models';
 	import {GunsStore} from '../../../stores/guns/guns-store';
 
@@ -44,11 +45,15 @@
 		});
 	}
 
+	const handleGunChange = (id) => {
+		navigate('/track/' + id);
+	};
 </script>
 <ul class="guns-menu">
 	{#each guns as gun}
 		<li>
-			<a href={'/track/' + gun.id}>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#" on:click={() => handleGunChange(gun.id)}>
 				{gun.title}
 			</a>
 			{#if (gun.subtitle && gun.subtitle !== gun.title)}
@@ -75,6 +80,7 @@
 				display: block;
 				font-weight: bold;
 			}
+
 			i {
 				padding-left: 16px;
 				font-size: var(--app-small-font-size);

@@ -3,6 +3,5 @@ export const menuRoutes = [
 	['guns', 'Guns', true],
 	['track', 'Track', true],
 	['about', 'About'],
-	['tos', 'TOS'],
 	['login', 'Sign In', false],
 ];
