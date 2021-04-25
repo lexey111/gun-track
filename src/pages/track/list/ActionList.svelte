@@ -24,7 +24,7 @@
 					<div class="alh-money"><span>Expenses</span></div>
 				{/if}
 				{#if (actionsState?.totalShots > 0)}
-					<div class="alh-shots"><span>
+					<div class={'alh-shots' + (hasExpensesAtAll ? ' with-expenses' : '')}><span>
 						Shots
 						({actionsState?.totalShots})
 					</span></div>
@@ -77,8 +77,11 @@
 			}
 
 			.alh-shots {
-				border-right: 2px solid rgba(0, 0, 0, 0.2);
 				margin-right: 22px;
+			}
+
+			.alh-shots.with-expenses {
+				border-right: 2px solid rgba(0, 0, 0, 0.2);
 			}
 
 			.alh-money {

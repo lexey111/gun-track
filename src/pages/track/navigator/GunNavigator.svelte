@@ -24,27 +24,61 @@
 		currentGun = GunsStore.getGunById(id);
 		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';
 	}
+
+	let guns: Array<Gun> & { title?: string, subtitle?: string };
+	$: {
+		guns = gunsState?.guns?.map(gun => {
+			const title = gun.name || gun.make || gun.model || 'unknown';
+			let subtitle;
+			if (gun.name) {
+				subtitle = gun.make;
+				if (gun.model) {
+					subtitle += ' - ' + gun.model;
+				}
+			}
+			if (!subtitle) {
+				subtitle = gun.model;
+			}
+
+			return {
+				...gun,
+				title,
+				subtitle
+			};
+		});
+	}
 </script>
 
 <div>
 	<Dropdown className={'menu menu-left menu-button' + (onTitle ? ' menu-button-ghost' : '')} bind:close={closeMenu}>
 		<span slot="title">{currentGunTitle}</span>
 		<div class="dropdown-menu">
-			{#each gunsState.guns as gun}
+			{#each guns as gun}
 				<!--  svelte-ignore a11y-invalid-attribute-->
 				<a href="#" on:click={() => handleGunSwitch(gun.id)}
 				   class={id === gun.id ? 'selected' : ''}>
-					{gun.name || gun.make || gun.model || 'unknown'}
-					{#if (gun.name && (gun.make || gun.model))}
+					{gun.title}
+					{#if (gun.subtitle && gun.subtitle !== gun.title)}
 						<br/>
-						<i>{gun.make} {gun.model}</i>
-					{/if}
-					{#if (!gun.name && (gun.make && gun.model))}
-						<br/>
-						<i>{gun.model}</i>
+						<i>{gun.subtitle}</i>
 					{/if}
 				</a>
 			{/each}
 		</div>
 	</Dropdown>
 </div>
+
+<style lang="less">
+	.dropdown-menu {
+		.selected {
+			i {
+				display: inline-block;
+				margin-top: 8px;
+				font-weight: normal;
+				font-style: normal;
+				opacity: .8;
+				font-size: var(--app-very-small-font-size);
+			}
+		}
+	}
+</style>
