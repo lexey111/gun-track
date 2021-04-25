@@ -2,7 +2,7 @@
 	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
-	import AppMenu from '../components/AppMenu.svelte';
+	import AppMenu from '../components/menu/AppMenu.svelte';
 	import Footer from '../components/Footer.svelte';
 	import {I18nService} from '../components/i18n/i18n.service';
 	import '../components/i18n/i18n.service.ts';

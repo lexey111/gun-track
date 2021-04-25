@@ -2,8 +2,8 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import type {TAppLocale} from '../../stores/app/app-state-store.interface';
+	import Dropdown from '../dropdown/Dropdown.svelte';
 	import Icon from '../icons/Icon.svelte';
-	import Dropdown from './Dropdown.svelte';
 
 	let closeMenu: any;
 	const setLocale = (locale: TAppLocale) => {
@@ -44,6 +44,8 @@
 <style lang="less">
 	:global {
 		.locale-menu {
+			margin-left: auto;
+
 			&.dropdown-container {
 				.dc-title {
 					color: #fff !important;

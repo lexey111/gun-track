@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LocaleMenu from '../../components/dropdown/LocaleMenu.svelte';
+	import LocaleMenu from '../../components/menu/LocaleMenu.svelte';
 	import Button from '../../components/buttons/Button.svelte';
 	import CurrencyMenu from '../../components/dropdown/CurrencyMenu.svelte';
 	import Dropdown from '../../components/dropdown/Dropdown.svelte';

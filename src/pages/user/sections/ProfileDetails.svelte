@@ -9,11 +9,9 @@
 
 <table>
 	<tr>
-		<td>
+		<td style="width: 120px">
 			{#if authState.profileImageUrl}
-				<div class="avatar">
-					<Image src="{authState.profileImageUrl}" alt="avatar"/>
-				</div>
+				<Image src="{authState.profileImageUrl}" alt="avatar" class="avatar"/>
 			{/if}
 		</td>
 		<td>
@@ -55,9 +53,17 @@
 		}
 	}
 
-	.avatar {
-		width: 96px;
-		height: 96px;
-		overflow: hidden;
+	:global {
+		.avatar {
+			width: 96px;
+			height: 96px;
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+			border-radius: 100%;
+			box-sizing: border-box;
+			border: 4px solid var(--app-primary-bg);
+
+		}
 	}
 </style>

@@ -1,12 +1,13 @@
 <script lang="ts">
 	import {onDestroy} from 'svelte';
 	import {Link} from 'svelte-routing';
-	import {menuRoutes} from '../routing/menu.config';
-	import {AppStateStore} from '../stores/app/app-state-store';
-	import {AuthStore} from '../stores/auth/auth-store';
-	import type {TAuthState} from '../stores/auth/auth-store.interface';
-	import LocaleMenu from './dropdown/LocaleMenu.svelte';
-	import Icon from './icons/Icon.svelte';
+	import {menuRoutes} from '../../routing/menu.config';
+	import {AppStateStore} from '../../stores/app/app-state-store';
+	import {AuthStore} from '../../stores/auth/auth-store';
+	import type {TAuthState} from '../../stores/auth/auth-store.interface';
+	import Icon from '../icons/Icon.svelte';
+	import LocaleMenu from './LocaleMenu.svelte';
+	import ProfileMenu from './ProfileMenu.svelte';
 
 	let activeRoutes = [];
 	let current_path = 'home';
@@ -64,6 +65,7 @@
 		</Link>
 	{/each}
 	<LocaleMenu/>
+	<ProfileMenu/>
 </nav>
 
 <style lang="less">
@@ -74,6 +76,7 @@
 			z-index: 2;
 
 			justify-content: flex-start;
+			align-items: center;
 			font-size: .8rem;
 			height: 70px;
 			transition: background-color .2s ease, color .1s ease;
@@ -84,7 +87,8 @@
 				align-content: center;
 				align-items: center;
 				width: auto;
-				padding: 8px 16px;
+				height: 50px;
+				padding: 0 16px;
 				margin: 8px;
 				color: var(--app-primary-text);
 				text-decoration: none;

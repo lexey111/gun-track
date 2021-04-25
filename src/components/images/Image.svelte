@@ -14,19 +14,33 @@
 	});
 </script>
 
-<style>
-    img {
-        opacity: 0;
-        transition: opacity .2s ease-out;
-        width: 100%;
-        border-radius: 100%;
-        box-sizing: border-box;
-        border: 4px solid var(--app-primary-bg);
-    }
+<style lang="less">
+	:global {
+		.app-img {
+			opacity: 0;
 
-    img.loaded {
-        opacity: 1;
-    }
+			&.loaded {
+				opacity: 1;
+				animation-play-state: running;
+				animation-name: image-appear;
+				animation-duration: .4s;
+				animation-timing-function: ease-in-out;
+			}
+		}
+
+		@keyframes image-appear {
+			0% {
+				opacity: 0;
+				transform: translateY(15px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
 </style>
 
-<img {src} {alt} class:loaded bind:this={thisImage}/>
+<img {src} {alt}
+     class={'app-img' + (loaded ? ' loaded' : '') + ($$props.class ? ' ' + $$props.class : '')}
+     bind:this={thisImage}/>
