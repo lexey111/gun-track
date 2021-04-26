@@ -1,6 +1,8 @@
-<script>
+<script type="ts">
 	export let src;
 	export let alt;
+	export let onError: () => void = null;
+	export let onLoad: () => void = null;
 
 	import {onMount} from 'svelte';
 
@@ -10,6 +12,12 @@
 	onMount(() => {
 		thisImage.onload = () => {
 			loaded = true;
+			onLoad && onLoad();
+		}
+
+		thisImage.onerror = () => {
+			loaded = false;
+			onError && onError();
 		}
 	});
 </script>

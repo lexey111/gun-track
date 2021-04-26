@@ -103,7 +103,7 @@
 				{/if}
 
 				<Button size="small" type="link" onClick={() => onUploadPhoto(gun.id)}>
-					<Icon type="desktop" alt="Upload photo..."/>
+					<Icon type="camera" alt="Upload photo..."/>
 				</Button>
 
 				<Button size="small" type="ghost" onClick={() => onEdit(gun.id)}>
@@ -132,7 +132,7 @@
 			box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 			transition: all .2s ease;
 
-			flex: 1 0 300px; /* can grow, can't shrink, minimum width 300px */
+			flex: 1 0 330px; /* can grow, can't shrink, minimum width 300px */
 			max-width: 500px;
 			min-height: 200px;
 			margin: 10px;

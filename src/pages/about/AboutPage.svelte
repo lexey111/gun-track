@@ -107,6 +107,7 @@
 		<li>Email fields validation</li>
 		<li>Telegram channel</li>
 		<li>Support email</li>
+		<li>Outlined Sign In button in menu</li>
 	</ul>
 
 	<h3>Track list</h3>
