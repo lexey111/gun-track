@@ -15,7 +15,11 @@
 	let auth_state: TAuthState = null;
 
 	function getActiveClass(route: string): string {
-		return current_path.includes(route) ? 'active' : '';
+		let className = '';
+		if (route === 'login') {
+			className = 'login-btn ';
+		}
+		return className + (current_path.includes(route) ? 'active' : '');
 	}
 
 	function getActiveRoutes() {
@@ -107,6 +111,13 @@
 					color: var(--app-primary-text);
 					font-weight: bold;
 				}
+
+				//&.login-btn {
+				//	padding: 12px 24px;
+				//	height: auto;
+				//	border-radius: 12px;
+				//	border: 2px solid var(--app-primary-bg-light);
+				//}
 			}
 		}
 	}

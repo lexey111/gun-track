@@ -95,7 +95,7 @@
 			display: inline-flex;
 			justify-content: flex-start;
 			align-items: center;
-			margin: 0;
+			margin: 1em 0;
 			padding: .5em 0;
 			text-transform: uppercase;
 			font-size: 2rem;

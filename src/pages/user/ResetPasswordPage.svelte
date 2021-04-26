@@ -5,6 +5,7 @@
 
 	import {showError, showInfo} from '../../components/notifications/notify';
 	import type {IAuthStore} from '../../stores/auth/auth-store.interface';
+	import {validateEmail} from '../../utils/validation';
 
 	export let authStore: IAuthStore = null;
 
@@ -13,8 +14,22 @@
 	let pwd2 = '';
 	let code = '';
 
-	$: sendResetCodeAllowed = !!email.trim();
-	$: newPasswordAllowed = !!email.trim() && !!code.trim() && !!pwd.trim() && pwd === pwd2;
+	let emailError: boolean;
+	$: {
+		emailError = !!email ? !validateEmail(email) : false;
+	}
+	let passwordError: boolean;
+	$: {
+		passwordError = (!!pwd || !!pwd2) ? (pwd.length < 8 || pwd !== pwd2) : false;
+	}
+
+	let codeError: boolean;
+	$: {
+		codeError = !!code ? code.length < 3 : false;
+	}
+
+	$: sendResetCodeAllowed = !!email.trim() && !emailError;
+	$: newPasswordAllowed = !!email.trim() && !!code.trim() && !!pwd.trim() && !emailError && !codeError && !passwordError;
 
 	const sendResetCode = async () => {
 		const result: any = await authStore.forgotPassword(email);
@@ -39,7 +54,8 @@
 	<h1>
 		<Link to="/login" class="outlink">
 			<Icon type="arrow-left" size="24px"/>
-		</Link>Reset password
+		</Link>
+		Reset password
 	</h1>
 
 	<p>
@@ -56,9 +72,10 @@
 		1. Request reset code
 	</h3>
 
-	<div class="form-group">
+	<div class="form-group" class:error={emailError}>
 		<label for="email">E-mail</label>
 		<input
+			type="email"
 			placeholder="some@server.com"
 			autocomplete="off"
 			maxlength="128"
@@ -72,6 +89,7 @@
 		<label/>
 		<Button
 			disabled={!sendResetCodeAllowed}
+			type="ghost"
 			onClick={sendResetCode}>
 			Get password reset code
 		</Button>
@@ -79,9 +97,10 @@
 
 	<h3 class="highlight-mark">2. Enter the code and new password</h3>
 
-	<div class="form-group">
+	<div class="form-group" class:error={emailError}>
 		<label for="email2">E-mail</label>
 		<input
+			type="email"
 			placeholder="some@server.com"
 			autocomplete="off"
 			maxlength="128"
@@ -90,7 +109,7 @@
 			id="email2"/>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group" class:error={codeError}>
 		<label for="code">Code</label>
 		<input
 			type="text"
@@ -101,10 +120,11 @@
 			id="code"/>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group" class:error={passwordError}>
 		<label for="pwd">New password</label>
 		<input
 			type="password"
+			placeholder="at least 8 characters"
 			autocomplete="off"
 			maxlength="32"
 			required
@@ -112,7 +132,7 @@
 			id="pwd"/>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group" class:error={passwordError}>
 		<label for="pwd2">Confirm password</label>
 		<input
 			type="password"

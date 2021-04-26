@@ -4,13 +4,20 @@
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showError} from '../../../components/notifications/notify';
 	import type {IAuthStore} from '../../../stores/auth/auth-store.interface';
+	import {validateEmail} from '../../../utils/validation';
 
 	export let authStore: IAuthStore = null;
 
 	let email = '';
 	let pwd = '';
 
-	$: signinAllowed = !!email.trim() && !!pwd.trim();
+	let emailError: boolean;
+	$: {
+		emailError = !!email ? !validateEmail(email) : false;
+	}
+
+	let signinAllowed: boolean;
+	$: signinAllowed = !!email.trim() && !emailError && !!pwd.trim();
 
 	const signIn = async () => {
 		const result = await authStore.signIn(email, pwd);
@@ -21,13 +28,15 @@
 </script>
 
 <div class="email-login">
-	<div class="form-group">
+	<div class="form-group" class:error={emailError}>
 		<label for="s_email">E-mail</label>
 		<input
+			type="email"
 			placeholder="some@server.com"
 			autocomplete="off"
 			maxlength="128"
 			required
+			autofocus
 			bind:value={email}
 			id="s_email"/>
 	</div>

@@ -90,8 +90,6 @@
 		<li>
 			<Done>Dropdowns</Done>
 		</li>
-		<li>Stats on Home</li>
-		<li>Contacts page</li>
 		<li>Navigator offline mode (disable requests)</li>
 		<li>Better notifications design</li>
 		<li>
@@ -104,10 +102,11 @@
 		<li>
 			<Done>Better design</Done>
 		</li>
-		<li>Email fields validation</li>
+		<li>
+			<Done>Email fields validation</Done>
+		</li>
 		<li>Telegram channel</li>
 		<li>Support email</li>
-		<li>Outlined Sign In button in menu</li>
 	</ul>
 
 	<h3>Track list</h3>
@@ -224,7 +223,9 @@
 		<li>
 			<Done>Notes</Done>
 		</li>
-		<li>Photo uploading</li>
+		<li>
+			<Done>Photo uploading</Done>
+		</li>
 		<li>
 			<Done>Caliber field</Done>
 		</li>

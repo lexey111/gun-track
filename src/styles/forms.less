@@ -46,6 +46,21 @@
 		}
 	}
 
+	&.error {
+		label {
+			color: var(--app-danger-bg);
+		}
+
+		input {
+			box-shadow: 0 0 0 1px var(--app-danger-bg);
+
+			&:focus, &:active {
+				outline: none;
+				box-shadow: 0 0 0 4px rgba(250, 32, 83, 0.8);
+			}
+		}
+	}
+
 	&.button-row {
 		.stub {
 			width: 100%;
