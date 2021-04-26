@@ -6,7 +6,7 @@
 
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 
-	export const showConfirmDialog = (props: TConfirmProps): void => {
+	export const show = (props: TConfirmProps): void => {
 		modal.open(ConfirmModal, {
 			closeButton: true,
 			componentProps: {

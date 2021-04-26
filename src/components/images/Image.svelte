@@ -32,18 +32,18 @@
 				animation-play-state: running;
 				animation-name: image-appear;
 				animation-duration: .4s;
-				animation-timing-function: ease-in-out;
+				animation-timing-function: ease;
 			}
 		}
 
 		@keyframes image-appear {
 			0% {
 				opacity: 0;
-				transform: translateY(15px);
+				// transform: scaleY(.9);
 			}
 			100% {
 				opacity: 1;
-				transform: translateY(0);
+				// transform: scaleY(1);
 			}
 		}
 	}

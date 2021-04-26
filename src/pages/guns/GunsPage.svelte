@@ -90,7 +90,7 @@
 			const actionsCount = await ActionsStore.countRecordsForGun(id);
 			console.log('Records count', actionsCount);
 
-			confirmDialog.showConfirmDialog({
+			confirmDialog.show({
 				text: `Are you sure you want to delete this gun? Operation cannot be undone!
 \n
 Gun to delete: [${gun.name}], records: ${actionsCount}.

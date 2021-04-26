@@ -1,18 +1,23 @@
 <script lang="ts">
+	import Storage from '@aws-amplify/storage';
 	import dayjs from 'dayjs'
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
 	import {getContext} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
+	import Confirm from '../../../components/modal/Confirm.svelte';
 	import Info from '../../../components/modal/Info.svelte';
+	import {showError, showInfo} from '../../../components/notifications/notify';
 	import type {Gun} from '../../../models';
+	import {AppStateStore} from '../../../stores/app/app-state-store';
 	import type {TAppModal} from '../../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../../stores/guns/guns-store';
 	import GunPhoto from '../modals/GunPhoto.svelte';
 
 	dayjs.extend(localizedFormat);
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
+	let confirmRemovePhotoDialog: any;
 
 	export let gun: Gun = null;
 	export let dateLocale: string;
@@ -36,10 +41,19 @@
 	};
 
 	const onUploadPhoto = (id: string) => {
+		let gun = GunsStore.getGunById(id);
+		if (!gun) {
+			showError('Gun not found!');
+			return;
+		}
 		modal.open(GunPhoto, {
 			closeButton: true,
 			componentProps: {
 				id,
+				currentPhoto: gun.photo,
+				onRemove: (id) => {
+					handleRemovePhoto(id);
+				},
 				onConfirm: async () => {
 					modal.close();
 					console.log('ok');
@@ -47,8 +61,37 @@
 				onCancel: () => modal.close(),
 			}
 		});
-
 	};
+
+	const doRemovePhoto = async (id: string) => {
+		console.log('remove', id);
+		AppStateStore.showSpinner();
+		try {
+			const gun = GunsStore.getGunById(id);
+			if (!gun) {
+				throw new Error('Gun not found!');
+			}
+
+			await Storage.remove(gun.photo, {
+				level: 'private',
+			});
+
+			await GunsStore.savePhoto(id, '');
+			showInfo('Photo removed.')
+		} catch {
+			showError('Error on deleting photo');
+		} finally {
+			AppStateStore.showSpinner();
+		}
+	};
+
+	const handleRemovePhoto = (id: string) => {
+		confirmRemovePhotoDialog.show({
+			text: `Are you sure you want to remove this photo? Operation cannot be undone!`,
+			confirmText: 'Remove',
+			onConfirm: () => doRemovePhoto(id)
+		});
+	}
 
 	let title: string;
 	let hasName: boolean;
@@ -63,6 +106,7 @@
 </script>
 
 <Info bind:this={infoNotes}/>
+<Confirm bind:this={confirmRemovePhotoDialog}/>
 
 {#if (gun)}
 	<div class="gun-card">
@@ -149,7 +193,7 @@
 			}
 
 			.gc-title {
-				transition: background-color .2s ease-in-out, color .2s ease-in-out;
+				transition: background-color .2s ease, color .2s ease;
 				cursor: pointer;
 			}
 

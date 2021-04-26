@@ -77,7 +77,7 @@
 				box-shadow: 0 0 1px rgba(0, 0, 0, .5);
 				border-left: 2px solid transparent;
 				box-sizing: content-box;
-				transition: all .2s ease-in;
+				transition: all .2s ease;
 				position: relative;
 				display: flex;
 				flex-flow: column nowrap;
@@ -87,7 +87,7 @@
 					flex-flow: row nowrap;
 					width: 100%;
 					height: 100%;
-					transition: transform .2s ease-in-out;
+					transition: transform .2s ease;
 				}
 
 				.action-actions {
@@ -101,7 +101,7 @@
 					width: 100%;
 					border-top: 1px dashed var(--app-border-color);
 					opacity: 0;
-					transition: opacity .2s ease-in;
+					transition: opacity .2s ease;
 
 					button {
 						margin-left: 1em;

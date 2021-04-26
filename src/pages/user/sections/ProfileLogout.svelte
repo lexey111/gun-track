@@ -10,7 +10,7 @@
 	export let authStore: IAuthStore;
 
 	const handleConfirmLogoutDialog = () => {
-		confirmDialog.showConfirmDialog({
+		confirmDialog.show({
 			text: 'Are you sure you want to logout?',
 			confirmIcon: 'logout',
 			confirmText: 'Logout',

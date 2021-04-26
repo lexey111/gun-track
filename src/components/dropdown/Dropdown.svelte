@@ -173,7 +173,7 @@
 					display: inline-block;
 					margin: 0 0 0 auto;
 					transform-origin: center center;
-					transition: all .2s ease-in-out;
+					transition: all .2s ease;
 				}
 
 				&:focus {

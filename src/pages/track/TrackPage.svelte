@@ -204,7 +204,7 @@
 	let confirmDialog: IConfirmDialog;
 
 	const handleDelete = (id: string) => {
-		confirmDialog.showConfirmDialog({
+		confirmDialog.show({
 			text: `Are you sure you want to delete this record? Operation cannot be undone!`,
 			confirmText: 'Delete',
 			onConfirm: async () => {
@@ -340,7 +340,7 @@
 			transform-origin: center center;
 			animation-name: floating-appear;
 			animation-duration: 1s;
-			animation-timing-function: ease-in-out;
+			animation-timing-function: ease;
 
 			&:hover {
 				background-color: var(--app-primary-bg-darken);

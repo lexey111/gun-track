@@ -7,5 +7,5 @@ export type TConfirmProps = {
 };
 
 export interface IConfirmDialog {
-	showConfirmDialog: (props: TConfirmProps) => void
+	show: (props: TConfirmProps) => void
 }

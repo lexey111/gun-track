@@ -33,7 +33,7 @@
 			position: relative;
 			border-radius: 6px;
 			min-height: 24px;
-			transition: transform .4s ease-in-out, opacity .2s ease-in-out;
+			transition: transform .4s ease, opacity .2s ease;
 			cursor: pointer;
 			opacity: .8;
 

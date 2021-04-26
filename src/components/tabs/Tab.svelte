@@ -29,7 +29,7 @@
 		cursor: pointer;
 		position: relative;
 		z-index: 2;
-		transition: color .2s ease-in-out;
+		transition: color .2s ease;
 
 		&:hover, &:focus {
 			color: var(--app-primary-bg-darken);

@@ -306,6 +306,8 @@
 
 			p {
 				color: var(--app-remark-text);
+				text-align: center;
+
 				svg {
 					display: inline-block;
 					vertical-align: middle;
