@@ -210,7 +210,9 @@
 		<li>
 			<Done>SS selectors? delete actions?</Done>
 		</li>
-		<li>Show photo on cards</li>
+		<li>
+			<Done>Show photo on cards</Done>
+		</li>
 		<li>
 			<Done>Big text editor</Done>
 		</li>

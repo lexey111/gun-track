@@ -28,11 +28,11 @@
 			opacity: 0;
 
 			&.loaded {
-				opacity: 1;
-				animation-play-state: running;
+				// opacity: 1;
 				animation-name: image-appear;
+				animation-fill-mode: forwards;
 				animation-duration: .4s;
-				animation-timing-function: ease;
+				animation-timing-function: linear;
 			}
 		}
 

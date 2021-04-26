@@ -13,7 +13,8 @@
 	import {AppStateStore} from '../../../stores/app/app-state-store';
 	import type {TAppModal} from '../../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../../stores/guns/guns-store';
-	import GunPhoto from '../modals/GunPhoto.svelte';
+	import GunPhotoUploadModal from '../modals/GunPhotoUploadModal.svelte';
+	import GunPhoto from './GunPhoto.svelte';
 
 	dayjs.extend(localizedFormat);
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
@@ -46,7 +47,7 @@
 			showError('Gun not found!');
 			return;
 		}
-		modal.open(GunPhoto, {
+		modal.open(GunPhotoUploadModal, {
 			closeButton: true,
 			componentProps: {
 				id,
@@ -111,10 +112,17 @@
 {#if (gun)}
 	<div class="gun-card">
 		<div class="gc-content">
-			<div class="gc-title">
-				<div class="gc-title-content" on:click={() => onEdit(gun.id)}>
+			<div class="gc-title" class:with-photo={gun.photo} on:click={() => onEdit(gun.id)}>
+				<div class="gc-title-content">
 					{title}
 				</div>
+				{#if (gun.photo)}
+					<div class="gc-photo-wrapper">
+						<div class="gc-photo">
+							<GunPhoto id={gun.id}/>
+						</div>
+					</div>
+				{/if}
 			</div>
 			{#if (hasMake && hasName)}
 				<div class="gc-make">
@@ -187,32 +195,31 @@
 				transition: all .2s ease;
 			}
 
-			.gc-title-content, .gc-date, .gc-make, .gc-model, .gc-caliber {
-				transition: transform .2s ease;
-				transform: translateY(32px);
-			}
-
 			.gc-title {
 				transition: background-color .2s ease, color .2s ease;
 				cursor: pointer;
-			}
+				flex-flow: column nowrap;
+				display: flex;
+				font-size: var(--app-very-big-font-size);
+				border-radius: 7px 7px 0 0;
+				padding-top: 32px;
+				background-color: #ddd;
 
-			&:hover, &:focus-within {
-				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-				opacity: 1;
-
-				.gc-actions {
-					opacity: 1;
+				.gc-title-content {
+					padding: 0 16px 32px 0;
+					width: 100%;
+					flex-flow: row wrap;
+					box-sizing: border-box;
 				}
 
-				.gc-title-content, .gc-date, .gc-make, .gc-model, .gc-caliber {
-					transform: translateY(0);
-				}
+				&.with-photo {
+					padding-bottom: 32px;
+					margin-bottom: 48px;
 
-				.gc-title {
-					background-color: var(--app-accent-background);
-					box-shadow: 0 2px 12px rgba(0, 0, 0, .2);
-					color: var(--app-accent-text);
+					.gc-title-content {
+						padding: 0 16px;
+						margin-bottom: 20px;
+					}
 				}
 			}
 
@@ -223,6 +230,7 @@
 				overflow: hidden;
 				display: flex;
 				flex-flow: column nowrap;
+				position: relative;
 
 				div {
 					display: flex;
@@ -231,14 +239,79 @@
 					justify-content: center;
 					text-align: center;
 				}
+
+				.gc-title {
+					flex-flow: column nowrap;
+					position: relative;
+				}
+
+				.gc-photo-wrapper {
+					display: flex;
+					width: 100%;
+					position: absolute;
+					top: 100%;
+					margin-top: -62px;
+					left: 0;
+					right: 0;
+					z-index: 2;
+
+					.gc-photo {
+						transition: all .2s ease;
+						height: 80px;
+						width: 80px;
+						margin: 16px 0;
+						background-color: var(--app-white-bg);
+						border: 4px solid var(--app-white-bg);
+						box-sizing: content-box;
+						border-radius: 100%;
+						overflow: hidden;
+						position: relative;
+						z-index: 1;
+
+						//&:hover {
+						//	height: 160px;
+						//	width: 160px;
+						//	margin-top: -16px;
+						//}
+
+						img {
+							width: 100%;
+							min-height: 100%;
+							position: absolute;
+							left: 0;
+							right: 0;
+							top: 50%;
+							transition: all .2s ease;
+
+							&.loaded {
+								animation-name: gun-image-appear;
+								animation-delay: .1s;
+								animation-fill-mode: forwards;
+								animation-duration: .2s;
+								animation-timing-function: linear;
+							}
+						}
+					}
+				}
+
 			}
 
-			.gc-title {
-				font-size: var(--app-very-big-font-size);
-				border-radius: 7px 7px 0 0;
+			&:hover, &:focus-within {
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+				opacity: 1;
 
-				.gc-title-content {
-					padding: 16px;
+				.gc-actions {
+					opacity: 1;
+				}
+
+				.gc-title {
+					background-color: var(--app-accent-background);
+					box-shadow: 0 2px 12px rgba(0, 0, 0, .2);
+					color: var(--app-accent-text);
+				}
+
+				.gc-photo {
+					box-shadow: 0 2px 12px rgba(0, 0, 0, .2);
 				}
 			}
 
@@ -274,6 +347,18 @@
 					margin-right: 8px;
 				}
 			}
+		}
+	}
+
+	@keyframes gun-image-appear {
+		0% {
+			opacity: 0;
+			transform: translateY(100%);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(-50%);
+			border-radius: 100%;
 		}
 	}
 </style>

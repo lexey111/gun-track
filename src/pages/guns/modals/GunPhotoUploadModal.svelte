@@ -4,34 +4,34 @@
 	import {onDestroy, onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
-	import Image from '../../../components/images/Image.svelte';
 	import {showError, showInfo} from '../../../components/notifications/notify';
-	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import {GunsStore} from '../../../stores/guns/guns-store';
-	import {getErrorText} from '../../../utils/errors';
+	import GunPhoto from '../gun/GunPhoto.svelte';
 
 	export let onCancel: () => void;
 	export let onRemove: (id: string) => void;
 	export let id: string;
 	export let currentPhoto: string;
 
-	let currentPhotoUrl: string;
-	let currentPhotoFetching = true;
-	let currentPhotoError: string;
-
 	let imageReady = false;
 	let uploading = false;
 	let progressText = '';
 
-	let gunImage, fileInput;
-	let file;
+	let gunImage: any;
+	let fileInput: any;
+	let file: any;
 
 	const onFileSelected = (e) => {
-		console.log('selected', e.target.files[0]);
 		file = e.target.files[0];
 		const reader = new FileReader();
 
-		reader.readAsDataURL(file);
+		try {
+			reader.readAsDataURL(file);
+		} catch {
+			showError('Image reading error');
+			return;
+		}
+
 		reader.onload = e => {
 			imageReady = true;
 			gunImage = e.target.result;
@@ -39,7 +39,6 @@
 	}
 
 	const handleUpload = async () => {
-		console.log('file', file);
 		const ext = (file.name || '').split('.').pop();
 		const name = Md5(id);
 		if (!ext) {
@@ -74,7 +73,6 @@
 	onMount(() => {
 		fileInput = document.getElementById('photoFileInput');
 		fileInput.onchange = onFileSelected;
-		activatePhoto();
 	});
 
 	onDestroy(() => {
@@ -84,36 +82,6 @@
 	const handleClick = (e) => {
 		imageReady = false;
 		fileInput.click(e);
-	}
-
-
-	const onPhotoLoadingError = () => {
-		currentPhotoError = 'Image loading error';
-		currentPhotoFetching = false;
-	}
-
-	const onPhotoLoading = () => {
-		currentPhotoError = '';
-		currentPhotoFetching = false;
-	}
-
-	const activatePhoto = () => {
-		if (!currentPhoto) {
-			currentPhotoFetching = false;
-			currentPhotoError = '';
-			return;
-		}
-
-		currentPhotoFetching = true;
-		Storage.get(currentPhoto, {
-				level: 'private'
-			})
-			.then((result: string) => {
-				currentPhotoUrl = result;
-			})
-			.catch(e => {
-				showError(getErrorText(e));
-			});
 	}
 </script>
 
@@ -128,7 +96,7 @@
 				</div>
 				{#if (imageReady)}
 					<p>
-						Now image is to be uploaded to the cloud. Use "Upload" button below to complete.
+						Now image is ready to be uploaded to the cloud. Use "Upload" button below to complete.
 					</p>
 				{/if}
 
@@ -137,29 +105,11 @@
 				{/if}
 			{:else}
 				{#if (currentPhoto)}
-					{#if (currentPhotoFetching)}
-						<p>
-							<SpinnerComponent/>
-							Please wait...
-						</p>
-					{/if}
-
-					{#if (currentPhotoError && !currentPhotoFetching)}
-						<p class="error">{currentPhotoError}</p>
-					{/if}
-
-					{#if (currentPhotoUrl && !currentPhotoError)}
-						<div class="image-container">
-							<Image src={currentPhotoUrl}
-							       onLoad={onPhotoLoading}
-							       onError={onPhotoLoadingError}/>
-						</div>
-						<p>
-							This is current photo. Only one photo could be uploaded for a gun, so
-							if you upload another photo &mdash; this one will be replaced.
-						</p>
-					{/if}
-
+					<GunPhoto {id} class="image-container" imageClass="current-image-preview"/>
+					<p>
+						This is current photo. Only one photo could be uploaded for a gun, so
+						if you upload another photo &mdash; this one will be replaced.
+					</p>
 				{:else}
 					<div class="image-placeholder" on:click={handleClick}>
 						<Icon type="camera" size="64px"/>
@@ -168,7 +118,7 @@
 			{/if}
 
 			<Button type="ghost"
-			        disabled={currentPhotoFetching || uploading}
+			        disabled={uploading}
 			        onClick={handleClick}>
 				<Icon type="camera"/> &nbsp;
 				Choose image...
@@ -178,10 +128,10 @@
 </div>
 
 <div class="modal-footer">
-	<Button onClick={onCancel} type="link" disabled={currentPhotoFetching || uploading}>Cancel</Button>
+	<Button onClick={onCancel} type="link" disabled={uploading}>Cancel</Button>
 
 	{#if (currentPhoto)}
-		<Button onClick={() => {onCancel(); onRemove(id);}} disabled={currentPhotoFetching} type="ghost-danger">
+		<Button onClick={() => {onCancel(); onRemove(id);}} type="ghost-danger">
 			Remove
 		</Button>
 	{/if}
@@ -225,6 +175,7 @@
 
 				img {
 					width: 100%;
+					min-height: 100%;
 					position: absolute;
 					left: 0;
 					right: 0;
@@ -237,6 +188,16 @@
 
 			.image-container {
 				transition: all .2s ease;
+
+				.current-image-preview {
+					display: flex;
+					max-width: 480px;
+					max-height: 310px;
+					margin: 0 auto;
+					border-radius: 7px;
+					background-color: var(--app-white-bg);
+					box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+				}
 
 				&:hover {
 					border-radius: 100%;
