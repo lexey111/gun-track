@@ -25,11 +25,11 @@
 		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';
 	}
 
-	let guns: Array<Gun> & { title?: string, subtitle?: string };
+	let guns: Array<any>;
 	$: {
 		guns = gunsState?.guns?.map(gun => {
 			const title = gun.name || gun.make || gun.model || 'unknown';
-			let subtitle;
+			let subtitle: string;
 			if (gun.name) {
 				subtitle = gun.make;
 				if (gun.model) {

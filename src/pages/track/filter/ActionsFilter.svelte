@@ -77,7 +77,7 @@
 <div class="block block-min">
 	<div class="block-content">
 		<Dropdown onActiveChange={handleDropdownOpen}
-		          isToolbar="true"
+		          isToolbar={true}
 		          className="af-filter"
 		          bind:close={closeDropdown}>
 			<span slot="title" class="af-title"><Icon type="filter" class="inline"/> {title}</span>

@@ -7,7 +7,6 @@
 	import type {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
 	import {showSuccess, showWarning} from '../../components/notifications/notify';
-	import type {Gun} from '../../models';
 	import {ActionsStore} from '../../stores/actions/actions-store';
 	import type {TAction, TActionsState} from '../../stores/actions/actions-store.interface';
 	import {AppStateStore} from '../../stores/app/app-state-store';
@@ -46,9 +45,9 @@
 			return;
 		}
 		const restoredData = localStorage.getItem('state.' + authState.id + '-' + id);
-		let restored;
+		let restored: any;
 		try {
-			let _raw;
+			let _raw: any;
 			if (restoredData) {
 				_raw = JSON.parse(restoredData);
 			}
@@ -65,7 +64,7 @@
 		return restored as TStoredState;
 	}
 
-	function storePageState(id?: string, options?: { sort?: string; filters?: [string] }) {
+	function storePageState(id?: string, options?: { sort?: string; filters?: Array<string> }) {
 		if (!id) {
 			return;
 		}
@@ -225,13 +224,6 @@
 		});
 		ActionsStore.setFilter('all');
 	};
-
-	let currentGun: Gun;
-	let currentGunTitle: string;
-	$: {
-		currentGun = GunsStore.getGunById(id);
-		currentGunTitle = currentGun?.name || currentGun?.make || currentGun?.model || 'unknown';
-	}
 
 </script>
 

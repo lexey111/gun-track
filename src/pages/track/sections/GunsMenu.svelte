@@ -1,7 +1,6 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
-	import type {Gun} from '../../../models';
 	import {GunsStore} from '../../../stores/guns/guns-store';
 
 	let gunsState$: any;
@@ -22,11 +21,11 @@
 		gunsState$ && gunsState$();
 	});
 
-	let guns: Array<Gun> & { title?: string, subtitle?: string };
+	let guns: Array<any>;
 	$: {
 		guns = gunsState?.guns?.map(gun => {
 			const title = gun.name || gun.make || gun.model || 'unknown';
-			let subtitle;
+			let subtitle: string;
 			if (gun.name) {
 				subtitle = gun.make;
 				if (gun.model) {
@@ -45,7 +44,7 @@
 		});
 	}
 
-	const handleGunChange = (id) => {
+	const handleGunChange = (id: string) => {
 		navigate('/track/' + id);
 	};
 </script>

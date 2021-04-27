@@ -1,7 +1,7 @@
 <script lang="ts">
 	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
-	import {Gun} from '../../../models';
+	import type {Gun} from '../../../models';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 	import {GunsStore} from '../../../stores/guns/guns-store';

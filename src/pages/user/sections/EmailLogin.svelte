@@ -30,6 +30,7 @@
 <div class="email-login">
 	<div class="form-group" class:error={emailError}>
 		<label for="s_email">E-mail</label>
+		<!-- svelte-ignore a11y-autofocus-->
 		<input
 			type="email"
 			placeholder="some@server.com"

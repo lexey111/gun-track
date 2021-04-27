@@ -354,7 +354,7 @@ export const ActionsStore: IActionsStore = {
 		}
 	},
 
-	initStore: (gunId: string, options?: { sort?: string; filters?: [string] }) => {
+	initStore: (gunId: string, options?: { sort?: string; filters?: Array<string> }) => {
 		resetStore();
 
 		if (options?.sort) {

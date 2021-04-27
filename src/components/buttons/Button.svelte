@@ -2,7 +2,7 @@
 	export let type: '' | 'default' | 'link' | 'danger' | 'link-danger' | 'toolbar' | 'ghost' | 'ghost-danger' = '';
 	export let size: 'small' | 'default' | 'big' = 'default';
 	export let disabled = false;
-	export let onClick: () => void = null;
+	export let onClick: (e?: any) => void = null;
 
 	let className: string;
 	$: {

@@ -75,6 +75,7 @@
 
 	<div class="form-group" class:error={emailError}>
 		<label for="email">E-mail</label>
+		<!-- svelte-ignore a11y-autofocus-->
 		<input
 			type="email"
 			placeholder="some@server.com"

@@ -73,7 +73,7 @@
 		<Icon type="home"/> &nbsp; Button
 	</Button> &nbsp;
 
-	<Dropdown isToolbar="true">
+	<Dropdown isToolbar={true}>
 		<span slot="title"><Icon type="home"/> &nbsp;Toolbar dropdown</span>
 		<div class="dropdown-menu">
 			<!--  svelte-ignore a11y-invalid-attribute-->
@@ -91,7 +91,7 @@
 		</div>
 	</Dropdown>
 	&nbsp;
-	<Dropdown isToolbar="true" left="true">
+	<Dropdown isToolbar={true} left={true}>
 		<span slot="title"><Icon type="home"/> &nbsp;Toolbar left</span>
 		<div class="dropdown-menu">
 			<!--  svelte-ignore a11y-invalid-attribute-->
@@ -114,7 +114,7 @@
 
 <h4>Not a button</h4>
 <div style="width: 100px">
-	<Dropdown left="true" title="AAA Value">
+	<Dropdown left={true} title="AAA Value">
 		<div class="dropdown-menu">
 			<!--  svelte-ignore a11y-invalid-attribute-->
 			<a href="#">

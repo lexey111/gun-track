@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
-	import {Gun} from '../../../models';
+	import type {Gun} from '../../../models';
 	import {GunsStore} from '../../../stores/guns/guns-store';
 	import type {TGunsState} from '../../../stores/guns/guns-store.interface';
 	import GunsMenu from './GunsMenu.svelte';

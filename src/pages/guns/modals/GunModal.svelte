@@ -22,7 +22,6 @@
 	let model = '';
 	let notes = '';
 	let caliber = '';
-	let photo = '';
 	let isNew = false;
 
 	export let onConfirm: (gun: Gun) => void;
@@ -109,7 +108,6 @@
 		model = gun.model || '';
 		notes = gun.notes || '';
 		caliber = gun.caliber || '';
-		photo = gun.photo || '';
 		registered = dayjs(gun.dateCreated).locale(dateLocale).format('LL');
 
 	});

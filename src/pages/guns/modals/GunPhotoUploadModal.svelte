@@ -21,7 +21,7 @@
 	let fileInput: any;
 	let file: any;
 
-	const onFileSelected = (e) => {
+	const onFileSelected = (e: any) => {
 		file = e.target.files[0];
 		const reader = new FileReader();
 
@@ -51,10 +51,10 @@
 			const {key} = await Storage.put(fileName, file, {
 				level: 'private',
 				contentType: file.type,
-				progressCallback(progress) {
+				progressCallback(progress: any) {
 					progressText = `Uploaded: ${progress.loaded}/${progress.total}`;
 				},
-			});
+			}) as any;
 
 			await GunsStore.savePhoto(id, key);
 
@@ -79,7 +79,7 @@
 		fileInput.onchange = null;
 	});
 
-	const handleClick = (e) => {
+	const handleClick = (e: any) => {
 		imageReady = false;
 		fileInput.click(e);
 	}
@@ -92,7 +92,7 @@
 		<div class="photo-preview">
 			{#if (gunImage)}
 				<div class="image-container">
-					<img src={gunImage}/>
+					<img src={gunImage} />
 				</div>
 				{#if (imageReady)}
 					<p>

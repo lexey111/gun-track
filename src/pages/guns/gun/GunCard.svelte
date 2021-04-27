@@ -52,7 +52,7 @@
 			componentProps: {
 				id,
 				currentPhoto: gun.photo,
-				onRemove: (id) => {
+				onRemove: (id: string) => {
 					handleRemovePhoto(id);
 				},
 				onConfirm: async () => {

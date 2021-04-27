@@ -1,13 +1,13 @@
 <script type="ts">
-	export let src;
-	export let alt;
+	export let src: string;
+	export let alt: string;
 	export let onError: () => void = null;
 	export let onLoad: () => void = null;
 
 	import {onMount} from 'svelte';
 
 	let loaded = false;
-	let thisImage;
+	let thisImage: any;
 
 	onMount(() => {
 		thisImage.onload = () => {
