@@ -25,13 +25,21 @@ function doTick(): void {
 			})
 			.filter(item => item.ttl >= 0);
 
+		if (!newNotifications || newNotifications.length === 0) {
+			clearInterval(ticker);
+		}
 		return {
 			notifications: newNotifications
 		};
 	});
 }
 
-setInterval(doTick, 1000);
+let ticker: any;
+
+function startTicks(): void {
+	clearInterval(ticker);
+	ticker = setInterval(doTick, 1000);
+}
 
 let id = 1;
 
@@ -52,6 +60,7 @@ export const NotifyStore: INotifyStore = {
 				permanent: notification.ttl === 0
 			};
 
+			startTicks();
 			return {
 				...state,
 				notifications: [...state.notifications, newNotification]

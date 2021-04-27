@@ -91,7 +91,7 @@
 			display: inline-flex;
 			text-align: right;
 			flex-flow: column wrap;
-			color: var(--app-info-bg);
+			color: var(--app-primary-bg);
 
 			&.extra-date {
 				color: var(--app-remark-text);
@@ -105,7 +105,7 @@
 			width: 24px;
 			height: 24px;
 			border-radius: 24px;
-			background-color: var(--app-info-bg);
+			background-color: var(--app-primary-bg);
 			top: -2px;
 			right: -11px;
 			z-index: 2;
@@ -158,7 +158,7 @@
 			top: -8px;
 			width: 2px;
 			bottom: -16px;
-			background-color: var(--app-info-bg);
+			background-color: var(--app-primary-bg);
 			z-index: 1;
 		}
 	}
@@ -168,7 +168,7 @@
 			.action-date {
 				&:after {
 					bottom: 0;
-					background: linear-gradient(var(--app-info-bg), transparent) !important;
+					background: linear-gradient(var(--app-primary-bg), transparent) !important;
 				}
 			}
 		}

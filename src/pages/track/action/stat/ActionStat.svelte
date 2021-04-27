@@ -50,10 +50,10 @@
 		}
 
 		div.action-shot {
-			background-color: var(--app-info-bg);
+			background-color: var(--app-primary-bg);
 			align-content: center;
 			justify-content: center;
-			color: var(--app-info-text);
+			color: var(--app-primary-text);
 			padding: 0 8px;
 			height: var(--app-very-big-font-size);
 			border-radius: 28px;

@@ -91,7 +91,9 @@
 			<Done>Dropdowns</Done>
 		</li>
 		<li>Navigator offline mode (disable requests)</li>
-		<li>Better notifications design</li>
+		<li>
+			<Done>Better notifications design</Done>
+		</li>
 		<li>
 			<Done>Hidden UI elements page</Done>
 		</li>

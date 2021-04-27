@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {onDestroy, onMount} from 'svelte';
+	import Icon from '../icons/Icon.svelte';
 	import {NotifyStore} from './notify-store';
 	import type {TNotificationState} from './notify-store.interface';
 
@@ -30,7 +31,11 @@
 			on:mouseenter={() => NotifyStore.setPause(notification.id, true)}
 			on:mouseleave={() => NotifyStore.setPause(notification.id, false)}
 		>
-			<div class="notification-close" on:click={() => NotifyStore.close(notification.id)}>&times;</div>
+			{#if (notification.ttl === 0 && !notification.almostGone)}
+				<div class="notification-close" on:click={() => NotifyStore.close(notification.id)}>
+					<Icon type="close"/>
+				</div>
+			{/if}
 
 			{#if (notification.title)}
 				<div class="notification-title">{notification.title}</div>
@@ -69,7 +74,6 @@
 			overflow: hidden;
 			border-radius: 7px;
 
-			border: 2px solid transparent;
 			box-sizing: border-box;
 
 			.notification-title {
@@ -89,15 +93,15 @@
 
 			.notification-close {
 				position: absolute;
-				top: 4px;
+				top: 8px;
 				right: 8px;
 				font-size: 16px;
 				cursor: pointer;
 				transition: all .2s ease;
+				transform-origin: center center;
 
 				&:hover {
-					box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-					transform: translateY(-1px);
+					transform: scale(1.1);
 				}
 			}
 

@@ -26,21 +26,21 @@
     --app-card-background: #fff;
     --app-card-text: #555;
 
-    --app-info-bg: #206d9e;
-    --app-info-bg-darken: #164b6d;
+    --app-info-bg: #359ce0;
+    --app-info-bg-darken: #3292d1;
     --app-info-text: #fff;
 
-    --app-warn-bg: #fac802;
-    --app-warn-bg-darken: #d9ae00;
+    --app-warn-bg: #fdd543;
+    --app-warn-bg-darken: #e6c13c;
     --app-warn-text: #2b1206;
 
     --app-danger-bg: #f32152;
-    --app-danger-bg-lighten: #f63f69;
-    --app-danger-bg-darken: #d51e49;
+    --app-danger-bg-lighten: #fa2f5f;
+    --app-danger-bg-darken: #e8204f;
     --app-danger-text: #fff;
 
-    --app-success-bg: #b7f60a;
-    --app-success-bg-darken: #99cd0a;
+    --app-success-bg: #9dd400;
+    --app-success-bg-darken: #94c900;
     --app-success-text: #1d3118;
 
     --app-background-darken: #e2e2e2;

@@ -7,7 +7,7 @@
 	import Icon from '../../components/icons/Icon.svelte';
 	import {IconsMap} from '../../components/icons/icons-map';
 	import LocaleMenu from '../../components/menu/LocaleMenu.svelte';
-	import {showError, showInfo} from '../../components/notifications/notify';
+	import {showError, showInfo, showSuccess, showWarning} from '../../components/notifications/notify';
 
 	let type: string;
 	const changeType = (t: string) => {
@@ -135,11 +135,18 @@
 <h1>Buttons</h1>
 
 <h4>Default</h4>
-<Button onClick={() => showInfo('AAAAAAAAAA BBBBBB')}>Default</Button>
+<Button onClick={
+() => {
+	showInfo('AAAAAAAAAA BBBBBB');
+	showError('AAAAAef weAAAAA BBB fef efBBB');
+	showSuccess('AAsd fdsf f AAAAAAAA BBB efewBBB');
+	showWarning('A, ndsdl jkfjds fdsf dsf AAAAAAAAA BBBBBB');
+}}>Default
+</Button>
 <Button disabled={true}>Default disabled</Button>
 
 <h4>Danger</h4>
-<Button type="danger" onClick={() => showError('AAAAAAAAAA  BBBBBB')}>Danger</Button>
+<Button type="danger" onClick={() => showError('AAAAAAAAAA  BBBBBB', 'Be careful', true)}>Danger</Button>
 <Button type="danger" disabled={true}>Danger disabled</Button>
 
 <h4>Link</h4>
