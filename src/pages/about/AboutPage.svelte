@@ -235,6 +235,15 @@
 		<li>
 			<Done>Caliber field</Done>
 		</li>
+		<li>
+			<Done>Remove all photos on photo replacement</Done>
+		</li>
+		<li>
+			<Done>Remove all photos on Gun delete</Done>
+		</li>
+		<li>
+			<Done>Upload thumbnails</Done>
+		</li>
 	</ul>
 
 	<h3>i18n</h3>

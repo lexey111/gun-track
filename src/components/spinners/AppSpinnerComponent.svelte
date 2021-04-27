@@ -35,7 +35,7 @@
 		&.active {
 			pointer-events: all;
 			display: block;
-			z-index: 999;
+			z-index: 9999;
 			opacity: 1;
 		}
 

@@ -207,7 +207,7 @@
 		</TabPanel>
 		<TabPanel>
 			<div class="gun-image">
-				<GunPhoto id={gun.id} imageClass="gun-image-preview">
+				<GunPhoto id={gun?.id} imageClass="gun-image-preview">
 
 					<p slot="info">
 						This is a preview of the gun's photo. To change it please use

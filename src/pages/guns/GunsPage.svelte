@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Storage from '@aws-amplify/storage';
 	import {getContext, onDestroy, onMount} from 'svelte';
 	import Button from '../../components/buttons/Button.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
@@ -70,13 +71,26 @@
 	}
 
 	const doRemoveGun = async (id: string) => {
+		AppStateStore.showSpinner();
 		try {
+			const gun = GunsStore.getGunById(id);
+			if (!gun) {
+				throw new Error('Gun not found!');
+			}
+			if (gun.photo) {
+				await Storage.remove(gun.photo, {
+					level: 'private',
+				});
+			}
+			//
 			const result = await GunsStore.removeGun(id);
 			if (result) {
 				showWarning('Record was removed successfully', 'Done');
 			}
 		} catch (e) {
 			showError(getErrorText(e));
+		} finally {
+			AppStateStore.hideSpinner();
 		}
 	};
 
@@ -87,8 +101,10 @@
 				throw new Error('Gun not found!');
 			}
 			AppStateStore.showSpinner();
+
 			const actionsCount = await ActionsStore.countRecordsForGun(id);
-			console.log('Records count', actionsCount);
+
+			AppStateStore.hideSpinner();
 
 			confirmDialog.show({
 				text: `Are you sure you want to delete this gun? Operation cannot be undone!

@@ -5,7 +5,9 @@
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showError, showInfo} from '../../../components/notifications/notify';
+	import {AppStateStore} from '../../../stores/app/app-state-store';
 	import {GunsStore} from '../../../stores/guns/guns-store';
+	import {dataURLToBlob} from '../../../utils/image';
 	import GunPhoto from '../gun/GunPhoto.svelte';
 
 	export let onCancel: () => void;
@@ -16,42 +18,81 @@
 	let imageReady = false;
 	let uploading = false;
 	let progressText = '';
+	let progressPercent = 0;
+	let inResizing = false;
 
 	let gunImage: any;
+	let imageData: any;
 	let fileInput: any;
 	let file: any;
 
 	const onFileSelected = (e: any) => {
+		AppStateStore.showSpinner();
+		inResizing = true;
+
 		file = e.target.files[0];
 		const reader = new FileReader();
+
+		reader.onload = (e: any) => {
+			let image = new Image();
+
+			image.onload = () => {
+				// Resize the image
+				let canvas = document.createElement('canvas'),
+					max_size = 300,
+					width = image.width,
+					height = image.height;
+
+				if (width > height) {
+					if (width > max_size) {
+						height *= max_size / width;
+						width = max_size;
+					}
+				} else {
+					if (height > max_size) {
+						width *= max_size / height;
+						height = max_size;
+					}
+				}
+				canvas.width = Math.ceil(width);
+				canvas.height = Math.ceil(height);
+
+				canvas.getContext('2d').drawImage(image, 0, 0, Math.ceil(width), Math.ceil(height));
+				const dataUrl = canvas.toDataURL('image/jpeg');
+				imageData = dataURLToBlob(dataUrl);
+
+				gunImage.src = dataUrl;
+
+				image.onload = null;
+				image = null;
+
+				AppStateStore.hideSpinner();
+				imageReady = true;
+				inResizing = false;
+			}
+			image.src = e.target.result;
+		};
 
 		try {
 			reader.readAsDataURL(file);
 		} catch {
 			showError('Image reading error');
+			AppStateStore.hideSpinner();
 			return;
 		}
-
-		reader.onload = e => {
-			imageReady = true;
-			gunImage = e.target.result;
-		};
 	}
 
 	const handleUpload = async () => {
-		const ext = (file.name || '').split('.').pop();
-		const name = Md5(id);
-		if (!ext) {
-			showError('Bad file name!');
-			return;
-		}
 		uploading = true;
-		const fileName = name + '.' + ext;
+		const fileName = Md5(id) + '.jpeg';
 		try {
-			const {key} = await Storage.put(fileName, file, {
+			// upload new data
+			const {key} = await Storage.put(fileName, imageData, {
 				level: 'private',
 				contentType: file.type,
+				cacheControl: 'public,max-age=31536000,immutable',
 				progressCallback(progress: any) {
+					progressPercent = Math.ceil((progress.loaded / progress.total) * 100);
 					progressText = `Uploaded: ${progress.loaded}/${progress.total}`;
 				},
 			}) as any;
@@ -60,7 +101,6 @@
 
 			showInfo('Photo uploaded');
 			uploading = false;
-			progressText = '';
 			onCancel();
 		} catch (error) {
 			console.log(error);
@@ -90,17 +130,25 @@
 <div class="modal-content">
 	<div class="modal-content-wrapper">
 		<div class="photo-preview">
-			{#if (gunImage)}
-				<div class="image-container">
-					<img src={gunImage} />
-				</div>
-				{#if (imageReady)}
+			{#if (inResizing)}
+				<p>
+					Resizing...
+				</p>
+			{/if}
+			<div class="new-image-container" class:loaded={imageData}>
+				<img bind:this={gunImage}/>
+			</div>
+			{#if (imageData)}
+				{#if (imageReady && !inResizing)}
 					<p>
 						Now image is ready to be uploaded to the cloud. Use "Upload" button below to complete.
 					</p>
 				{/if}
 
 				{#if (progressText)}
+					<div class="ic-progress-bar">
+						<div style="width: {progressPercent}%"></div>
+					</div>
 					<p>{progressText}</p>
 				{/if}
 			{:else}
@@ -117,6 +165,12 @@
 				{/if}
 			{/if}
 
+			{#if (!imageData && !currentPhoto)}
+				<p>
+					Try to use square images - we will round them to circle, so better to put the valuable content to the center.
+				</p>
+			{/if}
+
 			<Button type="ghost"
 			        disabled={uploading}
 			        onClick={handleClick}>
@@ -128,18 +182,20 @@
 </div>
 
 <div class="modal-footer">
-	<Button onClick={onCancel} type="link" disabled={uploading}>Cancel</Button>
-
 	{#if (currentPhoto)}
 		<Button onClick={() => {onCancel(); onRemove(id);}} type="ghost-danger">
 			Remove
 		</Button>
 	{/if}
 
-	<Button onClick={handleUpload} disabled={!imageReady || uploading}>
-		<Icon type="cloud"/> &nbsp;
-		Upload
-	</Button>
+	<div class="right-buttons">
+		<Button onClick={onCancel} type="link" disabled={uploading}>Cancel</Button>
+
+		<Button onClick={handleUpload} disabled={!imageReady || uploading}>
+			<Icon type="cloud"/> &nbsp;
+			Upload
+		</Button>
+	</div>
 </div>
 
 <style lang="less">
@@ -150,6 +206,19 @@
 			flex-flow: column nowrap;
 			align-items: center;
 			align-content: center;
+
+			.ic-progress-bar {
+				width: 200px;
+				height: 8px;
+				margin: 8px 0;
+				background-color: var(--app-white-bg);
+				border: 2px solid var(--app-primary-bg);
+
+				div {
+					background-color: var(--app-primary-bg);
+					height: 100%;
+				}
+			}
 
 			p {
 				color: var(--app-remark-text);
@@ -162,7 +231,7 @@
 				color: var(--app-danger-bg);
 			}
 
-			.image-placeholder, .image-container {
+			.image-placeholder, .image-container, .new-image-container {
 				height: 200px;
 				width: 200px;
 				margin: 16px 0;
@@ -172,31 +241,27 @@
 				overflow: hidden;
 				position: relative;
 				z-index: 1;
+				transition: all .2s ease;
 
 				img {
 					width: 100%;
 					min-height: 100%;
-					position: absolute;
-					left: 0;
-					right: 0;
-					top: 50%;
-					transform: translateY(-50%);
-					transition: all .2s ease;
+					object-fit: cover;
 					z-index: -1;
 				}
 			}
 
 			.image-container {
-				transition: all .2s ease;
+				&:hover {
+					border-radius: 100%;
+				}
+			}
 
-				.current-image-preview {
+			.new-image-container {
+				display: none;
+
+				&.loaded {
 					display: flex;
-					max-width: 480px;
-					max-height: 310px;
-					margin: 0 auto;
-					border-radius: 7px;
-					background-color: var(--app-white-bg);
-					box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
 				}
 
 				&:hover {
@@ -220,6 +285,14 @@
 					color: #ccc;
 				}
 			}
+		}
+
+		.right-buttons {
+			margin-left: auto;
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			align-content: center;
 		}
 	}
 

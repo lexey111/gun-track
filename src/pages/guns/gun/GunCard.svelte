@@ -57,7 +57,6 @@
 				},
 				onConfirm: async () => {
 					modal.close();
-					console.log('ok');
 				},
 				onCancel: () => modal.close(),
 			}
@@ -267,19 +266,18 @@
 						position: relative;
 						z-index: 1;
 
-						//&:hover {
-						//	height: 160px;
-						//	width: 160px;
-						//	margin-top: -16px;
-						//}
+						span {
+							position: absolute;
+							left: 26px;
+							top: 26px;
+							z-index: 2;
+						}
 
 						img {
 							width: 100%;
 							min-height: 100%;
-							position: absolute;
-							left: 0;
-							right: 0;
-							top: 50%;
+							object-fit: cover;
+
 							transition: all .2s ease;
 
 							&.loaded {
@@ -352,11 +350,9 @@
 	@keyframes gun-image-appear {
 		0% {
 			opacity: 0;
-			transform: translateY(100%);
 		}
 		100% {
 			opacity: 1;
-			transform: translateY(-50%);
 			border-radius: 100%;
 		}
 	}
