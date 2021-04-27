@@ -90,7 +90,9 @@
 		<li>
 			<Done>Dropdowns</Done>
 		</li>
-		<li>Navigator offline mode (disable requests)</li>
+		<li>
+			<Done>Navigator offline mode (disable requests)</Done>
+		</li>
 		<li>
 			<Done>Better notifications design</Done>
 		</li>

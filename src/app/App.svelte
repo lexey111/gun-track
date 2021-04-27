@@ -1,11 +1,12 @@
 <script lang="ts">
+	import AppOnlineComponent from './AppOnlineComponent.svelte';
 	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
-	import AppMenu from '../components/menu/AppMenu.svelte';
 	import Footer from '../components/Footer.svelte';
 	import {I18nService} from '../components/i18n/i18n.service';
 	import '../components/i18n/i18n.service.ts';
+	import AppMenu from '../components/menu/AppMenu.svelte';
 	import ModalComponent from '../components/modal/ModalComponent.svelte';
 	import NotifyComponent from '../components/notifications/NotifyComponent.svelte';
 	import AppSpinnerComponent from '../components/spinners/AppSpinnerComponent.svelte';
@@ -76,6 +77,7 @@
 <ModalComponent/>
 <NotifyComponent/>
 <AppSpinnerComponent/>
+<AppOnlineComponent/>
 
 <main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
 	<h1>GUN | TRACK</h1>

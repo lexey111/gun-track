@@ -65,7 +65,6 @@
 	};
 
 	const doRemovePhoto = async (id: string) => {
-		console.log('remove', id);
 		AppStateStore.showSpinner();
 		try {
 			const gun = GunsStore.getGunById(id);
