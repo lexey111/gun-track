@@ -146,6 +146,7 @@
 				<Button size="small" type="link" onClick={() => handleNavigate(gun.id)}>
 					<Icon type="arrow-right" alt="Go to Tracking"/>
 				</Button>
+
 				{#if (gun.notes)}
 					<Button size="small" type="link" onClick={() => onShowNotes(gun.id)}>
 						<Icon type="file" alt="Notes..."/>

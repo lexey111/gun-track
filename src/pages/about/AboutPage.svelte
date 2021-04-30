@@ -26,7 +26,9 @@
 
 	<h3>UI</h3>
 	<ul>
-		<li>Home page guns cards</li>
+		<li>
+			<Done>Home page guns cards</Done>
+		</li>
 		<li>Mobile views</li>
 		<li>
 			<Done>Chevron icon for dropdowns</Done>
@@ -273,8 +275,12 @@
 		<li>
 			<Done>BTS photo with price tags</Done>
 		</li>
-		<li>Gun selector if > 1</li>
-		<li>Gun stat (async)</li>
+		<li>
+			<Done>Gun selector if > 1</Done>
+		</li>
+
+		<li>Last gun stat (async)</li>
+
 		<li>
 			<Done>- Dynamic bg</Done>
 		</li>

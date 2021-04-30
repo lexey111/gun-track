@@ -27,7 +27,6 @@
 		<!--  svelte-ignore a11y-invalid-attribute-->
 		<li><a href="#" on:click={gotoTOS}>Terms of service</a></li>
 		<li>Contacts: <a href="mailto:{email}">{email}</a></li>
-		<li>Telegram channel:</li>
 	</ul>
 </div>
 

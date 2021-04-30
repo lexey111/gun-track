@@ -149,7 +149,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 
 {#if (gunsState?.isEmpty !== null)}
 	{#if (gunsState?.isEmpty === true)}
-		<div class="page-content extra-paddings">
+		<div class="page-content extra-paddings-2">
 			<h2>No guns is registered yet.</h2>
 			<p>
 				But it is the best time to start, you're lucky!
@@ -164,29 +164,31 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 	{/if}
 
 	{#if (gunsState?.isEmpty === false)}
-		<div class="top-panel">
-			<div class="top-panel-content">
-				<div class="block block-left">
-					<Button
-						type="toolbar"
-						onClick={showNewGunDialog}>
-						<Icon type="plus-circle" size="24px" class="inline"/>
-						Register one more...
-					</Button>
-				</div>
-
-				<div class="block block-info">
-					<div class="stat-exp">
-						Registered
+		{#if (gunsState.guns.length < 7)}
+			<div class="top-panel">
+				<div class="top-panel-content">
+					<div class="block block-left">
+						<Button
+							type="toolbar"
+							onClick={showNewGunDialog}>
+							<Icon type="plus-circle" size="24px" class="inline"/>
+							Register one more...
+						</Button>
 					</div>
-					<div class="block-content">
-						<ul>
-							<li>{gunsState?.guns?.length}</li>
-						</ul>
+
+					<div class="block block-info">
+						<div class="stat-exp">
+							Registered
+						</div>
+						<div class="block-content">
+							<ul>
+								<li>{gunsState?.guns?.length}</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		{/if}
 
 		<div class="page-content extra-paddings">
 			<Guns
@@ -197,3 +199,10 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 		</div>
 	{/if}
 {/if}
+
+
+<style>
+    .extra-paddings-2 {
+        padding: 16px 32px !important;
+    }
+</style>

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import GunsMenu from '../track/sections/GunsMenu.svelte';
 	import I18n from '../../components/i18n/I18n.svelte';
 	import Image from '../../components/images/Image.svelte';
 	import SpinnerComponent from '../../components/spinners/SpinnerComponent.svelte';
+	import PleaseLogin from './sections/PleaseLogin.svelte';
+	import TrackSelector from './sections/TrackSelector.svelte';
 
 	export let authState;
 </script>
@@ -68,15 +69,13 @@
 
 {#if (authState && !authState.fetching)}
 	<div class="page-content extra-paddings">
-		{#if (!authState?.loggedIn)}
-			<h1>
-				Please log in
-			</h1>
-		{:else }
+		{#if (authState?.loggedIn)}
 			<h1>
 				Your guns
 			</h1>
-			<GunsMenu/>
+			<TrackSelector/>
+		{:else }
+			<PleaseLogin/>
 		{/if}
 	</div>
 {/if}
@@ -205,5 +204,9 @@
 				}
 			}
 		}
+	}
+
+	.extra-paddings {
+		padding: 16px 32px !important;
 	}
 </style>

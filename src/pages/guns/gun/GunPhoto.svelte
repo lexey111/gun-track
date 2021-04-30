@@ -96,6 +96,11 @@
 			justify-items: center;
 			align-self: center;
 			justify-self: center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
 
 			span {
 				margin: 0 !important;
