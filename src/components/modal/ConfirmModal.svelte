@@ -14,7 +14,7 @@
 <div class="modal-header">{title}</div>
 
 <div class="modal-content">
-	<div class="modal-content-wrapper">
+	<div class="modal-content-wrapper with-paddings">
 		{#each text.split('\n') as line}
 			<p>{line}</p>
 		{/each}

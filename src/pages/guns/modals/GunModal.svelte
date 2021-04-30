@@ -126,16 +126,15 @@
 <div class="modal-header">{isNew ? 'New gun record' : 'Edit gun record'}</div>
 
 <div class="modal-content">
-	<Tabs>
-		<TabHeader>
-			<Tab>Main data</Tab>
-			<Tab>Notes</Tab>
-			<Tab>Photo</Tab>
-		</TabHeader>
+	<div class="modal-content-wrapper no-paddings">
+		<Tabs>
+			<TabHeader>
+				<Tab>Main data</Tab>
+				<Tab>Notes</Tab>
+				<Tab>Photo</Tab>
+			</TabHeader>
 
-		<TabPanel>
-
-			<div class="modal-content-wrapper">
+			<TabPanel>
 				<div class="form-group">
 					<label for="name">Name of the gun</label>
 					<input
@@ -188,48 +187,47 @@
 						<span>{registered}</span>
 					</div>
 				{/if}
-			</div>
-		</TabPanel>
-		<TabPanel className="ck-editor-tab" onActivate={activateCK} onDeactivate={deactivateCK}>
-			{#if (!ckStarted || !ckReady)}
-				<p>
-					<SpinnerComponent/>
-					Please wait...
-				</p>
-			{/if}
-			{#if (ckStarted)}
-				<CKEditor
-					bind:editor
-					on:ready={onReady}
-					bind:config={editorConfig}
-					bind:value={notes}/>
-			{/if}
-		</TabPanel>
-		<TabPanel>
-			<div class="gun-image">
-				<GunPhoto id={gun?.id} imageClass="gun-image-preview">
+			</TabPanel>
+			<TabPanel className="ck-editor-tab" onActivate={activateCK} onDeactivate={deactivateCK}>
+				{#if (!ckStarted || !ckReady)}
+					<SpinnerComponent>
+						Please wait...
+					</SpinnerComponent>
+				{/if}
+				{#if (ckStarted)}
+					<CKEditor
+						bind:editor
+						on:ready={onReady}
+						bind:config={editorConfig}
+						bind:value={notes}/>
+				{/if}
+			</TabPanel>
+			<TabPanel>
+				<div class="gun-image">
+					<GunPhoto id={gun?.id} imageClass="gun-image-preview">
 
-					<p slot="info">
-						This is a preview of the gun's photo. To change it please use
-						"Photo upload"
-						<Icon type="camera" size="1.2em"/>
-						dialog.
-					</p>
-
-					<div slot="placeholder">
-						<h4>
-							No photo uploaded yet
-						</h4>
-						<p>
-							Please use "Photo upload"
+						<p slot="info">
+							This is a preview of the gun's photo. To change it please use
+							"Photo upload"
 							<Icon type="camera" size="1.2em"/>
 							dialog.
 						</p>
-					</div>
-				</GunPhoto>
-			</div>
-		</TabPanel>
-	</Tabs>
+
+						<div slot="placeholder">
+							<h4>
+								No photo uploaded yet
+							</h4>
+							<p>
+								Please use "Photo upload"
+								<Icon type="camera" size="1.2em"/>
+								dialog.
+							</p>
+						</div>
+					</GunPhoto>
+				</div>
+			</TabPanel>
+		</Tabs>
+	</div>
 </div>
 
 <div class="modal-footer">

@@ -26,14 +26,25 @@
 {/if}
 
 <style lang="less">
-	.tab-panel {
-		background-color: var(--app-background);
-		z-index: 1;
-		margin: 0;
+	:global {
+		.tab-panel {
+			background-color: var(--app-background);
+			margin: 0;
+			padding: 16px 0;
+			position: relative;
+			display: flex;
+			flex-grow: 2;
+			flex-flow: column nowrap;
+			justify-content: stretch;
+			box-sizing: border-box;
 
-		.tab-content {
-			padding: 16px 32px;
-			overflow: visible;
+			.tab-content {
+				padding: 16px 32px;
+				height: 100%;
+				box-sizing: border-box;
+
+				overflow: visible;
+			}
 		}
 	}
 </style>

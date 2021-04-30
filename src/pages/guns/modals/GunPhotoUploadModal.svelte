@@ -201,7 +201,7 @@
 <style lang="less">
 	:global {
 		.photo-preview {
-			width: 500px;
+			width: 400px;
 			display: flex;
 			flex-flow: column nowrap;
 			align-items: center;
@@ -224,6 +224,7 @@
 				color: var(--app-remark-text);
 				text-align: center;
 				margin-bottom: 2em;
+				padding: 0 16px;
 				font-size: var(--app-small-font-size);
 			}
 

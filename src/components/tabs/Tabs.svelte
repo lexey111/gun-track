@@ -70,9 +70,17 @@
 </div>
 
 <style lang="less">
-	.tabs {
-		margin: 0;
-		padding-top: 8px;
-		background-color: var(--app-white-bg);
+	:global {
+		.tabs {
+			margin: 0;
+			padding-top: 8px;
+			background-color: var(--app-white-bg);
+			display: flex;
+			flex-grow: 2;
+			flex-flow: column nowrap;
+			justify-items: stretch;
+			box-sizing: border-box;
+			// overflow: hidden;
+		}
 	}
 </style>

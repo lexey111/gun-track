@@ -126,88 +126,89 @@
 <div class="modal-header">{dialogTitle}</div>
 
 <div class="modal-content">
-	<Tabs>
-		<TabHeader>
-			<Tab>Main data</Tab>
-			<Tab>Notes</Tab>
-		</TabHeader>
+	<div class="modal-content-wrapper no-paddings">
+		<Tabs>
+			<TabHeader>
+				<Tab>Main data</Tab>
+				<Tab>Notes</Tab>
+			</TabHeader>
 
-		<TabPanel>
-			<div class="form-group">
-				<!--  svelte-ignore a11y-label-has-associated-control -->
-				<label>Type</label>
-				<TypeMenu {type} onChange={handleTypeChange}/>
-			</div>
+			<TabPanel>
+				<div class="form-group">
+					<!--  svelte-ignore a11y-label-has-associated-control -->
+					<label>Type</label>
+					<TypeMenu {type} onChange={handleTypeChange}/>
+				</div>
 
-			<div class="form-group">
-				<!--  svelte-ignore a11y-label-has-associated-control -->
-				<label>Date</label>
-				<LocalisedDatepicker date={date} onDateChange={handleDateChanged}/>
-			</div>
+				<div class="form-group">
+					<!--  svelte-ignore a11y-label-has-associated-control -->
+					<label>Date</label>
+					<LocalisedDatepicker date={date} onDateChange={handleDateChanged}/>
+				</div>
 
-			<div class="form-group">
-				<label for="name">Title</label>
-				<input
-					placeholder="Carbine fundamentals"
-					autocomplete="off"
-					maxlength="128"
-					bind:value={title}
-					id="name"/>
-			</div>
+				<div class="form-group">
+					<label for="name">Title</label>
+					<input
+						placeholder="Carbine fundamentals"
+						autocomplete="off"
+						maxlength="128"
+						bind:value={title}
+						id="name"/>
+				</div>
 
-			<div class="form-group">
-				<label for="comment">Comment</label>
-				<input
-					autocomplete="off"
-					maxlength="128"
-					bind:value={comment}
-					id="comment"/>
-			</div>
+				<div class="form-group">
+					<label for="comment">Comment</label>
+					<input
+						autocomplete="off"
+						maxlength="128"
+						bind:value={comment}
+						id="comment"/>
+				</div>
 
-			<div class="form-group">
-				<label for="shots">Shots made</label>
-				<input
-					class="short-field"
-					type="number"
-					autocomplete="off"
-					bind:value={shots}
-					id="shots"/>
-			</div>
+				<div class="form-group">
+					<label for="shots">Shots made</label>
+					<input
+						class="short-field"
+						type="number"
+						autocomplete="off"
+						bind:value={shots}
+						id="shots"/>
+				</div>
 
 
-			<div class="form-group">
-				<label for="expenses">Expense</label>
-				<input
-					class="short-field"
-					type="number"
-					autocomplete="off"
-					bind:value={expenses}
-					id="expenses"/>
-			</div>
+				<div class="form-group">
+					<label for="expenses">Expense</label>
+					<input
+						class="short-field"
+						type="number"
+						autocomplete="off"
+						bind:value={expenses}
+						id="expenses"/>
+				</div>
 
-			<div class="form-group">
-				<!--  svelte-ignore a11y-label-has-associated-control -->
-				<label>Currency</label>
-				<CurrencyMenu {currency} onChange={handleCurrencyChange}/>
-			</div>
-		</TabPanel>
+				<div class="form-group">
+					<!--  svelte-ignore a11y-label-has-associated-control -->
+					<label>Currency</label>
+					<CurrencyMenu {currency} onChange={handleCurrencyChange}/>
+				</div>
+			</TabPanel>
 
-		<TabPanel className="ck-editor-tab" onActivate={activateCK} onDeactivate={deactivateCK}>
-			{#if (!ckStarted || !ckReady)}
-				<p>
-					<SpinnerComponent/>
-					Please wait...
-				</p>
-			{/if}
-			{#if (ckStarted)}
-				<CKEditor
-					bind:editor
-					on:ready={onReady}
-					bind:config={editorConfig}
-					bind:value={trainingNotes}/>
-			{/if}
-		</TabPanel>
-	</Tabs>
+			<TabPanel className="ck-editor-tab" onActivate={activateCK} onDeactivate={deactivateCK}>
+				{#if (!ckStarted || !ckReady)}
+					<SpinnerComponent>
+						Please wait...
+					</SpinnerComponent>
+				{/if}
+				{#if (ckStarted)}
+					<CKEditor
+						bind:editor
+						on:ready={onReady}
+						bind:config={editorConfig}
+						bind:value={trainingNotes}/>
+				{/if}
+			</TabPanel>
+		</Tabs>
+	</div>
 </div>
 
 <div class="modal-footer">
@@ -217,14 +218,3 @@
 	</Button>
 </div>
 
-
-<style lang="less">
-	:global {
-		.track-modal {
-			.modal-content {
-				width: 700px;
-				min-height: 470px;
-			}
-		}
-	}
-</style>

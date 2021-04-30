@@ -9,7 +9,7 @@
 <div class="modal-header">{title}</div>
 
 <div class="modal-content">
-	<div class="modal-content-wrapper">
+	<div class="modal-content-wrapper with-paddings">
 		{@html html}
 	</div>
 </div>

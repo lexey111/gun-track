@@ -65,8 +65,9 @@
 		<svelte:component this={cmp} {...{...props, ...authProps, ...params}}/>
 	{:else}
 		<div class="wait-message">
-			<SpinnerComponent/>
-			Loading...
+			<SpinnerComponent>
+				Loading...
+			</SpinnerComponent>
 		</div>
 	{/if}
 </div>

@@ -129,6 +129,9 @@
 			display: flex;
 			flex-flow: row wrap;
 			margin-bottom: 32px;
+			align-items: center;
+			justify-content: center;
+			justify-items: center;
 
 			.track-item {
 				display: flex;

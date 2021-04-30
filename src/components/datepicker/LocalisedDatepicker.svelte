@@ -61,10 +61,30 @@
 	:global {
 		.datepicker {
 			margin: 0 !important;
+			width: 100% !important;
+			min-width: 250px;
 
 			button.calendar-button:focus {
 				box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8) !important;
 				outline: none;
+			}
+
+			.sc-popover {
+				.trigger {
+					width: 100% !important;
+					overflow: hidden;
+
+					div[slot="trigger"] {
+						box-sizing: border-box;
+						width: 100% !important;
+
+						button.calendar-button {
+							width: 100% !important;
+							max-width: 100% !important;
+							min-width: 250px !important;
+						}
+					}
+				}
 			}
 		}
 	}

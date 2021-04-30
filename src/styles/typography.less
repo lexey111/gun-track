@@ -25,6 +25,10 @@ h1, h2, h3, h4 {
 	}
 }
 
+h1 {
+	margin-top: 0;
+}
+
 a, a:visited {
 	color: var(--app-link-text);
 	cursor: pointer;
@@ -118,14 +122,31 @@ code {
 }
 
 .ck-editor-tab {
-	min-width: 600px;
-	min-height: 400px;
-	max-height: 70vh;
-	max-width: 70vw;
-	overflow: auto;
+	min-width: 70vw;
+	min-height: 50vh;
+	// min-height: 70vh;
+	//max-height: 70vh;
+	//max-width: 70vw;
+	padding: 0 !important;
+	width: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
+	position: relative;
+
+	span.inline-spinner {
+		position: absolute;
+		display: block;
+		text-align: center;
+		top: 50%;
+		left: 0;
+		right: 0;
+		margin-top: -10px;
+	}
 
 	.tab-content {
-		height: 100%;
+		padding: 0 !important;
+		// height: 100%;
 	}
 
 	.ck-focused {
@@ -135,9 +156,11 @@ code {
 }
 
 .ck-editor__editable, .ck-editor__editable_inline {
-	min-height: 400px;
-	max-height: 60vh;
-	overflow-y: auto;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	bottom: 0;
+	right: 0;
 	background-color: var(--app-white-bg);
 }
 

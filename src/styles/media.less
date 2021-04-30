@@ -1,0 +1,121 @@
+@media (min-width: 1600px) {
+	.app-content {
+		max-width: 1400px;
+	}
+}
+
+@media (max-width: 960px) {
+	.app-content {
+		margin: 0 32px;
+		width: auto;
+		max-width: unset;
+
+		.app-pages {
+			.app-page {
+				.welcome, .welcome-right {
+					p {
+						padding-left: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 750px) {
+	#app-full-screen-message {
+		margin: 0;
+		min-width: 500px;
+
+		.modal-like-content {
+			height: unset !important;
+			width: unset !important;
+			padding: 0 !important;
+			position: absolute !important;
+			top: 8px;
+			bottom: 8px;
+			left: 8px;
+			right: 8px;
+			overflow: hidden;
+			display: flex;
+			flex-flow: column nowrap;
+			justify-items: stretch;
+			border-radius: 0 !important;
+
+			.modal-header, .modal-footer {
+				border-radius: 0 !important;
+			}
+
+			.modal-content {
+				display: flex;
+				width: 100% !important;
+				flex-grow: 2;
+				max-width: 100%;
+				position: relative;
+				flex-flow: column nowrap;
+				justify-content: stretch;
+				justify-items: stretch;
+
+				.modal-content-wrapper {
+					box-sizing: border-box;
+					display: flex;
+					flex-flow: column nowrap;
+					justify-content: stretch;
+					min-height: 100% !important;
+					max-height: initial !important;
+					height: initial !important;
+					width: 100% !important;
+					max-width: 100% !important;
+					padding: 0 !important;
+					margin: 0 !important;
+
+					& > div {
+						width: 100%;
+					}
+
+					.ck-editor-tab {
+						min-width: 600px;
+						min-height: 400px;
+						max-height: unset;
+						height: 100%;
+						max-width: unset;
+						overflow: auto;
+					}
+				}
+			}
+		}
+	}
+
+	.app-content {
+		margin: 0 8px;
+		width: auto;
+		max-width: unset;
+
+		.app-pages {
+			.app-page {
+				.extra-paddings {
+					padding: 8px !important;
+
+					h1 {
+						padding: 8px;
+					}
+				}
+
+				.welcome, .welcome-right {
+					p {
+						padding-left: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 540px) {
+	.app-content {
+		margin: 0;
+		width: auto;
+		max-width: unset;
+		min-width: 540px;
+	}
+}

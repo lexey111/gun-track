@@ -109,6 +109,7 @@
 			bottom: 0;
 			width: 100vw;
 			height: 100vh;
+			border: 1px solid red;
 			align-content: center;
 			justify-content: center;
 			align-items: center;
@@ -202,7 +203,15 @@
 							min-height: 50px;
 							max-width: 70vw;
 							max-height: 70vh;
-							overflow: auto;
+							//overflow: hidden;
+
+							&.no-paddings {
+								padding: 0;
+							}
+
+							&.with-paddings {
+								padding: 16px !important;
+							}
 						}
 					}
 

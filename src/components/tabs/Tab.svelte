@@ -18,6 +18,8 @@
 
 <style lang="less">
 	button.tabs {
+		width: auto;
+		flex-grow: 0;
 		background: none;
 		border: none;
 		font-size: var(--app-small-font-size);
@@ -30,6 +32,10 @@
 		position: relative;
 		z-index: 2;
 		transition: color .2s ease;
+
+		&:first-child {
+			margin-left: 16px;
+		}
 
 		&:hover, &:focus {
 			color: var(--app-primary-bg-darken);
