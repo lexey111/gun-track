@@ -55,10 +55,10 @@
 	</Route>
 
 	<Route path="home">
-		<AppPage pageId="home"/>
+		<AppPage pageId="home" class="no-paddings"/>
 	</Route>
 	<Route path="/">
-		<AppPage pageId="home"/>
+		<AppPage pageId="home" class="no-paddings"/>
 	</Route>
 </div>
 

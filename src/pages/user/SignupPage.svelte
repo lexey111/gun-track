@@ -29,7 +29,9 @@
 		codeError = !!code ? code.length < 3 : false;
 	}
 
+	let signupAllowed: boolean;
 	$: signupAllowed = !!email.trim() && !!pwd.trim() && !emailError && !passwordError;
+	let codeAllowed: boolean;
 	$: codeAllowed = !!email.trim() && !!code.trim() && !emailError && !codeError;
 
 	const signUp = async () => {

@@ -28,7 +28,9 @@
 		codeError = !!code ? code.length < 3 : false;
 	}
 
+	let sendResetCodeAllowed: boolean;
 	$: sendResetCodeAllowed = !!email.trim() && !emailError;
+	let newPasswordAllowed: boolean;
 	$: newPasswordAllowed = !!email.trim() && !!code.trim() && !!pwd.trim() && !emailError && !codeError && !passwordError;
 
 	const sendResetCode = async () => {

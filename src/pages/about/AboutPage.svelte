@@ -26,6 +26,7 @@
 
 	<h3>UI</h3>
 	<ul>
+		<li>Home page guns cards</li>
 		<li>Mobile views</li>
 		<li>
 			<Done>Chevron icon for dropdowns</Done>
@@ -269,7 +270,9 @@
 
 	<h3>Home</h3>
 	<ul>
-		<li>BTS photo with price tags</li>
+		<li>
+			<Done>BTS photo with price tags</Done>
+		</li>
 		<li>Gun selector if > 1</li>
 		<li>Gun stat (async)</li>
 		<li>
