@@ -5,6 +5,7 @@
 	import ProfileDetails from './sections/ProfileDetails.svelte';
 
 	const email = 'lexey111@gmail.com';
+
 	export let authState: TAuthState = null;
 	export let authStore: IAuthStore = null;
 

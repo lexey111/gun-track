@@ -288,8 +288,12 @@
 
 	<h3>Footer</h3>
 	<ul>
-		<li>TOS</li>
-		<li>Contacts</li>
+		<li>
+			<Done>TOS</Done>
+		</li>
+		<li>
+			<Done>Contacts</Done>
+		</li>
 	</ul>
 
 	<h3>Database</h3>
