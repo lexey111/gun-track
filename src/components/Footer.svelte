@@ -73,6 +73,7 @@
 		div {
 			margin-left: 32px;
 			align-self: center;
+			text-align: left;
 
 			a {
 				color: var(--app-white-bg);

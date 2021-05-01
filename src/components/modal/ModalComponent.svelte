@@ -109,7 +109,6 @@
 			bottom: 0;
 			width: 100vw;
 			height: 100vh;
-			border: 1px solid red;
 			align-content: center;
 			justify-content: center;
 			align-items: center;

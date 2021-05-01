@@ -26,6 +26,7 @@
 
 	<h3>UI</h3>
 	<ul>
+		<li>Non-modal editors</li>
 		<li>Gun cards default image</li>
 		<li>Fix type selector</li>
 		<li>Fix currency dropdown (to top)</li>

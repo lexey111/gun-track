@@ -145,7 +145,6 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 </script>
 
 <Confirm bind:this={confirmDialog}/>
-<input type="file" style="display: none" accept=".jpg, .jpeg, .png" id="photoFileInput">
 
 {#if (gunsState?.isEmpty !== null)}
 	{#if (gunsState?.isEmpty === true)}

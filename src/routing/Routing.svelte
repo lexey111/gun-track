@@ -42,12 +42,16 @@
 		<AppPage pageId="guns" onlyLoggedIn={true} redirectTo="/login" class="no-paddings"/>
 	</Route>
 
+	<Route path="guns/:id/upload" let:params>
+		<AppPage pageId="guns-upload" onlyLoggedIn={true} redirectTo="/login" {params}/>
+	</Route>
+
 	<Route path="track">
 		<AppPage pageId="track" onlyLoggedIn={true} redirectTo="/login" class="no-paddings"/>
 	</Route>
 
 	<Route path="track/:id" let:params>
-		<AppPage pageId="track" onlyLoggedIn={true} redirectTo="/login" class="no-paddings" params={params}/>
+		<AppPage pageId="track" onlyLoggedIn={true} redirectTo="/login" class="no-paddings" {params}/>
 	</Route>
 
 	<Route path="ui">

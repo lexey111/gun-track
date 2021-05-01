@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Storage from '@aws-amplify/storage';
 	import dayjs from 'dayjs'
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
 	import {getContext} from 'svelte';
@@ -8,12 +7,9 @@
 	import Icon from '../../../components/icons/Icon.svelte';
 	import Confirm from '../../../components/modal/Confirm.svelte';
 	import Info from '../../../components/modal/Info.svelte';
-	import {showError, showInfo} from '../../../components/notifications/notify';
 	import type {Gun} from '../../../models';
-	import {AppStateStore} from '../../../stores/app/app-state-store';
 	import type {TAppModal} from '../../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../../stores/guns/guns-store';
-	import GunPhotoUploadModal from '../modals/GunPhotoUploadModal.svelte';
 	import GunPhoto from './GunPhoto.svelte';
 
 	dayjs.extend(localizedFormat);
@@ -42,55 +38,8 @@
 	};
 
 	const onUploadPhoto = (id: string) => {
-		let gun = GunsStore.getGunById(id);
-		if (!gun) {
-			showError('Gun not found!');
-			return;
-		}
-		modal.open(GunPhotoUploadModal, {
-			closeButton: true,
-			componentProps: {
-				id,
-				currentPhoto: gun.photo,
-				onRemove: (id: string) => {
-					handleRemovePhoto(id);
-				},
-				onConfirm: async () => {
-					modal.close();
-				},
-				onCancel: () => modal.close(),
-			}
-		});
+		navigate('/guns/' + encodeURI(id) + '/upload');
 	};
-
-	const doRemovePhoto = async (id: string) => {
-		AppStateStore.showSpinner();
-		try {
-			const gun = GunsStore.getGunById(id);
-			if (!gun) {
-				throw new Error('Gun not found!');
-			}
-
-			await Storage.remove(gun.photo, {
-				level: 'private',
-			});
-
-			await GunsStore.savePhoto(id, '');
-			showInfo('Photo removed.')
-		} catch {
-			showError('Error on deleting photo');
-		} finally {
-			AppStateStore.showSpinner();
-		}
-	};
-
-	const handleRemovePhoto = (id: string) => {
-		confirmRemovePhotoDialog.show({
-			text: `Are you sure you want to remove this photo? Operation cannot be undone!`,
-			confirmText: 'Remove',
-			onConfirm: () => doRemovePhoto(id)
-		});
-	}
 
 	let title: string;
 	let hasName: boolean;

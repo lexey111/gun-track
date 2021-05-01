@@ -106,3 +106,41 @@
 ::placeholder {
 	color: var(--app-placeholder-text);
 }
+
+
+.app-form {
+	display: flex;
+	flex-flow: column nowrap;
+	width: fit-content;
+	min-width: 500px;
+	margin: 0 auto;
+
+	.app-form-content {
+		width: auto;
+	}
+
+	.app-form-footer {
+		margin-top: 64px;
+		padding-top: 16px;
+		border-top: 1px solid var(--app-background-darken-shade-1);
+		display: flex;
+		flex-flow: row nowrap;
+
+		.btn {
+			margin-right: .4em;
+		}
+
+		.right-buttons {
+			margin-left: auto;
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			align-content: center;
+
+			.btn {
+				margin-right: 0;
+				margin-left: .4em;
+			}
+		}
+	}
+}

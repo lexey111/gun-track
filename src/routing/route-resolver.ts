@@ -62,6 +62,11 @@ export async function resolvePage(pageId: string): Promise<any> {
 				.then(getModule)
 				.catch(logError);
 
+		case 'guns-upload':
+			return import('./../pages/guns/forms/GunsUploadPage.svelte')
+				.then(getModule)
+				.catch(logError);
+
 		case 'track':
 			return import('./../pages/track/TrackPage.svelte')
 				.then(getModule)
