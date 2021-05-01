@@ -1,5 +1,4 @@
 <script lang="ts">
-	import AppOnlineComponent from './AppOnlineComponent.svelte';
 	import {onDestroy, onMount, setContext} from 'svelte';
 
 	import {Router} from 'svelte-routing';
@@ -16,6 +15,7 @@
 
 	import {AuthStore} from '../stores/auth/auth-store';
 	import type {TAuthState} from '../stores/auth/auth-store.interface';
+	import AppOnlineComponent from './AppOnlineComponent.svelte';
 
 	import {extendHistoryTracking} from './history-helper';
 
@@ -30,6 +30,7 @@
 		locale: ''
 	};
 
+	let isHomePage = false;
 	let appStateUnsubscribe: any;
 
 	onMount(() => {
@@ -47,6 +48,7 @@
 			app_state.modal = value.modal;
 			app_state.path = value.path;
 			app_state.locale = value.locale;
+			isHomePage = value.path === '/' || value.path === '/home' || value.path === '';
 
 			I18nService.setLocale(value.locale);
 		});
@@ -79,8 +81,14 @@
 <AppSpinnerComponent/>
 <AppOnlineComponent/>
 
-<main class={'app-content ' + (auth_state?.loggedIn ? 'logged-in' : 'logged-out')}>
-	<h1>GUN | TRACK</h1>
+<main class="app-content"
+      class:home-page={isHomePage}
+      class:logged-in={auth_state?.loggedIn}
+      class:logged-out={!auth_state?.loggedIn}>
+
+	{#if (isHomePage)}
+		<h1>GUN | TRACK</h1>
+	{/if}
 
 	<Router url={url}>
 		<AppMenu/>
@@ -97,10 +105,10 @@
 			display: inline-flex;
 			justify-content: flex-start;
 			align-items: center;
-			margin: 1em 0;
+			margin: 1rem 0;
 			padding: .5em 0;
 			text-transform: uppercase;
-			font-size: 2rem;
+			font-size: 3rem;
 
 			color: var(--app-primary-text);
 		}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Storage from '@aws-amplify/storage';
-	import {getContext, onDestroy, onMount} from 'svelte';
+	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
@@ -9,13 +9,11 @@
 	import {showError, showWarning} from '../../components/notifications/notify';
 	import {ActionsStore} from '../../stores/actions/actions-store';
 	import {AppStateStore} from '../../stores/app/app-state-store';
-	import type {TAppModal} from '../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../stores/guns/guns-store';
 	import type {TGunsState} from '../../stores/guns/guns-store.interface';
 	import {getErrorText} from '../../utils/errors';
 	import Guns from './guns/Guns.svelte';
 
-	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 	let confirmDialog: IConfirmDialog;
 
 	let gunsState$: any;
@@ -30,24 +28,6 @@
 
 	const addGun = () => {
 		navigate('/guns/new/edit');
-		/*
-		modal.open(GunModal, {
-			closeButton: true,
-			componentProps: {
-				gun: null,
-				onConfirm: async (gun: Gun) => {
-					modal.close();
-					AppStateStore.showSpinner();
-					if (await GunsStore.createGun(gun)) {
-						showSuccess('New gun was successfully registered.', gun.name || gun.make || gun.model);
-					}
-					AppStateStore.hideSpinner();
-
-				},
-				onCancel: () => modal.close(),
-			}
-		});
-		 */
 	}
 
 	const doRemoveGun = async (id: string) => {
