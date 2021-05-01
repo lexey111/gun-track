@@ -10,23 +10,15 @@
 	import type {Gun} from '../../../models';
 	import {AppStateStore} from '../../../stores/app/app-state-store';
 	import {GunsStore} from '../../../stores/guns/guns-store';
-	import type {TGunsState} from '../../../stores/guns/guns-store.interface';
 	import {dataURLToBlob} from '../../../utils/image';
 	import GunPhoto from '../gun/GunPhoto.svelte';
 
-	export let id: string;
+	export let gun: Gun;
 
 	let currentPhoto: string;
-
-	let gun: Gun;
-	let loadingError: string;
-	let gunsState$: any;
-	let gunsState: TGunsState = {
-		busy: true,
-		fullReady: false,
-		isEmpty: null,
-		guns: []
-	};
+	$ : {
+		currentPhoto = gun?.photo;
+	}
 
 	let imageReady = false;
 	let uploading = false;
@@ -98,7 +90,7 @@
 
 	const handleUpload = async () => {
 		uploading = true;
-		const fileName = Md5(id) + '.jpeg';
+		const fileName = Md5(gun.id) + '.jpeg';
 		try {
 			// upload new data
 			const {key} = await Storage.put(fileName, imageData, {
@@ -111,7 +103,7 @@
 				},
 			}) as any;
 
-			await GunsStore.savePhoto(id, key);
+			await GunsStore.savePhoto(gun.id, key);
 
 			showInfo('Photo uploaded');
 			uploading = false;
@@ -159,25 +151,11 @@
 	}
 
 	onMount(() => {
-		AppStateStore.showSpinner();
-		gunsState$ = GunsStore.subscribe(value => {
-			if (!value || value.isEmpty === null) {
-				return;
-			}
-			AppStateStore.hideSpinner();
-			gunsState = value;
-			gun = GunsStore.getGunById(id);
-			if (!gun) {
-				loadingError = 'Gun not found.';
-			}
-			currentPhoto = gun.photo;
-		});
 		fileInput = document.getElementById('photoFileInput');
 		fileInput.onchange = onFileSelected;
 	});
 
 	onDestroy(() => {
-		gunsState$ && gunsState$();
 		fileInput.onchange = null;
 	});
 </script>
@@ -185,90 +163,78 @@
 <input type="file" style="display: none" accept=".jpg, .jpeg, .png" id="photoFileInput">
 <Confirm bind:this={confirmRemovePhotoDialog}/>
 
-{#if (loadingError)}
-	<h1 class="error">Error</h1>
-	<p>{loadingError}</p>
-	<p>&nbsp;</p>
-	<Button type="ghost" onClick={gotoGuns}>
-		<Icon type="arrow-left"/> &nbsp;
-		Return to Guns
-	</Button>
-{/if}
-
-{#if (gunsState?.fullReady)}
-	<div class="app-form">
-		<div class="app-form-content">
-			<h1 class="text-center">Photo uploading</h1>
-			<div class="photo-preview">
-				{#if (inResizing)}
-					<p>
-						Resizing...
-					</p>
-				{/if}
-				<div class="new-image-container" class:loaded={imageData}>
-					<img bind:this={gunImage}/>
-				</div>
-				{#if (imageData)}
-					{#if (imageReady && !inResizing)}
-						<p>
-							Now image is ready to be uploaded to the cloud. Use "Upload" button below to complete.
-						</p>
-					{/if}
-
-					{#if (progressText)}
-						<div class="ic-progress-bar">
-							<div style="width: {progressPercent}%"></div>
-						</div>
-						<p>{progressText}</p>
-					{/if}
-				{:else}
-					{#if (currentPhoto)}
-						<GunPhoto {id} class="image-container" imageClass="current-image-preview"/>
-						<p>
-							This is current photo. Only one photo could be uploaded for a gun, so
-							if you upload another photo &mdash; this one will be replaced.
-						</p>
-					{:else}
-						<div class="image-placeholder" on:click={handleClick}>
-							<Icon type="camera" size="64px"/>
-						</div>
-					{/if}
-				{/if}
-
-				{#if (!imageData && !currentPhoto)}
-					<p>
-						Try to use square images - we will round them to circle, so better to put the valuable content to the center.
-					</p>
-				{/if}
-
-				<Button type="ghost"
-				        disabled={uploading}
-				        onClick={handleClick}>
-					<Icon type="camera"/> &nbsp;
-					Choose image...
-				</Button>
+<div class="app-form">
+	<div class="app-form-content">
+		<h1 class="text-center">Photo uploading</h1>
+		<div class="photo-preview">
+			{#if (inResizing)}
+				<p>
+					Resizing...
+				</p>
+			{/if}
+			<div class="new-image-container" class:loaded={imageData}>
+				<img bind:this={gunImage}/>
 			</div>
-		</div>
-		<div class="app-form-footer">
-			<Button onClick={gotoGuns} type="link" disabled={uploading}>
-				<Icon type="arrow-left"/> &nbsp; Cancel
-			</Button>
+			{#if (imageData)}
+				{#if (imageReady && !inResizing)}
+					<p>
+						Now image is ready to be uploaded to the cloud. Use "Upload" button below to complete.
+					</p>
+				{/if}
 
-			<div class="right-buttons">
+				{#if (progressText)}
+					<div class="ic-progress-bar">
+						<div style="width: {progressPercent}%"></div>
+					</div>
+					<p>{progressText}</p>
+				{/if}
+			{:else}
 				{#if (currentPhoto)}
-					<Button onClick={() => handleRemovePhoto(id)} type="ghost-danger">
-						Remove
-					</Button>
+					<GunPhoto id={gun.id} class="image-container" imageClass="current-image-preview"/>
+					<p>
+						This is current photo. Only one photo could be uploaded for a gun, so
+						if you upload another photo &mdash; this one will be replaced.
+					</p>
+				{:else}
+					<div class="image-placeholder" on:click={handleClick}>
+						<Icon type="camera" size="64px"/>
+					</div>
 				{/if}
+			{/if}
 
-				<Button onClick={handleUpload} disabled={!imageReady || uploading}>
-					<Icon type="cloud"/> &nbsp;
-					Upload
-				</Button>
-			</div>
+			{#if (!imageData && !currentPhoto)}
+				<p>
+					Try to use square images - we will round them to circle, so better to put the valuable content to the center.
+				</p>
+			{/if}
+
+			<Button type="ghost"
+			        disabled={uploading}
+			        onClick={handleClick}>
+				<Icon type="camera"/> &nbsp;
+				Choose image...
+			</Button>
 		</div>
 	</div>
-{/if}
+	<div class="app-form-footer">
+		<Button onClick={gotoGuns} type="link" disabled={uploading}>
+			<Icon type="arrow-left"/> &nbsp; Cancel
+		</Button>
+
+		<div class="right-buttons">
+			{#if (currentPhoto)}
+				<Button onClick={() => handleRemovePhoto(gun.id)} type="ghost-danger">
+					Remove
+				</Button>
+			{/if}
+
+			<Button onClick={handleUpload} disabled={!imageReady || uploading}>
+				<Icon type="cloud"/> &nbsp;
+				Upload
+			</Button>
+		</div>
+	</div>
+</div>
 
 <style lang="less">
 	:global {

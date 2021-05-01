@@ -63,7 +63,7 @@ export async function resolvePage(pageId: string): Promise<any> {
 				.catch(logError);
 
 		case 'guns-upload':
-			return import('./../pages/guns/forms/GunsUploadPage.svelte')
+			return import('../pages/guns/forms/PhotoUploadWrapper.svelte')
 				.then(getModule)
 				.catch(logError);
 
