@@ -22,7 +22,7 @@
 		currentPhotoFetching = false;
 	}
 
-	const onPhotoLoading = () => {
+	const onPhotoLoad = () => {
 		currentPhotoError = '';
 		currentPhotoFetching = false;
 	}
@@ -54,7 +54,7 @@
 	});
 </script>
 
-<div class={$$props.class} on:click={onPhotoClick}>
+<div class={$$props.class} on:click={onPhotoClick} style="position: relative">
 	{#if (currentPhotoFetching)}
 		<div class="photo-info-div">
 			<SpinnerComponent/>
@@ -70,7 +70,7 @@
 	{#if (currentPhotoUrl && !currentPhotoError)}
 		<Image src={currentPhotoUrl}
 		       class={imageClass}
-		       onLoad={onPhotoLoading}
+		       onLoad={onPhotoLoad}
 		       onError={onPhotoLoadingError}/>
 
 		{#if (!currentPhotoFetching)}

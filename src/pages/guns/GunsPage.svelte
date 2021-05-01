@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Storage from '@aws-amplify/storage';
 	import {getContext, onDestroy, onMount} from 'svelte';
+	import {navigate} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 	import type {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
-	import {showError, showSuccess, showWarning} from '../../components/notifications/notify';
-	import type {Gun} from '../../models';
+	import {showError, showWarning} from '../../components/notifications/notify';
 	import {ActionsStore} from '../../stores/actions/actions-store';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import type {TAppModal} from '../../stores/app/app-state-store.interface';
@@ -14,7 +14,6 @@
 	import type {TGunsState} from '../../stores/guns/guns-store.interface';
 	import {getErrorText} from '../../utils/errors';
 	import Guns from './guns/Guns.svelte';
-	import GunModal from './modals/GunModal.svelte';
 
 	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 	let confirmDialog: IConfirmDialog;
@@ -29,7 +28,9 @@
 	let appState$: any;
 	const state = {dateLocale: 'en'};
 
-	const showNewGunDialog = () => {
+	const addGun = () => {
+		navigate('/guns/new/edit');
+		/*
 		modal.open(GunModal, {
 			closeButton: true,
 			componentProps: {
@@ -46,28 +47,7 @@
 				onCancel: () => modal.close(),
 			}
 		});
-	}
-
-	const showGunEditDialog = (id: string) => {
-		const gun: Gun = gunsState.guns.find(x => x.id === id);
-		if (!gun) {
-			showError(`Gun not found: ${id}!`, 'Error');
-			return;
-		}
-
-		modal.open(GunModal, {
-			closeButton: true,
-			componentProps: {
-				gun,
-				onConfirm: async (gun: Gun) => {
-					modal.close();
-					AppStateStore.showSpinner();
-					await GunsStore.saveGun(gun);
-					AppStateStore.hideSpinner();
-				},
-				onCancel: () => modal.close(),
-			}
-		});
+		 */
 	}
 
 	const doRemoveGun = async (id: string) => {
@@ -154,7 +134,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 				But it is the best time to start, you're lucky!
 			</p>
 			<p>
-				<Button on:click={showNewGunDialog}>
+				<Button on:click={addGun}>
 					<Icon type="plus-circle" size="24px" class="inline"/>
 					Register a Gun
 				</Button>
@@ -169,7 +149,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 					<div class="block block-left">
 						<Button
 							type="toolbar"
-							on:click={showNewGunDialog}>
+							on:click={addGun}>
 							<Icon type="plus-circle" size="24px" class="inline"/>
 							Register one more...
 						</Button>
@@ -193,8 +173,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 			<Guns
 				guns={gunsState?.guns}
 				dateLocale={state.dateLocale}
-				onRemove={handleRemoveGun}
-				onEdit={showGunEditDialog}/>
+				onRemove={handleRemoveGun}/>
 		</div>
 	{/if}
 {/if}

@@ -1,25 +1,21 @@
 <script lang="ts">
 	import dayjs from 'dayjs'
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
-	import {getContext} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import Confirm from '../../../components/modal/Confirm.svelte';
 	import Info from '../../../components/modal/Info.svelte';
 	import type {Gun} from '../../../models';
-	import type {TAppModal} from '../../../stores/app/app-state-store.interface';
 	import {GunsStore} from '../../../stores/guns/guns-store';
 	import GunPhoto from './GunPhoto.svelte';
 
 	dayjs.extend(localizedFormat);
-	const modal = (getContext('AppState') as { modal: TAppModal }).modal;
 	let confirmRemovePhotoDialog: any;
 
 	export let gun: Gun = null;
 	export let dateLocale: string;
 	export let onRemove: (id: string) => void;
-	// export let onEdit: (id: string) => void;
 
 	const handleNavigate = (id: string) => {
 		navigate('/track/' + id);
@@ -221,9 +217,6 @@
 						z-index: 1;
 
 						span {
-							position: absolute;
-							left: 26px;
-							top: 26px;
 							z-index: 2;
 						}
 

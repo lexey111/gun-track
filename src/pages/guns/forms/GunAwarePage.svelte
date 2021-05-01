@@ -26,7 +26,6 @@
 	}
 
 	onMount(() => {
-		console.log('base mount');
 		AppStateStore.showSpinner();
 		gunsState$ = GunsStore.subscribe(value => {
 			if (!value || value.isEmpty === null) {
@@ -34,8 +33,15 @@
 			}
 			AppStateStore.hideSpinner();
 			gunsState = value;
+
 			gun = GunsStore.getGunById(id);
-			if (!gun) {
+
+			if (id === 'new' && GunsStore.gunCount() >= 7) {
+				loadingError = 'There are only 7 guns could be registered, sorry.';
+				return;
+			}
+
+			if (!gun && id !== 'new') {
 				loadingError = 'Gun not found.';
 			}
 		});
@@ -56,6 +62,6 @@
 	</Button>
 {/if}
 
-{#if (gunsState?.fullReady && !loadingError && gun)}
+{#if (gunsState?.fullReady && !loadingError)}
 	<svelte:component this={component} {gun}/>
 {/if}

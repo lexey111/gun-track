@@ -5,8 +5,8 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
-	import Collapser from '../../../components/collapser/Collapser.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
+	import {showSuccess} from '../../../components/notifications/notify';
 	import type {Gun} from '../../../models';
 	import {AppStateStore, dateLocale} from '../../../stores/app/app-state-store';
 	import {GunsStore} from '../../../stores/guns/guns-store';
@@ -80,6 +80,27 @@
 
 	const handleConfirm = async () => {
 		AppStateStore.showSpinner();
+		if (isNew) {
+			const result = await GunsStore.createGun({
+				...gun,
+				name: name || '',
+				make: make || '',
+				model: model || '',
+				caliber: caliber || '',
+				notes: notes || ''
+			});
+
+			if (result) {
+				showSuccess('New gun was successfully registered.', name || make || model);
+			}
+			AppStateStore.hideSpinner();
+
+			if (result) {
+				gotoGuns();
+			}
+			return;
+		}
+
 		await GunsStore.saveGun({
 			...gun,
 			name,
@@ -185,43 +206,45 @@
 					<span class="control-static">{registered}</span>
 				</div>
 			{/if}
-
-			<Collapser title="Notes" open={initialOpenEditor}>
-				<div class="ck-editor-pane">
-					{#if (ckStarted)}
-						<CKEditor
-							bind:editor
-							on:ready={onReady}
-							bind:config={editorConfig}
-							bind:value={notes}/>
-					{/if}
-				</div>
-			</Collapser>
 		</div>
+
 		<div class="app-content-column">
-			<div class="gun-image">
-				<GunPhoto id={gun?.id} imageClass="gun-image-preview">
+			<h3>Notes</h3>
+			<div class="ck-editor-pane">
+				{#if (ckStarted)}
+					<CKEditor
+						bind:editor
+						on:ready={onReady}
+						bind:config={editorConfig}
+						bind:value={notes}/>
+				{/if}
+			</div>
+		</div>
 
-					<p slot="info">
-						This is a preview of the gun's photo. To change it please use
-						"Photo upload"
-						<Icon type="camera" size="1.2em"/>
-						dialog.
-					</p>
+		{#if (!isNew)}
+			<div class="app-content-column narrow">
+				<div class="gun-image">
+					<GunPhoto id={gun?.id} imageClass="gun-image-preview">
 
-					<div slot="placeholder">
-						<h4>
-							No photo uploaded yet
-						</h4>
-						<p>
-							Please use "Photo upload"
+						<p slot="info">
+							To change the picture please use
+							"Photo upload"
 							<Icon type="camera" size="1.2em"/>
 							dialog.
 						</p>
-					</div>
-				</GunPhoto>
+
+						<div slot="placeholder">
+							<p>
+								Please use "Photo upload"
+								<Icon type="camera" size="1.2em"/>
+								dialog.
+							</p>
+						</div>
+					</GunPhoto>
+				</div>
 			</div>
-		</div>
+		{/if}
+
 	</div>
 
 	<div class="app-form-footer">
@@ -245,9 +268,10 @@
 			align-items: center;
 			align-content: center;
 			flex-flow: column nowrap;
-			width: 480px;
+			width: 120px;
 			min-height: 310px;
 			margin: 0 auto;
+			font-size: var(--app-small-font-size);
 
 			p {
 				color: var(--app-remark-text);
@@ -261,7 +285,7 @@
 
 			.gun-image-preview {
 				display: flex;
-				max-width: 480px;
+				max-width: 120px;
 				max-height: 310px;
 				margin: 0 auto;
 				border-radius: 7px;
@@ -271,8 +295,8 @@
 		}
 
 		.ck-editor-pane {
-			height: 300px;
 			position: relative;
+			min-height: 300px;
 
 			.ck-editor__editable, .ck-editor__editable_inline {
 				position: absolute;

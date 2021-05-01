@@ -7,7 +7,6 @@
 	dayjs.extend(localizedFormat);
 
 	export let onRemove: (id: string) => void;
-	export let onEdit: (id: string) => void;
 	export let dateLocale: string;
 
 	export let guns: Array<Gun>;
@@ -16,7 +15,6 @@
 <div class="guns-list">
 	{#each guns as gun}
 		<GunCard gun={gun}
-		         onEdit={onEdit}
 		         onRemove={() => onRemove(gun.id)}
 		         dateLocale={dateLocale}/>
 	{/each}
@@ -27,6 +25,6 @@
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 64px;
-	     justify-content: center;
+        justify-content: center;
     }
 </style>

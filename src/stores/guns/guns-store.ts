@@ -58,6 +58,12 @@ async function loadGuns(): Promise<void> {
 }
 
 async function createGun(gun: Gun): Promise<boolean> {
+
+	if (_guns.length >= 7) {
+		showError('Only 7 guns could be stored in this version.', 'Maximum number reached');
+		return false;
+	}
+
 	update(state => ({
 		...state,
 		busy: true
@@ -144,6 +150,10 @@ async function removeGun(id: string): Promise<boolean> {
 	return true;
 }
 
+function gunCount(): number {
+	return _guns?.length || -1;
+}
+
 function setSubscribed(): void {
 	storeSubscribed = true;
 	update(state => {
@@ -197,5 +207,6 @@ export const GunsStore: IGunStore = {
 	removeGun,
 
 	getGunById,
+	gunCount,
 	savePhoto
 };
