@@ -23,10 +23,10 @@
 
 <div class="modal-footer">
 	<Button type="link"
-	        onClick={onCancel}>Cancel
+	        on:click={onCancel}>Cancel
 	</Button>
 	<Button type="danger"
-	        onClick={onConfirm}>
+	        on:click={onConfirm}>
 		{#if confirmIcon}
 			<Icon type={confirmIcon} class="inline"/>
 		{/if}{confirmText}

@@ -154,7 +154,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 				But it is the best time to start, you're lucky!
 			</p>
 			<p>
-				<Button onClick={showNewGunDialog}>
+				<Button on:click={showNewGunDialog}>
 					<Icon type="plus-circle" size="24px" class="inline"/>
 					Register a Gun
 				</Button>
@@ -169,7 +169,7 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 					<div class="block block-left">
 						<Button
 							type="toolbar"
-							onClick={showNewGunDialog}>
+							on:click={showNewGunDialog}>
 							<Icon type="plus-circle" size="24px" class="inline"/>
 							Register one more...
 						</Button>

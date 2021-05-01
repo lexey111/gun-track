@@ -107,7 +107,7 @@
 				<div class="af-actions">
 					<!--  svelte-ignore a11y-invalid-attribute-->
 					<a href="#" on:click={cancelFilter}>Cancel</a>
-					<Button size="small" onClick={applyFilter}>Apply</Button>
+					<Button size="small" on:click={applyFilter}>Apply</Button>
 				</div>
 			</div>
 		</Dropdown>

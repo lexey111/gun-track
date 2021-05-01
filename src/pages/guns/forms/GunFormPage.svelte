@@ -1,21 +1,23 @@
-<script lang="ts">
+<script type="ts">
 	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
 	import CKEditor from 'ckeditor5-svelte/src/Ckeditor.svelte';
 	import dayjs from 'dayjs'
 	import {onDestroy, onMount} from 'svelte';
+	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import Collapser from '../../../components/collapser/Collapser.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
-	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
-	import Tab from '../../../components/tabs/Tab.svelte';
-	import TabHeader from '../../../components/tabs/TabHeader.svelte';
-	import TabPanel from '../../../components/tabs/TabPanel.svelte';
-	import Tabs from '../../../components/tabs/Tabs.svelte';
 	import type {Gun} from '../../../models';
 	import {AppStateStore, dateLocale} from '../../../stores/app/app-state-store';
 	import {autoFocusWithSelect} from '../../../utils/autofocus';
 	import GunPhoto from '../gun/GunPhoto.svelte';
 
 	export let gun: Gun;
+
+	const gotoGuns = () => {
+		navigate('/guns');
+	}
+
 	let name = '';
 	let registered = '';
 	let make = '';
@@ -25,7 +27,6 @@
 	let isNew = false;
 
 	export let onConfirm: (gun: Gun) => void;
-	export let onCancel: () => void;
 
 	let appState$: any;
 	const state = {dateLocale: 'en'};
@@ -100,6 +101,7 @@
 		});
 		if (!gun) {
 			isNew = true;
+			activateCK();
 			return;
 		}
 		isNew = false;
@@ -110,6 +112,7 @@
 		caliber = gun.caliber || '';
 		registered = dayjs(gun.dateCreated).locale(dateLocale).format('LL');
 
+		activateCK();
 	});
 
 	onDestroy(() => {
@@ -123,121 +126,117 @@
 	}
 </script>
 
-<div class="modal-header">{isNew ? 'New gun record' : 'Edit gun record'}</div>
+<div class="app-form">
+	<div class="app-form-content multi-columns">
+		<div class="app-content-column">
+			<h1>{isNew ? 'New gun' : 'Change record'}</h1>
 
-<div class="modal-content">
-	<div class="modal-content-wrapper no-paddings">
-		<Tabs>
-			<TabHeader>
-				<Tab>Main data</Tab>
-				<Tab>Notes</Tab>
-				<Tab>Photo</Tab>
-			</TabHeader>
+			<div class="form-group">
+				<label for="name">Name of the gun</label>
+				<input
+					placeholder="Black rifle .223"
+					autocomplete="off"
+					maxlength="64"
+					required
+					use:autoFocusWithSelect
+					bind:value={name}
+					id="name"/>
+			</div>
 
-			<TabPanel>
+			<div class="form-group">
+				<label for="caliber">Caliber</label>
+				<input
+					placeholder="12GA .223 .308 .50"
+					autocomplete="off"
+					maxlength="32"
+					required
+					bind:value={caliber}
+					id="caliber"/>
+			</div>
+
+			<div class="form-group">
+				<label for="make">Make</label>
+				<input
+					placeholder="Inter Ordnance"
+					autocomplete="off"
+					maxlength="64"
+					required
+					bind:value={make}
+					id="make"/>
+			</div>
+
+			<div class="form-group">
+				<label for="model">Model</label>
+				<input
+					placeholder="Savage MSR-15 Recon"
+					autocomplete="off"
+					maxlength="64"
+					required
+					bind:value={model}
+					id="model"/>
+			</div>
+
+			{#if (!isNew)}
 				<div class="form-group">
-					<label for="name">Name of the gun</label>
-					<input
-						placeholder="Black rifle .223"
-						autocomplete="off"
-						maxlength="64"
-						required
-						use:autoFocusWithSelect
-						bind:value={name}
-						id="name"/>
+					<!--  svelte-ignore a11y-label-has-associated-control -->
+					<label>Registered</label>
+					<span class="control-static">{registered}</span>
 				</div>
+			{/if}
 
-				<div class="form-group">
-					<label for="caliber">Caliber</label>
-					<input
-						placeholder="12GA .223 .308 .50"
-						autocomplete="off"
-						maxlength="32"
-						required
-						bind:value={caliber}
-						id="caliber"/>
+			<Collapser title="Notes" open={!!notes}>
+				<div class="ck-editor-pane">
+					{#if (ckStarted)}
+						<CKEditor
+							bind:editor
+							on:ready={onReady}
+							bind:config={editorConfig}
+							bind:value={notes}/>
+					{/if}
 				</div>
+			</Collapser>
+		</div>
+		<div class="app-content-column">
+			<div class="gun-image">
+				<GunPhoto id={gun?.id} imageClass="gun-image-preview">
 
-				<div class="form-group">
-					<label for="make">Make</label>
-					<input
-						placeholder="Inter Ordnance"
-						autocomplete="off"
-						maxlength="64"
-						required
-						bind:value={make}
-						id="make"/>
-				</div>
+					<p slot="info">
+						This is a preview of the gun's photo. To change it please use
+						"Photo upload"
+						<Icon type="camera" size="1.2em"/>
+						dialog.
+					</p>
 
-				<div class="form-group">
-					<label for="model">Model</label>
-					<input
-						placeholder="Savage MSR-15 Recon"
-						autocomplete="off"
-						maxlength="64"
-						required
-						bind:value={model}
-						id="model"/>
-				</div>
-
-				{#if (!isNew)}
-					<div class="form-group">
-						<!--  svelte-ignore a11y-label-has-associated-control -->
-						<label>Registered</label>
-						<span>{registered}</span>
-					</div>
-				{/if}
-			</TabPanel>
-			<TabPanel className="ck-editor-tab" onActivate={activateCK} onDeactivate={deactivateCK}>
-				{#if (!ckStarted || !ckReady)}
-					<SpinnerComponent>
-						Please wait...
-					</SpinnerComponent>
-				{/if}
-				{#if (ckStarted)}
-					<CKEditor
-						bind:editor
-						on:ready={onReady}
-						bind:config={editorConfig}
-						bind:value={notes}/>
-				{/if}
-			</TabPanel>
-			<TabPanel>
-				<div class="gun-image">
-					<GunPhoto id={gun?.id} imageClass="gun-image-preview">
-
-						<p slot="info">
-							This is a preview of the gun's photo. To change it please use
-							"Photo upload"
+					<div slot="placeholder">
+						<h4>
+							No photo uploaded yet
+						</h4>
+						<p>
+							Please use "Photo upload"
 							<Icon type="camera" size="1.2em"/>
 							dialog.
 						</p>
+					</div>
+				</GunPhoto>
+			</div>
+		</div>
+	</div>
 
-						<div slot="placeholder">
-							<h4>
-								No photo uploaded yet
-							</h4>
-							<p>
-								Please use "Photo upload"
-								<Icon type="camera" size="1.2em"/>
-								dialog.
-							</p>
-						</div>
-					</GunPhoto>
-				</div>
-			</TabPanel>
-		</Tabs>
+	<div class="app-form-footer">
+		<Button on:click={gotoGuns} type="link">
+			<Icon type="arrow-left"/> &nbsp; Cancel
+		</Button>
+
+		<div class="right-buttons">
+			<Button disabled={disabled}
+			        on:click={handleConfirm}>{isNew ? 'Register' : 'Save'}
+			</Button>
+		</div>
 	</div>
 </div>
 
-<div class="modal-footer">
-	<Button on:click={onCancel} type="link">Cancel</Button>
-	<Button disabled={disabled}
-	        on:click={handleConfirm}>{isNew ? 'Register' : 'Save'}
-	</Button>
-</div>
-
 <style lang="less">
+
 	:global {
 		.gun-image {
 			display: flex;
@@ -266,6 +265,20 @@
 				border-radius: 7px;
 				background-color: var(--app-white-bg);
 				box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+			}
+		}
+
+		.ck-editor-pane {
+			height: 300px;
+			position: relative;
+
+			.ck-editor__editable, .ck-editor__editable_inline {
+				position: absolute;
+				top: 40px;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background-color: var(--app-white-bg);
 			}
 		}
 	}

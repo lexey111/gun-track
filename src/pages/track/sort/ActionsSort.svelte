@@ -22,6 +22,6 @@
 
 <div class="block block-min">
 	<div class="block-content">
-		<Button type="toolbar" onClick={changeSortDirection}>Sort: by date {sortOrder}</Button>
+		<Button type="toolbar" on:click={changeSortDirection}>Sort: by date {sortOrder}</Button>
 	</div>
 </div>

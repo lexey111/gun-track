@@ -26,6 +26,7 @@
 		padding: 0 0 0 6px;
 		border: none;
 		background-color: var(--app-control-bg);
+		color: var(--app-control-text);
 		width: 100%;
 		min-width: 250px;
 		outline: none !important;
@@ -40,12 +41,18 @@
 
 		&:focus, &:active {
 			outline: none;
+			background-color: var(--app-white-bg);
 			box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8);
 		}
 
 		&.short-field {
 			width: auto;
 		}
+	}
+
+	.control-static {
+		color: var(--app-remark-text);
+		font-size: var(--app-small-font-size);
 	}
 
 	&.error {
@@ -107,7 +114,6 @@
 	color: var(--app-placeholder-text);
 }
 
-
 .app-form {
 	display: flex;
 	flex-flow: column nowrap;
@@ -117,12 +123,30 @@
 
 	.app-form-content {
 		width: auto;
+		display: flex;
+		flex-flow: column nowrap;
+
+		&.multi-columns {
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+
+		.app-content-column {
+			display: flex;
+			flex-flow: column nowrap;
+			width: fit-content;
+			min-width: 500px;
+			padding: 16px;
+			background-color: var(--app-white-bg);
+			box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+			border-radius: 7px;
+			margin: 5px;
+		}
 	}
 
 	.app-form-footer {
-		margin-top: 64px;
+		margin: 16px 5px;
 		padding-top: 16px;
-		border-top: 1px solid var(--app-background-darken-shade-1);
 		display: flex;
 		flex-flow: row nowrap;
 
@@ -143,4 +167,16 @@
 			}
 		}
 	}
+}
+
+.ck-blurred {
+	background-color: var(--app-control-bg) !important;
+	transition: background-color .2s ease;
+}
+
+.ck-focused {
+	background-color: var(--app-white-bg);
+	outline: none !important;
+	border: none !important;
+	box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8) !important;
 }

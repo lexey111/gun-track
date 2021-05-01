@@ -24,7 +24,7 @@
 
 <Button
 	type="ghost-danger"
-	onClick={handleConfirmLogoutDialog}>
+	on:click={handleConfirmLogoutDialog}>
 	<Icon type="logout" size="18px" class="inline"/>
 	Logout
 </Button>

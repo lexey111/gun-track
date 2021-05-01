@@ -20,11 +20,11 @@
 		Using social network
 	</label>
 
-	<Button onClick={handleLoginWithFacebook} type="ghost">
+	<Button on:click={handleLoginWithFacebook} type="ghost">
 		<Icon type="facebook" class="inline" size="18px"/>
 		Facebook
 	</Button>
-	<Button onClick={handleLoginWithGoogle} type="ghost">
+	<Button on:click={handleLoginWithGoogle} type="ghost">
 		<Icon type="google" class="inline" size="18px"/>
 		Google
 	</Button>

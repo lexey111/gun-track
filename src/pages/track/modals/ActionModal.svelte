@@ -212,9 +212,9 @@
 </div>
 
 <div class="modal-footer">
-	<Button type="link" onClick={onCancel}>Cancel</Button>
+	<Button type="link" on:click={onCancel}>Cancel</Button>
 	<Button
-		onClick={handleConfirm}>Save
+		on:click={handleConfirm}>Save
 	</Button>
 </div>
 

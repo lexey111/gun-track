@@ -72,7 +72,7 @@
 		There are no guns registered yet. Go to add the first one!
 	</p>
 	<p>
-		<Button type="ghost" onClick={gotoGuns}>Go to guns &nbsp;
+		<Button type="ghost" on:click={gotoGuns}>Go to guns &nbsp;
 			<Icon type="arrow-right"/>
 		</Button>
 	</p>
@@ -80,7 +80,7 @@
 
 {#if (ready && guns && guns?.length > 0)}
 	<p class="track-goto">
-		<Button type="ghost" onClick={gotoGuns}>Go to guns</Button>
+		<Button type="ghost" on:click={gotoGuns}>Go to guns</Button>
 	</p>
 
 	<div class="track-selector">
@@ -107,7 +107,7 @@
 						{/if}
 
 						<div class="track-actions">
-							<Button type="ghost" onClick={() => handleGunChange(gun.id)}>
+							<Button type="ghost" on:click={() => handleGunChange(gun.id)}>
 								<Icon type="arrow-right"/> &nbsp;
 								Records
 							</Button>

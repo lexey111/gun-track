@@ -46,14 +46,14 @@
 
 		<div class="action-actions">
 			{#if (action.trainingNotes)}
-				<Button onClick={() => onShowNotes(action.id)} type="link" size="small">
+				<Button on:click={() => onShowNotes(action.id)} type="link" size="small">
 					<Icon type="file"/> &nbsp; Notes...
 				</Button>
 			{/if}
-			<Button onClick={() => onEdit(action.id)} type="ghost" size="small">
+			<Button on:click={() => onEdit(action.id)} type="ghost" size="small">
 				<Icon type="edit"/> &nbsp; Edit
 			</Button>
-			<Button onClick={() => onDelete(action.id)} type="link-danger" size="small">
+			<Button on:click={() => onDelete(action.id)} type="link-danger" size="small">
 				<Icon type="delete"/>
 			</Button>
 		</div>

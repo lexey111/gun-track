@@ -59,7 +59,7 @@
 	<label/>
 	<Button
 		disabled={!newPasswordAllowed}
-		onClick={changePassword}>
+		on:click={changePassword}>
 		Change password
 	</Button>
 </div>

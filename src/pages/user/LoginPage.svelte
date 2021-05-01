@@ -28,7 +28,7 @@
 			Register new local user with e-mail:
 		</p>
 
-		<Button onClick={() => navigate('login/signup')} type="ghost">
+		<Button on:click={() => navigate('login/signup')} type="ghost">
 			<Icon type="user-add" class="inline" size="18px"/>
 			Sign up!
 		</Button>

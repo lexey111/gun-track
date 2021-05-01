@@ -2,7 +2,6 @@
 	export let type: '' | 'default' | 'link' | 'danger' | 'link-danger' | 'toolbar' | 'ghost' | 'ghost-danger' = '';
 	export let size: 'small' | 'default' | 'big' = 'default';
 	export let disabled = false;
-	export let onClick: (e?: any) => void = null;
 
 	let className: string;
 	$: {
@@ -38,6 +37,6 @@
 	}
 </script>
 
-<button class={className} {disabled} on:click={onClick}>
+<button class={className} {disabled} on:click>
 	<slot/>
 </button>

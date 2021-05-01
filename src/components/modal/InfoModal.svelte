@@ -15,6 +15,6 @@
 </div>
 
 <div class="modal-footer">
-	<Button onClick={onCancel}>Ok
+	<Button on:click={onCancel}>Ok
 	</Button>
 </div>

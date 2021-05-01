@@ -23,7 +23,7 @@
 		But it is the best time to create one!
 	</p>
 	<p>
-		<Button onClick={showNewActionDialog}>
+		<Button on:click={showNewActionDialog}>
 			<Icon type="plus-circle" size="24px" class="inline"/>
 			Add record...
 		</Button>

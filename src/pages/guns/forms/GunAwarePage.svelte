@@ -50,7 +50,7 @@
 	<h1 class="error">Error</h1>
 	<p>{loadingError}</p>
 	<p>&nbsp;</p>
-	<Button type="ghost" onClick={gotoGuns}>
+	<Button type="ghost" on:click={gotoGuns}>
 		<Icon type="arrow-left"/> &nbsp;
 		Return to Guns
 	</Button>

@@ -210,25 +210,26 @@
 
 			<Button type="ghost"
 			        disabled={uploading}
-			        onClick={handleClick}>
+			        on:click={handleClick}>
 				<Icon type="camera"/> &nbsp;
 				Choose image...
 			</Button>
 		</div>
 	</div>
+	<hr>
 	<div class="app-form-footer">
-		<Button onClick={gotoGuns} type="link" disabled={uploading}>
+		<Button on:click={gotoGuns} type="link" disabled={uploading}>
 			<Icon type="arrow-left"/> &nbsp; Cancel
 		</Button>
 
 		<div class="right-buttons">
 			{#if (currentPhoto)}
-				<Button onClick={() => handleRemovePhoto(gun.id)} type="ghost-danger">
+				<Button on:click={() => handleRemovePhoto(gun.id)} type="ghost-danger">
 					Remove
 				</Button>
 			{/if}
 
-			<Button onClick={handleUpload} disabled={!imageReady || uploading}>
+			<Button on:click={handleUpload} disabled={!imageReady || uploading}>
 				<Icon type="cloud"/> &nbsp;
 				Upload
 			</Button>

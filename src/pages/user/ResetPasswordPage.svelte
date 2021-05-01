@@ -92,7 +92,7 @@
 		<Button
 			disabled={!sendResetCodeAllowed}
 			type="ghost"
-			onClick={sendResetCode}>
+			on:click={sendResetCode}>
 			Get password reset code
 		</Button>
 	</div>
@@ -150,7 +150,7 @@
 		<label/>
 		<Button
 			disabled={!newPasswordAllowed}
-			onClick={sendResetCodeConfirm}>
+			on:click={sendResetCodeConfirm}>
 			Change password
 		</Button>
 	</div>

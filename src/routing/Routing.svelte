@@ -43,7 +43,11 @@
 	</Route>
 
 	<Route path="guns/:id/upload" let:params>
-		<AppPage pageId="guns-upload" onlyLoggedIn={true} redirectTo="/login" {params}/>
+		<AppPage pageId="photo-upload" onlyLoggedIn={true} redirectTo="/login" {params}/>
+	</Route>
+
+	<Route path="guns/:id/edit" let:params>
+		<AppPage pageId="gun-form" onlyLoggedIn={true} redirectTo="/login" {params}/>
 	</Route>
 
 	<Route path="track">

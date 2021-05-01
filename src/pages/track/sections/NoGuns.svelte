@@ -11,7 +11,7 @@
 		&nbsp;
 	</p>
 
-	<Button onClick={() => navigate('/guns')} type="ghost">
+	<Button on:click={() => navigate('/guns')} type="ghost">
 		Go to Guns page &nbsp;<Icon type="arrow-right"/>
 	</Button>
 </div>

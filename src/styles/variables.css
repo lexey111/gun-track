@@ -61,9 +61,9 @@
     --app-border-color-active: #9118d2;
     --app-border-color-disabled: #ccc;
 
-    --app-control-bg: #fff;
+    --app-control-bg: #f2f2f2;
     --app-control-bg-disabled: #eee;
-    --app-control-text: #222;
+    --app-control-text: #2b6699;
     --app-control-text-disabled: #999;
 
     --app-remark-text: #94a6ac;

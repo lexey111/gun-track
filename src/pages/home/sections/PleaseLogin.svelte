@@ -18,7 +18,7 @@
 	</p>
 
 	<p>
-		<Button type="ghost" onClick="{gotoLogin}">
+		<Button type="ghost" on:click="{gotoLogin}">
 			<Icon type="login"/> &nbsp;
 			Go to Sign in page
 		</Button>

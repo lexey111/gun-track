@@ -9,6 +9,7 @@
 </script>
 
 <svg
+	on:click
 	class={$$props.class}
 	width={size}
 	height={size}

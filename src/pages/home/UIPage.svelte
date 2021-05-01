@@ -135,7 +135,7 @@
 <h1>Buttons</h1>
 
 <h4>Default</h4>
-<Button onClick={
+<Button on:click={
 () => {
 	showInfo('AAAAAAAAAA BBBBBB');
 	showError('AAAAAef weAAAAA BBB fef efBBB');
@@ -146,7 +146,7 @@
 <Button disabled={true}>Default disabled</Button>
 
 <h4>Danger</h4>
-<Button type="danger" onClick={() => showError('AAAAAAAAAA  BBBBBB', 'Be careful', true)}>Danger</Button>
+<Button type="danger" on:click={() => showError('AAAAAAAAAA  BBBBBB', 'Be careful', true)}>Danger</Button>
 <Button type="danger" disabled={true}>Danger disabled</Button>
 
 <h4>Link</h4>

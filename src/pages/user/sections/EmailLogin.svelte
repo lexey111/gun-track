@@ -64,7 +64,7 @@
 
 		<Button
 			disabled={!signinAllowed}
-			onClick={signIn}>
+			on:click={signIn}>
 			<Icon type="login" class="inline" size="18px"/>
 			Sign in
 		</Button>

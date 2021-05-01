@@ -118,7 +118,7 @@
 		<Button
 			disabled={!signupAllowed}
 			type="ghost"
-			onClick={signUp}>
+			on:click={signUp}>
 			Register
 		</Button>
 	</div>
@@ -156,7 +156,7 @@
 			<label/>
 			<Button
 				disabled={!codeAllowed}
-				onClick={signUpVerify}>
+				on:click={signUpVerify}>
 				Confirm & Sign in
 			</Button>
 		</div>
