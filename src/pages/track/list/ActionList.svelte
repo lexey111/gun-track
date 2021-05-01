@@ -9,9 +9,9 @@
 	export let gunsState: TGunsState;
 	export let id: string;
 	export let actionsState: TActionsState;
-	export let onEdit: (id: string) => void;
 	export let onDelete: (id: string) => void;
 
+	let hasExpensesAtAll: boolean;
 	$: hasExpensesAtAll = !isEmpty(actionsState?.expenses);
 
 </script>
@@ -36,7 +36,6 @@
 		{/if}
 		{#each actionsState.actions as action, idx}
 			<GunAction
-				onEdit={onEdit}
 				onDelete={onDelete}
 				action={action} isLast={idx === actionsState.actions.length - 1}/>
 		{/each}

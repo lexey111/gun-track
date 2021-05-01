@@ -76,5 +76,10 @@ export async function resolvePage(pageId: string): Promise<any> {
 			return import('./../pages/track/TrackPage.svelte')
 				.then(getModule)
 				.catch(logError);
+
+		case 'track-form':
+			return import('./../pages/track/forms/TrackFormPage.svelte')
+				.then(getModule)
+				.catch(logError);
 	}
 }

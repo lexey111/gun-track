@@ -58,6 +58,10 @@
 		<AppPage pageId="track" onlyLoggedIn={true} redirectTo="/login" class="no-paddings" {params}/>
 	</Route>
 
+	<Route path="track/:gunId/:id/edit" let:params>
+		<AppPage pageId="track-form" onlyLoggedIn={true} redirectTo="/login" {params}/>
+	</Route>
+
 	<Route path="ui">
 		<AppPage pageId="ui"/>
 	</Route>

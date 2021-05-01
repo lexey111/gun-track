@@ -6,9 +6,9 @@
 	import Icon from '../../components/icons/Icon.svelte';
 	import type {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
-	import {showSuccess, showWarning} from '../../components/notifications/notify';
+	import {showWarning} from '../../components/notifications/notify';
 	import {ActionsStore} from '../../stores/actions/actions-store';
-	import type {TAction, TActionsState} from '../../stores/actions/actions-store.interface';
+	import type {TActionsState} from '../../stores/actions/actions-store.interface';
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import type {TAppModal} from '../../stores/app/app-state-store.interface';
 	import type {TAuthState} from '../../stores/auth/auth-store.interface';
@@ -17,7 +17,6 @@
 	import {isEmpty} from '../../utils/objects';
 	import ActionsFilter from './filter/ActionsFilter.svelte';
 	import ActionList from './list/ActionList.svelte';
-	import ActionModal from './modals/ActionModal.svelte';
 	import NoGuns from './sections/NoGuns.svelte';
 	import NoRecords from './sections/NoRecords.svelte';
 	import NoRecordsByFilter from './sections/NoRecordsByFilter.svelte';
@@ -148,22 +147,8 @@
 		}
 	}
 
-	const showNewActionDialog = () => {
-		modal.open(ActionModal, {
-			closeButton: true,
-			extraClass: 'track-modal',
-			componentProps: {
-				onConfirm: async (action: TAction) => {
-					modal.close();
-					AppStateStore.showSpinner();
-					if (await ActionsStore.registerAction(id, action)) {
-						showSuccess('Action registered.');
-					}
-					AppStateStore.hideSpinner();
-				},
-				onCancel: () => modal.close(),
-			}
-		});
+	const addRecord = () => {
+		navigate('/track/' + id + '/new/edit');
 	}
 
 	onMount(() => {
@@ -180,25 +165,6 @@
 		gunsUnsubscribe && gunsUnsubscribe();
 		actionsUnsubscribe && actionsUnsubscribe();
 	});
-
-	const handleEdit = (id: string) => {
-		modal.open(ActionModal, {
-			closeButton: true,
-			extraClass: 'track-modal',
-			componentProps: {
-				action: actionsState.actions.find(a => a.id === id),
-				onConfirm: async (action: TAction) => {
-					modal.close();
-					AppStateStore.showSpinner();
-					if (await ActionsStore.saveAction(action)) {
-						showSuccess('Record updated.');
-					}
-					AppStateStore.hideSpinner();
-				},
-				onCancel: () => modal.close(),
-			}
-		});
-	};
 
 	let confirmDialog: IConfirmDialog;
 
@@ -235,7 +201,7 @@
 			<div class="top-panel-content">
 				<div class="block block-left block-min">
 					<div class="block-content">
-						<Button on:click={showNewActionDialog} type="toolbar">
+						<Button on:click={addRecord} type="toolbar">
 							<Icon type="plus-circle" class="inline" size="24px"/>
 							Add a record...
 						</Button>
@@ -266,7 +232,6 @@
 			<ActionList
 				{id}
 				{gunsState}
-				onEdit={handleEdit}
 				onDelete={handleDelete}
 				actionsState={actionsState}/>
 		{:else }
@@ -274,7 +239,7 @@
 				<NoRecords
 					{id}
 					{gunsState}
-					{showNewActionDialog}
+					{addRecord}
 				/>
 			{/if}
 			{#if (actionsState?.isEmpty === true && ActionsStore.isFiltered() && !actionsState.busy)}
@@ -289,7 +254,7 @@
 
 		{#if (actionsState?.actions?.length > 4)}
 			<div class="container-floating">
-				<div class="floating-add-action" on:click={showNewActionDialog}>
+				<div class="floating-add-action" on:click={addRecord}>
 					<Icon type="plus-circle" size="48px"/>
 				</div>
 			</div>

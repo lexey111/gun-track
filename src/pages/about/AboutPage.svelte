@@ -26,14 +26,18 @@
 
 	<h3>UI</h3>
 	<ul>
-		<li>Non-modal editors</li>
+		<li>
+			<Done>Non-modal editors</Done>
+		</li>
 		<li>Gun cards default image</li>
 		<li>Fix type selector</li>
 		<li>Fix currency dropdown (to top)</li>
 		<li>
 			<Done>Home page guns cards</Done>
 		</li>
-		<li>Mobile views</li>
+		<li>
+			<Done>Mobile views</Done>
+		</li>
 		<li>
 			<Done>Chevron icon for dropdowns</Done>
 		</li>

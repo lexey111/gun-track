@@ -1,12 +1,16 @@
 <script lang="ts">
-	import type {TAction} from '../../../../stores/actions/actions-store.interface';
+	import {navigate} from 'svelte-routing';
+	import type {Action} from '../../../../models';
 
-	export let action: TAction;
-	export let onEdit: (id: string) => void;
+	export let action: Action;
+
+	const editRecord = () => {
+		navigate('/track/' + action.gun.id + '/' + action.id + '/edit');
+	}
 
 </script>
 
-<div class="action-main-column" on:click={() => onEdit(action.id)}>
+<div class="action-main-column" on:click={editRecord}>
 	<h1>
 		{action.title}
 	</h1>

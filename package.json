@@ -27,13 +27,13 @@
 		"ckeditor5-svelte": "0.0.10",
 		"dayjs": "^1.10.4",
 		"md5": "^2.3.0",
-		"svelte": "^3.37.0",
+		"svelte": "^3.38.0",
 		"svelte-calendar": "^2.0.4",
 		"svelte-routing": "^1.6.0"
 	},
 	"devDependencies": {
 		"@aws-amplify/datastore": "^2.9.16",
-		"@aws-sdk/client-cognito-identity": "^3.13.1",
+		"@aws-sdk/client-cognito-identity": "^3.14.0",
 		"@aws-sdk/types": "^3.13.1",
 		"@types/webpack": "^5.28.0",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",
@@ -52,7 +52,7 @@
 		"html-webpack-plugin": "^5.3.1",
 		"less": "^4.1.1",
 		"less-loader": "^8.1.1",
-		"mini-css-extract-plugin": "^1.5.0",
+		"mini-css-extract-plugin": "^1.6.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.4",
 		"rimraf": "^3.0.2",
 		"style-loader": "^2.0.0",
@@ -62,7 +62,7 @@
 		"terser-webpack-plugin": "^5.1.1",
 		"ts-loader": "^9.1.1",
 		"typescript": "^4.2.4",
-		"webpack": "^5.36.0",
+		"webpack": "^5.36.2",
 		"webpack-cli": "^4.6.0",
 		"webpack-dev-server": "^3.11.2"
 	}

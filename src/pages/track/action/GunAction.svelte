@@ -1,18 +1,18 @@
 <script lang="ts">
+	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import Info from '../../../components/modal/Info.svelte';
+	import type {Action} from '../../../models';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
-	import type {TAction} from '../../../stores/actions/actions-store.interface';
 	import {getTypeColor} from '../../../stores/actions/actions-store.types';
 	import ActionData from './content/ActionData.svelte';
 	import ActionNotes from './content/ActionNotes.svelte';
 	import ActionStat from './stat/ActionStat.svelte';
 	import ActionTimeline from './timeline/ActionTimeline.svelte';
 
-	export let action: TAction;
+	export let action: Action;
 	export let isLast: boolean;
-	export let onEdit: (id: string) => void;
 	export let onDelete: (id: string) => void;
 
 	let color: string;
@@ -29,6 +29,11 @@
 			title: 'Notes'
 		});
 	};
+
+	const editRecord = () => {
+		navigate('/track/' + action.gun.id + '/' + action.id + '/edit');
+	}
+
 </script>
 
 <Info bind:this={infoNotes}/>
@@ -38,7 +43,7 @@
 
 	<div class="action-content" style="border-left-color: {color}">
 		<div class="action-columns">
-			<ActionData {action} {onEdit}/>
+			<ActionData {action}/>
 			<ActionStat {action}/>
 		</div>
 
@@ -50,7 +55,7 @@
 					<Icon type="file"/> &nbsp; Notes...
 				</Button>
 			{/if}
-			<Button on:click={() => onEdit(action.id)} type="ghost" size="small">
+			<Button on:click={() => editRecord(action.gunID, action.id)} type="ghost" size="small">
 				<Icon type="edit"/> &nbsp; Edit
 			</Button>
 			<Button on:click={() => onDelete(action.id)} type="link-danger" size="small">

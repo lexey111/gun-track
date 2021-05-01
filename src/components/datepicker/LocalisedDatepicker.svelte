@@ -72,7 +72,7 @@
 			.sc-popover {
 				.trigger {
 					width: 100% !important;
-					overflow: hidden;
+					// overflow: hidden;
 
 					div[slot="trigger"] {
 						box-sizing: border-box;

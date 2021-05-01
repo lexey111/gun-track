@@ -7,6 +7,7 @@
 	import Button from '../../../components/buttons/Button.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showSuccess} from '../../../components/notifications/notify';
+	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import type {Gun} from '../../../models';
 	import {AppStateStore, dateLocale} from '../../../stores/app/app-state-store';
 	import {GunsStore} from '../../../stores/guns/guns-store';
@@ -32,9 +33,6 @@
 	const state = {dateLocale: 'en'};
 
 	let editor = DecoupledEditor;
-	// If needed, custom editor config can be passed through to the component
-	// Uncomment the custom editor config if you need to customise the editor.
-	// Note: If you don't pass toolbar object then Document editor will use default set of toolbar items.
 	let editorConfig: any = {
 		toolbar: {
 			items: [
@@ -61,14 +59,8 @@
 		}
 		ckDelay = setTimeout(() => {
 			ckStarted = true;
-		}, 200);
+		}, 20);
 	};
-
-	const deactivateCK = (): void => {
-		clearTimeout(ckDelay);
-		ckDelay = null;
-		ckStarted = false;
-	}
 
 	function onReady({detail: editor}) {
 		editor.ui.getEditableElement()
@@ -76,6 +68,8 @@
 			editor.ui.view.toolbar.element,
 			editor.ui.getEditableElement()
 		);
+
+		AppStateStore.hideSpinner();
 	}
 
 	const handleConfirm = async () => {
@@ -120,12 +114,14 @@
 				state.dateLocale = value.dateLocale;
 			}
 		});
+
 		if (!gun) {
 			isNew = true;
 			initialOpenEditor = false;
 			activateCK();
 			return;
 		}
+
 		isNew = false;
 		name = gun.name || '';
 		make = gun.make || '';
@@ -147,6 +143,8 @@
 	$ : {
 		disabled = !name.trim() && !make.trim() && !model.trim();
 	}
+
+	AppStateStore.showSpinner();
 </script>
 
 <div class="app-form">
@@ -217,7 +215,10 @@
 						on:ready={onReady}
 						bind:config={editorConfig}
 						bind:value={notes}/>
+				{:else}
+					<SpinnerComponent>Loading editor...</SpinnerComponent>
 				{/if}
+
 			</div>
 		</div>
 
@@ -291,20 +292,6 @@
 				border-radius: 7px;
 				background-color: var(--app-white-bg);
 				box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-			}
-		}
-
-		.ck-editor-pane {
-			position: relative;
-			min-height: 300px;
-
-			.ck-editor__editable, .ck-editor__editable_inline {
-				position: absolute;
-				top: 40px;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background-color: var(--app-white-bg);
 			}
 		}
 	}
