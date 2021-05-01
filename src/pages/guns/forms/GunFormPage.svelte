@@ -9,6 +9,7 @@
 	import Icon from '../../../components/icons/Icon.svelte';
 	import type {Gun} from '../../../models';
 	import {AppStateStore, dateLocale} from '../../../stores/app/app-state-store';
+	import {GunsStore} from '../../../stores/guns/guns-store';
 	import {autoFocusWithSelect} from '../../../utils/autofocus';
 	import GunPhoto from '../gun/GunPhoto.svelte';
 
@@ -25,8 +26,7 @@
 	let notes = '';
 	let caliber = '';
 	let isNew = false;
-
-	export let onConfirm: (gun: Gun) => void;
+	let initialOpenEditor = false;
 
 	let appState$: any;
 	const state = {dateLocale: 'en'};
@@ -52,7 +52,6 @@
 		}
 	};
 
-	let ckReady = false;
 	let ckStarted = false;
 
 	let ckDelay: any;
@@ -72,18 +71,16 @@
 	}
 
 	function onReady({detail: editor}) {
-		ckReady = true;
-		// Insert the toolbar before the editable area.
-		editor.ui
-			.getEditableElement()
+		editor.ui.getEditableElement()
 			.parentElement.insertBefore(
 			editor.ui.view.toolbar.element,
 			editor.ui.getEditableElement()
 		);
 	}
 
-	const handleConfirm = () => {
-		onConfirm({
+	const handleConfirm = async () => {
+		AppStateStore.showSpinner();
+		await GunsStore.saveGun({
 			...gun,
 			name,
 			make,
@@ -91,6 +88,9 @@
 			caliber,
 			notes
 		});
+		AppStateStore.hideSpinner();
+
+		gotoGuns();
 	};
 
 	onMount(() => {
@@ -101,6 +101,7 @@
 		});
 		if (!gun) {
 			isNew = true;
+			initialOpenEditor = false;
 			activateCK();
 			return;
 		}
@@ -111,6 +112,7 @@
 		notes = gun.notes || '';
 		caliber = gun.caliber || '';
 		registered = dayjs(gun.dateCreated).locale(dateLocale).format('LL');
+		initialOpenEditor = !!notes;
 
 		activateCK();
 	});
@@ -184,7 +186,7 @@
 				</div>
 			{/if}
 
-			<Collapser title="Notes" open={!!notes}>
+			<Collapser title="Notes" open={initialOpenEditor}>
 				<div class="ck-editor-pane">
 					{#if (ckStarted)}
 						<CKEditor
