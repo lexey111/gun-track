@@ -159,6 +159,12 @@
 					box-shadow: 0 0 18px rgba(0, 0, 0, .3);
 					border-radius: 17px;
 
+					&.scroll-y {
+						.modal-content {
+							overflow-y: auto;
+						}
+					}
+
 					.modal-close-button {
 						position: absolute;
 						border-top-right-radius: 17px;

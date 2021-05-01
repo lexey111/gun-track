@@ -24,7 +24,9 @@
 	}
 </script>
 
-<Dropdown className="currency-menu menu menu-button" bind:close={closeMenu} bind:dropdown={dropdown}>
+<Dropdown className="currency-menu menu menu-button"
+          top={true}
+          bind:close={closeMenu} bind:dropdown={dropdown}>
 		<span slot="title">
 			{#if (currency)}
 				<i>{currencySign}</i>

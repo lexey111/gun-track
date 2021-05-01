@@ -27,11 +27,18 @@
 	<h3>UI</h3>
 	<ul>
 		<li>
+			Page scroll position store/restore
+		</li>
+		<li>
 			<Done>Non-modal editors</Done>
 		</li>
 		<li>Gun cards default image</li>
-		<li>Fix type selector</li>
-		<li>Fix currency dropdown (to top)</li>
+		<li>
+			<Done>Fix type selector</Done>
+		</li>
+		<li>
+			<Done>Fix currency dropdown (to top)</Done>
+		</li>
 		<li>
 			<Done>Home page guns cards</Done>
 		</li>

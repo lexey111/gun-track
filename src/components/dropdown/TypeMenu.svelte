@@ -94,6 +94,34 @@
 							}
 						}
 					}
+
+				}
+
+				&.menu-oops {
+					.dc-dropdown-wrapper {
+						.dropdown-menu {
+							flex-flow: column nowrap !important;
+
+							& > div {
+								width: 100%;
+
+								&:not(:first-child) {
+									margin: 0 !important;
+								}
+
+								h4 {
+									margin: 4px 0;
+									border: none;
+									font-size: var(--app-small-font-size);
+								}
+
+								a {
+									padding-top: 6px;
+									padding-bottom: 6px;
+								}
+							}
+						}
+					}
 				}
 			}
 		}

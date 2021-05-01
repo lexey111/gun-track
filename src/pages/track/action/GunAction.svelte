@@ -26,6 +26,7 @@
 		}
 		infoNotes.showInfoDialog({
 			text: notes,
+			extraClass: 'scroll-y',
 			title: 'Notes'
 		});
 	};

@@ -9,6 +9,7 @@
 	export const showInfoDialog = (props: TConfirmProps): void => {
 		modal.open(InfoModal, {
 			closeButton: true,
+			extraClass: props.extraClass,
 			componentProps: {
 				title: props.title,
 				html: props.text,

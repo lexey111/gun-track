@@ -8,15 +8,18 @@
 	export let title = '';
 	export let isToolbar = false;
 	export let left = false;
+	export let top = false;
 	export let className = '';
 	export let onActiveChange: (activate: boolean) => void;
 	export let onActiveChanged: (open: boolean) => void;
 
 	export const close = () => {
 		setInactive();
+		oopsClass = false;
 	};
 
 	export let dropdown: any;
+	let wrapper: any;
 	let titleWidth: number;
 
 	let storeUnsubscribe$: any;
@@ -45,6 +48,8 @@
 
 		onActiveChange && onActiveChange(false);
 		active = false;
+		oopsClass = false;
+
 		clearTimeout(openTimeout);
 		if (onActiveChanged) {
 			openTimeout = setTimeout(() => {
@@ -53,11 +58,23 @@
 		}
 	};
 
+	let oopsClass = false;
 	const toggleActive = () => {
 		if (active) {
 			setInactive();
-		} else {
-			setActive();
+			oopsClass = false;
+			return;
+		}
+		setActive();
+		oopsClass = false;
+		const rect = wrapper.getBoundingClientRect();
+		const container = document.querySelector('.app-page');
+		if (!container) {
+			return;
+		}
+		const containerRect = container.getBoundingClientRect();
+		if (rect.x + rect.width - containerRect.x > containerRect.width) {
+			oopsClass = true;
 		}
 	}
 
@@ -98,7 +115,18 @@
 			(active ? ' active' : '') +
 			(className ? ' ' + className : '') +
 			(isToolbar ? ' menu menu-button toolbar' : '') +
-			(left ? ' menu-left' : '');
+			(left ? ' menu-left' : '') +
+			(oopsClass ? ' menu-oops' : '') +
+			(top ? ' menu-top' : '');
+	}
+
+	const suppressWrapperKey = (e) => {
+		if (!active) {
+			e.preventDefault();
+			e.stopPropagation();
+			// TODO: focus next focusable outside dropdown
+			return false;
+		}
 	}
 </script>
 
@@ -115,13 +143,14 @@
 		<Icon type="down" size="11px" class="dc-down"/>
 	</div>
 
-	{#if (active)}
-		<div class="dc-dropdown-wrapper" style="min-width: {titleWidth}px">
-			<div class="dc-dropdown-content">
-				<slot/>
-			</div>
+	<div class="dc-dropdown-wrapper"
+	     bind:this={wrapper}
+	     style="min-width: {titleWidth}px"
+	     on:keydown={suppressWrapperKey}>
+		<div class="dc-dropdown-content">
+			<slot/>
 		</div>
-	{/if}
+	</div>
 </div>
 
 <style lang="less">
@@ -155,6 +184,7 @@
 				align-content: center;
 				justify-items: flex-start;
 				justify-content: flex-start;
+				font-size: var(--app-small-font-size);
 
 				span {
 					display: flex;
@@ -185,6 +215,16 @@
 				}
 			}
 
+			&:not(.active) {
+				.dc-dropdown-wrapper {
+					z-index: -1;
+					pointer-events: none;
+					opacity: 0;
+					transform: scaleY(0.01);
+					transition: none;
+				}
+			}
+
 			.dc-dropdown-wrapper {
 				position: absolute;
 				top: 100%;
@@ -196,7 +236,7 @@
 				border-radius: 7px;
 				pointer-events: none;
 				opacity: 0;
-				transition: all .1s ease;
+				transition: opacity .1s linear;
 				transform-origin: top right;
 				transform: scaleY(.5);
 				display: flex;
@@ -215,7 +255,7 @@
 							padding: 12px 16px 12px 22px;
 							font-size: var(--app-small-font-size);
 							color: var(--app-text);
-							transition: all .1s ease;
+							transition: color .1s ease, background-color .1s ease;
 							white-space: nowrap;
 							position: relative;
 							border-radius: 7px;
@@ -292,6 +332,22 @@
 				.dc-dropdown-wrapper {
 					left: 0;
 					right: unset;
+				}
+			}
+
+			&.menu-top {
+				.dc-dropdown-wrapper {
+					transform-origin: bottom left;
+					top: unset;
+					bottom: 100%;
+					border-radius: 7px 7px 0 0 !important;
+					box-shadow: 2px -4px 4px rgba(0, 0, 0, .2);
+				}
+
+				&.active {
+					.dc-title {
+						border-radius: 0 0 7px 7px !important;
+					}
 				}
 			}
 
