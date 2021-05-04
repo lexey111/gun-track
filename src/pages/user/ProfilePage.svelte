@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
+	import I18n from '../../components/i18n/I18n.svelte';
 	import type {IAuthStore, TAuthState} from '../../stores/auth/auth-store.interface';
 	import ChangePassword from './sections/ChangePassword.svelte';
 	import ProfileDetails from './sections/ProfileDetails.svelte';
@@ -15,19 +16,28 @@
 </script>
 
 <div class="app-page-profile">
-	<h1>Profile</h1>
+	<h1>
+		<I18n>@User.Profile</I18n></h1>
 	<ProfileDetails authState={authState} authStore={authStore}/>
 
 	{#if (authState.providerId === 'e-mail')}
-		<h2>Change password</h2>
+		<h2>
+			<I18n>@User.ChangePassword</I18n>
+		</h2>
 		<ChangePassword authStore={authStore}/>
 	{/if}
 
-	<h2>Useful links</h2>
+	<h2>
+		<I18n>@User.UsefulLinks</I18n>
+	</h2>
 	<ul>
 		<!--  svelte-ignore a11y-invalid-attribute-->
-		<li><a href="#" on:click={gotoTOS}>Terms of service</a></li>
-		<li>Contacts: <a href="mailto:{email}">{email}</a></li>
+		<li><a href="#" on:click={gotoTOS}>
+			<I18n>@User.TermsOfService</I18n>
+		</a></li>
+		<li>
+			<I18n>@User.Contacts</I18n>
+			: <a href="mailto:{email}">{email}</a></li>
 	</ul>
 </div>
 

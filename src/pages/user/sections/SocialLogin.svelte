@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import type {IAuthStore} from '../../../stores/auth/auth-store.interface';
 
@@ -17,7 +18,7 @@
 <div class="form-group button-row">
 	<!--  svelte-ignore a11y-label-has-associated-control -->
 	<label>
-		Using social network
+		<I18n>@User.UsingSocialNetwork</I18n>
 	</label>
 
 	<Button on:click={handleLoginWithFacebook} type="ghost">
@@ -29,9 +30,3 @@
 		Google
 	</Button>
 </div>
-
-<style>
-    .form-group {
-        margin-bottom: 32px;
-    }
-</style>

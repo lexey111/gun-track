@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
+	import I18n from '../../components/i18n/I18n.svelte';
 
 	onMount(() => {
 		setTimeout(() => {
@@ -9,7 +10,9 @@
 	});
 </script>
 
-<h1>Sign out</h1>
+<h1>
+	<I18n>@User.SignOut</I18n>
+</h1>
 <p>
-	You will be redirected to Home page in a moment...
+	<I18n>@User.SignoutMessage</I18n>
 </p>

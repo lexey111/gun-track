@@ -11,6 +11,12 @@
 	<h3>Tech</h3>
 	<ul>
 		<li>
+			I18n for notifications
+		</li>
+		<li>
+			I18n for dialogs
+		</li>
+		<li>
 			<Done>Responsiveness from 375px</Done>
 		</li>
 		<li>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Image from '../../../components/images/Image.svelte';
 	import type {IAuthStore, TAuthState} from '../../../stores/auth/auth-store.interface';
 	import ProfileLogout from './ProfileLogout.svelte';
@@ -15,9 +16,12 @@
 			{/if}
 		</td>
 		<td>
-			<h2>Authorized via {authState.providerId}</h2>
+			<h2>
+				<I18n>@User.AuthorizedVia</I18n> &nbsp; {authState.providerId}</h2>
 			<p>
-				<b>User ID:</b> {authState.email}
+				<b>
+					<I18n>@User.UserID</I18n>
+					:</b> {authState.email}
 			</p>
 		</td>
 	</tr>
@@ -28,8 +32,6 @@
 		<td></td>
 	</tr>
 </table>
-
-<!--	<pre>{JSON.stringify(authState, null, 4)}</pre>-->
 
 <style lang="less">
 	table {
@@ -43,6 +45,7 @@
 				h2 {
 					margin: 0;
 				}
+
 				padding-bottom: 32px;
 			}
 		}

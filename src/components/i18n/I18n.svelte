@@ -68,6 +68,10 @@
 <style>
     .hide {
         display: none;
+        visibility: collapse;
+        position: fixed;
+        top: -1000px;
+        left: -1000px;
     }
 
     span {

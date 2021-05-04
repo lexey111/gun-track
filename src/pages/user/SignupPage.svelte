@@ -1,6 +1,9 @@
 <script lang="ts">
+	import {onMount} from 'svelte';
 	import {Link} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
+	import {I18nService} from '../../components/i18n/i18n.service';
+	import I18n from '../../components/i18n/I18n.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 
 	import {showError, showInfo} from '../../components/notifications/notify';
@@ -37,20 +40,36 @@
 	const signUp = async () => {
 		const result: any = await authStore.signUp(email, pwd);
 		if (result.message) {
-			showError(`Registration failed: ${result.message}`);
+			showError(registrationFailed + ': ' + result.message);
+
 		} else {
-			showInfo('Successful registration. Verification code was send to email provided.');
+			showInfo(registrationCodeSent);
 		}
 	}
 
 	const signUpVerify = async () => {
 		const result: any = await authStore.confirmSignUp(email, code);
 		if (result.message) {
-			showError(`Confirmation failed: ${result.message}`);
+			showError(confirmationFailed + ': ' + result.message);
 		} else {
-			showInfo('Successful registration. Now you can login with these credentials.');
+			showInfo(registrationDone);
 		}
 	}
+
+	let placeholderAtLeast8: string;
+	let registrationFailed: string;
+	let registrationCodeSent: string;
+	let confirmationFailed: string;
+	let registrationDone: string;
+
+	onMount(() => {
+		void I18nService.translate('@User.placeholderAtLeast8').then(s => placeholderAtLeast8 = s);
+
+		void I18nService.translate('@User.registrationFailed').then(s => registrationFailed = s);
+		void I18nService.translate('@User.registrationCodeSent').then(s => registrationCodeSent = s);
+		void I18nService.translate('@User.confirmationFailed').then(s => confirmationFailed = s);
+		void I18nService.translate('@User.registrationDone').then(s => registrationDone = s);
+	});
 </script>
 
 <div class="app-page-signup">
@@ -58,21 +77,21 @@
 		<Link to="/login" class="outlink">
 			<Icon type="arrow-left" size="24px"/>
 		</Link>
-		Sign up
+		<I18n>@User.SignUp</I18n>
 	</h1>
 
 	<p>
-		To be registered you need to provide valid e-mail address you have access to, and the credentials.
+		<I18n>@User.SignUpLine1</I18n>
 	</p>
 
 	<p>
-		Then we will send you a verification code you need to use within 15 minutes to confirm the email.
+		<I18n>@User.SignUpLine2</I18n>
 	</p>
 
 	<hr/>
 
 	<h3 class="highlight-mark">
-		1. Please fill the form to register:
+		<I18n>@User.SignUpFillForm</I18n>
 	</h3>
 
 	<div class="form-group" class:error={emailError}>
@@ -90,7 +109,9 @@
 	</div>
 
 	<div class="form-group" class:error={passwordError}>
-		<label for="pwd">Password</label>
+		<label for="pwd">
+			<I18n>@User.Password</I18n>
+		</label>
 		<input
 			type="password"
 			autocomplete="off"
@@ -101,10 +122,12 @@
 	</div>
 
 	<div class="form-group" class:error={passwordError}>
-		<label for="pwd2">Confirm password</label>
+		<label for="pwd2">
+			<I18n>@User.ConfirmPassword</I18n>
+		</label>
 		<input
 			type="password"
-			placeholder="at least 8 characters"
+			placeholder={placeholderAtLeast8}
 			autocomplete="off"
 			maxlength="32"
 			required
@@ -119,12 +142,12 @@
 			disabled={!signupAllowed}
 			type="ghost"
 			on:click={signUp}>
-			Register
+			<I18n>@User.Register</I18n>
 		</Button>
 	</div>
 
 	<h3 class="highlight-mark">
-		2. Confirm your e-mail:
+		<I18n>@User.ConfirmYourEmail</I18n>
 	</h3>
 
 	<div class="form">
@@ -142,7 +165,9 @@
 		</div>
 
 		<div class="form-group" class:error={codeError}>
-			<label for="code">Verification code</label>
+			<label for="code">
+				<I18n>@User.VerificationCode</I18n>
+			</label>
 			<input
 				autocomplete="off"
 				maxlength="32"
@@ -157,13 +182,15 @@
 			<Button
 				disabled={!codeAllowed}
 				on:click={signUpVerify}>
-				Confirm & Sign in
+				<I18n>@User.ConfirmSignIn</I18n>
 			</Button>
 		</div>
 	</div>
 
 	<p class="return-to-login">
-		<Link to="login">&larr; Back to login page</Link>
+		<Link to="login">&larr;
+			<I18n>@User.BackToLogin</I18n>
+		</Link>
 	</p>
 </div>
 

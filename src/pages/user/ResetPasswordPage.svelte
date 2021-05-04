@@ -1,6 +1,9 @@
 <script lang="ts">
+	import {onMount} from 'svelte';
 	import {Link} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
+	import {I18nService} from '../../components/i18n/i18n.service';
+	import I18n from '../../components/i18n/I18n.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 
 	import {showError, showInfo} from '../../components/notifications/notify';
@@ -30,26 +33,39 @@
 
 	let sendResetCodeAllowed: boolean;
 	$: sendResetCodeAllowed = !!email.trim() && !emailError;
+
 	let newPasswordAllowed: boolean;
 	$: newPasswordAllowed = !!email.trim() && !!code.trim() && !!pwd.trim() && !emailError && !codeError && !passwordError;
+
+	let resetCodeFailed: string;
+	let resetCodeSent: string;
+	let confirmationFailed: string;
+	let passwordUpdated: string;
 
 	const sendResetCode = async () => {
 		const result: any = await authStore.forgotPassword(email);
 		if (result?.message) {
-			showError(`Sending code failed: ${result.message}`);
+			showError(resetCodeFailed + ': ' + result.message);
 		} else {
-			showInfo('Reset code was send to the email provided.');
+			showInfo(resetCodeSent);
 		}
 	}
 
 	const sendResetCodeConfirm = async () => {
 		const result: any = await authStore.confirmForgotPassword(email, code, pwd);
 		if (result?.message) {
-			showError(`Confirmation failed: ${result.message}`);
+			showError(confirmationFailed + ': ' + result.message);
 		} else {
-			showInfo('Password updated. Now you can login with these credentials.');
+			showInfo(passwordUpdated);
 		}
 	}
+
+	onMount(() => {
+		void I18nService.translate('@User.resetCodeFailed').then(s => resetCodeFailed = s);
+		void I18nService.translate('@User.resetCodeSent').then(s => resetCodeSent = s);
+		void I18nService.translate('@User.confirmationFailed').then(s => confirmationFailed = s);
+		void I18nService.translate('@User.passwordUpdated').then(s => passwordUpdated = s);
+	});
 </script>
 
 <div class="app-page-reset">
@@ -57,21 +73,21 @@
 		<Link to="/login" class="outlink">
 			<Icon type="arrow-left" size="24px"/>
 		</Link>
-		Reset password
+		<I18n>@User.ResetPassword</I18n>
 	</h1>
 
 	<p>
-		You need to request the reset code first. We will send it to the email provided.
+		<I18n>@User.ResetPasswordLine1</I18n>
 	</p>
 
 	<p>
-		Then you need to enter the code sent, and new password.
+		<I18n>@User.ResetPasswordLine2</I18n>
 	</p>
 
 	<hr/>
 
 	<h3 class="highlight-mark">
-		1. Request reset code
+		<I18n>@User.RequestCode</I18n>
 	</h3>
 
 	<div class="form-group" class:error={emailError}>
@@ -93,11 +109,13 @@
 			disabled={!sendResetCodeAllowed}
 			type="ghost"
 			on:click={sendResetCode}>
-			Get password reset code
+			<I18n>@User.GetCode</I18n>
 		</Button>
 	</div>
 
-	<h3 class="highlight-mark">2. Enter the code and new password</h3>
+	<h3 class="highlight-mark">
+		<I18n>@User.EnterCode</I18n>
+	</h3>
 
 	<div class="form-group" class:error={emailError}>
 		<label for="email2">E-mail</label>
@@ -112,7 +130,9 @@
 	</div>
 
 	<div class="form-group" class:error={codeError}>
-		<label for="code">Code</label>
+		<label for="code">
+			<I18n>@User.Code</I18n>
+		</label>
 		<input
 			type="text"
 			autocomplete="off"
@@ -123,7 +143,9 @@
 	</div>
 
 	<div class="form-group" class:error={passwordError}>
-		<label for="pwd">New password</label>
+		<label for="pwd">
+			<I18n>@User.NewPassword</I18n>
+		</label>
 		<input
 			type="password"
 			placeholder="at least 8 characters"
@@ -135,7 +157,9 @@
 	</div>
 
 	<div class="form-group" class:error={passwordError}>
-		<label for="pwd2">Confirm password</label>
+		<label for="pwd2">
+			<I18n>@User.ConfirmPassword</I18n>
+		</label>
 		<input
 			type="password"
 			autocomplete="off"
@@ -151,12 +175,14 @@
 		<Button
 			disabled={!newPasswordAllowed}
 			on:click={sendResetCodeConfirm}>
-			Change password
+			<I18n>@User.ChangePassword</I18n>
 		</Button>
 	</div>
 
 	<p class="return-to-login">
-		<Link to="login">&larr; Back to login page</Link>
+		<Link to="login">&larr;
+			<I18n>@User.BackToLogin</I18n>
+		</Link>
 	</p>
 </div>
 
