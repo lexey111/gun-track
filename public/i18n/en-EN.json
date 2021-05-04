@@ -3,7 +3,12 @@
 		"Welcome": "Welcome",
 		"ThisIsGunTrack": "This is Gun | Track site",
 		"Today": "Today",
-		"Yesterday": "Yesterday"
+		"Yesterday": "Yesterday",
+		"Loading": "Loading"
+	},
+	"@Footer": {
+		"Contacts": "Contacts",
+		"TermsOfService": "Terms of service"
 	},
 	"@User": {
 		"Profile": "Profile",

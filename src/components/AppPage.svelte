@@ -4,6 +4,7 @@
 	import {resolvePage} from '../routing/route-resolver';
 	import {AuthStore} from '../stores/auth/auth-store';
 	import type {TAuthState} from '../stores/auth/auth-store.interface';
+	import I18n from './i18n/I18n.svelte';
 	import SpinnerComponent from './spinners/SpinnerComponent.svelte';
 
 	export let pageId = '';
@@ -66,7 +67,8 @@
 	{:else}
 		<div class="wait-message">
 			<SpinnerComponent>
-				Loading...
+				<I18n>@Common.Loading</I18n>
+				...
 			</SpinnerComponent>
 		</div>
 	{/if}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
+	import I18n from './i18n/I18n.svelte';
 
 	const email = 'lexey111@gmail.com';
 
@@ -12,18 +13,20 @@
 	<div class="app-page-footer-content">
 		<p>
 			&copy; 2021 Oleksii Koshkin aka Lexey111
-			<span>App version: 1.0.0</span>
-			<span>Released: May, 2021</span>
+			<span>App version: 1.0.0 | May, 2021</span>
 		</p>
 		<i></i>
 
 		<div>
-			Contacts: <a href="mailto:{email}">{email}</a>
+			<I18n>@Footer.Contacts</I18n>
+			: <a href="mailto:{email}">{email}</a>
 		</div>
 
 		<div>
 			<!--  svelte-ignore a11y-invalid-attribute-->
-			<a href="#" on:click={openTOS}>Terms of Service</a>
+			<a href="#" on:click={openTOS}>
+				<I18n>@Footer.TermsOfService</I18n>
+			</a>
 		</div>
 	</div>
 </div>
@@ -31,9 +34,10 @@
 <style lang="less">
 	.app-page-footer {
 		width: 100%;
-		min-height: 80px;
+		min-height: 50px;
 		display: flex;
 		flex-flow: row nowrap;
+		align-items: flex-start;
 		padding: 16px 0;
 		font-size: .8em;
 		text-align: center;
