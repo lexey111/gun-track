@@ -31,7 +31,7 @@
 <style lang="less">
 	.app-page-footer {
 		width: 100%;
-		height: 80px;
+		min-height: 80px;
 		display: flex;
 		flex-flow: row nowrap;
 		padding: 16px 0;
@@ -72,7 +72,6 @@
 
 		div {
 			margin-left: 32px;
-			align-self: center;
 			text-align: left;
 
 			a {

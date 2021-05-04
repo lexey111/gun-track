@@ -53,7 +53,7 @@
 		</p>
 		<hr>
 		<p>
-			Free to use for up to 7 guns!
+			Up to 7 guns in this version!
 		</p>
 	</div>
 </div>
@@ -118,7 +118,7 @@
 			background-color: rgba(255, 255, 255, .1);
 			padding: 32px;
 			max-width: 50%;
-			min-width: 400px;
+			min-width: 375px;
 			position: relative;
 
 			h2 {
@@ -183,6 +183,7 @@
 				}
 			}
 		}
+
 		@media (max-width: 1200px) {
 			.welcome {
 				min-width: unset;
@@ -201,6 +202,16 @@
 					right: 0;
 					width: 100%;
 					min-width: unset;
+				}
+			}
+		}
+
+		@media (max-width: 540px) {
+			.welcome {
+				.home-image {
+					z-index: 0;
+					padding: 0;
+					bottom: 50px;
 				}
 			}
 		}

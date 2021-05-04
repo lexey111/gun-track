@@ -57,17 +57,17 @@
 		<!--  svelte-ignore a11y-label-has-associated-control -->
 		<label/>
 
-		<!--  svelte-ignore a11y-invalid-attribute-->
-		<a href="#" on:click={() => navigate('login/restore')}>Forgot password?</a>
-
-		<span class="stub"></span>
-
 		<Button
 			disabled={!signinAllowed}
 			on:click={signIn}>
 			<Icon type="login" class="inline" size="18px"/>
 			Sign in
 		</Button>
+		<span class="stub"></span>
+
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<a href="#" on:click={() => navigate('login/restore')}>Forgot password?</a>
+
 	</div>
 </div>
 

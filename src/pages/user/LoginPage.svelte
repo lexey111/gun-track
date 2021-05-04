@@ -24,14 +24,17 @@
 
 	<div class="new-user">
 		<h3 class="highlight-mark">Want to register?</h3>
-		<p>
-			Register new local user with e-mail:
-		</p>
+		<div class="form-group button-row">
+			<!--  svelte-ignore a11y-label-has-associated-control -->
+			<label>
+				Register with e-mail
+			</label>
 
-		<Button on:click={() => navigate('login/signup')} type="ghost">
-			<Icon type="user-add" class="inline" size="18px"/>
-			Sign up!
-		</Button>
+			<Button on:click={() => navigate('login/signup')} type="ghost">
+				<Icon type="user-add" class="inline" size="18px"/>
+				Sign up!
+			</Button>
+		</div>
 	</div>
 </div>
 

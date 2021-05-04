@@ -54,30 +54,30 @@
 {/if}
 
 <style lang="less">
-	.profile-menu {
-		border-radius: 100%;
-		margin-left: 16px;
-		width: 50px;
-		height: 50px;
-		border: 4px solid rgba(255, 255, 255, .7);
-		opacity: .7;
-		overflow: hidden;
-		transition: border .2s ease, opacity .2s ease;
-		cursor: pointer;
-
-		&.active {
-			border-color: var(--app-primary-bg-light);
-			opacity: 1;
-		}
-
-		&:hover, &:focus {
-			opacity: 1;
-			border: 4px solid rgba(255, 255, 255, 1);
-			outline: none;
-		}
-	}
-
 	:global {
+		.profile-menu {
+			border-radius: 100%;
+			margin-left: 16px;
+			width: 50px;
+			height: 50px;
+			border: 4px solid rgba(255, 255, 255, .7);
+			opacity: .7;
+			overflow: hidden;
+			transition: border .2s ease, opacity .2s ease;
+			cursor: pointer;
+
+			&.active {
+				border-color: var(--app-primary-bg-light);
+				opacity: 1;
+			}
+
+			&:hover, &:focus {
+				opacity: 1;
+				border: 4px solid rgba(255, 255, 255, 1);
+				outline: none;
+			}
+		}
+
 		.profile-image {
 			width: 50px;
 			height: 50px;

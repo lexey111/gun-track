@@ -11,6 +11,27 @@
 	<h3>Tech</h3>
 	<ul>
 		<li>
+			<Done>Responsiveness from 375px</Done>
+		</li>
+		<li>
+			Domain
+		</li>
+		<li>
+			Deploy
+		</li>
+		<li>
+			CI/CD
+		</li>
+		<li>
+			Update OG in html
+		</li>
+		<li>
+			Register contact email
+		</li>
+		<li>
+			<Done>Add image to OG: https://habr.com/ru/company/macloud/blog/555082</Done>
+		</li>
+		<li>
 			<Done>Remove favicons plugin</Done>
 		</li>
 		<li>

@@ -87,7 +87,7 @@
       class:logged-out={!auth_state?.loggedIn}>
 
 	{#if (isHomePage)}
-		<h1>GUN | TRACK</h1>
+		<h1 class="app-title">GUN | TRACK</h1>
 	{/if}
 
 	<Router url={url}>
@@ -99,8 +99,8 @@
 </main>
 
 <style lang="less">
-	main {
-		h1 {
+	:global {
+		h1.app-title {
 			font-weight: 100;
 			display: inline-flex;
 			justify-content: flex-start;
