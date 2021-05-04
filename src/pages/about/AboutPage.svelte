@@ -11,10 +11,13 @@
 	<h3>Tech</h3>
 	<ul>
 		<li>
-			I18n for notifications
+			Fix extra scroll on short pages
 		</li>
 		<li>
-			I18n for dialogs
+			<Done>I18n for notifications</Done>
+		</li>
+		<li>
+			<Done>I18n for dialogs</Done>
 		</li>
 		<li>
 			<Done>Responsiveness from 375px</Done>

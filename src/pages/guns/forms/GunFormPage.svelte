@@ -5,6 +5,8 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import {I18nService} from '../../../components/i18n/i18n.service';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showSuccess} from '../../../components/notifications/notify';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
@@ -85,7 +87,7 @@
 			});
 
 			if (result) {
-				showSuccess('New gun was successfully registered.', name || make || model);
+				showSuccess(gunRegistered, name || make || model);
 			}
 			AppStateStore.hideSpinner();
 
@@ -108,7 +110,10 @@
 		gotoGuns();
 	};
 
+	let gunRegistered: string;
 	onMount(() => {
+		void I18nService.translate('@Guns.gunRegistered').then(s => gunRegistered = s);
+
 		appState$ = AppStateStore.subscribe(value => {
 			if (value.dateLocale && value.dateLocale !== state.dateLocale) {
 				state.dateLocale = value.dateLocale;
@@ -150,10 +155,18 @@
 <div class="app-form">
 	<div class="app-form-content multi-columns">
 		<div class="app-content-column">
-			<h1>{isNew ? 'New gun' : 'Change record'}</h1>
+			<h1>
+				{#if (isNew)}
+					<I18n>@Guns.NewGun</I18n>
+				{:else}
+					<I18n>@Common.ChangeRecord</I18n>
+				{/if}
+			</h1>
 
 			<div class="form-group">
-				<label for="name">Name of the gun</label>
+				<label for="name">
+					<I18n>@Guns.NameGun</I18n>
+				</label>
 				<input
 					placeholder="Black rifle .223"
 					autocomplete="off"
@@ -165,7 +178,9 @@
 			</div>
 
 			<div class="form-group">
-				<label for="caliber">Caliber</label>
+				<label for="caliber">
+					<I18n>@Guns.Caliber</I18n>
+				</label>
 				<input
 					placeholder="12GA .223 .308 .50"
 					autocomplete="off"
@@ -176,7 +191,9 @@
 			</div>
 
 			<div class="form-group">
-				<label for="make">Make</label>
+				<label for="make">
+					<I18n>@Guns.Make</I18n>
+				</label>
 				<input
 					placeholder="Inter Ordnance"
 					autocomplete="off"
@@ -187,7 +204,9 @@
 			</div>
 
 			<div class="form-group">
-				<label for="model">Model</label>
+				<label for="model">
+					<I18n>@Guns.Model</I18n>
+				</label>
 				<input
 					placeholder="Savage MSR-15 Recon"
 					autocomplete="off"
@@ -200,14 +219,18 @@
 			{#if (!isNew)}
 				<div class="form-group">
 					<!--  svelte-ignore a11y-label-has-associated-control -->
-					<label>Registered</label>
+					<label>
+						<I18n>@Guns.Registered</I18n>
+					</label>
 					<span class="control-static">{registered}</span>
 				</div>
 			{/if}
 		</div>
 
 		<div class="app-content-column">
-			<h3>Notes</h3>
+			<h3>
+				<I18n>@Common.Notes</I18n>
+			</h3>
 			<div class="ck-editor-pane">
 				{#if (ckStarted)}
 					<CKEditor
@@ -216,7 +239,9 @@
 						bind:config={editorConfig}
 						bind:value={notes}/>
 				{:else}
-					<SpinnerComponent>Loading editor...</SpinnerComponent>
+					<SpinnerComponent>
+						<I18n>@Common.LoadingEditor</I18n>
+					</SpinnerComponent>
 				{/if}
 
 			</div>
@@ -227,18 +252,17 @@
 				<div class="gun-image">
 					<GunPhoto id={gun?.id} imageClass="gun-image-preview">
 
-						<p slot="info">
-							To change the picture please use
-							"Photo upload"
-							<Icon type="camera" size="1.2em"/>
-							dialog.
+						<p slot="info" class="placeholder">
+							<I18n>@Guns.ToChangePart1</I18n> &nbsp;
+							<Icon type="camera" size="1.2em"/> &nbsp;
+							<I18n>@Guns.ToChangePart2</I18n>
 						</p>
 
-						<div slot="placeholder">
+						<div slot="placeholder" class="placeholder">
 							<p>
-								Please use "Photo upload"
-								<Icon type="camera" size="1.2em"/>
-								dialog.
+								<I18n>@Guns.PleaseUseUpload</I18n> &nbsp;
+								<Icon type="camera" size="1.2em"/> &nbsp;
+								<I18n>@Guns.ToChangePart2</I18n>
 							</p>
 						</div>
 					</GunPhoto>
@@ -250,12 +274,18 @@
 
 	<div class="app-form-footer">
 		<Button on:click={gotoGuns} type="link">
-			<Icon type="arrow-left"/> &nbsp; Cancel
+			<Icon type="arrow-left"/> &nbsp;
+			<I18n>@Common.Cancel</I18n>
 		</Button>
 
 		<div class="right-buttons">
 			<Button disabled={disabled}
-			        on:click={handleConfirm}>{isNew ? 'Register' : 'Save'}
+			        on:click={handleConfirm}>
+				{#if (isNew)}
+					<I18n>@Common.Register</I18n>
+				{:else }
+					<I18n>@Common.Save</I18n>
+				{/if}
 			</Button>
 		</div>
 	</div>

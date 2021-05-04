@@ -2,6 +2,8 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import {I18nService} from '../../../components/i18n/i18n.service';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import type {Gun} from '../../../models';
 	import {AppStateStore} from '../../../stores/app/app-state-store';
@@ -25,8 +27,15 @@
 		navigate('/guns');
 	}
 
+	let gunNotFound: string;
+	let tooManyGuns: string;
+
 	onMount(() => {
 		AppStateStore.showSpinner();
+
+		void I18nService.translate('@Common.gunNotFound').then(s => gunNotFound = s);
+		void I18nService.translate('@Guns.TooManyGuns').then(s => tooManyGuns = s);
+
 		gunsState$ = GunsStore.subscribe(value => {
 			if (!value || value.isEmpty === null) {
 				return;
@@ -37,12 +46,12 @@
 			gun = GunsStore.getGunById(id);
 
 			if (id === 'new' && GunsStore.gunCount() >= 7) {
-				loadingError = 'There are only 7 guns could be registered, sorry.';
+				loadingError = tooManyGuns || 'There are only 7 guns could be registered, sorry.';
 				return;
 			}
 
 			if (!gun && id !== 'new') {
-				loadingError = 'Gun not found.';
+				loadingError = gunNotFound || 'Gun not found.';
 			}
 		});
 	});
@@ -53,12 +62,14 @@
 </script>
 
 {#if (loadingError)}
-	<h1 class="error">Error</h1>
+	<h1 class="error">
+		<I18n>@Common.Error</I18n>
+	</h1>
 	<p>{loadingError}</p>
 	<p>&nbsp;</p>
 	<Button type="ghost" on:click={gotoGuns}>
 		<Icon type="arrow-left"/> &nbsp;
-		Return to Guns
+		<I18n>@Guns.ReturnToGuns</I18n>
 	</Button>
 {/if}
 

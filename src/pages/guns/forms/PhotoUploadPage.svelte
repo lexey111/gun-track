@@ -4,6 +4,8 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import {I18nService} from '../../../components/i18n/i18n.service';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import Confirm from '../../../components/modal/Confirm.svelte';
 	import {showError, showInfo} from '../../../components/notifications/notify';
@@ -82,7 +84,7 @@
 		try {
 			reader.readAsDataURL(file);
 		} catch {
-			showError('Image reading error');
+			showError(photoLoadingError);
 			AppStateStore.hideSpinner();
 			return;
 		}
@@ -99,20 +101,20 @@
 				cacheControl: 'public,max-age=31536000,immutable',
 				progressCallback(progress: any) {
 					progressPercent = Math.ceil((progress.loaded / progress.total) * 100);
-					progressText = `Uploaded: ${progress.loaded}/${progress.total}`;
+					progressText = `${uploaded}: ${progress.loaded}/${progress.total}`;
 				},
 			}) as any;
 
 			await GunsStore.savePhoto(gun.id, key);
 
-			showInfo('Photo uploaded');
+			showInfo(photoUploaded);
 			uploading = false;
 			gotoGuns();
 		} catch (error) {
 			console.log(error);
-			showError('Error uploading file');
+			showError(errorUploadingFile);
 			uploading = false;
-			progressText = 'Error';
+			progressText = errorText;
 		}
 	};
 
@@ -133,10 +135,10 @@
 			});
 
 			await GunsStore.savePhoto(id, '');
-			showInfo('Photo removed.');
+			showInfo(photoRemoved);
 			gotoGuns();
 		} catch {
-			showError('Error on deleting photo');
+			showError(errorOnDeletingPhoto);
 		} finally {
 			AppStateStore.showSpinner();
 		}
@@ -144,13 +146,32 @@
 
 	const handleRemovePhoto = (id: string) => {
 		confirmRemovePhotoDialog.show({
-			text: `Are you sure you want to remove this photo? Operation cannot be undone!`,
-			confirmText: 'Remove',
+			text: confirmRemovePhoto,
+			confirmText: removeText,
 			onConfirm: () => doRemovePhoto(id)
 		});
 	}
 
+	let photoLoadingError: string;
+	let uploaded: string;
+	let photoUploaded: string;
+	let errorUploadingFile: string;
+	let errorText: string;
+	let removeText: string;
+	let photoRemoved: string;
+	let errorOnDeletingPhoto: string;
+	let confirmRemovePhoto: string;
+
 	onMount(() => {
+		void I18nService.translate('@Guns.photoLoadingError').then(s => photoLoadingError = s);
+		void I18nService.translate('@Guns.uploaded').then(s => uploaded = s);
+		void I18nService.translate('@Guns.errorUploadingFile').then(s => errorUploadingFile = s);
+		void I18nService.translate('@Guns.photoRemoved').then(s => photoRemoved = s);
+		void I18nService.translate('@Guns.errorOnDeletingPhoto').then(s => errorOnDeletingPhoto = s);
+		void I18nService.translate('@Guns.confirmRemovePhoto').then(s => confirmRemovePhoto = s);
+		void I18nService.translate('@Common.Error').then(s => errorText = s);
+		void I18nService.translate('@Common.Remove').then(s => removeText = s);
+
 		fileInput = document.getElementById('photoFileInput');
 		fileInput.onchange = onFileSelected;
 	});
@@ -165,11 +186,13 @@
 
 <div class="app-form">
 	<div class="app-form-content">
-		<h1 class="text-center">Photo uploading</h1>
+		<h1 class="text-center">
+			<I18n>@Guns.PhotoUploading</I18n>
+		</h1>
 		<div class="photo-preview">
 			{#if (inResizing)}
 				<p>
-					Resizing...
+					<I18n>@Guns.Resizing</I18n>
 				</p>
 			{/if}
 			<div class="new-image-container" class:loaded={imageData}>
@@ -178,7 +201,7 @@
 			{#if (imageData)}
 				{#if (imageReady && !inResizing)}
 					<p>
-						Now image is ready to be uploaded to the cloud. Use "Upload" button below to complete.
+						<I18n>@Guns.ImageIsReady</I18n>
 					</p>
 				{/if}
 
@@ -192,8 +215,7 @@
 				{#if (currentPhoto)}
 					<GunPhoto id={gun.id} class="image-container" imageClass="current-image-preview"/>
 					<p>
-						This is current photo. Only one photo could be uploaded for a gun, so
-						if you upload another photo &mdash; this one will be replaced.
+						<I18n>@Guns.CurrentPhoto</I18n>
 					</p>
 				{:else}
 					<div class="image-placeholder" on:click={handleClick}>
@@ -204,7 +226,7 @@
 
 			{#if (!imageData && !currentPhoto)}
 				<p>
-					Try to use square images - we will round them to circle, so better to put the valuable content to the center.
+					<I18n>@Guns.UseSquare</I18n>
 				</p>
 			{/if}
 
@@ -212,26 +234,27 @@
 			        disabled={uploading}
 			        on:click={handleClick}>
 				<Icon type="camera"/> &nbsp;
-				Choose image...
+				<I18n>@Guns.ChooseImage</I18n>
 			</Button>
 		</div>
 	</div>
 	<hr>
 	<div class="app-form-footer">
 		<Button on:click={gotoGuns} type="link" disabled={uploading}>
-			<Icon type="arrow-left"/> &nbsp; Cancel
+			<Icon type="arrow-left"/> &nbsp;
+			<I18n>@Common.Cancel</I18n>
 		</Button>
 
 		<div class="right-buttons">
 			{#if (currentPhoto)}
 				<Button on:click={() => handleRemovePhoto(gun.id)} type="ghost-danger">
-					Remove
+					<I18n>@Common.Remove</I18n>
 				</Button>
 			{/if}
 
 			<Button on:click={handleUpload} disabled={!imageReady || uploading}>
 				<Icon type="cloud"/> &nbsp;
-				Upload
+				<I18n>@Common.Upload</I18n>
 			</Button>
 		</div>
 	</div>

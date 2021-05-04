@@ -1,8 +1,11 @@
 <script lang="ts">
 	import dayjs from 'dayjs'
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
+	import {onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import {I18nService} from '../../../components/i18n/i18n.service';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import Confirm from '../../../components/modal/Confirm.svelte';
 	import Info from '../../../components/modal/Info.svelte';
@@ -23,14 +26,14 @@
 
 	let infoNotes: any;
 	const onShowNotes = (id: string) => {
-		const notes = GunsStore.getGunById(id)?.notes;
-		if (!notes) {
+		const note = GunsStore.getGunById(id)?.notes;
+		if (!note) {
 			return;
 		}
 		infoNotes.showInfoDialog({
-			text: notes,
+			text: note,
 			extraClass: 'scroll-y',
-			title: 'Notes'
+			title: notesCaption
 		});
 	};
 
@@ -52,6 +55,15 @@
 		hasMake = !!gun?.make;
 		hasModel = !!gun?.model;
 	}
+
+	let gotoTracking: string;
+	let notesCaption: string;
+	let uploadPhoto: string;
+	onMount(() => {
+		void I18nService.translate('@Guns.gotoTracking').then(s => gotoTracking = s);
+		void I18nService.translate('@Common.Notes').then(s => notesCaption = s);
+		void I18nService.translate('@Guns.uploadPhoto').then(s => uploadPhoto = s);
+	});
 </script>
 
 <Info bind:this={infoNotes}/>
@@ -94,22 +106,22 @@
 			{/if}
 			<div class="gc-actions">
 				<Button size="small" type="link" on:click={() => handleNavigate(gun.id)}>
-					<Icon type="arrow-right" alt="Go to Tracking"/>
+					<Icon type="arrow-right" alt={gotoTracking}/>
 				</Button>
 
 				{#if (gun.notes)}
 					<Button size="small" type="link" on:click={() => onShowNotes(gun.id)}>
-						<Icon type="file" alt="Notes..."/>
+						<Icon type="file" alt={notesCaption}/>
 					</Button>
 				{/if}
 
 				<Button size="small" type="link" on:click={() => onUploadPhoto(gun.id)}>
-					<Icon type="camera" alt="Upload photo..."/>
+					<Icon type="camera" alt={uploadPhoto}/>
 				</Button>
 
 				<Button size="small" type="ghost" on:click={() => onEdit(gun.id)}>
 					<Icon type="edit"/>
-					Change
+					<I18n>@Common.Change</I18n>
 				</Button>
 				<Button size="small" type="link-danger" on:click={() => onRemove(gun.id)}>
 					<Icon type="delete"/>

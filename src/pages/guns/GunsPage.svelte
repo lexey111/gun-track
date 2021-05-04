@@ -3,6 +3,8 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
+	import {I18nService} from '../../components/i18n/i18n.service';
+	import I18n from '../../components/i18n/I18n.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 	import type {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
@@ -30,12 +32,20 @@
 		navigate('/guns/new/edit');
 	}
 
+	let gunNotFound: string;
+	let recordWasRemoved: string;
+	let doneCaption: string;
+	let areYouSurePart1: string;
+	let areYouSurePart2: string;
+	let areYouSurePart3: string;
+	let deleteText: string;
+
 	const doRemoveGun = async (id: string) => {
 		AppStateStore.showSpinner();
 		try {
 			const gun = GunsStore.getGunById(id);
 			if (!gun) {
-				throw new Error('Gun not found!');
+				throw new Error(gunNotFound);
 			}
 			if (gun.photo) {
 				await Storage.remove(gun.photo, {
@@ -45,7 +55,7 @@
 			//
 			const result = await GunsStore.removeGun(id);
 			if (result) {
-				showWarning('Record was removed successfully', 'Done');
+				showWarning(recordWasRemoved, doneCaption);
 			}
 		} catch (e) {
 			showError(getErrorText(e));
@@ -58,7 +68,7 @@
 		try {
 			const gun = GunsStore.getGunById(id);
 			if (!gun) {
-				throw new Error('Gun not found!');
+				throw new Error(gunNotFound);
 			}
 			AppStateStore.showSpinner();
 
@@ -67,11 +77,9 @@
 			AppStateStore.hideSpinner();
 
 			confirmDialog.show({
-				text: `Are you sure you want to delete this gun? Operation cannot be undone!
-\n
-Gun to delete: [${gun.name}], records: ${actionsCount}.
+				text: areYouSurePart1 + `\n${areYouSurePart2}: [${gun.name}], ${areYouSurePart3}: ${actionsCount}.
 			`,
-				confirmText: 'Delete',
+				confirmText: deleteText,
 				onConfirm: () => doRemoveGun(id)
 			});
 		} catch (e) {
@@ -82,6 +90,14 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 	};
 
 	onMount(() => {
+		void I18nService.translate('@Common.gunNotFound').then(s => gunNotFound = s);
+		void I18nService.translate('@Common.recordWasRemoved').then(s => recordWasRemoved = s);
+		void I18nService.translate('@Common.Done').then(s => doneCaption = s);
+		void I18nService.translate('@Common.Delete').then(s => deleteText = s);
+		void I18nService.translate('@Guns.AreYouSurePart1').then(s => areYouSurePart1 = s);
+		void I18nService.translate('@Guns.AreYouSurePart2').then(s => areYouSurePart2 = s);
+		void I18nService.translate('@Guns.AreYouSurePart3').then(s => areYouSurePart3 = s);
+
 		AppStateStore.showSpinner();
 		gunsState$ = GunsStore.subscribe(value => {
 			if (!value || value.isEmpty === null) {
@@ -109,14 +125,16 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 {#if (gunsState?.isEmpty !== null)}
 	{#if (gunsState?.isEmpty === true)}
 		<div class="page-content extra-paddings-2">
-			<h2>No guns is registered yet.</h2>
+			<h2>
+				<I18n>@Guns.NothingRegistered</I18n>
+			</h2>
 			<p>
-				But it is the best time to start, you're lucky!
+				<I18n>@Guns.RegisterFirst</I18n>
 			</p>
 			<p>
 				<Button on:click={addGun}>
 					<Icon type="plus-circle" size="24px" class="inline"/>
-					Register a Gun
+					<I18n>@Guns.RegisterAGun</I18n>
 				</Button>
 			</p>
 		</div>
@@ -131,13 +149,13 @@ Gun to delete: [${gun.name}], records: ${actionsCount}.
 							type="toolbar"
 							on:click={addGun}>
 							<Icon type="plus-circle" size="24px" class="inline"/>
-							Register one more...
+							<I18n>@Guns.RegisterOneMore</I18n>
 						</Button>
 					</div>
 
 					<div class="block block-info">
 						<div class="stat-exp">
-							Registered
+							<I18n>@Guns.Registered</I18n>
 						</div>
 						<div class="block-content">
 							<ul>
