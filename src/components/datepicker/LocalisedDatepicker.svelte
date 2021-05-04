@@ -56,6 +56,8 @@
 		// background-color: rgba(0, 0, 0, .1);
 		border-radius: 7px;
 		width: 250px;
+		box-shadow: none !important;
+		border: none !important;
 	}
 
 	:global {
@@ -63,11 +65,6 @@
 			margin: 0 !important;
 			width: 100% !important;
 			min-width: 250px;
-
-			button.calendar-button:focus {
-				box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8) !important;
-				outline: none;
-			}
 
 			.sc-popover {
 				.trigger {
@@ -82,7 +79,22 @@
 							width: 100% !important;
 							max-width: 100% !important;
 							min-width: 250px !important;
+							box-sizing: border-box !important;
 						}
+
+						button.calendar-button {
+							border: none !important;
+							box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1) !important;
+							outline: none;
+							background-color: var(--app-control-bg);
+						}
+
+						button.calendar-button:focus {
+							box-shadow: 0 0 0 4px rgba(255, 191, 1, 0.8) !important;
+							background-color: var(--app-white-bg);
+							outline: none;
+						}
+
 					}
 				}
 			}
