@@ -1,5 +1,6 @@
 <script lang="ts">
 
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 	import type {TGunsState} from '../../../stores/guns/guns-store.interface';
 	import {isEmpty} from '../../../utils/objects';
@@ -21,11 +22,11 @@
 		{#if (actionsState?.actions?.length)}
 			<div class="actions-list-header">
 				{#if (hasExpensesAtAll)}
-					<div class="alh-money"><span>Expenses</span></div>
+					<div class="alh-money"><span><I18n>@Track.Expenses</I18n></span></div>
 				{/if}
 				{#if (actionsState?.totalShots > 0)}
 					<div class={'alh-shots' + (hasExpensesAtAll ? ' with-expenses' : '')}><span>
-						Shots
+						<I18n>@Track.Shots</I18n>
 						({actionsState?.totalShots})
 					</span></div>
 				{/if}

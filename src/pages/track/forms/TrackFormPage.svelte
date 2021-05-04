@@ -8,6 +8,8 @@
 	import LocalisedDatepicker from '../../../components/datepicker/LocalisedDatepicker.svelte';
 	import CurrencyMenu from '../../../components/dropdown/CurrencyMenu.svelte';
 	import TypeMenu from '../../../components/dropdown/TypeMenu.svelte';
+	import {I18nService} from '../../../components/i18n/i18n.service';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showSuccess} from '../../../components/notifications/notify';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
@@ -67,12 +69,12 @@
 
 		if (isNew) {
 			if (await ActionsStore.registerAction(gunId, actionToSave)) {
-				showSuccess('Record registered.');
+				showSuccess(recordRegistered);
 				gotoTrack();
 			}
 		} else {
 			if (await ActionsStore.saveAction(actionToSave)) {
-				showSuccess('Record updated.');
+				showSuccess(recordUpdated);
 				gotoTrack();
 			}
 		}
@@ -140,8 +142,18 @@
 		dataReady = true;
 	}
 
+	let gunNotFound: string;
+	let recordNotFound: string;
+	let recordRegistered: string;
+	let recordUpdated: string;
+
 	onMount(() => {
 		AppStateStore.showSpinner();
+
+		void I18nService.translate('@Common.gunNotFound').then(s => gunNotFound = s);
+		void I18nService.translate('@Common.recordNotFound').then(s => recordNotFound = s);
+		void I18nService.translate('@Common.recordRegistered').then(s => recordRegistered = s);
+		void I18nService.translate('@Common.recordUpdated').then(s => recordUpdated = s);
 
 		gunsUnsubscribe = GunsStore.subscribe((value: TGunsState) => {
 			if (!value?.fullReady) {
@@ -150,7 +162,7 @@
 			gunsState = value;
 
 			if (!GunsStore.getGunById(gunId)) {
-				loadingError = 'Gun not found!';
+				loadingError = gunNotFound || 'Gun not found!';
 				AppStateStore.hideSpinner();
 				return;
 			}
@@ -172,7 +184,7 @@
 				action = ActionsStore.getActionById(id);
 
 				if (!action) {
-					loadingError = 'Record not found!';
+					loadingError = recordNotFound || 'Record not found!';
 					AppStateStore.hideSpinner();
 					return;
 				}
@@ -197,7 +209,7 @@
 	<p>&nbsp;</p>
 	<Button type="ghost" on:click={gotoTrack}>
 		<Icon type="arrow-left"/> &nbsp;
-		Return to Track page
+		<I18n>@Track.ReturnToTrackPage</I18n>
 	</Button>
 {/if}
 
@@ -205,21 +217,33 @@
 	<div class="app-form">
 		<div class="app-form-content multi-columns">
 			<div class="app-content-column">
-				<h1>{isNew ? 'New record' : 'Change record'}</h1>
+				<h1>
+					{#if (isNew)}
+						<I18n>@Common.NewRecord</I18n>
+					{:else}
+						<I18n>@Common.ChangeRecord</I18n>
+					{/if}
+				</h1>
 				<div class="form-group">
 					<!--  svelte-ignore a11y-label-has-associated-control -->
-					<label>Type</label>
+					<label>
+						<I18n>@Track.Type</I18n>
+					</label>
 					<TypeMenu {type} onChange={handleTypeChange}/>
 				</div>
 
 				<div class="form-group">
 					<!--  svelte-ignore a11y-label-has-associated-control -->
-					<label>Date</label>
+					<label>
+						<I18n>@Track.Date</I18n>
+					</label>
 					<LocalisedDatepicker date={date} onDateChange={handleDateChanged}/>
 				</div>
 
 				<div class="form-group">
-					<label for="name">Title</label>
+					<label for="name">
+						<I18n>@Track.Title</I18n>
+					</label>
 					<input
 						placeholder="Carbine fundamentals"
 						autocomplete="off"
@@ -229,7 +253,9 @@
 				</div>
 
 				<div class="form-group">
-					<label for="comment">Comment</label>
+					<label for="comment">
+						<I18n>@Track.Comment</I18n>
+					</label>
 					<input
 						autocomplete="off"
 						maxlength="128"
@@ -238,7 +264,9 @@
 				</div>
 
 				<div class="form-group">
-					<label for="shots">Shots made</label>
+					<label for="shots">
+						<I18n>@Track.ShotsMade</I18n>
+					</label>
 					<input
 						class="short-field"
 						type="number"
@@ -248,7 +276,9 @@
 				</div>
 
 				<div class="form-group">
-					<label for="expenses">Expense</label>
+					<label for="expenses">
+						<I18n>@Track.Expense</I18n>
+					</label>
 					<input
 						class="short-field"
 						type="number"
@@ -259,12 +289,16 @@
 
 				<div class="form-group">
 					<!--  svelte-ignore a11y-label-has-associated-control -->
-					<label>Currency</label>
+					<label>
+						<I18n>@Track.Currency</I18n>
+					</label>
 					<CurrencyMenu {currency} onChange={handleCurrencyChange}/>
 				</div>
 			</div>
 			<div class="app-content-column">
-				<h3>Notes</h3>
+				<h3>
+					<I18n>@Common.Notes</I18n>
+				</h3>
 				<div class="ck-editor-pane">
 					{#if (ckStarted)}
 						<CKEditor
@@ -273,7 +307,10 @@
 							bind:config={editorConfig}
 							bind:value={trainingNotes}/>
 					{:else}
-						<SpinnerComponent>Loading editor...</SpinnerComponent>
+						<SpinnerComponent>
+							<I18n>@Common.LoadingEditor</I18n>
+							...
+						</SpinnerComponent>
 					{/if}
 				</div>
 			</div>
@@ -281,12 +318,17 @@
 		</div>
 		<div class="app-form-footer">
 			<Button on:click={gotoTrack} type="link">
-				<Icon type="arrow-left"/> &nbsp; Cancel
+				<Icon type="arrow-left"/> &nbsp;
+				<I18n>@Common.Cancel</I18n>
 			</Button>
 
 			<div class="right-buttons">
 				<Button on:click={saveGun}>
-					Save
+					{#if (isNew)}
+						<I18n>@Common.Save</I18n>
+					{:else }
+						<I18n>@Common.Update</I18n>
+					{/if}
 				</Button>
 			</div>
 		</div>

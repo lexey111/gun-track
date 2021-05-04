@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 
@@ -22,6 +23,7 @@
 
 <div class="block block-min">
 	<div class="block-content">
-		<Button type="toolbar" on:click={changeSortDirection}>Sort: by date {sortOrder}</Button>
+		<Button type="toolbar" on:click={changeSortDirection}>
+			<I18n>@Track.Sort</I18n> &nbsp; {sortOrder}</Button>
 	</div>
 </div>

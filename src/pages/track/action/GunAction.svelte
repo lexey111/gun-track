@@ -1,6 +1,9 @@
 <script lang="ts">
+	import {onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import {I18nService} from '../../../components/i18n/i18n.service';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import Info from '../../../components/modal/Info.svelte';
 	import type {Action} from '../../../models';
@@ -27,7 +30,7 @@
 		infoNotes.showInfoDialog({
 			text: notes,
 			extraClass: 'scroll-y',
-			title: 'Notes'
+			title: notesCaption
 		});
 	};
 
@@ -35,6 +38,10 @@
 		navigate('/track/' + action.gun.id + '/' + action.id + '/edit');
 	}
 
+	let notesCaption: string;
+	onMount(() => {
+		void I18nService.translate('@Common.Notes').then(s => notesCaption = s);
+	});
 </script>
 
 <Info bind:this={infoNotes}/>
@@ -53,11 +60,14 @@
 		<div class="action-actions">
 			{#if (action.trainingNotes)}
 				<Button on:click={() => onShowNotes(action.id)} type="link" size="small">
-					<Icon type="file"/> &nbsp; Notes...
+					<Icon type="file"/> &nbsp;
+					<I18n>@Common.Notes</I18n>
+					...
 				</Button>
 			{/if}
 			<Button on:click={() => editRecord(action.gunID, action.id)} type="ghost" size="small">
-				<Icon type="edit"/> &nbsp; Edit
+				<Icon type="edit"/> &nbsp;
+				<I18n>@Common.Change</I18n>
 			</Button>
 			<Button on:click={() => onDelete(action.id)} type="link-danger" size="small">
 				<Icon type="delete"/>

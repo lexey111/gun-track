@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '../../../components/buttons/Button.svelte';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import type {Gun} from '../../../models';
 	import {GunsStore} from '../../../stores/guns/guns-store';
@@ -18,19 +19,24 @@
 </script>
 
 <div class="no-records">
-	<h1>No records here for <i class="gun-name">{currentGunTitle}</i> yet.</h1>
+	<h1>
+		<I18n>@Track.NoRecords1</I18n>&nbsp;<i class="gun-name">{currentGunTitle}</i>
+		<I18n>@Track.NoRecords2</I18n>
+	</h1>
 	<p>
-		But it is the best time to create one!
+		<I18n>@Track.BestTimeToCreate</I18n>
 	</p>
 	<p>
 		<Button on:click={showNewActionDialog}>
 			<Icon type="plus-circle" size="24px" class="inline"/>
-			Add record...
+			<I18n>@Track.AddARecord</I18n>
 		</Button>
 	</p>
 
 	{#if gunsState.guns.length > 1}
-		<p>Or you can select another gun:</p>
+		<p>
+			<I18n>@Track.SelectAnotherGun</I18n>
+		</p>
 		<GunsMenu/>
 
 	{/if}

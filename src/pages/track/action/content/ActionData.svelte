@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
+	import I18n from '../../../../components/i18n/I18n.svelte';
 	import type {Action} from '../../../../models';
 
 	export let action: Action;
@@ -19,7 +20,9 @@
 	{/if}
 
 	{#if (!action.comment && !action.title && !action.trainingNotes)}
-		<div class="action-comment no-data">No data</div>
+		<div class="action-comment no-data">
+			<I18n>@Common.NoData</I18n>
+		</div>
 	{/if}
 </div>
 

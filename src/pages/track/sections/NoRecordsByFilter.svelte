@@ -24,13 +24,19 @@
 
 <div class="no-records">
 	<h1>
-		<Icon type="filter" size="1em"/> &nbsp;No data to display
+		<Icon type="filter" size="1em"/> &nbsp;<I18n>@Common.NoDataToDisplay</I18n>
 	</h1>
 	<p>
-		There are no records (from {actionsState.totalRecords}) for <i class="gun-name">{currentGunTitle}</i> to display with filtering applied.
+		<I18n>@Track.NoRecordsFilter1</I18n>&nbsp;
+		{actionsState.totalRecords}
+		<I18n>@Track.NoRecordsFilter2</I18n>&nbsp;
+		<i class="gun-name">{currentGunTitle}</i>&nbsp;
+		<I18n>@Track.NoRecordsFilter3</I18n>
 	</p>
 
-	<h3>Filtering applied [{ActionsStore.getFilter().length}]:</h3>
+	<h3>
+		<I18n>@Track.FilteringApplied</I18n>&nbsp;[{ActionsStore.getFilter().length}]:
+	</h3>
 
 	<ul>
 		{#each ActionsStore.getFilter() as filter}
@@ -42,11 +48,14 @@
 
 	<p>
 		<!--  svelte-ignore a11y-invalid-attribute-->
-		Use filter button in toolbar to change filtering, or <a href="#" on:click={onResetFilters}>reset filter</a>.
+		<I18n>@Track.UseFilterButton</I18n>
+		<a href="#" on:click={onResetFilters}>
+			<I18n>@Track.ResetFilter</I18n>
+		</a>
 	</p>
 
 	{#if gunsState.guns.length > 1}
-		<p>Or you can select another gun:</p>
+		<I18n>@Track.SelectAnotherGun</I18n>
 		<GunsMenu/>
 	{/if}
 </div>

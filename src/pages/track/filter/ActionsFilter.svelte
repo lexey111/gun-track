@@ -2,6 +2,7 @@
 	import {onMount} from 'svelte';
 	import Button from '../../../components/buttons/Button.svelte';
 	import Dropdown from '../../../components/dropdown/Dropdown.svelte';
+	import {I18nService} from '../../../components/i18n/i18n.service';
 	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
@@ -24,7 +25,10 @@
 		allSelected = selection.length === ActionTypes.length;
 	}
 
+	let filterText: string;
 	onMount(() => {
+		void I18nService.translate('@Track.filterText').then(s => filterText = s);
+
 		resetSelection();
 	});
 
@@ -49,9 +53,9 @@
 
 	let title: string;
 	$: {
-		title = 'Filter...';
+		title = filterText + '...';
 		if (selection.length && !allSelected) {
-			title = 'Filter [' + selection.length + ']';
+			title = filterText + ' [' + selection.length + ']';
 		}
 	}
 	let closeDropdown: any;
@@ -106,8 +110,8 @@
 				{/each}
 				<div class="af-actions">
 					<!--  svelte-ignore a11y-invalid-attribute-->
-					<a href="#" on:click={cancelFilter}>Cancel</a>
-					<Button size="small" on:click={applyFilter}>Apply</Button>
+					<a href="#" on:click={cancelFilter}><I18n>@Common.Cancel</I18n></a>
+					<Button size="small" on:click={applyFilter}><I18n>@Common.Apply</I18n></Button>
 				</div>
 			</div>
 		</Dropdown>

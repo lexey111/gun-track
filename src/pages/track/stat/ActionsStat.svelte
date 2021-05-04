@@ -1,4 +1,5 @@
 <script lang="ts">
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import type {TActionsState} from '../../../stores/actions/actions-store.interface';
 	import {getCurrencySign} from '../../../stores/actions/actions-store.types';
 
@@ -9,8 +10,12 @@
 <div class="block block-info">
 	<div class="stat-exp">
 		<ul>
-			<li>Shots</li>
-			<li>Records</li>
+			<li>
+				<I18n>@Track.Shots</I18n>
+			</li>
+			<li>
+				<I18n>@Track.Records</I18n>
+			</li>
 		</ul>
 	</div>
 	<div class="block-content">

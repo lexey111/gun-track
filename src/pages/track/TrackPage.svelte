@@ -3,6 +3,8 @@
 
 	import {navigate} from 'svelte-routing';
 	import Button from '../../components/buttons/Button.svelte';
+	import {I18nService} from '../../components/i18n/i18n.service';
+	import I18n from '../../components/i18n/I18n.svelte';
 	import Icon from '../../components/icons/Icon.svelte';
 	import type {IConfirmDialog} from '../../components/modal/Confirm.interface';
 	import Confirm from '../../components/modal/Confirm.svelte';
@@ -170,14 +172,14 @@
 
 	const handleDelete = (id: string) => {
 		confirmDialog.show({
-			text: `Are you sure you want to delete this record? Operation cannot be undone!`,
-			confirmText: 'Delete',
+			text: areYouSureToDelete,
+			confirmText: deleteText,
 			onConfirm: async () => {
 				AppStateStore.showSpinner();
 				const result = await ActionsStore.removeAction(id)
 				AppStateStore.hideSpinner();
 				if (result) {
-					showWarning('Record was removed successfully', 'Done');
+					showWarning(recordRemoved, doneText);
 				}
 			}
 		});
@@ -191,6 +193,17 @@
 		ActionsStore.setFilter('all');
 	};
 
+	let areYouSureToDelete: string;
+	let deleteText: string;
+	let doneText: string;
+	let recordRemoved: string;
+
+	onMount(() => {
+		void I18nService.translate('@Track.areYouSureToDelete').then(s => areYouSureToDelete = s);
+		void I18nService.translate('@Track.recordRemoved').then(s => recordRemoved = s);
+		void I18nService.translate('@Common.Delete').then(s => deleteText = s);
+		void I18nService.translate('@Common.Done').then(s => doneText = s);
+	});
 </script>
 
 <Confirm bind:this={confirmDialog}/>
@@ -203,7 +216,7 @@
 					<div class="block-content">
 						<Button on:click={addRecord} type="toolbar">
 							<Icon type="plus-circle" class="inline" size="24px"/>
-							Add a record...
+							<I18n>@Track.AddARecord</I18n>
 						</Button>
 					</div>
 				</div>
