@@ -1,6 +1,4 @@
-<script>
-	import Done from './Done.svelte';
-</script>
+<script></script>
 
 <h1>About</h1>
 
@@ -12,15 +10,6 @@
 	<ul>
 		<li>
 			Fix extra scroll on short pages
-		</li>
-		<li>
-			<Done>I18n for notifications</Done>
-		</li>
-		<li>
-			<Done>I18n for dialogs</Done>
-		</li>
-		<li>
-			<Done>Responsiveness from 375px</Done>
 		</li>
 		<li>
 			Domain
@@ -37,21 +26,6 @@
 		<li>
 			Register contact email
 		</li>
-		<li>
-			<Done>Add image to OG: https://habr.com/ru/company/macloud/blog/555082</Done>
-		</li>
-		<li>
-			<Done>Remove favicons plugin</Done>
-		</li>
-		<li>
-			<Done>Fix svelte-check remarks</Done>
-		</li>
-		<li>
-			<Done>Dynamic loading</Done>
-		</li>
-		<li>
-			<Done>Dynamic for Auth pages</Done>
-		</li>
 	</ul>
 
 	<h3>UI</h3>
@@ -59,323 +33,18 @@
 		<li>
 			Page scroll position store/restore
 		</li>
-		<li>
-			<Done>Non-modal editors</Done>
-		</li>
 		<li>Gun cards default image</li>
-		<li>
-			<Done>Fix type selector</Done>
-		</li>
-		<li>
-			<Done>Fix currency dropdown (to top)</Done>
-		</li>
-		<li>
-			<Done>Home page guns cards</Done>
-		</li>
-		<li>
-			<Done>Mobile views</Done>
-		</li>
-		<li>
-			<Done>Chevron icon for dropdowns</Done>
-		</li>
-		<li>
-			<Done>Own SVG</Done>
-		</li>
-		<li>
-			<Done>Design system - colors etc.</Done>
-		</li>
-		<li>
-			<Done>Modal</Done>
-		</li>
-		<li>
-			<Done>I18n - component</Done>
-		</li>
-		<li>
-			<Done>I18n - infrastructure</Done>
-		</li>
-		<li>
-			<Done>I18n - interface</Done>
-		</li>
-		<li>
-			<Done>I18n - translations</Done>
-		</li>
-		<li>
-			<Done>I18n - dates</Done>
-		</li>
-		<li>
-			<Done>Spinner on busy</Done>
-		</li>
-		<li>
-			<Done>Fullscreen spinner</Done>
-		</li>
-		<li>
-			<Done>Icons</Done>
-		</li>
-		<li>
-			<Done>Modal - reserve scrollbar's place</Done>
-		</li>
-		<li>
-			<Done>Table</Done>
-		</li>
-		<li>
-			<Done>Notifications</Done>
-		</li>
-		<li>
-			<Done>Backgrounds</Done>
-		</li>
-		<li>
-			<Done>Language switcher</Done>
-		</li>
-		<li>
-			<Done>Better colors for track</Done>
-		</li>
-		<li>
-			<Done>Buttons</Done>
-		</li>
-		<li>
-			<Done>Buttons in login</Done>
-		</li>
-		<li>
-			<Done>Dropdowns</Done>
-		</li>
-		<li>
-			<Done>Navigator offline mode (disable requests)</Done>
-		</li>
-		<li>
-			<Done>Better notifications design</Done>
-		</li>
-		<li>
-			<Done>Hidden UI elements page</Done>
-		</li>
 	</ul>
 
 	<h3>Login</h3>
 	<ul>
-		<li>
-			<Done>Better design</Done>
-		</li>
-		<li>
-			<Done>Email fields validation</Done>
-		</li>
 		<li>Telegram channel</li>
 		<li>Support email</li>
 	</ul>
 
-	<h3>Track list</h3>
-	<ul>
-		<li>
-			<Done>Modal size jumps</Done>
-		</li>
-		<li>
-			<Done>Save filter and sort for gun</Done>
-		</li>
-		<li>
-			<Done>Filtered/total</Done>
-		</li>
-		<li>
-			<Done>No records - reset/filter button</Done>
-		</li>
-		<li>
-			<Done>Dropdown gun navigator</Done>
-		</li>
-		<li>
-			<Done>Filter by type (dropdown menu)</Done>
-		</li>
-		<li>
-			<Done>Expenses display</Done>
-		</li>
-		<li>
-			<Done>Expenses and shots total</Done>
-		</li>
-		<li>
-			<Done>Better hover</Done>
-		</li>
-		<li>
-			<Done>Stat cards</Done>
-		</li>
-		<li>
-			<Done>Floating add button</Done>
-		</li>
-		<li>
-			<Done>Block UI when busy state</Done>
-		</li>
-		<li>Compact view</li>
-		<li>
-			<Done>Add repair</Done>
-		</li>
-		<li>
-			<Done>Date editor</Done>
-		</li>
-	</ul>
-
-	<h3>Action editor</h3>
-	<ul>
-		<li>
-			<Done>Better tabs</Done>
-		</li>
-		<li>
-			<Done>Groups in type</Done>
-		</li>
-		<li>
-			<Done>Dropdown for currencies</Done>
-		</li>
-		<li>
-			<Done>Restrict string lengths</Done>
-		</li>
-	</ul>
-
-	<h3>Gun list</h3>
-	<ul>
-		<li>
-			<Done>Goto Track link</Done>
-		</li>
-		<li>
-			<Done>"Make"/"Model" fields</Done>
-		</li>
-		<li>
-			<Done>Guns to store</Done>
-		</li>
-		<li>
-			<Done>Single home page/login</Done>
-		</li>
-		<li>
-			<Done>Edit action</Done>
-		</li>
-		<li>
-			<Done>New action</Done>
-		</li>
-		<li>
-			<Done>Single Modal for gun</Done>
-		</li>
-		<li>
-			<Done>Delete action</Done>
-		</li>
-		<li>
-			<Done>Cards</Done>
-		</li>
-		<li>
-			<Done>Delete gun with records</Done>
-		</li>
-		<li>
-			<Done>Extra confirmation if records</Done>
-		</li>
-		<li>
-			<Done>SS selectors? delete actions?</Done>
-		</li>
-		<li>
-			<Done>Show photo on cards</Done>
-		</li>
-		<li>
-			<Done>Big text editor</Done>
-		</li>
-		<li>Dashboard and graphs</li>
-		<li>CSV export</li>
-	</ul>
-
-	<h3>Gun editor</h3>
-	<ul>
-		<li>
-			<Done>Notes</Done>
-		</li>
-		<li>
-			<Done>Photo uploading</Done>
-		</li>
-		<li>
-			<Done>Caliber field</Done>
-		</li>
-		<li>
-			<Done>Remove all photos on photo replacement</Done>
-		</li>
-		<li>
-			<Done>Remove all photos on Gun delete</Done>
-		</li>
-		<li>
-			<Done>Upload thumbnails</Done>
-		</li>
-	</ul>
-
-	<h3>i18n</h3>
-	<ul>
-		<li>Translations</li>
-		<li>
-			<Done>Replace cancelled requests with smth. other</Done>
-		</li>
-	</ul>
-
-	<h3>Routing</h3>
-	<ul>
-		<li>
-			<Done>Hide non-auth routes</Done>
-		</li>
-		<li>
-			<Done>Dynamic routes (rebuild on login)</Done>
-		</li>
-		<li>
-			<Done>Route guard</Done>
-		</li>
-	</ul>
-
 	<h3>Home</h3>
 	<ul>
-		<li>
-			<Done>BTS photo with price tags</Done>
-		</li>
-		<li>
-			<Done>Gun selector if > 1</Done>
-		</li>
-
 		<li>Last gun stat (async)</li>
-
-		<li>
-			<Done>- Dynamic bg</Done>
-		</li>
-	</ul>
-
-	<h3>Footer</h3>
-	<ul>
-		<li>
-			<Done>TOS</Done>
-		</li>
-		<li>
-			<Done>Contacts</Done>
-		</li>
-	</ul>
-
-	<h3>Database</h3>
-	<ul>
-		<li>
-			<Done>Auth database - AWS</Done>
-		</li>
-		<li>
-			<Done>Gravatar image</Done>
-		</li>
-		<li>
-			<Done>Auth with Google</Done>
-		</li>
-		<li>
-			<Done>Auth with local credentials</Done>
-		</li>
-		<li>
-			<Done>Forgot password, reset</Done>
-		</li>
-		<li>
-			<Done>Change password</Done>
-		</li>
-		<li>
-			<Done>Own database - AWS</Done>
-		</li>
-		<li>
-			<Done>Gun records editor</Done>
-		</li>
-		<li>
-			<Done>Gun records table</Done>
-		</li>
-		<li>
-			<Done>Gun records stats</Done>
-		</li>
-		<li>
-			<Done>graph ql</Done>
-		</li>
 	</ul>
 </div>
 
