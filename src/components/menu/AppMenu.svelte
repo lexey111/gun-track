@@ -5,6 +5,7 @@
 	import {AppStateStore} from '../../stores/app/app-state-store';
 	import {AuthStore} from '../../stores/auth/auth-store';
 	import type {TAuthState} from '../../stores/auth/auth-store.interface';
+	import I18n from '../i18n/I18n.svelte';
 	import Icon from '../icons/Icon.svelte';
 	import LocaleMenu from './LocaleMenu.svelte';
 	import ProfileMenu from './ProfileMenu.svelte';
@@ -23,18 +24,21 @@
 	}
 
 	function getActiveRoutes() {
-		activeRoutes = menuRoutes
-			.filter(entry => {
-				let result = true;
-				if (!auth_state?.loggedIn && entry[2] === true) {
-					result = false;
-				}
-				if (auth_state?.loggedIn && entry[2] === false) {
-					result = false;
-				}
-				return result;
-			})
-			.map((entry: any) => [entry[0], entry[1], getActiveClass(entry[0])]);
+		activeRoutes = [];
+		setTimeout(() => {
+			activeRoutes = menuRoutes
+				.filter(entry => {
+					let result = true;
+					if (!auth_state?.loggedIn && entry[2] === true) {
+						result = false;
+					}
+					if (auth_state?.loggedIn && entry[2] === false) {
+						result = false;
+					}
+					return result;
+				})
+				.map((entry: any) => [entry[0], entry[1], getActiveClass(entry[0])]);
+		}, 20);
 	}
 
 	// initial state
@@ -57,6 +61,7 @@
 		appStateUnsubscribe();
 		authUnsubscribe();
 	});
+
 </script>
 
 <nav class="app-navigation">
@@ -65,7 +70,7 @@
 			{#if (path === 'home')}
 				<Icon type="home"/> &nbsp;
 			{/if}
-			{name}
+			<I18n>{'@Menu.' + name}</I18n>
 		</Link>
 	{/each}
 	<LocaleMenu/>

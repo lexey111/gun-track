@@ -28,6 +28,12 @@
 		"NoDataToDisplay": "No data to display",
 		"NoData": "No data"
 	},
+	"@Menu": {
+		"Home": "Home",
+		"SignIn": "Sign In",
+		"Guns": "Guns",
+		"Track": "Track"
+	},
 	"@Guns": {
 		"AreYouSurePart1": "Are you sure you want to delete this gun? Operation cannot be undone!",
 		"AreYouSurePart2": "Gun to delete",
