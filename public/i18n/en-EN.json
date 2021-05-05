@@ -1,6 +1,5 @@
 {
 	"@Common": {
-		"Welcome": "Welcome",
 		"ThisIsGunTrack": "This is Gun | Track site",
 		"Today": "Today",
 		"Yesterday": "Yesterday",
@@ -33,6 +32,28 @@
 		"SignIn": "Sign In",
 		"Guns": "Guns",
 		"Track": "Track"
+	},
+	"@Home" : {
+		"Welcome": "Welcome",
+		"Line1": "to your Gun Track",
+		"Line2": "the history of your trainings, competitions and fun.",
+		"Line3": "Ah, yes, and expenses.",
+		"Line4": "Be careful and keep the records",
+		"Line4_1": "private.",
+		"WhatIsItFor": "What is it for",
+		"WhatLine1": "How many shots did you made with your shotgun last year? How much money spent? What was the outcome of trainings?",
+		"WhatLine2": "Familiar questions, aren't they?",
+		"Well": "Well",
+		"WhatLine3": "is here to help you to keep the records.",
+		"WhatLine4": "It is a diary notebook for each gun: date, goals, shots made, expenses, results etc.",
+		"WhatLine5": "You can make notes in two-directional timelines, apply filters and see the results in a real time.",
+		"WhatLine6": "Up to 7 guns in this version!",
+		"YourGuns": "Your guns",
+		"NoGunsRegistered": "There are no guns registered yet. Go to add the first one!",
+		"Records": "Records",
+		"PleaseSignIn": "Please sign in.",
+		"GotoSignIn": "Go to Sign in page",
+		"SignInOps": "There you can use your local credentials or social networks account to log in, create new account or restore forgotten password."
 	},
 	"@Guns": {
 		"AreYouSurePart1": "Are you sure you want to delete this gun? Operation cannot be undone!",

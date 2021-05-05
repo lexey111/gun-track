@@ -11,49 +11,53 @@
 <div class="welcome-container">
 	<div class="welcome">
 		<h1>
-			<I18n>@Common.Welcome</I18n>
+			<I18n>@Home.Welcome</I18n>
 		</h1>
 		<h2>
-			to your Gun Track &mdash;
+			<I18n>@Home.Line1</I18n> &mdash;
 		</h2>
 
 		<p>
-			the history of your trainings, competitions and fun.
+			<I18n>@Home.Line2</I18n>
 		</p>
 
 		<p>
-			Ah, yes, and expenses.
+			<I18n>@Home.Line3</I18n>
 		</p>
 
 		<p>
-			Be careful and keep the records
-			<br/>private.
+			<I18n>@Home.Line4</I18n>
+			<br/>
+			<I18n>@Home.Line4_1</I18n>
 		</p>
 
 		<Image src="/images/bts-home.png" class="home-image"/>
 	</div>
 
 	<div class="welcome-right">
-		<h2>What is it for</h2>
+		<h2>
+			<I18n>@Home.WhatIsItFor</I18n>
+		</h2>
 		<p>
-			How many shots did you made with your shotgun last year? How much money spent? What was the outcome of trainings?
+			<I18n>@Home.WhatLine1</I18n>
 		</p>
 		<p>
-			Familiar questions, aren't they?
+			<I18n>@Home.WhatLine2</I18n>
 		</p>
 		<p>
-			Well, <b>Gun|Track</b> is here to help you to keep the records.
+			<I18n>@Home.Well</I18n>
+			, <b>Gun|Track</b>
+			<I18n>@Home.WhatLine3</I18n>
 		</p>
 		<p>
-			It is a diary notebook for each gun:
-			date, goals, shots made, expenses, results etc.
+			<I18n>@Home.WhatLine4</I18n>
 		</p>
 		<p>
-			You can make notes in two-directional timelines, apply filters and see the results in a real time.
+			<I18n>@Home.WhatLine5</I18n>
 		</p>
 		<hr>
 		<p>
-			Up to 7 guns in this version!
+			<I18n>@Home.WhatLine6</I18n>
 		</p>
 	</div>
 </div>
@@ -62,7 +66,8 @@
 	<div class="page-content extra-paddings">
 		<p>
 			<SpinnerComponent/>
-			Loading...
+			<I18n>@Common.Loading</I18n>
+			...
 		</p>
 	</div>
 {/if}
@@ -71,7 +76,7 @@
 	<div class="page-content extra-paddings">
 		{#if (authState?.loggedIn)}
 			<h1>
-				Your guns
+				<I18n>@Home.YourGuns</I18n>
 			</h1>
 			<TrackSelector/>
 		{:else }

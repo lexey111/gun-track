@@ -2,6 +2,7 @@
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
+	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
 	import {GunsStore} from '../../../stores/guns/guns-store';
@@ -63,16 +64,18 @@
 {#if (!ready)}
 	<p>
 		<SpinnerComponent/>
-		Loading...
+		<I18n>@Common.Loading</I18n>
+		...
 	</p>
 {/if}
 
 {#if (ready && guns && guns?.length === 0)}
 	<p>
-		There are no guns registered yet. Go to add the first one!
+		<I18n>@Home.NoGunsRegistered</I18n>
 	</p>
 	<p>
-		<Button type="ghost" on:click={gotoGuns}>Go to guns &nbsp;
+		<Button type="ghost" on:click={gotoGuns}>
+			<I18n>@Guns.GotoGunsPage</I18n> &nbsp;
 			<Icon type="arrow-right"/>
 		</Button>
 	</p>
@@ -80,7 +83,9 @@
 
 {#if (ready && guns && guns?.length > 0)}
 	<p class="track-goto">
-		<Button type="ghost" on:click={gotoGuns}>Go to guns</Button>
+		<Button type="ghost" on:click={gotoGuns}>
+			<I18n>@Guns.GotoGunsPage</I18n>
+		</Button>
 	</p>
 
 	<div class="track-selector">
@@ -109,7 +114,7 @@
 						<div class="track-actions">
 							<Button type="ghost" on:click={() => handleGunChange(gun.id)}>
 								<Icon type="arrow-right"/> &nbsp;
-								Records
+								<I18n>@Home.Records</I18n>
 							</Button>
 						</div>
 					</div>
