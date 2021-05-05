@@ -2,6 +2,7 @@
 	import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor';
 	import CKEditor from 'ckeditor5-svelte/src/Ckeditor.svelte';
 	import dayjs from 'dayjs'
+	import localizedFormat from 'dayjs/plugin/localizedFormat';
 	import {onDestroy, onMount} from 'svelte';
 	import {navigate} from 'svelte-routing';
 	import Button from '../../../components/buttons/Button.svelte';
@@ -17,13 +18,13 @@
 	import GunPhoto from '../gun/GunPhoto.svelte';
 
 	export let gun: Gun;
+	dayjs.extend(localizedFormat);
 
 	const gotoGuns = () => {
 		navigate('/guns');
 	}
 
 	let name = '';
-	let registered = '';
 	let make = '';
 	let model = '';
 	let notes = '';
@@ -133,7 +134,6 @@
 		model = gun.model || '';
 		notes = gun.notes || '';
 		caliber = gun.caliber || '';
-		registered = dayjs(gun.dateCreated).locale(dateLocale).format('LL');
 		initialOpenEditor = !!notes;
 
 		activateCK();
@@ -216,13 +216,13 @@
 					id="model"/>
 			</div>
 
-			{#if (!isNew)}
+			{#if (!isNew && gun)}
 				<div class="form-group">
 					<!--  svelte-ignore a11y-label-has-associated-control -->
 					<label>
 						<I18n>@Guns.Registered</I18n>
 					</label>
-					<span class="control-static">{registered}</span>
+					<span class="control-static">{dayjs(gun.dateCreated).locale(dateLocale).format('LL')}</span>
 				</div>
 			{/if}
 		</div>

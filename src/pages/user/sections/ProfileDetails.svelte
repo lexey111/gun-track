@@ -17,7 +17,7 @@
 		</td>
 		<td>
 			<h2>
-				<I18n>@User.AuthorizedVia</I18n> &nbsp; {authState.providerId}</h2>
+				<I18n>@User.AuthorizedVia</I18n>: {authState.providerId}</h2>
 			<p>
 				<b>
 					<I18n>@User.UserID</I18n>

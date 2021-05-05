@@ -17,7 +17,8 @@
 
 <div class="app-page-profile">
 	<h1>
-		<I18n>@User.Profile</I18n></h1>
+		<I18n>@User.Profile</I18n>
+	</h1>
 	<ProfileDetails authState={authState} authStore={authStore}/>
 
 	{#if (authState.providerId === 'e-mail')}

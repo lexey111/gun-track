@@ -105,6 +105,10 @@
 				border-radius: 7px;
 				text-transform: uppercase;
 
+				svg {
+					margin-right: .4em;
+				}
+
 				&:hover, &:active, &:focus {
 					color: #fff;
 					background-color: rgba(255, 255, 255, .1);
@@ -116,13 +120,6 @@
 					color: var(--app-primary-text);
 					font-weight: bold;
 				}
-
-				//&.login-btn {
-				//	padding: 12px 24px;
-				//	height: auto;
-				//	border-radius: 12px;
-				//	border: 2px solid var(--app-primary-bg-light);
-				//}
 			}
 		}
 	}

@@ -71,7 +71,7 @@
 			disabled={!signinAllowed}
 			on:click={signIn}>
 			<Icon type="login" class="inline" size="18px"/>
-			Sign in
+			<I18n>@User.SignIn</I18n>
 		</Button>
 		<span class="stub"></span>
 

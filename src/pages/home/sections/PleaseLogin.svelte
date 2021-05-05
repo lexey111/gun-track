@@ -15,7 +15,7 @@
 		<I18n>@Home.PleaseSignIn</I18n>
 	</h1>
 	<p>
-		You need to be logged in to work with the site.
+		<I18n>@Home.YouNeedLogin</I18n>
 	</p>
 
 	<p>

@@ -114,6 +114,7 @@
 		</label>
 		<input
 			type="password"
+			placeholder={placeholderAtLeast8}
 			autocomplete="off"
 			maxlength="32"
 			required
@@ -127,7 +128,6 @@
 		</label>
 		<input
 			type="password"
-			placeholder={placeholderAtLeast8}
 			autocomplete="off"
 			maxlength="32"
 			required

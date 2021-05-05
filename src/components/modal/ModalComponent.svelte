@@ -215,7 +215,7 @@
 							}
 
 							&.with-paddings {
-								padding: 16px !important;
+								padding: 32px 48px !important;
 							}
 						}
 					}

@@ -55,6 +55,9 @@
 		<p>
 			<I18n>@Home.WhatLine5</I18n>
 		</p>
+		<p>
+			<I18n>@Home.WhatLine5_1</I18n>
+		</p>
 		<hr>
 		<p>
 			<I18n>@Home.WhatLine6</I18n>
