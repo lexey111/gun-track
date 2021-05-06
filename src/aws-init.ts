@@ -8,8 +8,45 @@ import {ActionsStore} from './stores/actions/actions-store';
 import {AuthStore} from './stores/auth/auth-store';
 import {GunsStore} from './stores/guns/guns-store';
 
-Amplify.configure(awsconfig);
-DataStore.configure(awsconfig as any);
+// copied from serviceWorker.js to know if it is localhost or not
+const isLocalhost = Boolean(
+	window.location.hostname === 'localhost' ||
+	// [::1] is the IPv6 localhost address.
+	window.location.hostname === '[::1]' ||
+	// 127.0.0.1/8 is considered localhost for IPv4.
+	window.location.hostname.match(
+		/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+	)
+);
+
+// by default, say it's localhost
+const oauth = {
+	domain: 'lexey111-main.auth.eu-central-1.amazoncognito.com',
+	scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
+	redirectSignIn: 'http://localhost:3000/',
+	redirectSignOut: 'http://localhost:3000/',
+	responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
+};
+
+// if not, update the URLs
+if (!isLocalhost) {
+	console.log('Not localhost');
+	oauth.redirectSignIn = 'https://gun-track.org/';
+	oauth.redirectSignOut = 'https://gun-track.org/';
+}
+
+// copy the constant config (aws-exports.js) because config is read only.
+
+const configUpdate = awsconfig;
+// update the configUpdate constant with the good URLs
+configUpdate.oauth = oauth;
+
+// Configure Amplify with configUpdate
+Amplify.configure(configUpdate);
+DataStore.configure(configUpdate as any);
+
+// Amplify.configure(awsconfig);
+// DataStore.configure(awsconfig as any);
 
 async function signoutStores(): Promise<void> {
 	void await DataStore.clear();
