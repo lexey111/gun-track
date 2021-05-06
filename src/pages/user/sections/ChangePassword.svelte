@@ -39,6 +39,7 @@
 	</label>
 	<input
 		type="password"
+		name="oldPwd"
 		autocomplete="off"
 		maxlength="32"
 		required
@@ -52,7 +53,7 @@
 	</label>
 	<input
 		type="password"
-		autocomplete="off"
+		autocomplete="new-password"
 		maxlength="32"
 		required
 		bind:value={pwd}
@@ -64,7 +65,7 @@
 		<I18n>@User.ConfirmPassword</I18n>
 	</label>
 	<input
-		type="password"
+		type="new-password"
 		autocomplete="off"
 		maxlength="32"
 		required

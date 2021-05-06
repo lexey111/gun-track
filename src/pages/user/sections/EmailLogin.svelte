@@ -6,6 +6,7 @@
 	import I18n from '../../../components/i18n/I18n.svelte';
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showError} from '../../../components/notifications/notify';
+	import {AppStateStore} from '../../../stores/app/app-state-store';
 	import type {IAuthStore} from '../../../stores/auth/auth-store.interface';
 	import {validateEmail} from '../../../utils/validation';
 
@@ -23,11 +24,25 @@
 	$: signinAllowed = !!email.trim() && !emailError && !!pwd.trim();
 
 	const signIn = async () => {
+		AppStateStore.showSpinner();
+
 		const result = await authStore.signIn(email, pwd);
+
 		if (result.message) {
 			showError(loginFailed + ': ' + result.message);
 		}
+
+		AppStateStore.hideSpinner();
 	}
+
+	const handleEnter = (e) => {
+		if (e?.key === 'Enter') {
+			e.preventDefault();
+			e.stopPropagation();
+			signIn();
+			return false;
+		}
+	};
 
 	let loginFailed: string;
 	onMount(() => {
@@ -60,6 +75,7 @@
 			maxlength="32"
 			required
 			bind:value={pwd}
+			on:keydown={handleEnter}
 			id="s_pwd"/>
 	</div>
 
