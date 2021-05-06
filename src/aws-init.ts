@@ -55,9 +55,13 @@ async function signoutStores(): Promise<void> {
 }
 
 async function processSignIn(user): Promise<any> {
+	if (!isLocalhost && window.location.href !== 'https://gun-track.org/home') {
+		window.location.href = 'https://gun-track.org/home';
+		console.log('reroute!');
+	}
 	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
 	if (!identities && !user.attributes) {
-		console.log('Empty response');
+		console.error('Empty response');
 		return;
 	}
 
