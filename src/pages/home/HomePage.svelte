@@ -69,8 +69,7 @@
 	<div class="page-content extra-paddings">
 		<p>
 			<SpinnerComponent/>
-			<I18n>@Common.Loading</I18n>
-			...
+			<I18n>@Common.Loading</I18n>...
 		</p>
 	</div>
 {/if}

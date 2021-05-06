@@ -67,8 +67,7 @@
 	{:else}
 		<div class="wait-message">
 			<SpinnerComponent>
-				<I18n>@Common.Loading</I18n>
-				...
+				<I18n>@Common.Loading</I18n>...
 			</SpinnerComponent>
 		</div>
 	{/if}

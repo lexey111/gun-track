@@ -64,8 +64,7 @@
 {#if (!ready)}
 	<p>
 		<SpinnerComponent/>
-		<I18n>@Common.Loading</I18n>
-		...
+		<I18n>@Common.Loading</I18n>...
 	</p>
 {/if}
 

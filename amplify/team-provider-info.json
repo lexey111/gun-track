@@ -1,4 +1,38 @@
 {
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-guntrack-main-110516-authRole",
+      "UnauthRoleArn": "arn:aws:iam::450338577710:role/amplify-guntrack-main-110516-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::450338577710:role/amplify-guntrack-main-110516-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-guntrack-main-110516-deployment",
+      "UnauthRoleName": "amplify-guntrack-main-110516-unauthRole",
+      "StackName": "amplify-guntrack-main-110516",
+      "StackId": "arn:aws:cloudformation:eu-central-1:450338577710:stack/amplify-guntrack-main-110516/f0894630-ae5a-11eb-bf14-069a0cffc5c0",
+      "AmplifyAppId": "dnps7jkdt711v"
+    },
+    "categories": {
+      "auth": {
+        "guntrack00f97396": {
+          "facebookAppId": "289943162503143",
+          "googleClientId": "800036952872-bv916hbb8rq33et37l1tqni2kdh74mr6.apps.googleusercontent.com"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dnps7jkdt711v",
+          "type": "cicd"
+        }
+      },
+      "function": {
+        "guntrack00f97396CustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": ""
+        }
+      }
+    }
+  },
   "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-guntrack-dev-135707-authRole",

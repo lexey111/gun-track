@@ -308,8 +308,7 @@
 							bind:value={trainingNotes}/>
 					{:else}
 						<SpinnerComponent>
-							<I18n>@Common.LoadingEditor</I18n>
-							...
+							<I18n>@Common.LoadingEditor</I18n>...
 						</SpinnerComponent>
 					{/if}
 				</div>

@@ -13,7 +13,7 @@
 	<div class="app-page-footer-content">
 		<p>
 			&copy; 2021 Oleksii Koshkin
-			<span>App version: 1.0.1 | May, 2021</span>
+			<span>App version: 1.0.2 | May, 2021</span>
 		</p>
 		<i></i>
 
