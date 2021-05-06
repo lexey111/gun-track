@@ -55,10 +55,6 @@ async function signoutStores(): Promise<void> {
 }
 
 async function processSignIn(user): Promise<any> {
-	if (!isLocalhost && window.location.href !== 'https://gun-track.org/home') {
-		window.location.href = 'https://gun-track.org/home';
-		console.log('reroute!');
-	}
 	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
 	if (!identities && !user.attributes) {
 		console.error('Empty response');
@@ -84,6 +80,12 @@ async function processSignIn(user): Promise<any> {
 
 	GunsStore.initStore();
 	await GunsStore.loadGuns();
+
+	if (!isLocalhost && window.location.href.includes('main.dnps7jkdt711v.amplifyapp.com')) {
+		console.log('reroute!');
+		window.location.href = 'https://gun-track.org/home';
+		return;
+	}
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return user;
