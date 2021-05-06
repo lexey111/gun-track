@@ -17,11 +17,10 @@
 		</td>
 		<td>
 			<h2>
-				<I18n>@User.AuthorizedVia</I18n>: {authState.providerId}</h2>
-			<p>
-				<b>
-					<I18n>@User.UserID</I18n>
-					:</b> {authState.email}
+				<I18n>@User.AuthorizedVia</I18n>
+				: &nbsp; <i>{authState.providerId}</i></h2>
+			<p class="flex-nowrap">
+				<I18n>@User.UserID</I18n>: &nbsp; <i>{authState.email}</i>
 			</p>
 		</td>
 	</tr>
@@ -62,6 +61,11 @@
 			box-sizing: border-box;
 			border: 4px solid var(--app-primary-bg);
 
+		}
+
+		.flex-nowrap {
+			display: flex;
+			white-space: nowrap;
 		}
 	}
 </style>

@@ -62,7 +62,7 @@
 	{/if}
 
 	{#if (currentPhotoError && !currentPhotoFetching)}
-		<div class="photo-info-div">
+		<div class="photo-info-div error">
 			{currentPhotoError}
 		</div>
 	{/if}
@@ -101,6 +101,12 @@
 			left: 0;
 			right: 0;
 			bottom: 0;
+
+			&.error {
+				color: var(--app-danger-bg);
+				text-align: center;
+				font-size: var(--app-very-small-font-size);
+			}
 
 			span {
 				margin: 0 !important;

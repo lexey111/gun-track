@@ -58,28 +58,30 @@
 
 </script>
 
-<span class:translated>
+<span class="i18n" class:translated>
 	{#if translation}
 		{translation}
 	{/if}
-	<i bind:this={slot} class="hide"><slot/></i>
+	<i bind:this={slot} class="tr-hide"><slot/></i>
 </span>
 
-<style>
-    .hide {
-        display: none;
-        visibility: collapse;
-        position: fixed;
-        top: -1000px;
-        left: -1000px;
-    }
+<style lang="less">
+	:global {
+		.tr-hide {
+			display: none;
+			visibility: collapse;
+			position: fixed;
+			top: -1000px;
+			left: -1000px;
+		}
 
-    span {
-        opacity: 0;
-        transition: opacity 0.2s ease;
-    }
+		span.i18n {
+			opacity: 0;
+			transition: opacity 0.1s ease;
+		}
 
-    .translated {
-        opacity: 1;
-    }
+		.i18n.translated {
+			opacity: 1;
+		}
+	}
 </style>

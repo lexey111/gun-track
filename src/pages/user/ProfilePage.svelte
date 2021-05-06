@@ -5,7 +5,7 @@
 	import ChangePassword from './sections/ChangePassword.svelte';
 	import ProfileDetails from './sections/ProfileDetails.svelte';
 
-	const email = 'lexey111@gmail.com';
+	const email = 'admin@gun-track.org';
 
 	export let authState: TAuthState = null;
 	export let authStore: IAuthStore = null;
