@@ -94,6 +94,9 @@ Hub.listen(
 			}
 		}
 	) => {
+
+		console.log('auth event', event);
+
 		switch (event) {
 			case 'signIn': {
 				await processSignIn(data);
