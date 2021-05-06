@@ -28,10 +28,10 @@ const oauth = {
 
 // if not, update the URLs
 if (!isLocalhost) {
-	// oauth.redirectSignIn = 'https://gun-track.org/';
-	// oauth.redirectSignOut = 'https://gun-track.org/';
-	oauth.redirectSignIn = 'https://main.dnps7jkdt711v.amplifyapp.com/';
-	oauth.redirectSignOut = 'https://main.dnps7jkdt711v.amplifyapp.com/';
+	oauth.redirectSignIn = 'https://gun-track.org/';
+	oauth.redirectSignOut = 'https://gun-track.org/';
+	// oauth.redirectSignIn = 'https://main.dnps7jkdt711v.amplifyapp.com/';
+	// oauth.redirectSignOut = 'https://main.dnps7jkdt711v.amplifyapp.com/';
 }
 
 // copy the constant config (aws-exports.js) because config is read only.
@@ -80,12 +80,6 @@ async function processSignIn(user): Promise<any> {
 
 	GunsStore.initStore();
 	await GunsStore.loadGuns();
-
-	if (!isLocalhost && window.location.href.includes('main.dnps7jkdt711v.amplifyapp.com')) {
-		console.log('reroute!');
-		window.location.href = 'https://gun-track.org/home';
-		return;
-	}
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return user;
