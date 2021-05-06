@@ -28,9 +28,10 @@ const oauth = {
 
 // if not, update the URLs
 if (!isLocalhost) {
-	console.log('Not localhost');
-	oauth.redirectSignIn = 'https://gun-track.org/';
-	oauth.redirectSignOut = 'https://gun-track.org/';
+	// oauth.redirectSignIn = 'https://gun-track.org/';
+	// oauth.redirectSignOut = 'https://gun-track.org/';
+	oauth.redirectSignIn = 'https://main.dnps7jkdt711v.amplifyapp.com/';
+	oauth.redirectSignOut = 'https://main.dnps7jkdt711v.amplifyapp.com/';
 }
 
 // copy the constant config (aws-exports.js) because config is read only.
@@ -94,9 +95,6 @@ Hub.listen(
 			}
 		}
 	) => {
-
-		console.log('auth event', event);
-
 		switch (event) {
 			case 'signIn': {
 				await processSignIn(data);

@@ -57,5 +57,5 @@
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://gun-track.org/\",\"https://gun-track.org/\",\"https://gun-track.org/\"],\"LogoutURLs\":[\"https://gun-track.org/\",\"https://gun-track.org/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://main.dnps7jkdt711v.amplifyapp.com/\",\"https://main.dnps7jkdt711v.amplifyapp.com/\",\"https://main.dnps7jkdt711v.amplifyapp.com/\"],\"LogoutURLs\":[\"https://main.dnps7jkdt711v.amplifyapp.com/\",\"https://main.dnps7jkdt711v.amplifyapp.com/\"]}"
 }
