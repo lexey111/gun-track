@@ -13,13 +13,12 @@
 	<div class="app-page-footer-content">
 		<p>
 			&copy; 2021 Oleksii Koshkin
-			<span>App version: 1.0.2 | May, 2021</span>
+			<span>App version: 1.0.2 | May, 2021 | DEV</span>
 		</p>
 		<i></i>
 
 		<div>
-			<I18n>@Footer.Contacts</I18n>
-			: &nbsp; <a href="mailto:{email}">{email}</a>
+			<I18n>@Footer.Contacts</I18n>: &nbsp; <a href="mailto:{email}">{email}</a>
 		</div>
 
 		<div>
