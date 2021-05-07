@@ -28,16 +28,14 @@ const oauth = {
 
 // if not, update the URLs
 if (!isLocalhost) {
+	console.log('set working environment');
 	oauth.redirectSignIn = 'https://gun-track.org/';
 	oauth.redirectSignOut = 'https://gun-track.org/';
 	// oauth.redirectSignIn = 'https://main.dnps7jkdt711v.amplifyapp.com/';
 	// oauth.redirectSignOut = 'https://main.dnps7jkdt711v.amplifyapp.com/';
 }
 
-// copy the constant config (aws-exports.js) because config is read only.
-
 const configUpdate = awsconfig;
-// update the configUpdate constant with the good URLs
 configUpdate.oauth = oauth;
 
 // Configure Amplify with configUpdate
@@ -48,6 +46,8 @@ DataStore.configure(configUpdate as any);
 // DataStore.configure(awsconfig as any);
 
 async function signoutStores(): Promise<void> {
+	console.log('signout, cleanup...');
+
 	void await DataStore.clear();
 	AuthStore.setLoggedOut();
 	GunsStore.unloadGuns();
@@ -55,6 +55,8 @@ async function signoutStores(): Promise<void> {
 }
 
 async function processSignIn(user): Promise<any> {
+	console.log('process sign in...', user);
+
 	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
 	if (!identities && !user.attributes) {
 		console.error('Empty response');
