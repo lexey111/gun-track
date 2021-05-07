@@ -1,10 +1,8 @@
 .idea
 .cache
-node_modules/
 npm-debug.log
 .DS_Store
 .eslintcache
-dist/
 
 #amplify
 amplify/\#current-cloud-backend
@@ -15,6 +13,8 @@ amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
 amplify/backend/.temp
 build/
+dist/
+node_modules/
 aws-exports.js
 awsconfiguration.json
 amplifyconfiguration.json
