@@ -5,13 +5,14 @@
 	import ChangePassword from './sections/ChangePassword.svelte';
 	import ProfileDetails from './sections/ProfileDetails.svelte';
 
-	const email = 'admin@gun-track.org';
-
 	export let authState: TAuthState = null;
 	export let authStore: IAuthStore = null;
 
 	const gotoTOS = () => {
 		navigate('/tos');
+	};
+	const gotoContacts = () => {
+		navigate('/contacts');
 	};
 </script>
 
@@ -36,9 +37,10 @@
 		<li><a href="#" on:click={gotoTOS}>
 			<I18n>@User.TermsOfService</I18n>
 		</a></li>
-		<li>
+		<!--  svelte-ignore a11y-invalid-attribute-->
+		<li><a href="#" on:click={gotoContacts}>
 			<I18n>@User.Contacts</I18n>
-			: <a href="mailto:{email}">{email}</a></li>
+		</a></li>
 	</ul>
 </div>
 

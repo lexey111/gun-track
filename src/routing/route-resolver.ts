@@ -32,6 +32,11 @@ export async function resolvePage(pageId: string): Promise<any> {
 				.then(getModule)
 				.catch(logError);
 
+		case 'contacts':
+			return import('./../pages/tos/Contacts.svelte')
+				.then(getModule)
+				.catch(logError);
+
 		case 'signout':
 			return import('./../pages/user/SignoutPage.svelte')
 				.then(getModule)

@@ -11,10 +11,14 @@
 	<h3>Tech</h3>
 	<ul>
 		<li>
+			<Done>Cache for i18n resource (local storage)</Done>
+		</li>
+		<li>I18n editor tool</li>
+		<li>
 			<Done>Login by enter on pwd field in email tab</Done>
 		</li>
 		<li>
-			Current password autocomplete off
+			<Done>Current password autocomplete off</Done>
 		</li>
 		<li>
 			<Done>Fix extra scroll on short pages</Done>

@@ -38,6 +38,10 @@
 		<AppPage pageId="tos"/>
 	</Route>
 
+	<Route path="contacts">
+		<AppPage pageId="contacts"/>
+	</Route>
+
 	<Route path="guns">
 		<AppPage pageId="guns" onlyLoggedIn={true} redirectTo="/login" class="no-paddings"/>
 	</Route>

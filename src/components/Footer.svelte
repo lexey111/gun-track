@@ -1,24 +1,27 @@
 <script lang="ts">
 	import {navigate} from 'svelte-routing';
 	import I18n from './i18n/I18n.svelte';
-
-	const email = 'admin@gun-track.org';
+	import {AppVersion} from '../config';
 
 	const openTOS = () => {
 		navigate('/tos');
 	}
+	const gotoContacts = () => {
+		navigate('/contacts');
+	};
 </script>
 
 <div class="app-page-footer">
 	<div class="app-page-footer-content">
 		<p>
-			&copy; 2021 Oleksii Koshkin | Version: 1.0.4 | May, 2021
+			&copy; 2021 Oleksii Koshkin | Version: {AppVersion} | May, 2021
 		</p>
 		<i></i>
-
 		<div>
-			<I18n>@Footer.Contacts</I18n>
-			: &nbsp; <a href="mailto:{email}">{email}</a>
+			<!--  svelte-ignore a11y-invalid-attribute-->
+			<a href="#" on:click={gotoContacts}>
+				<I18n>@Footer.Contacts</I18n>
+			</a>
 		</div>
 
 		<div>

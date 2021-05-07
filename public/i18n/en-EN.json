@@ -1,4 +1,5 @@
 {
+	"version": "1.0.5",
 	"@Common": {
 		"ThisIsGunTrack": "This is Gun | Track site",
 		"Today": "Today",
@@ -129,6 +130,7 @@
 		"TermsOfService": "Terms of service"
 	},
 	"@User": {
+		"AdminEmail": "Site admin e-mail address",
 		"Profile": "Profile",
 		"Logout": "Logout",
 		"AuthorizedVia": "Authorized via",
@@ -177,6 +179,13 @@
 		"OrWithLocal": "Or with local credentials",
 		"WantToRegister": "Want to register?",
 		"RegisterWithEmail": "Register with e-mail"
+	},
+	"@Contacts": {
+		"UserDataDeletion": "User Data Deletion",
+		"WeDontCollect": "Despite we don't collect any personal information except e-mail address which is used as account name, you can delete all the data from site.",
+		"ToDoThat": "To do that please:",
+		"InstructionLine1": "Delete all the guns registered. Related records and pictures will be deleted automatically.",
+		"InstructionLine2": "Contact Site Administrator (above) to delete your account record. Please provide some details: what authorization method did you use (Google, Facebook, local login) and e-mail."
 	},
 	"@Actions": {
 		"all": "All",

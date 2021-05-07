@@ -1,8 +1,10 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return */
+import {AppVersion} from '../../config';
 import type {TAppLocale} from '../../stores/app/app-state-store.interface';
 
 const memoryCache: Record<string, Promise<unknown>> = {};
 let currentLocale: TAppLocale;
+
 
 function loadLocale(locale: TAppLocale): Promise<Record<string, any>> {
 	const localeToLoad = !locale ? 'en-EN' : locale;
@@ -11,6 +13,21 @@ function loadLocale(locale: TAppLocale): Promise<Record<string, any>> {
 
 	if (typeof memoryCache[localeToLoad] !== 'undefined') {
 		return memoryCache[localeToLoad];
+	}
+	// try to get from cache
+	const cachedLocale = localStorage.getItem('locale_' + localeToLoad);
+	if (cachedLocale) {
+		try {
+			const cachedData: any = JSON.parse(cachedLocale);
+			if (cachedData?.version === AppVersion) {
+				memoryCache[localeToLoad] = Promise.resolve(cachedData);
+
+				return memoryCache[localeToLoad];
+			}
+			localStorage.setItem('locale_' + localeToLoad, null);
+		} catch {
+			//
+		}
 	}
 
 	memoryCache[localeToLoad] = fetch('/i18n/' + localeToLoad + '.json')
@@ -22,6 +39,10 @@ function loadLocale(locale: TAppLocale): Promise<Record<string, any>> {
 				throw new Error(`Locale "${localeToLoad}" not found!`);
 			}
 			throw new Error('Invalid Locale response!');
+		})
+		.then(localeData => {
+			localStorage.setItem('locale_' + localeToLoad, JSON.stringify(localeData));
+			return localeData;
 		})
 		.catch(e => {
 			console.error('Error on loading locale', localeToLoad);
