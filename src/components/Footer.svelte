@@ -12,8 +12,7 @@
 <div class="app-page-footer">
 	<div class="app-page-footer-content">
 		<p>
-			&copy; 2021 Oleksii Koshkin
-			<span>App version: 1.0.3 | May, 2021</span>
+			&copy; 2021 Oleksii Koshkin | Version: 1.0.4 | May, 2021
 		</p>
 		<i></i>
 
@@ -35,7 +34,7 @@
 	:global {
 		.app-page-footer {
 			width: 100%;
-			min-height: 50px;
+			// min-height: 32px;
 			display: flex;
 			flex-flow: row nowrap;
 			align-items: flex-start;
@@ -50,7 +49,7 @@
 			display: flex;
 			width: 100%;
 			flex-flow: row nowrap;
-			color: rgba(255, 255, 255, .7);
+			color: rgba(255, 255, 255, .5);
 
 			p {
 				display: flex;
@@ -88,7 +87,7 @@
 				}
 
 				a {
-					color: var(--app-white-bg);
+					color: var(--app-primary-bg-lightest);
 					opacity: .8;
 
 					&:hover, &:focus {

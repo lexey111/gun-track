@@ -11,13 +11,13 @@
 	<h3>Tech</h3>
 	<ul>
 		<li>
-			Login by enter on pwd field in email tab
+			<Done>Login by enter on pwd field in email tab</Done>
 		</li>
 		<li>
 			Current password autocomplete off
 		</li>
 		<li>
-			Fix extra scroll on short pages
+			<Done>Fix extra scroll on short pages</Done>
 		</li>
 		<li>
 			<Done>Domain</Done>
@@ -29,7 +29,7 @@
 			<Done>CI/CD</Done>
 		</li>
 		<li>
-			Update OG in html
+			<Done>Update OG in html</Done>
 		</li>
 		<li>
 			<Done>Register contact email</Done>

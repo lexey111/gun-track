@@ -9,7 +9,7 @@
 
 	export let id = '';
 	export let gunsState: TGunsState;
-	export let showNewActionDialog: () => void = null;
+	export let addRecord: () => void = null;
 	let currentGun: Gun;
 	let currentGunTitle: string;
 	$: {
@@ -27,7 +27,7 @@
 		<I18n>@Track.BestTimeToCreate</I18n>
 	</p>
 	<p>
-		<Button on:click={showNewActionDialog}>
+		<Button on:click={addRecord}>
 			<Icon type="plus-circle" size="24px" class="inline"/>
 			<I18n>@Track.AddARecord</I18n>
 		</Button>

@@ -1,7 +1,7 @@
 {
 	"name": "gun-track",
-	"version": "1.0.0",
-	"description": "Gun history tracking application",
+	"version": "1.0.4",
+	"description": "Gun history tracking notebook",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/lexey111"

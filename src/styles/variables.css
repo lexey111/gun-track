@@ -17,8 +17,11 @@
     --app-primary-bg-darken: #0f5b91;
     --app-primary-bg-dark: #0c4771;
     --app-primary-bg-darkest: #0d3049;
-    --app-primary-bg-lighten: #1271b5;
+
     --app-primary-bg-light: #1b84cf;
+    --app-primary-bg-lighten: #1271b5;
+    --app-primary-bg-lightest: #53b1fc;
+
     --app-primary-bg-light-shade-1: #3d83b6;
     --app-primary-text: #fff;
     --app-primary-text-darken: #c0d5e3;

@@ -28,8 +28,7 @@
 	</h1>
 	<p>
 		<I18n>@Track.NoRecordsFilter1</I18n>&nbsp;
-		{actionsState.totalRecords}
-		<I18n>@Track.NoRecordsFilter2</I18n>&nbsp;
+		{actionsState.totalRecords}<I18n>@Track.NoRecordsFilter2</I18n>&nbsp;
 		<i class="gun-name">{currentGunTitle}</i>&nbsp;
 		<I18n>@Track.NoRecordsFilter3</I18n>
 	</p>

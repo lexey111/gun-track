@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-misused-promises,no-console */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,no-console,@typescript-eslint/no-misused-promises */
 import {Auth} from '@aws-amplify/auth';
 import {Amplify, Hub} from '@aws-amplify/core';
 import {DataStore} from '@aws-amplify/datastore';
@@ -28,7 +28,6 @@ const oauth = {
 
 // if not, update the URLs
 if (!isLocalhost) {
-	console.log('set working environment');
 	oauth.redirectSignIn = 'https://gun-track.org/';
 	oauth.redirectSignOut = 'https://gun-track.org/';
 	// oauth.redirectSignIn = 'https://main.dnps7jkdt711v.amplifyapp.com/';
@@ -46,7 +45,7 @@ DataStore.configure(configUpdate as any);
 // DataStore.configure(awsconfig as any);
 
 async function signoutStores(): Promise<void> {
-	console.log('signout, cleanup...');
+	// console.log('signout, cleanup...');
 
 	void await DataStore.clear();
 	AuthStore.setLoggedOut();
@@ -55,11 +54,17 @@ async function signoutStores(): Promise<void> {
 }
 
 async function processSignIn(user): Promise<any> {
-	console.log('process sign in...', user);
+	// console.log('process sign in...', user);
 
-	const identities = JSON.parse(user.attributes?.identities || '[]')[0];
-	if (!identities && !user.attributes) {
-		console.error('Empty response');
+	let identities;
+	try {
+		identities = JSON.parse(user.attributes?.identities || '[]')[0];
+		if (!identities && !user.attributes) {
+			console.error('Empty response');
+			return;
+		}
+	} catch (e) {
+		console.error(e);
 		return;
 	}
 
@@ -96,7 +101,7 @@ Hub.listen(
 				data
 			}
 		}
-	) => {
+	): Promise<any> => {
 		switch (event) {
 			case 'signIn': {
 				await processSignIn(data);
@@ -146,7 +151,7 @@ Auth.currentAuthenticatedUser()
 		return processSignIn(user);
 	})
 	.catch(err => {
-		console.log('Not signed in'); // https://lexey111-dev.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse
+		// console.log('Not signed in'); // https://lexey111-dev.auth.eu-central-1.amazoncognito.com/oauth2/idpresponse
 		console.log(err);
 
 		void signoutStores();

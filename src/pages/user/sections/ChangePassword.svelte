@@ -65,8 +65,8 @@
 		<I18n>@User.ConfirmPassword</I18n>
 	</label>
 	<input
-		type="new-password"
-		autocomplete="off"
+		type="password"
+		autocomplete="new-password"
 		maxlength="32"
 		required
 		bind:value={pwd2}
