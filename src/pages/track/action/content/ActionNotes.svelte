@@ -21,11 +21,12 @@
 				display: block;
 				float: left;
 				clear: both;
-				padding: 4px 8px 0 0;
+				padding: 2px 8px 0 0;
 			}
 
 			font-size: var(--app-small-font-size);
-			max-height: 64px;
+			max-height: 72px;
+			height: auto;
 			overflow: hidden;
 			background-color: var(--app-background);
 			padding: 4px 8px;
@@ -62,12 +63,12 @@
 				left: 0;
 				right: 0;
 				height: 24px;
-				background: linear-gradient(to bottom, transparent, var(--app-background) 70%);
+				// background: linear-gradient(to bottom, transparent, var(--app-background) 70%);
 				z-index: 2;
 			}
 
 			p {
-				line-height: 1.2em !important;
+				line-height: 1.0em !important;
 				padding: 0;
 				margin: 0 !important;
 				margin-block-start: 0;

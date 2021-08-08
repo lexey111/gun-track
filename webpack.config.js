@@ -2,10 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const sveltePreprocess = require('svelte-preprocess');
 
@@ -77,20 +78,6 @@ module.exports = (env, args) => {
 		},
 		module: {
 			rules: [
-				{
-					test: /\.ts$/,
-					// eslint
-					enforce: 'pre',
-					use: [
-						{
-							options: {
-								eslintPath: require.resolve('eslint'),
-							},
-							loader: require.resolve('eslint-loader'),
-						},
-					],
-					exclude: /node_modules/,
-				},
 				{
 					test: /\.ts?$/,
 					exclude: /node_modules/,
@@ -187,6 +174,8 @@ module.exports = (env, args) => {
 				DEBUG: !isProduction
 			}),
 
+			new ESLintPlugin(),
+
 			new MiniCssExtractPlugin({
 				filename: isProduction ? '[name]-[contenthash].css' : '[name].css',
 			}),
@@ -239,7 +228,7 @@ module.exports = (env, args) => {
 		config.optimization.minimize = true;
 		config.optimization.minimizer = [
 			new TerserPlugin({extractComments: false}),
-			new OptimizeCSSAssetsPlugin({}),
+			new CssMinimizerPlugin(),
 		]
 	}
 

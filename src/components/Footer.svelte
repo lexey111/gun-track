@@ -14,7 +14,7 @@
 <div class="app-page-footer">
 	<div class="app-page-footer-content">
 		<p>
-			&copy; 2021 Oleksii Koshkin | Version: {AppVersion} | May, 2021
+			&copy; Oleksii Koshkin | {AppVersion} - VIII/MMXXI
 		</p>
 		<i></i>
 		<div>

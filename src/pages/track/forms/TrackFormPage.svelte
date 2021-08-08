@@ -13,6 +13,7 @@
 	import Icon from '../../../components/icons/Icon.svelte';
 	import {showSuccess} from '../../../components/notifications/notify';
 	import SpinnerComponent from '../../../components/spinners/SpinnerComponent.svelte';
+	import type {Gun} from '../../../models';
 	import {ActionsStore} from '../../../stores/actions/actions-store';
 	import type {TAction, TActionsState} from '../../../stores/actions/actions-store.interface';
 	import {AppStateStore} from '../../../stores/app/app-state-store';
@@ -24,6 +25,8 @@
 	let isNew = id === 'new';
 
 	let dataReady = false;
+
+	let gun: Gun = null;
 
 	let action: TAction;
 	let title = '';
@@ -161,7 +164,8 @@
 			}
 			gunsState = value;
 
-			if (!GunsStore.getGunById(gunId)) {
+			gun = GunsStore.getGunById(gunId);
+			if (!gun) {
 				loadingError = gunNotFound || 'Gun not found!';
 				AppStateStore.hideSpinner();
 				return;
@@ -200,7 +204,6 @@
 		gunsUnsubscribe && gunsUnsubscribe();
 		actionsUnsubscribe && actionsUnsubscribe();
 	});
-
 </script>
 
 {#if (loadingError)}
@@ -222,6 +225,9 @@
 						<I18n>@Common.NewRecord</I18n>
 					{:else}
 						<I18n>@Common.ChangeRecord</I18n>
+					{/if}
+					{#if (gun)}
+						&mdash; <span>{gun?.name || gun?.make || gun?.model || 'no name'}</span>
 					{/if}
 				</h1>
 				<div class="form-group">
